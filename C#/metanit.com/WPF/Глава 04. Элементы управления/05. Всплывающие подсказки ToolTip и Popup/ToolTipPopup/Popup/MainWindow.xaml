@@ -1,0 +1,40 @@
+﻿<!--2021.08.12 15:09 IMM-->
+    
+<Window x:Class="Popup.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Popup"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <!--
+        Popup
+
+        Элемент Popup также представляет всплывающее окно, только в данном случае оно имеет 
+        другую функциональность. Если Tooltip отображается автоматически при наведении и также 
+        автоматически скрывается через некоторое время, то в случае с Popup все эти действия нам
+        надо задавать вручную.
+
+        Так, чтобы отразить при наведении мыши на элемент всплывающее окно, нам надо соответственным
+        образом обработать событие MouseEnter.
+
+        Второй момент, который надо учесть, это установка свойства StaysOpen="False". По умолчанию оно 
+        равно True, а это значит, что при отображении окна, оно больше не исчезнет, пока мы не установим
+        явно значение этого свойства в False.
+
+        Итак, создадим всплывающее окно:
+        -->
+        <StackPanel>
+            <Button Content="Popup" Width="80" MouseEnter="Button_MouseEnter_1" HorizontalAlignment="Left" />
+            <Popup x:Name="popup1" StaysOpen="False" Placement="Mouse" MaxWidth="180"
+                AllowsTransparency="True"  >
+                <TextBlock TextWrapping="Wrap" Width="180" Background="LightPink" Opacity="0.8" >
+                    Чтобы узнать больше, посетите сайт metanit.com
+                </TextBlock>
+            </Popup>
+        </StackPanel>
+        <!--И при наведении указателя мыши на элемент появится всплывающее окно с сообщением.-->
+    </Grid>
+</Window>

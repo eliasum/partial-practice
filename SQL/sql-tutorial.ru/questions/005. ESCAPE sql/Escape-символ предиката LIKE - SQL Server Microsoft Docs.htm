@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="hasSidebar hasPageActions hasBreadcrumb conceptual has-default-focus theme-light" lang="ru-ru" dir="ltr" data-css-variable-support="true" data-authenticated="false" data-auth-status-determined="false" data-target="docs" x-ms-format-detection="none">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta property="og:title" content="Escape-символ предиката LIKE - SQL Server" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://docs.microsoft.com/ru-ru/sql/odbc/reference/develop-app/like-predicate-escape-character" />
+			<meta property="og:description" content="Escape-символ предиката LIKE" />
+		<meta property="og:image" content="https://docs.microsoft.com/en-us/media/logos/logo-ms-social.png" />
+		<meta property="og:image:alt" content="Microsoft Logo" />
+
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:site" content="@docsmsft" />
+
+
+	<meta name="author" content="David-Engel" />
+<meta name="bilingual_type" content="hover over" />
+<meta name="breadcrumb_path" content="../../../breadcrumb/toc.json" />
+<meta name="depot_name" content="SQL.sql-content" />
+<meta name="description" content="Escape-символ предиката LIKE" />
+<meta name="document_id" content="92da7dcf-7078-6ecc-4727-e3c3d960ed19" />
+<meta name="document_version_independent_id" content="a0fbc771-69a6-8be6-b376-8ae2a5f3d2ef" />
+<meta name="enable_loc_sxs" content="true" />
+<meta name="gitcommit" content="https://github.com/MicrosoftDocs/sql-docs-pr.ru-ru/blob/039b50e608e680dcf6a8503df089d30624395ab3/docs/odbc/reference/develop-app/like-predicate-escape-character.md" />
+<meta name="locale" content="ru-ru" />
+<meta name="manager" content="jroth" />
+<meta name="monikerRange" content=">= sql-server-2016 || >= sql-server-linux-2017 || = azuresqldb-current || = azuresqldb-mi-current || = azure-sqldw-latest || >= aps-pdw-2016 || = sqlallproducts-allversions" />
+<meta name="monikers" content="aps-pdw-2016" />
+<meta name="monikers" content="aps-pdw-2016-au7" />
+<meta name="monikers" content="azure-sqldw-latest" />
+<meta name="monikers" content="azuresqldb-current" />
+<meta name="monikers" content="azuresqldb-mi-current" />
+<meta name="monikers" content="sql-server-2016" />
+<meta name="monikers" content="sql-server-2017" />
+<meta name="monikers" content="sql-server-linux-2017" />
+<meta name="monikers" content="sql-server-linux-ver15" />
+<meta name="monikers" content="sql-server-ver15" />
+<meta name="monikers" content="sqlallproducts-allversions" />
+<meta name="ms.assetid" content="185d6109-48cf-4981-bc40-ec2a4a90cafc" />
+<meta name="ms.author" content="v-daenge" />
+<meta name="ms.contentlocale" content="ru-RU" />
+<meta name="ms.custom" content="" />
+<meta name="ms.date" content="01/19/2017" />
+<meta name="ms.lasthandoff" content="08/17/2020" />
+<meta name="ms.locfileid" content="88476556" />
+<meta name="ms.openlocfilehash" content="5304068e21dd6faf0e737a94add0cce177c4dabc" />
+<meta name="ms.prod" content="sql" />
+<meta name="ms.prod_service" content="connectivity" />
+<meta name="ms.reviewer" content="" />
+<meta name="ms.sourcegitcommit" content="e700497f962e4c2274df16d9e651059b42ff1a10" />
+<meta name="ms.technology" content="connectivity" />
+<meta name="ms.topic" content="conceptual" />
+<meta name="ms.translationtype" content="MT" />
+<meta name="original_content_git_url" content="https://github.com/MicrosoftDocs/sql-docs-pr.ru-ru/blob/live-sxs/docs/odbc/reference/develop-app/like-predicate-escape-character.md" />
+<meta name="search.ms_docsetname" content="sql-content" />
+<meta name="search.ms_product" content="SQL" />
+<meta name="search.ms_sitename" content="Docs" />
+<meta name="site_name" content="Docs" />
+<meta name="toc_preview" content="true" />
+<meta name="uhfHeaderId" content="MSDocsHeader-DocsSQL" />
+<meta name="updated_at" content="2020-08-20 06:32 AM" />
+<meta name="page_type" content="conceptual" />
+<meta name="toc_rel" content="../../../connect/toc.json" />
+<meta name="word_count" content="331" />
+
+
+	<meta name="scope" content="sql" />
+<link href="https://docs.microsoft.com/ru-ru/sql/odbc/reference/develop-app/like-predicate-escape-character" rel="canonical">
+	<title>Escape-символ предиката LIKE - SQL Server | Microsoft Docs</title>
+
+		<link rel="stylesheet" href="/_themes/docs.theme/master/ru-ru/_themes/styles/4bc2d448.site-ltr.css ">
+
+	<link rel="stylesheet" href="/_themes/docs.theme/master/ru-ru/_themes/styles/55917fe3.conceptual.css ">
+
+
+	<script>
+	var msDocs = {
+		data: {
+			timeOrigin: Date.now(),
+			contentLocale: 'ru-ru',
+			contentDir: 'ltr',
+			userLocale: 'ru-ru',
+			userDir: 'ltr',
+			pageTemplate: 'Conceptual',
+			brand: '',
+			context: {
+
+			},
+			hasBinaryRating: true,
+			hasGithubIssues: true,
+			showFeedbackReport: false,
+			enableTutorialFeedback: false,
+			feedbackSystem: 'GitHub',
+			feedbackGitHubRepo: 'MicrosoftDocs/sql-docs.ru-ru',
+			feedbackProductUrl: 'https://feedback.azure.com/forums/908035-sql-server/',
+			contentGitUrl: 'https://github.com/MicrosoftDocs/sql-docs.ru-ru/blob/live/docs/odbc/reference/develop-app/like-predicate-escape-character.md',
+			extendBreadcrumb: true,
+			isEditDisplayable: false,
+			hideViewSource: false,
+			hasPageActions: true,
+			hasBookmark: true,
+			hasShare: true
+		},
+		functions:{}
+	};
+	</script>
+	<script nomodule src="/static/third-party/bluebird/3.5.0/bluebird.min.js" integrity="sha384-aD4BDeDGeLXLpPK4yKeqtZQa9dv4a/7mQ+4L5vwshIYH1Mc2BrXvHd32iHzYCQy5" crossorigin="anonymous"></script>
+	<script nomodule src="/static/third-party/fetch/3.0.0/fetch.umd.min.js" integrity="sha384-EQIXrC5K2+7X8nGgLkB995I0/6jfAvvyG1ieZ+WYGxgJHFMD/alsG9fSDWvzb5Y1" crossorigin="anonymous"></script>
+	<script nomodule src="/static/third-party/template/1.4.0/template.min.js" integrity="sha384-1zKzI6ldTVHMU7n0W2HpE/lhHI+UG4D9IIaxbj3kT2UhCWicdTuJkTtnKuu0CQzN" crossorigin="anonymous"></script>
+	<script nomodule src="/static/third-party/url/0.5.7/url.min.js" integrity="sha384-vn7xBMtpSTfzaTRWxj0kVq0UcsbBrTOgZ/M1ISHqe1V358elYva+lfiEC+T8jLPc" crossorigin="anonymous"></script>
+	<script src="/_themes/docs.theme/master/ru-ru/_themes/scripts/298d06f8.index-polyfills.js"></script>
+		<script src="/_themes/docs.theme/master/ru-ru/_themes/scripts/e4b4c705.index-docs.js"></script>
+</head>
+
+<body lang="ru-ru" dir="ltr">
+<div class="header-holder has-default-focus">
+	<a href="#main" class="skip-to-main-link has-outline-color-text visually-hidden-until-focused is-fixed has-inner-focus focus-visible has-top-zero has-left-zero has-right-zero has-padding-medium has-text-centered has-body-background-medium" tabindex="1">Пропустить и перейти к основному содержимому</a>
+	<div hidden id="cookie-consent-holder"></div>
+	<!-- liquid-tag banners global -->
+	<div id="headerAreaHolder" data-bi-name="header">
+<header role="banner" itemscope="itemscope" itemtype="http://schema.org/Organization">
+	<div class="nav-bar">
+		<div class="nav-bar-brand">
+			<a itemprop="url" href="https://www.microsoft.com" aria-label="Microsoft" class="nav-bar-button">
+				<div class="nav-bar-logo has-background-image theme-display is-light" role="presentation" aria-hidden="true" itemprop="logo" itemscope="itemscope"></div>
+				<div class="nav-bar-logo has-background-image theme-display is-dark is-high-contrast" role="presentation" aria-hidden="true" itemprop="logo" itemscope="itemscope"></div>
+			</a>
+		</div>
+	</div>
+	<div class="nav-bar has-border-top is-hidden-mobile"></div>
+</header>	</div>
+
+				<div class="content-header uhf-container has-padding has-default-focus has-border-bottom-none" data-bi-name="content-header">
+				<nav class="has-padding-none has-padding-left-medium-tablet has-padding-right-medium-tablet has-padding-left-none-uhf-tablet has-padding-left-none-uhf-tablet has-padding-none-desktop has-flex-grow" data-bi-name="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList" role="navigation" aria-label="Навигатор">
+					<ul id="page-breadcrumbs" class="breadcrumbs">
+					</ul>
+				</nav>
+			<div class="content-header-controls">
+				<button type="button" class="contents-button button" data-bi-name="contents-expand" aria-haspopup="true">
+					<span class="icon"><span class="docon docon-menu" aria-hidden="true"></span></span>
+					<span class="contents-expand-title">Содержимое</span>
+				</button>
+				<button type="button" class="ap-collapse-behavior ap-expanded button" data-bi-name="ap-collapse" aria-controls="action-panel">
+					<span class="icon"><span class="docon docon-exit-mode" aria-hidden="true"></span></span>
+					<span>Выйти из режима фокусировки</span>
+				</button>
+			</div>
+			<div class="has-padding-none-tablet has-padding-medium is-size-small is-flex-touch has-flex-justify-content-space-between-touch has-flex-grow">
+				<ul class="is-hidden-mobile action-list has-flex-justify-content-start has-flex-justify-content-end-tablet is-flex is-flex-row has-flex-wrap has-flex-grow is-unstyled">
+					<li>
+						<button type="button" class="bookmark button is-text has-inner-focus is-small is-icon-only-touch" data-list-type="bookmarks" data-bi-name="bookmark" title="Добавить эту страницу в закладки">
+							<span class="icon" aria-hidden="true">
+								<span class="docon docon-single-bookmark"></span>
+							</span>
+							<span class="bookmark-status is-visually-hidden-touch is-hidden-portrait">Закладка</span>
+						</button>
+					</li>
+						<li id="feedback-section-link">
+							<a href="#feedback" class="button is-text has-inner-focus is-small is-icon-only-touch" data-bi-name="comments" title="Отправить отзыв об этой странице">
+								<span class="icon" aria-hidden="true">
+									<span class="docon docon-comment-lines"></span>
+								</span>
+								<span class="is-visually-hidden-touch is-hidden-portrait">Обратная связь</span>
+							</a>
+						</li>
+							<li id="contenteditbtn" hidden>
+								<a href="https://github.com/MicrosoftDocs/sql-docs.ru-ru/blob/live/docs/odbc/reference/develop-app/like-predicate-escape-character.md" class="button is-text has-inner-focus is-icon-only-touch is-small" title="Редактировать этот документ" data-bi-name="edit" data-original_content_git_url="https://github.com/MicrosoftDocs/sql-docs-pr.ru-ru/blob/live-sxs/docs/odbc/reference/develop-app/like-predicate-escape-character.md" data-original_content_git_url_template="{repo}/blob/{branch}/docs/odbc/reference/develop-app/like-predicate-escape-character.md" data-pr_repo="" data-pr_branch="">
+								<span class="icon" aria-hidden="true">
+									<span class="docon docon-edit-outline"></span>
+								</span>
+								<span class="is-visually-hidden-touch is-hidden-portrait">Изменить</span>
+							</a>
+						</li>
+					<li>
+<div class="sharing dropdown has-caret">
+	<button class="dropdown-trigger button is-text is-fullwidth has-flex-justify-content-start has-inner-focus is-small is-icon-only-touch" aria-controls="sharing-menu" aria-expanded="false" title="Поделиться этим документом" data-bi-name="share">
+		<span class="icon" aria-hidden="true">
+			<span class="docon docon-sharing"></span>
+		</span>
+		<span class="is-visually-hidden-touch is-hidden-portrait">Поделиться</span>
+	</button>
+	<div class="dropdown-menu has-padding-small" id="sharing-menu">
+		<ul data-bi-name="share-links">
+			<li>
+				<a class="button is-text is-fullwidth has-flex-justify-content-start has-inner-focus is-small share-twitter" data-bi-name="twitter">
+					<span class="icon">
+						<span class="docon docon-brand-twitter has-text-primary" aria-hidden="true"></span>
+					</span>
+					<span>Twitter</span>
+				</a>
+			</li>
+			<li>
+				<a class="button is-text is-fullwidth has-flex-justify-content-start has-inner-focus is-small share-linkedin" data-bi-name="linkedin">
+					<span class="icon">
+						<span class="docon docon-brand-linkedin has-text-primary" aria-hidden="true"></span>
+					</span>
+					<span>LinkedIn</span>
+				</a>
+			</li>
+			<li>
+				<a class="button is-text is-fullwidth has-flex-justify-content-start has-inner-focus is-small share-facebook" data-bi-name="facebook">
+					<span class="icon">
+						<span class="docon docon-brand-facebook has-text-primary" aria-hidden="true"></span>
+					</span>
+					<span>Facebook</span>
+				</a>
+			</li>
+			<li>
+				<a class="button is-text is-fullwidth has-flex-justify-content-start has-inner-focus is-small share-email" data-bi-name="email">
+					<span class="icon">
+						<span class="docon docon-mail-message-fill has-text-primary" aria-hidden="true"></span>
+					</span>
+					<span>Адрес электронной почты</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>					</li>
+					<li>
+
+<div class="lang-toggle-container">
+	<label for="language-toggle" aria-hidden="true" tabindex="-1">Прочитать на английском</label>
+	<div class="checkbox-toggle-wrapper">
+		<input type="checkbox" id="language-toggle" aria-label="Прочитать на английском">
+		<label for="language-toggle" class="switch"></label>
+	</div>
+</div>					</li>
+				</ul>
+				<button type="button" class="has-border contents-button button is-small is-text is-hidden-tablet has-inner-focus" aria-label="Содержимое" data-bi-name="contents-expand">
+					<span class="icon">
+						<span class="docon docon-editor-list-bullet" aria-hidden="true"></span>
+					</span>
+					<span class="contents-expand-title">Оглавление</span>
+				</button>
+				<div class="is-invisible"></div>
+				<div class="is-hidden-tablet level-item is-flexible level-right">
+					<button type="button" class="page-actions-button button is-small is-text is-hidden-tablet has-inner-focus has-border is-full-height  has-margin-left-small" aria-label="Действия страницы" data-bi-name="pageactions">
+						<span class="icon">
+							<span class="docon docon-more-vertical" aria-hidden="true"></span>
+						</span>
+					</button>
+				</div>
+			</div>
+		</div>
+
+
+
+	<div id="disclaimer-holder" class="has-overflow-hidden has-default-focus">
+		<!-- liquid-tag banners sectional -->
+	</div>
+	</div>
+
+	<div class="mainContainer  uhf-container has-top-padding  has-default-focus" data-bi-name="body">
+
+		<div class="columns has-large-gaps is-gapless-mobile ">
+
+			<div id="left-container" class="left-container is-hidden-mobile column is-one-third-tablet is-one-quarter-desktop">
+				<nav id="affixed-left-container" class="is-fixed is-flex is-flex-column" role="navigation" aria-label="Основной"></nav>
+			</div>
+
+			<section class="primary-holder column is-two-thirds-tablet is-three-quarters-desktop">
+				<div class="columns is-gapless-mobile has-large-gaps ">
+
+
+				<div id="main-column" class="column  is-full is-four-fifths-desktop ">
+
+					<main id="main" role="main" class="content " data-bi-name="content" lang="ru-ru" dir="ltr">
+
+
+
+						<h1 id="like-predicate-escape-character"><span data-ttu-id="cc5c0-103">Escape-символ предиката LIKE</span><span class="sxs-lookup"><span data-stu-id="cc5c0-103">LIKE Predicate Escape Character</span></span></h1>
+
+						<ul class="metadata page-metadata" data-bi-name="page info" lang="ru-ru" dir="ltr">
+							<li>
+								<time class="is-invisible" data-article-date aria-label="Дата проверки статьи" datetime="2017-01-19T00:00:00.000Z" data-article-date-source="ms.date">01/19/2017</time>
+							</li>
+								<li class="readingTime">Чтение занимает 2 мин</li>
+								<li class="contributors-holder">
+									<ul class="contributors" data-bi-name="contributors" aria-hidden="true">
+												<li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNMsAcAAQUAoVnxsV8AAAAASUVORK5CYII=" data-src="https://github.com/David-Engel.png?size=32" role="presentation"/></li>
+												<li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNMsAcAAQUAoVnxsV8AAAAASUVORK5CYII=" data-src="https://github.com/olprod.png?size=32" role="presentation"/></li>
+												<li><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNMsAcAAQUAoVnxsV8AAAAASUVORK5CYII=" data-src="https://github.com/OpenLocalizationService.png?size=32" role="presentation"/></li>
+									</ul>
+								</li>
+						</ul>
+
+						<nav id="center-doc-outline" class="doc-outline is-hidden-desktop" data-bi-name="intopic toc" role="navigation" aria-label="Структура статьи">
+							<h3>В этой статье</h3>
+						</nav>
+
+						<!-- <content> -->
+							<p><span data-ttu-id="cc5c0-104">В предикате <strong>Like</strong> знак процента (%) соответствует нулю или нескольким символам, а символ подчеркивания (<em>) соответствует любому символу.</em></span><span class="sxs-lookup"><span data-stu-id="cc5c0-104">In a <strong>LIKE</strong> predicate, the percent sign (%) matches zero or more of any character and the underscore () matches any one character.</span></span> <span data-ttu-id="cc5c0-105">Чтобы сопоставить фактический знак процента или символ подчеркивания в предикате <strong>Like</strong> , перед знаком процента или символом подчеркивания должна быть escape-последовательность.</span><span class="sxs-lookup"><span data-stu-id="cc5c0-105">To match an actual percent sign or underscore in a <strong>LIKE</strong> predicate, an escape character must come before the percent sign or underscore.</span></span> <span data-ttu-id="cc5c0-106">Escape-символ предиката LIKE, который определяет <strong>подобную</strong> последовательность:</span><span class="sxs-lookup"><span data-stu-id="cc5c0-106">The escape sequence that defines the <strong>LIKE</strong> predicate escape character is:</span></span></p>
+<p><span data-ttu-id="cc5c0-107"><strong>{</strong> Escape <em>-символ</em> <strong>&quot;}</strong></span><span class="sxs-lookup"><span data-stu-id="cc5c0-107"><strong>{escape '</strong> <em>escape-character</em> <strong>'}</strong></span></span></p>
+<p><span data-ttu-id="cc5c0-108">где <em>escape-символ</em> — любой символ, поддерживаемый источником данных.</span><span class="sxs-lookup"><span data-stu-id="cc5c0-108">where <em>escape-character</em> is any character supported by the data source.</span></span></p>
+<p><span data-ttu-id="cc5c0-109">Дополнительные сведения о escape-последовательности LIKE см. в разделе <a href="../appendixes/like-escape-sequence?view=sql-server-ver15" data-linktype="relative-path">Like escape-последовательность</a> в приложении C: грамматика SQL.</span><span class="sxs-lookup"><span data-stu-id="cc5c0-109">For more information about the LIKE escape sequence, see <a href="../appendixes/like-escape-sequence?view=sql-server-ver15" data-linktype="relative-path">LIKE Escape Sequence</a> in Appendix C: SQL Grammar.</span></span></p>
+<p><span data-ttu-id="cc5c0-110">Например, следующие инструкции SQL создают тот же результирующий набор имен клиентов, которые начинаются с символов «% AAA».</span><span class="sxs-lookup"><span data-stu-id="cc5c0-110">For example, the following SQL statements create the same result set of customer names that start with the characters &quot;%AAA&quot;.</span></span> <span data-ttu-id="cc5c0-111">В первой инструкции используется синтаксис escape-последовательности.</span><span class="sxs-lookup"><span data-stu-id="cc5c0-111">The first statement uses the escape-sequence syntax.</span></span> <span data-ttu-id="cc5c0-112">Вторая инструкция использует собственный синтаксис для Microsoft® Access и не поддерживает взаимодействие.</span><span class="sxs-lookup"><span data-stu-id="cc5c0-112">The second statement uses the native syntax for Microsoft® Access and is not interoperable.</span></span> <span data-ttu-id="cc5c0-113">Обратите внимание, что второй символ процента в каждом предикате <strong>Like</strong> является символом-шаблоном, который соответствует нулю или большему числу символов.</span><span class="sxs-lookup"><span data-stu-id="cc5c0-113">Notice that the second percent character in each <strong>LIKE</strong> predicate is a wildcard character that matches zero or more of any character.</span></span></p>
+<pre><code>SELECT Name FROM Customers WHERE Name LIKE '\%AAA%' {escape '\'}  
+  
+SELECT Name FROM Customers WHERE Name LIKE '[%]AAA%'  
+</code></pre>
+<p><span data-ttu-id="cc5c0-114">Чтобы определить, поддерживается ли в источнике данных escape-символ предиката <strong>Like</strong> , приложение вызывает <strong>SQLGetInfo</strong> с параметром SQL_LIKE_ESCAPE_CLAUSE.</span><span class="sxs-lookup"><span data-stu-id="cc5c0-114">To determine whether the <strong>LIKE</strong> predicate escape character is supported by a data source, an application calls <strong>SQLGetInfo</strong> with the SQL_LIKE_ESCAPE_CLAUSE option.</span></span></p>
+
+						<!-- </content> -->
+
+						</main>
+
+						<!-- page rating section -->
+								<div class="is-hidden-desktop has-border-top has-margin-top-large has-padding-top-small">
+									
+									
+<div class="feedback-verbatim has-border-bottom has-padding-bottom-small has-margin-bottom-small" data-bi-name="rating">
+    <div class="binary-rating">
+        <div class="binary-rating-buttons">
+            <h3 class="has-text-weight-semibold has-margin-top-none has-margin-bottom-small">Были ли сведения на этой странице полезными?</h3>
+            <div>
+                <button class="thumb-rating like has-inner-focus has-padding-left-extra-small has-padding-right-extra-small" title="Да" data-bi-name="rating-yes" aria-expanded="false" data-bi-sat="1" aria-controls="rating-container-mobile">
+                    <span aria-hidden="true" class="icon docon docon-like"></span>
+                    <span>Да</span>
+                </button>
+                <button class="thumb-rating dislike has-inner-focus has-padding-none has-padding-right-extra-small" title="Нет" data-bi-name="rating-no" data-bi-sat="0" aria-expanded="false" aria-controls="rating-container-mobile">
+                    <span aria-hidden="true" class="icon docon docon-dislike"></span>
+                    <span>Нет</span>
+                </button>
+            </div>
+        </div>
+        <form class="feedback-verbatim-form is-hidden" id="rating-container-mobile">
+            <div class="verbatim-textarea box is-relative has-box-shadow-none has-border has-margin-top-small has-padding-extra-small is-size-extra-small">
+                <label for="rating-textarea-mobile" class="visually-hidden">Хотите оставить дополнительный отзыв?</label>
+                <textarea id="rating-textarea-mobile" rows="4" maxlength="999" placeholder="Хотите оставить дополнительный отзыв?" required class="textarea has-border-none has-box-shadow-none has-inner-focus"></textarea>
+            </div>
+            <div class="buttons is-right has-margin-top-medium has-margin-right-extra-small">
+                <button class="skip-rating button is-transparent has-text-primary is-small has-border-none" type="button">Пропустить</button>
+                <button class="submit-rating button is-primary is-small" data-bi-name="rating-verbatim" disabled type="submit">Отправить</button>
+            </div>
+        </form>
+    </div>
+    <div class="thankyou-rating is-hidden" tabindex="-1">
+        <p>Спасибо!</p>
+    </div>
+</div>								</div>
+						<!-- end page rating section -->
+
+
+						<!-- feedback section -->
+<section class="feedback-section is-relative" data-bi-name="feedback-section">
+
+    <h2 id="feedback" class="title is-3 has-margin-top-large">Обратная связь</h2>
+
+    <div class="alert choose-feedback-type">
+        <p aria-hidden="true" id="send-feedback-about">Отправить и просмотреть отзыв по</p>
+
+        <div class="choose-feedback-buttons has-margin-top-medium">
+                <a class="button feedback-type-product has-margin-bottom-small" aria-label="Отправить отзыв об этом продукте" href="https://feedback.azure.com/forums/908035-sql-server/" data-bi-name="product-feedback">
+                    <span>Этот продукт</span>
+                    <span aria-hidden="true" class="icon docon docon-navigate-external is-size-h4 has-margin-left-none"></span>
+                </a>
+
+			<a class="button feedback-type-product has-margin-bottom-small github-link" aria-label="Отправить отзыв об этой странице" data-bi-name="create-issue-on-github">
+				<span aria-hidden="true" class="docon docon-brand-github has-padding-right-extra-small"></span>
+				<span>Эта страница</span>
+			</a>
+        </div>
+    </div>
+
+    <div class="action-container is-flex has-flex-justify-content-end has-margin-top-small has-margin-bottom-small">
+        <a class="view-on-github" data-bi-name="view-on-github" href="https://github.com/MicrosoftDocs/sql-docs.ru-ru/issues">
+            <span aria-hidden="true" class="docon docon-brand-github"></span>
+            <span>Просмотреть все отзывы по странице</span>
+            <span aria-hidden="true" class="icon docon docon-navigate-external is-size-h5"></span>
+        </a>
+    </div>
+</section>
+
+						<!-- end feedback section -->
+
+						<!-- feedback report section -->
+						<!-- end feedback report section -->
+
+						<div class="footerContainer is-visible-interactive has-default-focus ">
+
+
+
+	<footer id="footer-interactive" data-bi-name="footer" class="footer-layout">
+
+    <div class="is-flex is-full-height has-padding-right-extra-large-desktop">
+			<a data-mscc-ic="false" class="locale-selector-link has-flex-shrink-none" href="#" data-bi-name="select-locale"><span class="icon docon docon-world is-size-large has-margin-right-small" aria-hidden="true"></span><span class="local-selector-link-text"></span></a>
+		<div class="has-margin-left-medium has-margin-right-medium has-flex-shrink-none">
+<div class="dropdown has-caret-up">
+	<button class="dropdown-trigger button is-transparent is-small is-icon-only-touch has-inner-focus theme-dropdown-trigger"
+		aria-controls="theme-menu-interactive" aria-expanded="false" title="Тема" data-bi-name="theme">
+		<span class="icon">
+			<span class="docon docon-sun" aria-hidden="true"></span>
+		</span>
+		<span>Тема</span>
+	</button>
+	<div class="dropdown-menu" id="theme-menu-interactive" role="menu">
+		<ul class="theme-selector has-padding-small">
+			<li class="theme is-block">
+				<button class="button is-text is-small theme-control is-fullwidth has-flex-justify-content-start"
+					data-theme-to="light">
+					<span class="theme-light has-margin-right-small">
+						<span
+							class="theme-selector-icon css-variable-support has-border is-inline-block has-body-background"
+							aria-hidden="true">
+							<svg class="svg" xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 22 14">
+								<rect width="22" height="14" class="has-fill-body-background" />
+								<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+								<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+								<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+								<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+								<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+							</svg>
+						</span>
+					</span>
+					<span role="menuitem">
+Светлая					</span>
+				</button>
+			</li>
+			<li class="theme is-block">
+				<button class="button is-text is-small theme-control is-fullwidth has-flex-justify-content-start"
+					data-theme-to="dark">
+					<span class="theme-dark has-margin-right-small">
+						<span
+							class="has-border theme-selector-icon css-variable-support is-inline-block has-body-background"
+							aria-hidden="true">
+							<svg class="svg" xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 22 14">
+								<rect width="22" height="14" class="has-fill-body-background" />
+								<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+								<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+								<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+								<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+								<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+							</svg>
+						</span>
+					</span>
+					<span role="menuitem">
+Темная					</span>
+				</button>
+			</li>
+			<li class="theme is-block">
+				<button class="button is-text is-small theme-control is-fullwidth has-flex-justify-content-start"
+					data-theme-to="high-contrast">
+					<span class="theme-high-contrast has-margin-right-small">
+						<span
+							class="has-border theme-selector-icon css-variable-support is-inline-block has-body-background"
+							aria-hidden="true">
+							<svg class="svg" xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 22 14">
+								<rect width="22" height="14" class="has-fill-body-background" />
+								<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+								<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+								<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+								<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+								<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+							</svg>
+						</span>
+					</span>
+					<span role="menuitem">
+Высокая контрастность					</span>
+				</button>
+			</li>
+		</ul>
+	</div>
+</div>		</div>
+	</div>
+    <ul class="links" data-bi-name="footerlinks">
+		<li class="manage-cookies-holder" hidden></li>
+			<li><a data-mscc-ic="false" href="https://docs.microsoft.com/ru-ru/previous-versions/" data-bi-name="archivelink">Документация по предыдущей версии</a></li>
+			<li><a data-mscc-ic="false" href="https://docs.microsoft.com/ru-ru/teamblog" data-bi-name="bloglink">Блог</a></li>
+			<li><a data-mscc-ic="false" href="https://docs.microsoft.com/ru-ru/contribute" data-bi-name="contributorGuide">Участие в доработке</a></li>
+				<li><a data-mscc-ic="false" href="https://go.microsoft.com/fwlink/?LinkId=521839" data-bi-name="privacy">Конфиденциальность и файлы cookie</a></li>
+			<li><a data-mscc-ic="false" href="https://docs.microsoft.com/ru-ru/legal/termsofuse" data-bi-name="termsofuse">Условия использования</a></li>
+				<li><a data-mscc-ic="false" href="https://aka.ms/sitefeedback" data-bi-name="feedback">Отзывы о сайте</a></li>
+			<li><a data-mscc-ic="false" href="https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/EN-US.aspx" data-bi-name="trademarks">Товарные знаки</a></li>
+		<li>&copy; Microsoft 2020</li>
+    </ul>
+</footer>
+						</div>
+					</div>
+
+					<div class="is-size-small right-container column is-one-quarter is-one-fifth-desktop is-hidden-mobile is-hidden-tablet-only" data-bi-name="pageactions" role="complementary" aria-label="Действия страницы">
+						<div id="affixed-right-container" class="doc-outline is-fixed is-vertically-scrollable">
+								
+								
+<div class="feedback-verbatim has-border-bottom has-padding-bottom-small has-margin-bottom-small" data-bi-name="rating">
+    <div class="binary-rating">
+        <div class="binary-rating-buttons">
+            <h3 class="has-text-weight-semibold has-margin-top-none has-margin-bottom-small">Были ли сведения на этой странице полезными?</h3>
+            <div>
+                <button class="thumb-rating like has-inner-focus has-padding-left-extra-small has-padding-right-extra-small" title="Да" data-bi-name="rating-yes" aria-expanded="false" data-bi-sat="1" aria-controls="rating-container-desktop">
+                    <span aria-hidden="true" class="icon docon docon-like"></span>
+                    <span>Да</span>
+                </button>
+                <button class="thumb-rating dislike has-inner-focus has-padding-none has-padding-right-extra-small" title="Нет" data-bi-name="rating-no" data-bi-sat="0" aria-expanded="false" aria-controls="rating-container-desktop">
+                    <span aria-hidden="true" class="icon docon docon-dislike"></span>
+                    <span>Нет</span>
+                </button>
+            </div>
+        </div>
+        <form class="feedback-verbatim-form is-hidden" id="rating-container-desktop">
+            <div class="verbatim-textarea box is-relative has-box-shadow-none has-border has-margin-top-small has-padding-extra-small is-size-extra-small">
+                <label for="rating-textarea-desktop" class="visually-hidden">Хотите оставить дополнительный отзыв?</label>
+                <textarea id="rating-textarea-desktop" rows="4" maxlength="999" placeholder="Хотите оставить дополнительный отзыв?" required class="textarea has-border-none has-box-shadow-none has-inner-focus"></textarea>
+            </div>
+            <div class="buttons is-right has-margin-top-medium has-margin-right-extra-small">
+                <button class="skip-rating button is-transparent has-text-primary is-small has-border-none" type="button">Пропустить</button>
+                <button class="submit-rating button is-primary is-small" data-bi-name="rating-verbatim" disabled type="submit">Отправить</button>
+            </div>
+        </form>
+    </div>
+    <div class="thankyou-rating is-hidden" tabindex="-1">
+        <p>Спасибо!</p>
+    </div>
+</div>							<nav id="side-doc-outline" data-bi-name="intopic toc" role="navigation" aria-label="Структура статьи">
+								<h3>В этой статье</h3>
+							</nav>
+						</div>
+					</div>
+
+					<!--end of div.columns -->
+				</div>
+
+			<!--end of .primary-holder -->
+			</section>
+
+			<aside id="interactive-container" class="interactive-container is-visible-interactive column has-body-background-dark ">
+			</aside>
+		</div>
+
+		<!--end of .mainContainer -->
+	</div>
+
+	<div id="openFeedbackContainer" class="openfeedback-container"></div>
+
+	<div class="footerContainer has-default-focus is-hidden-interactive ">
+
+
+
+	<footer id="footer" data-bi-name="footer" class="footer-layout uhf-container has-padding" role="contentinfo">
+
+    <div class="is-flex is-full-height has-padding-right-extra-large-desktop">
+			<a data-mscc-ic="false" class="locale-selector-link has-flex-shrink-none" href="#" data-bi-name="select-locale"><span class="icon docon docon-world is-size-large has-margin-right-small" aria-hidden="true"></span><span class="local-selector-link-text"></span></a>
+		<div class="has-margin-left-medium has-margin-right-medium has-flex-shrink-none">
+<div class="dropdown has-caret-up">
+	<button class="dropdown-trigger button is-transparent is-small is-icon-only-touch has-inner-focus theme-dropdown-trigger"
+		aria-controls="theme-menu" aria-expanded="false" title="Тема" data-bi-name="theme">
+		<span class="icon">
+			<span class="docon docon-sun" aria-hidden="true"></span>
+		</span>
+		<span>Тема</span>
+	</button>
+	<div class="dropdown-menu" id="theme-menu" role="menu">
+		<ul class="theme-selector has-padding-small">
+			<li class="theme is-block">
+				<button class="button is-text is-small theme-control is-fullwidth has-flex-justify-content-start"
+					data-theme-to="light">
+					<span class="theme-light has-margin-right-small">
+						<span
+							class="theme-selector-icon css-variable-support has-border is-inline-block has-body-background"
+							aria-hidden="true">
+							<svg class="svg" xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 22 14">
+								<rect width="22" height="14" class="has-fill-body-background" />
+								<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+								<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+								<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+								<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+								<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+							</svg>
+						</span>
+					</span>
+					<span role="menuitem">
+Светлая					</span>
+				</button>
+			</li>
+			<li class="theme is-block">
+				<button class="button is-text is-small theme-control is-fullwidth has-flex-justify-content-start"
+					data-theme-to="dark">
+					<span class="theme-dark has-margin-right-small">
+						<span
+							class="has-border theme-selector-icon css-variable-support is-inline-block has-body-background"
+							aria-hidden="true">
+							<svg class="svg" xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 22 14">
+								<rect width="22" height="14" class="has-fill-body-background" />
+								<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+								<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+								<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+								<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+								<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+							</svg>
+						</span>
+					</span>
+					<span role="menuitem">
+Темная					</span>
+				</button>
+			</li>
+			<li class="theme is-block">
+				<button class="button is-text is-small theme-control is-fullwidth has-flex-justify-content-start"
+					data-theme-to="high-contrast">
+					<span class="theme-high-contrast has-margin-right-small">
+						<span
+							class="has-border theme-selector-icon css-variable-support is-inline-block has-body-background"
+							aria-hidden="true">
+							<svg class="svg" xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 22 14">
+								<rect width="22" height="14" class="has-fill-body-background" />
+								<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+								<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+								<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+								<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+								<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+							</svg>
+						</span>
+					</span>
+					<span role="menuitem">
+Высокая контрастность					</span>
+				</button>
+			</li>
+		</ul>
+	</div>
+</div>		</div>
+	</div>
+    <ul class="links" data-bi-name="footerlinks">
+		<li class="manage-cookies-holder" hidden></li>
+			<li><a data-mscc-ic="false" href="https://docs.microsoft.com/ru-ru/previous-versions/" data-bi-name="archivelink">Документация по предыдущей версии</a></li>
+			<li><a data-mscc-ic="false" href="https://docs.microsoft.com/ru-ru/teamblog" data-bi-name="bloglink">Блог</a></li>
+			<li><a data-mscc-ic="false" href="https://docs.microsoft.com/ru-ru/contribute" data-bi-name="contributorGuide">Участие в доработке</a></li>
+				<li><a data-mscc-ic="false" href="https://go.microsoft.com/fwlink/?LinkId=521839" data-bi-name="privacy">Конфиденциальность и файлы cookie</a></li>
+			<li><a data-mscc-ic="false" href="https://docs.microsoft.com/ru-ru/legal/termsofuse" data-bi-name="termsofuse">Условия использования</a></li>
+				<li><a data-mscc-ic="false" href="https://aka.ms/sitefeedback" data-bi-name="feedback">Отзывы о сайте</a></li>
+			<li><a data-mscc-ic="false" href="https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/EN-US.aspx" data-bi-name="trademarks">Товарные знаки</a></li>
+		<li>&copy; Microsoft 2020</li>
+    </ul>
+</footer>
+	</div>
+
+	<div id="action-panel" role="region" aria-label="Панель действий" class="action-panel has-default-focus" tabindex="-1"></div>
+	<span id="adobe-target-experiment-container" hidden></span>
+</body>
+</html>

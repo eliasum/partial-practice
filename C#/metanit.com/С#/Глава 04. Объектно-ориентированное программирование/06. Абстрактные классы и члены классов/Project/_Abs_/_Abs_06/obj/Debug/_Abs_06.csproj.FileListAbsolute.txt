@@ -1,0 +1,7 @@
+D:\Rep\practice\C#\metanit.com\С#\Глава 04. Объектно-ориентированное программирование\06. Абстрактные классы и члены классов\Project\_Abs_\_Abs_06\bin\Debug\_Abs_06.exe.config
+D:\Rep\practice\C#\metanit.com\С#\Глава 04. Объектно-ориентированное программирование\06. Абстрактные классы и члены классов\Project\_Abs_\_Abs_06\bin\Debug\_Abs_06.exe
+D:\Rep\practice\C#\metanit.com\С#\Глава 04. Объектно-ориентированное программирование\06. Абстрактные классы и члены классов\Project\_Abs_\_Abs_06\bin\Debug\_Abs_06.pdb
+D:\Rep\practice\C#\metanit.com\С#\Глава 04. Объектно-ориентированное программирование\06. Абстрактные классы и члены классов\Project\_Abs_\_Abs_06\obj\Debug\_Abs_06.csproj.CoreCompileInputs.cache
+D:\Rep\practice\C#\metanit.com\С#\Глава 04. Объектно-ориентированное программирование\06. Абстрактные классы и члены классов\Project\_Abs_\_Abs_06\obj\Debug\_Abs_06.exe
+D:\Rep\practice\C#\metanit.com\С#\Глава 04. Объектно-ориентированное программирование\06. Абстрактные классы и члены классов\Project\_Abs_\_Abs_06\obj\Debug\_Abs_06.pdb
+D:\Rep\practice\C#\metanit.com\С#\Глава 04. Объектно-ориентированное программирование\06. Абстрактные классы и члены классов\Project\_Abs_\_Abs_06\obj\Debug\_Abs_06.csprojAssemblyReference.cache

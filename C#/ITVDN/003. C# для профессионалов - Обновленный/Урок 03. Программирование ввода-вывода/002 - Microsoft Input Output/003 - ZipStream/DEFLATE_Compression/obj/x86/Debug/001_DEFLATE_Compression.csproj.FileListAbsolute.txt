@@ -1,0 +1,6 @@
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\003 - ZipStream\DEFLATE_Compression\bin\Debug\DEFLATE_Compression.exe
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\003 - ZipStream\DEFLATE_Compression\bin\Debug\DEFLATE_Compression.pdb
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\003 - ZipStream\DEFLATE_Compression\obj\x86\Debug\001_DEFLATE_Compression.csprojAssemblyReference.cache
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\003 - ZipStream\DEFLATE_Compression\obj\x86\Debug\001_DEFLATE_Compression.csproj.CoreCompileInputs.cache
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\003 - ZipStream\DEFLATE_Compression\obj\x86\Debug\DEFLATE_Compression.exe
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\003 - ZipStream\DEFLATE_Compression\obj\x86\Debug\DEFLATE_Compression.pdb

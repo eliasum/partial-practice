@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<!-- saved from url=(0057)https://code.visualstudio.com/docs/nodejs/nodejs-tutorial -->
+<html lang="ru" class="translated-ltr"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="google-site-verification" content="cn5-gurGUvjtlzniBhOIPjfKHzuAplh_R9Ju9tuL0DM">
+
+  <!-- Twitter and Facebook OpenGraph Metadata-->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@code">
+
+  <meta itemprop="applicationCategory" content="Text Editor">
+  <meta itemprop="datePublished" content="2016-04-14">
+  <meta itemprop="operatingSystem" content="Mac, Linux, Windows">
+
+  	<meta name="description" content="The Visual Studio Code editor has great support for writing and debugging Node.js applications. This tutorial takes you from Hello World to a full Express web application.">
+	<meta name="keywords" content="">
+    <meta name="ms.prod" content="vs-code">
+    <meta name="ms.TOCTitle" content="Node.js Tutorial">
+    <meta name="ms.ContentId" content="ED394CD2-D09E-4E3A-96AD-6D3D8337BA9D">
+    <meta name="ms.date" content="12/12/2019">
+    <meta name="ms.topic" content="conceptual">
+	<!-- Twitter and Facebook OpenGraph Metadata-->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:url" content="https://code.visualstudio.com/docs/nodejs/nodejs-tutorial">
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="Build Node.js Apps with Visual Studio Code">
+    <meta property="og:description" content="The Visual Studio Code editor has great support for writing and debugging Node.js applications. This tutorial takes you from Hello World to a full Express web application.">
+    
+    <meta property="og:image" content="https://code.visualstudio.com/assets/docs/nodejs/nodejs/runtimes_node.png">
+    
+
+
+  <link rel="shortcut icon" href="https://code.visualstudio.com/favicon.ico" sizes="128x128">
+  <link rel="apple-touch-icon" href="https://code.visualstudio.com/apple-touch-icon.png">
+
+  <title>Создание приложений Node.js с помощью кода Visual Studio</title>
+
+  <link rel="stylesheet" href="./Создание приложений Node.js с помощью кода Visual Studio_files/bootstrap.min.css">
+  <!-- EU Cookie Compliance CSS -->
+  <link rel="stylesheet" href="./Создание приложений Node.js с помощью кода Visual Studio_files/mscc-0.3.6.min.css">
+  <link rel="stylesheet" href="./Создание приложений Node.js с помощью кода Visual Studio_files/style.css">
+
+  <!--Google Analytics-->
+  <script type="text/javascript" async="" src="./Создание приложений Node.js с помощью кода Visual Studio_files/js"></script><script type="text/javascript" async="" src="./Создание приложений Node.js с помощью кода Visual Studio_files/linkid.js.Без названия"></script><script type="text/javascript" async="" src="./Создание приложений Node.js с помощью кода Visual Studio_files/f.txt"></script><script async="" src="./Создание приложений Node.js с помощью кода Visual Studio_files/analytics.js.Без названия"></script><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  </script>
+  <!-- End Google Analytics -->
+  
+  <!-- Global site tag (gtag.js) - Google AdWords: 881159895 -->
+  <script async="" src="./Создание приложений Node.js с помощью кода Visual Studio_files/js(1)"></script>
+  <script>
+  function loadGA () {
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'AW-881159895');
+    window.gtag = gtag;
+  }
+  
+  if (document.cookie.indexOf('MSCC=') !== -1) {
+    loadGA();
+  } else {
+    if (mscc && mscc.on) {
+      mscc.on('consent', function () {
+        loadGA();
+      })
+    }
+  }
+  </script>
+  <script src="./Создание приложений Node.js с помощью кода Visual Studio_files/jsll-4.js.Без названия" type="text/javascript"></script>
+  
+  <link rel="alternate" type="application/atom+xml" title="RSS-канал для code.visualstudio.com" href="https://code.visualstudio.com/feed.xml">
+<script async="" src="./Создание приложений Node.js с помощью кода Visual Studio_files/t.js.Без названия"></script><script src="./Создание приложений Node.js с помощью кода Visual Studio_files/f(1).txt"></script><link type="text/css" rel="stylesheet" charset="UTF-8" href="./Создание приложений Node.js с помощью кода Visual Studio_files/translateelement.css"></head>
+
+<body class="win">
+  <!-- EU Cookie Compliance JS -->
+  <script src="./Создание приложений Node.js с помощью кода Visual Studio_files/mscc-0.3.6.min.js.Без названия"></script>
+
+  <div id="mscc-cookie-container">
+    <div id="msccBanner" dir="ltr" data-site-name="uhf-vscode" data-mscc-version="0.3.4" data-nver="aspnet-2.0.5" data-sver="0.1.2" class="cc-banner" role="alert">
+      <div class="cc-container">
+        <svg class="cc-icon cc-v-center" x="0px" y="0px" viewBox="0 0 44 44" height="30px" fill="none" stroke="currentColor">
+          <circle cx="22" cy="22" r="20" stroke-width="2"></circle>
+          <line x1="22" x2="22" y1="18" y2="33" stroke-width="3"></line>
+          <line x1="22" x2="22" y1="12" y2="15" stroke-width="3"></line>
+          </svg>
+            <span class="cc-v-center cc-text"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Этот сайт использует куки для аналитики, персонализированного контента и рекламы. </font><font style="vertical-align: inherit;">Продолжая просматривать этот сайт, вы соглашаетесь на это использование. </font></font></span>
+            <a href="https://go.microsoft.com/fwlink/?linkid=845480" aria-label="Узнайте больше о политике Microsoft в отношении файлов cookie" id="msccLearnMore" data-mscc-ic="false" class="cc-link cc-v-center cc-float-right"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Учить больше</font></font></a>
+      </div>
+    </div>
+  </div>
+  <div id="main" itemscope="" itemtype="http://schema.org/SoftwareApplication">
+          <a role="button" id="skip-to-content" class="link-button" href="https://code.visualstudio.com/docs/nodejs/nodejs-tutorial#main-content"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">перейти к содержанию</font></font><i>&nbsp;</i><span class="glyphicon glyphicon-menu-down"></span></a>
+          <div class="navbar-fixed-container">
+              <div class="navbar navbar-inverse navbar-fixed-top ">
+                  <nav role="navigation" aria-label="Высший уровень">
+                      <div class="container">
+                          <div class="nav navbar-header">
+                              <a class="navbar-brand" href="https://code.visualstudio.com/"><span itemprop="name"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Visual Studio Code</font></font></span></a>
+                              <button type="button" class="navbar-toggle" role="navigation" data-toggle="collapse" data-target=".navbar-collapse" aria-label="Переключить меню навигации">
+                                  <span class="icon-bar"></span>
+                                  <span class="icon-bar"></span>
+                                  <span class="icon-bar"></span>
+                              </button>
+                          </div>
+                          <div class="navbar-collapse collapse" role="navigation">
+                              <ul class="nav navbar-nav navbar-left" role="presentation">
+                                  <li class="active"><a id="nav-docs" href="https://code.visualstudio.com/docs"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Документы</font></font></a></li>
+                                  <li><a id="nav-updates" href="https://code.visualstudio.com/updates"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Обновления</font></font></a></li>
+                                  <li><a id="nav-blogs" href="https://code.visualstudio.com/blogs"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Блог</font></font></a></li>
+                                  <li><a id="nav-extend" href="https://code.visualstudio.com/api"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">API</font></font></a></li>
+                                  <li><a href="https://marketplace.visualstudio.com/VSCode" target="_blank" id="nav-extensions"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">расширения</font></font></a></li>
+                                  <li><a id="nav-faqs" href="https://code.visualstudio.com/docs/supporting/faq"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Вопросы-Ответы</font></font></a></li>
+                                  <li class="search visible-xs"><a href="https://code.visualstudio.com/Search"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Поиск</font></font></a></li>
+                              </ul>
+          
+                              <ul class="nav navbar-nav navbar-right" role="presentation">
+                                  <!-- Floating search icon -->
+                                  <li>
+                                      <a href="https://code.visualstudio.com/Search" title="Поиск" class="btn search-btn" id="nav-search">
+                                          <img class="search-icon" src="./Создание приложений Node.js с помощью кода Visual Studio_files/search.svg" width="16px" height="16px" alt="Поиск">
+                                          <img class="search-icon-inverted" src="./Создание приложений Node.js с помощью кода Visual Studio_files/search_dark.svg" width="16px" height="16px" alt="Поиск">
+                                      </a>
+                                  </li>
+                                  <!-- Actual search icon -->
+                                  <li class="search">
+                                      <form class="nav-search search-form" aria-label="Поиск"> 
+                                          <div class="input-group" aria-hidden="true">
+                                              <input type="text" name="q" class="search-box form-control" placeholder="Search Docs" aria-label="Поиск текста">
+                                              <span class="input-group-btn">
+                                                  <button tabindex="0" class="btn" type="submit" aria-label="Поиск">
+                                                          <img class="search-icon" src="./Создание приложений Node.js с помощью кода Visual Studio_files/search.svg" width="16px" height="16px" alt="Поиск">
+                                                          <img class="search-icon-inverted" src="./Создание приложений Node.js с помощью кода Visual Studio_files/search_dark.svg" width="16px" height="16px" alt="Поиск">
+                                                  </button>
+                                              </span>
+                                          </div>
+                                      </form>                        </li>
+                                  <!-- this was hiden in the home and download page, keeping it for now -->
+                                  <li><a itemprop="downloadUrl" class="link-button" href="https://code.visualstudio.com/Download" id="nav-download">
+                                      <img class="download-icon" src="./Создание приложений Node.js с помощью кода Visual Studio_files/download.svg" width="16px" height="16px" alt="Скачать VS Code">
+                                      <img class="download-icon-inverted" src="./Создание приложений Node.js с помощью кода Visual Studio_files/download-black.svg" width="16px" height="16px" alt="Скачать VS Code">
+                                      <span class="hidden-sm"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Скачать</font></font></span>
+                                  </a></li>
+                              </ul>
+                          </div>
+                      </div>
+                  </nav>
+              </div>
+          </div>          <div class="updates-banner  ">
+              <div class="container">
+                  <p class="message"><a href="https://code.visualstudio.com/updates" id="banner-link-updates"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Версия </font></font><span itemprop="softwareVersion"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">1.41</font></font></span></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> теперь доступна! </font><font style="vertical-align: inherit;">Читайте о новых функциях и исправлениях с ноября.</font></font></p>
+              </div>
+              <div tabindex="0" role="button" title="Отклонить это обновление" class="dismiss-btn" id="banner-dismiss-btn"><span class="sr-only"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Отклонить это обновление</font></font></span><span aria-hidden="true" class="glyph-icon"></span></div>
+          </div>      <div role="main" id="main-content">
+        <script>
+    function closeReportIssue() {
+        var element = document.getElementById('surveypopup');
+        element.parentElement.removeChild(element);
+    }
+
+    function reportIssue(tutorial, page) {
+        var div = document.createElement('div');
+        div.innerHTML = '<div id="surveypopup" class="overlay visible"><div class="surveypopup"><div id="surveytitle">Tell us more<a href="javascript:void(0)" onclick="closeReportIssue()">X</a></div><div id="surveydiv"><iframe frameBorder="0" scrolling="0" src="https://www.research.net/r/PWZWZ52?tutorial='+tutorial+'&step='+page+'"></iframe></div></div></div>';
+        document.body.appendChild(div.children[0]);
+    }
+</script>
+
+<div class="container body-content docs">
+    <div class="row">
+        <div class="col-md-2 docs-navbar-container">
+            <nav id="docs-navbar" aria-label="темы" class="docs-nav visible-md visible-lg">
+            	<ul class="nav" id="main-nav">
+            		<li>
+            			<a class="docs-home" href="https://code.visualstudio.com/docs"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">обзор</font></font></a>
+            		</li>
+            		
+            			
+            		
+            			
+            				<li class="panel collapsed">
+            					<a class="area" aria-label="Раскрывающийся список настроек" href="https://code.visualstudio.com/docs/nodejs/nodejs-tutorial#setup-articles" data-parent="#main-nav" data-toggle="collapse"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Настроить</font></font></a>
+            					<ul id="setup-articles" class="collapse ">
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/setup/setup-overview"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">обзор</font></font></a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/setup/linux"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Linux</font></font></a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/setup/mac"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Macos</font></font></a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/setup/windows"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Windows</font></font></a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/setup/network"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">сеть</font></font></a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/setup/additional-components"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Дополнительные компоненты</font></font></a>
+            						</li>
+            					
+            					</ul>
+            				</li>
+            			
+            		
+            			
+            				<li class="panel collapsed">
+            					<a class="area" aria-label="Начало работы выпадающий" href="https://code.visualstudio.com/docs/nodejs/nodejs-tutorial#getstarted-articles" data-parent="#main-nav" data-toggle="collapse"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Начать</font></font></a>
+            					<ul id="getstarted-articles" class="collapse ">
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/getstarted/introvideos"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Интро видео</font></font></a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/getstarted/tips-and-tricks"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Советы и приемы</font></font></a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/getstarted/userinterface"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Пользовательский интерфейс</font></font></a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/getstarted/themes"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Темы</font></font></a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/getstarted/settings"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">настройки</font></font></a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/getstarted/keybindings"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ключевые привязки</font></font></a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/getstarted/locales"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Язык дисплея</font></font></a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/getstarted/telemetry"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">телеметрия</font></font></a>
+            						</li>
+            					
+            					</ul>
+            				</li>
+            			
+            		
+            			
+            				<li class="panel collapsed">
+            					<a class="area" aria-label="Руководство пользователя выпадающий" href="https://code.visualstudio.com/docs/nodejs/nodejs-tutorial#editor-articles" data-parent="#main-nav" data-toggle="collapse"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Гид пользователя</font></font></a>
+            					<ul id="editor-articles" class="collapse ">
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/editor/codebasics"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Основное редактирование</font></font></a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/editor/extension-gallery"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Расширение Marketplace</font></font></a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/editor/intellisense"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">IntelliSense</font></font></a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/editor/editingevolved"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Навигация по коду</font></font></a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/editor/refactoring"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Рефакторинг</font></font></a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/editor/debugging"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Отладка</font></font></a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/editor/versioncontrol"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Контроль версий</font></font></a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/editor/integrated-terminal"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Интегрированный Терминал</font></font></a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/editor/multi-root-workspaces"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Многокорневые рабочие пространства</font></font></a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/editor/tasks"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Задания</font></font></a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/editor/userdefinedsnippets"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">обрывки</font></font></a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/editor/emmet"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">муравей</font></font></a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/editor/command-line">Command Line</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/editor/accessibility">Accessibility</a>
+            						</li>
+            					
+            					</ul>
+            				</li>
+            			
+            		
+            			
+            				<li class="panel collapsed">
+            					<a class="area" aria-label="Языки раскрываются" href="https://code.visualstudio.com/docs/nodejs/nodejs-tutorial#languages-articles" data-parent="#main-nav" data-toggle="collapse"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Языки</font></font></a>
+            					<ul id="languages-articles" class="collapse ">
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/languages/overview">Overview</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/languages/javascript">JavaScript</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/languages/json">JSON</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/languages/html">HTML</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/languages/css">CSS, SCSS and Less</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/languages/typescript">TypeScript</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/languages/markdown">Markdown</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/languages/powershell">PowerShell</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/languages/cpp">C++</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/languages/java">Java</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/languages/php">PHP</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/languages/python">Python</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/languages/go">Go</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/languages/tsql">T-SQL</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/languages/csharp">C#</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/languages/dotnet">.NET Core</a>
+            						</li>
+            					
+            					</ul>
+            				</li>
+            			
+            		
+            			
+            				<li class="panel active expanded">
+            					<a class="area" aria-label="Node.js / JavaScript раскрывающийся" href="https://code.visualstudio.com/docs/nodejs/nodejs-tutorial#nodejs-articles" data-parent="#main-nav" data-toggle="collapse"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Node.js / JavaScript</font></font></a>
+            					<ul id="nodejs-articles" class="collapse in">
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/nodejs/working-with-javascript"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Работа с JavaScript</font></font></a>
+            						</li>
+            					
+            						<li class="active">
+            							<a href="https://code.visualstudio.com/docs/nodejs/nodejs-tutorial" aria-label="Текущая страница: учебник Node.js"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Учебник по Node.js</font></font></a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/nodejs/nodejs-debugging"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Node.js Отладка</font></font></a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/nodejs/nodejs-deployment"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Развертывание Node.js</font></font></a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/nodejs/reactjs-tutorial"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Реагировать Учебник</font></font></a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/nodejs/angular-tutorial"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Угловой учебник</font></font></a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/nodejs/vuejs-tutorial"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Vue Tutorial</font></font></a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/nodejs/emberjs-tutorial"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ember Tutorial</font></font></a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/nodejs/debugging-recipes"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Рецепты отладки</font></font></a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/nodejs/extensions"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">расширения</font></font></a>
+            						</li>
+            					
+            					</ul>
+            				</li>
+            			
+            		
+            			
+            				<li class="panel collapsed">
+            					<a class="area" aria-label="TypeScript выпадающий" href="https://code.visualstudio.com/docs/nodejs/nodejs-tutorial#typescript-articles" data-parent="#main-nav" data-toggle="collapse"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Машинопись</font></font></a>
+            					<ul id="typescript-articles" class="collapse ">
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/typescript/typescript-tutorial">Tutorial</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/typescript/typescript-compiling">Compiling</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/typescript/typescript-debugging">Debugging</a>
+            						</li>
+            					
+            					</ul>
+            				</li>
+            			
+            		
+            			
+            				<li class="panel collapsed">
+            					<a class="area" aria-label="Python выпадающий" href="https://code.visualstudio.com/docs/nodejs/nodejs-tutorial#python-articles" data-parent="#main-nav" data-toggle="collapse"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">питон</font></font></a>
+            					<ul id="python-articles" class="collapse ">
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/python/python-tutorial">Tutorial</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/python/editing">Editing Code</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/python/linting">Linting</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/python/debugging">Debugging</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/python/jupyter-support">Jupyter Notebook Support</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/python/jupyter-support-py">Python Interactive</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/python/environments">Environments</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/python/testing">Testing</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/python/tutorial-django">Django Tutorial</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/python/tutorial-flask">Flask Tutorial</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/python/tutorial-create-containers">Create containers</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/python/python-on-azure">Python on Azure</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/python/settings-reference">Settings Reference</a>
+            						</li>
+            					
+            					</ul>
+            				</li>
+            			
+            		
+            			
+            				<li class="panel collapsed">
+            					<a class="area" aria-label="Java выпадающий" href="https://code.visualstudio.com/docs/nodejs/nodejs-tutorial#java-articles" data-parent="#main-nav" data-toggle="collapse"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Джава</font></font></a>
+            					<ul id="java-articles" class="collapse ">
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/java/java-tutorial">Java Tutorial</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/java/java-editing">Editing Code</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/java/java-debugging">Running and Debugging</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/java/java-testing">Unit Testing</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/java/java-project">Project Management</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/java/java-tomcat-jetty">Tomcat and Jetty</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/java/java-spring-boot">Spring Boot</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/java/java-webapp">Java Web App</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/java/java-azurefunctions">Azure Functions in Java</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/java/extensions">Extensions</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/java/java-faq">FAQ</a>
+            						</li>
+            					
+            					</ul>
+            				</li>
+            			
+            		
+            			
+            				<li class="panel collapsed">
+            					<a class="area" aria-label="C ++ раскрывающийся" href="https://code.visualstudio.com/docs/nodejs/nodejs-tutorial#cpp-articles" data-parent="#main-nav" data-toggle="collapse"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">C ++</font></font></a>
+            					<ul id="cpp-articles" class="collapse ">
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/cpp/config-mingw">Mingw-w64 on Windows</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/cpp/config-wsl">GCC on Windows Subsystem for Linux</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/cpp/config-clang-mac">Clang on macOS</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/cpp/config-msvc">Microsoft C++</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/cpp/cpp-debug">Debugging</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/cpp/cpp-ide">Editing</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/cpp/customize-default-settings-cpp">Settings</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/cpp/colorization-cpp">Enhanced colorization</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/cpp/c-cpp-properties-schema-reference">c_cpp_properties.json</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/cpp/launch-json-reference">Debug configuration</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/cpp/natvis">Natvis framework</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/cpp/pipe-transport">Pipe transport</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/cpp/enable-logging-cpp">Logging</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/cpp/faq-cpp">FAQ</a>
+            						</li>
+            					
+            					</ul>
+            				</li>
+            			
+            		
+            			
+            				<li class="panel collapsed">
+            					<a class="area" aria-label="Лазурный выпадающий" href="https://code.visualstudio.com/docs/nodejs/nodejs-tutorial#azure-articles" data-parent="#main-nav" data-toggle="collapse"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">лазурь</font></font></a>
+            					<ul id="azure-articles" class="collapse ">
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/azure/extensions">Extensions</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/azure/deployment">Deployment</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/azure/remote-debugging">Remote Debugging for Node.js</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/azure/docker">Docker</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/azure/mongodb">MongoDB</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/azure/kubernetes">Kubernetes</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/azure/tryappservice">Try Azure App Service</a>
+            						</li>
+            					
+            					</ul>
+            				</li>
+            			
+            		
+            			
+            				<li class="panel collapsed">
+            					<a class="area" aria-label="Удаленный выпадающий" href="https://code.visualstudio.com/docs/nodejs/nodejs-tutorial#remote-articles" data-parent="#main-nav" data-toggle="collapse"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Удаленный</font></font></a>
+            					<ul id="remote-articles" class="collapse ">
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/remote/remote-overview">Overview</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/remote/ssh">SSH</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/remote/containers">Containers</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/remote/vsonline">Visual Studio Online</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/remote/wsl">Windows Subsystem for Linux</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/remote/remote-tutorials">Tutorials</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/remote/troubleshooting">Tips and Tricks</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/remote/containers-advanced">Advanced Containers</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/remote/linux">Linux Prerequisites</a>
+            						</li>
+            					
+            						<li>
+            							<a href="https://code.visualstudio.com/docs/remote/faq">FAQ</a>
+            						</li>
+            					
+            					</ul>
+            				</li>
+            			
+            		
+            			
+            		
+            	</ul>
+            </nav>
+            <nav id="small-nav" aria-label="темы" class="docs-nav hidden-md hidden-lg">
+            	<h4>Topics</h4>
+            	<select id="small-nav-dropdown">
+            		<option value="/docs">Overview</option>
+            		
+            			
+            		
+            			
+            				<optgroup label="Setup">
+            				
+            					<option value="/docs/setup/setup-overview">Overview</option>
+            				
+            					<option value="/docs/setup/linux">Linux</option>
+            				
+            					<option value="/docs/setup/mac">macOS</option>
+            				
+            					<option value="/docs/setup/windows">Windows</option>
+            				
+            					<option value="/docs/setup/network">Network</option>
+            				
+            					<option value="/docs/setup/additional-components">Additional Components</option>
+            				
+            				</optgroup>
+            			
+            		
+            			
+            				<optgroup label="Get Started">
+            				
+            					<option value="/docs/getstarted/introvideos">Intro Videos</option>
+            				
+            					<option value="/docs/getstarted/tips-and-tricks">Tips and Tricks</option>
+            				
+            					<option value="/docs/getstarted/userinterface">User Interface</option>
+            				
+            					<option value="/docs/getstarted/themes">Themes</option>
+            				
+            					<option value="/docs/getstarted/settings">Settings</option>
+            				
+            					<option value="/docs/getstarted/keybindings">Key Bindings</option>
+            				
+            					<option value="/docs/getstarted/locales">Display Language</option>
+            				
+            					<option value="/docs/getstarted/telemetry">Telemetry</option>
+            				
+            				</optgroup>
+            			
+            		
+            			
+            				<optgroup label="User Guide">
+            				
+            					<option value="/docs/editor/codebasics">Basic Editing</option>
+            				
+            					<option value="/docs/editor/extension-gallery">Extension Marketplace</option>
+            				
+            					<option value="/docs/editor/intellisense">IntelliSense</option>
+            				
+            					<option value="/docs/editor/editingevolved">Code Navigation</option>
+            				
+            					<option value="/docs/editor/refactoring">Refactoring</option>
+            				
+            					<option value="/docs/editor/debugging">Debugging</option>
+            				
+            					<option value="/docs/editor/versioncontrol">Version Control</option>
+            				
+            					<option value="/docs/editor/integrated-terminal">Integrated Terminal</option>
+            				
+            					<option value="/docs/editor/multi-root-workspaces">Multi-root Workspaces</option>
+            				
+            					<option value="/docs/editor/tasks">Tasks</option>
+            				
+            					<option value="/docs/editor/userdefinedsnippets">Snippets</option>
+            				
+            					<option value="/docs/editor/emmet">Emmet</option>
+            				
+            					<option value="/docs/editor/command-line">Command Line</option>
+            				
+            					<option value="/docs/editor/accessibility">Accessibility</option>
+            				
+            				</optgroup>
+            			
+            		
+            			
+            				<optgroup label="Languages">
+            				
+            					<option value="/docs/languages/overview">Overview</option>
+            				
+            					<option value="/docs/languages/javascript">JavaScript</option>
+            				
+            					<option value="/docs/languages/json">JSON</option>
+            				
+            					<option value="/docs/languages/html">HTML</option>
+            				
+            					<option value="/docs/languages/css">CSS, SCSS and Less</option>
+            				
+            					<option value="/docs/languages/typescript">TypeScript</option>
+            				
+            					<option value="/docs/languages/markdown">Markdown</option>
+            				
+            					<option value="/docs/languages/powershell">PowerShell</option>
+            				
+            					<option value="/docs/languages/cpp">C++</option>
+            				
+            					<option value="/docs/languages/java">Java</option>
+            				
+            					<option value="/docs/languages/php">PHP</option>
+            				
+            					<option value="/docs/languages/python">Python</option>
+            				
+            					<option value="/docs/languages/go">Go</option>
+            				
+            					<option value="/docs/languages/tsql">T-SQL</option>
+            				
+            					<option value="/docs/languages/csharp">C#</option>
+            				
+            					<option value="/docs/languages/dotnet">.NET Core</option>
+            				
+            				</optgroup>
+            			
+            		
+            			
+            				<optgroup label="Node.js / JavaScript">
+            				
+            					<option value="/docs/nodejs/working-with-javascript">Working with JavaScript</option>
+            				
+            					<option value="/docs/nodejs/nodejs-tutorial" selected="">Node.js Tutorial</option>
+            				
+            					<option value="/docs/nodejs/nodejs-debugging">Node.js Debugging</option>
+            				
+            					<option value="/docs/nodejs/nodejs-deployment">Node.js Deployment</option>
+            				
+            					<option value="/docs/nodejs/reactjs-tutorial">React Tutorial</option>
+            				
+            					<option value="/docs/nodejs/angular-tutorial">Angular Tutorial</option>
+            				
+            					<option value="/docs/nodejs/vuejs-tutorial">Vue Tutorial</option>
+            				
+            					<option value="/docs/nodejs/emberjs-tutorial">Ember Tutorial</option>
+            				
+            					<option value="/docs/nodejs/debugging-recipes">Debugging Recipes</option>
+            				
+            					<option value="/docs/nodejs/extensions">Extensions</option>
+            				
+            				</optgroup>
+            			
+            		
+            			
+            				<optgroup label="TypeScript">
+            				
+            					<option value="/docs/typescript/typescript-tutorial">Tutorial</option>
+            				
+            					<option value="/docs/typescript/typescript-compiling">Compiling</option>
+            				
+            					<option value="/docs/typescript/typescript-debugging">Debugging</option>
+            				
+            				</optgroup>
+            			
+            		
+            			
+            				<optgroup label="Python">
+            				
+            					<option value="/docs/python/python-tutorial">Tutorial</option>
+            				
+            					<option value="/docs/python/editing">Editing Code</option>
+            				
+            					<option value="/docs/python/linting">Linting</option>
+            				
+            					<option value="/docs/python/debugging">Debugging</option>
+            				
+            					<option value="/docs/python/jupyter-support">Jupyter Notebook Support</option>
+            				
+            					<option value="/docs/python/jupyter-support-py">Python Interactive</option>
+            				
+            					<option value="/docs/python/environments">Environments</option>
+            				
+            					<option value="/docs/python/testing">Testing</option>
+            				
+            					<option value="/docs/python/tutorial-django">Django Tutorial</option>
+            				
+            					<option value="/docs/python/tutorial-flask">Flask Tutorial</option>
+            				
+            					<option value="/docs/python/tutorial-create-containers">Create containers</option>
+            				
+            					<option value="/docs/python/python-on-azure">Python on Azure</option>
+            				
+            					<option value="/docs/python/settings-reference">Settings Reference</option>
+            				
+            				</optgroup>
+            			
+            		
+            			
+            				<optgroup label="Java">
+            				
+            					<option value="/docs/java/java-tutorial">Java Tutorial</option>
+            				
+            					<option value="/docs/java/java-editing">Editing Code</option>
+            				
+            					<option value="/docs/java/java-debugging">Running and Debugging</option>
+            				
+            					<option value="/docs/java/java-testing">Unit Testing</option>
+            				
+            					<option value="/docs/java/java-project">Project Management</option>
+            				
+            					<option value="/docs/java/java-tomcat-jetty">Tomcat and Jetty</option>
+            				
+            					<option value="/docs/java/java-spring-boot">Spring Boot</option>
+            				
+            					<option value="/docs/java/java-webapp">Java Web App</option>
+            				
+            					<option value="/docs/java/java-azurefunctions"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Функции Azure в Java</font></font></option>
+            				
+            					<option value="/docs/java/extensions"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">расширения</font></font></option>
+            				
+            					<option value="/docs/java/java-faq"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Вопросы-Ответы</font></font></option>
+            				
+            				</optgroup>
+            			
+            		
+            			
+            				<optgroup label="C++">
+            				
+            					<option value="/docs/cpp/config-mingw"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Mingw-w64 на Windows</font></font></option>
+            				
+            					<option value="/docs/cpp/config-wsl"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">GCC в подсистеме Windows для Linux</font></font></option>
+            				
+            					<option value="/docs/cpp/config-clang-mac"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Лязг на macOS</font></font></option>
+            				
+            					<option value="/docs/cpp/config-msvc"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Microsoft C ++</font></font></option>
+            				
+            					<option value="/docs/cpp/cpp-debug"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Отладка</font></font></option>
+            				
+            					<option value="/docs/cpp/cpp-ide"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Редактирование</font></font></option>
+            				
+            					<option value="/docs/cpp/customize-default-settings-cpp"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">настройки</font></font></option>
+            				
+            					<option value="/docs/cpp/colorization-cpp"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Улучшенная окраска</font></font></option>
+            				
+            					<option value="/docs/cpp/c-cpp-properties-schema-reference"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">c_cpp_properties.json</font></font></option>
+            				
+            					<option value="/docs/cpp/launch-json-reference"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Отладочная конфигурация</font></font></option>
+            				
+            					<option value="/docs/cpp/natvis"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Рамки Natvis</font></font></option>
+            				
+            					<option value="/docs/cpp/pipe-transport"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Трубный транспорт</font></font></option>
+            				
+            					<option value="/docs/cpp/enable-logging-cpp"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">логирование</font></font></option>
+            				
+            					<option value="/docs/cpp/faq-cpp"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Вопросы-Ответы</font></font></option>
+            				
+            				</optgroup>
+            			
+            		
+            			
+            				<optgroup label="Azure">
+            				
+            					<option value="/docs/azure/extensions"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">расширения</font></font></option>
+            				
+            					<option value="/docs/azure/deployment"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">развертывание</font></font></option>
+            				
+            					<option value="/docs/azure/remote-debugging"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Удаленная отладка для Node.js</font></font></option>
+            				
+            					<option value="/docs/azure/docker"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">докер</font></font></option>
+            				
+            					<option value="/docs/azure/mongodb"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">MongoDB</font></font></option>
+            				
+            					<option value="/docs/azure/kubernetes"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Kubernetes</font></font></option>
+            				
+            					<option value="/docs/azure/tryappservice"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Попробуйте службу приложений Azure</font></font></option>
+            				
+            				</optgroup>
+            			
+            		
+            			
+            				<optgroup label="Remote">
+            				
+            					<option value="/docs/remote/remote-overview"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">обзор</font></font></option>
+            				
+            					<option value="/docs/remote/ssh"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">SSH</font></font></option>
+            				
+            					<option value="/docs/remote/containers"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Контейнеры</font></font></option>
+            				
+            					<option value="/docs/remote/vsonline"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Visual Studio Online</font></font></option>
+            				
+            					<option value="/docs/remote/wsl"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Подсистема Windows для Linux</font></font></option>
+            				
+            					<option value="/docs/remote/remote-tutorials"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Учебники</font></font></option>
+            				
+            					<option value="/docs/remote/troubleshooting"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Советы и приемы</font></font></option>
+            				
+            					<option value="/docs/remote/containers-advanced"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Расширенные контейнеры</font></font></option>
+            				
+            					<option value="/docs/remote/linux"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Предварительные условия для Linux</font></font></option>
+            				
+            					<option value="/docs/remote/faq"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Вопросы-Ответы</font></font></option>
+            				
+            				</optgroup>
+            			
+            		
+            			
+            		
+            	</select>
+            </nav>		</div>
+		<div class="col-sm-9 col-md-8 body">
+			<div class="edit-github pull-right">
+				<a href="https://github.com/Microsoft/vscode-docs/blob/master/docs/nodejs/nodejs-tutorial.md" tabindex="-1">
+					<button type="button" class="btn btn-default" aria-label="Редактировать текущий документ на GitHub"><span class="glyphicon glyphicon-pencil"></span><i>&nbsp;</i><span class="hidden-xs"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">редактировать</font></font></span></button>
+				</a>
+			</div>
+			<h1><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Учебник по Node.js в коде Visual Studio</font></font></h1>
+<p><a href="https://nodejs.org/" class="external-link" target="_blank"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Node.js</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - это платформа для создания быстрых и масштабируемых серверных приложений с использованием JavaScript. </font><font style="vertical-align: inherit;">Node.js - это среда выполнения, а </font></font><a href="https://www.npmjs.com/" class="external-link" target="_blank"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">npm</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - менеджер пакетов для модулей Node.js.</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Visual Studio Code имеет встроенную поддержку языков JavaScript и TypeScript, а также отладку Node.js. </font><font style="vertical-align: inherit;">Однако для запуска приложения Node.js вам потребуется установить среду выполнения Node.js.</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Чтобы начать в этом пошаговом руководстве, </font></font><a href="https://nodejs.org/en/download/" class="external-link" target="_blank"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">установите Node.js для вашей платформы</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> . </font><font style="vertical-align: inherit;">Диспетчер пакетов Node включен в дистрибутив Node.js. </font><font style="vertical-align: inherit;">Вам нужно будет открыть новый терминал (командную строку), чтобы </font><font style="vertical-align: inherit;">инструменты </font></font><code>node</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">и </font></font><code>npm</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">командной строки находились в вашей переменной PATH.</font></font></p>
+<blockquote>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Linux</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> : Существуют специальные пакеты Node.js для различных разновидностей Linux. </font><font style="vertical-align: inherit;">См. </font></font><a href="https://nodejs.org/en/download/package-manager" class="external-link" target="_blank"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Установка Node.js через менеджер пакетов,</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> чтобы найти пакет Node.js и инструкции по установке, адаптированные к вашей версии Linux.</font></font></p>
+</blockquote>
+<blockquote>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Совет:</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Чтобы проверить, правильно ли установлен Node.js на вашем компьютере, откройте новый терминал и введите текст, </font></font><code>node --help</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">и вы должны увидеть документацию по использованию.</font></font></p>
+</blockquote>
+<h2 id="_hello-world" data-needslink="_hello-world"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Привет, мир</font></font><a class="hash-link hidden" aria-hidden="true" href="https://code.visualstudio.com/docs/nodejs/nodejs-tutorial#_hello-world"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">#</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Давайте начнем с создания простейшего приложения Node.js «Hello World».</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Создайте пустую папку с именем "hello", перейдите и откройте VS Code:</font></font></p>
+<pre class="shiki" style="background-color: #fff"><code><span style="color: #000000">mkdir hello</span>
+<span style="color: #795E26">cd</span><span style="color: #000000"> hello</span>
+<span style="color: #000000">code </span><span style="color: #795E26">.</span></code></pre>
+<blockquote>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Совет:</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> вы можете открывать файлы или папки прямо из командной строки. </font><font style="vertical-align: inherit;">Период '.' </font><font style="vertical-align: inherit;">относится к текущей папке, поэтому VS Code запустится и откроет </font></font><code>Hello</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">папку.</font></font></p>
+</blockquote>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">На панели инструментов проводника нажмите кнопку «Новый файл»:</font></font></p>
+<p><img src="./Создание приложений Node.js с помощью кода Visual Studio_files/toolbar-new-file.png" alt="Проводник Новый файл"></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">и назовите файл </font></font><code>app.js</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">:</font></font></p>
+<p><img src="./Создание приложений Node.js с помощью кода Visual Studio_files/app-js-file-created.png" alt="Проводник файла app.js"></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Используя </font></font><code>.js</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">расширение файла, VS Code интерпретирует этот файл как JavaScript и будет оценивать содержимое с помощью языковой службы JavaScript. </font><font style="vertical-align: inherit;">Обратитесь к </font></font><a href="https://code.visualstudio.com/docs/languages/javascript"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">разделу «Язык</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> кода </font><a href="https://code.visualstudio.com/docs/languages/javascript"><font style="vertical-align: inherit;">JavaScript</font></a><font style="vertical-align: inherit;"> VS», </font><font style="vertical-align: inherit;">чтобы узнать больше о поддержке JavaScript.</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Создайте простую строковую переменную в </font></font><code>app.js</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">и отправьте содержимое строки на консоль:</font></font></p>
+<pre class="shiki" style="background-color: #fff"><code><span style="color: #0000FF">var</span><span style="color: #000000"> </span><span style="color: #001080">msg</span><span style="color: #000000"> = </span><span style="color: #A31515">'Hello World'</span><span style="color: #000000">;</span>
+<span style="color: #267F99">console</span><span style="color: #000000">.</span><span style="color: #795E26">log</span><span style="color: #000000">(</span><span style="color: #001080">msg</span><span style="color: #000000">);</span></code></pre>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Обратите внимание , </font><font style="vertical-align: inherit;">что , </font><font style="vertical-align: inherit;">когда вы набрали </font></font><code>console.</code> <a href="https://code.visualstudio.com/docs/editor/intellisense"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">IntelliSense</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> на </font></font><code>console</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">объекте был автоматически представлен Вам.</font></font></p>
+<p><img src="./Создание приложений Node.js с помощью кода Visual Studio_files/consoleintellisense.png" alt="консоль IntelliSense"></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Также обратите внимание, что VS Code знает, что </font></font><code>msg</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">это строка, основанная на инициализации </font></font><code>'Hello World'</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">. </font><font style="vertical-align: inherit;">Если вы напечатаете, </font></font><code>msg.</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">вы увидите IntelliSense, показывающий все строковые функции, доступные на </font></font><code>msg</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">.</font></font></p>
+<p><img src="./Создание приложений Node.js с помощью кода Visual Studio_files/stringintellisense.png" alt="строка IntelliSense"></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">После экспериментов с IntelliSense отмените любые дополнительные изменения из приведенного выше примера исходного кода и сохраните файл ( </font></font><span class="dynamic-keybinding keybinding win" data-osx="⌘S" data-win="Ctrl+S" data-linux="Ctrl+S" title="macOS: ⌘S, Linux: Ctrl + S"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ctrl + S</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ).</font></font></p>
+<h3 id="_running-hello-world" data-needslink="_running-hello-world"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Запуск Hello World</font></font><a class="hash-link hidden" aria-hidden="true" href="https://code.visualstudio.com/docs/nodejs/nodejs-tutorial#_running-hello-world"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">#</font></font></a></h3>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Это просто работать </font></font><code>app.js</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">с Node.js. </font><font style="vertical-align: inherit;">Из терминала просто наберите:</font></font></p>
+<pre class="shiki" style="background-color: #fff"><code><span style="color: #000000">node app.js</span></code></pre>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Вы должны увидеть вывод «Hello World» на терминал, а затем Node.js вернется.</font></font></p>
+<h3 id="_integrated-terminal" data-needslink="_integrated-terminal"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Интегрированный Терминал</font></font><a class="hash-link hidden" aria-hidden="true" href="https://code.visualstudio.com/docs/nodejs/nodejs-tutorial#_integrated-terminal"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">#</font></font></a></h3>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">VS Code имеет </font></font><a href="https://code.visualstudio.com/docs/editor/integrated-terminal"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">встроенный терминал,</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> который вы можете использовать для запуска команд оболочки. </font><font style="vertical-align: inherit;">Вы можете запустить Node.js напрямую и избежать переключения кода VS во время работы инструментов командной строки.</font></font></p>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Вид</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> &gt; </font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Терминал</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> ( </font></font><span class="dynamic-keybinding keybinding win" data-osx="⌃`" data-win="Ctrl+`" data-linux="Ctrl+`" title="macOS: ⌃`, Linux: Ctrl + `"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Ctrl + `</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> с символом backtick) откроет интегрированный терминал, и вы можете запустить </font></font><code>node app.js</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">там:</font></font></p>
+<p><img src="./Создание приложений Node.js с помощью кода Visual Studio_files/integrated-terminal.png" alt="встроенный терминал"></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Для этого пошагового руководства вы можете использовать внешний терминал или интегрированный терминал VS Code для запуска инструментов командной строки.</font></font></p>
+<h3 id="_debugging-hello-world" data-needslink="_debugging-hello-world"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Отладка Hello World</font></font><a class="hash-link hidden" aria-hidden="true" href="https://code.visualstudio.com/docs/nodejs/nodejs-tutorial#_debugging-hello-world"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">#</font></font></a></h3>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Как упоминалось во введении, VS Code поставляется с отладчиком для приложений Node.js. </font><font style="vertical-align: inherit;">Давайте попробуем отладить наше простое приложение Hello World.</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Чтобы установить точку останова </font></font><code>app.js</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">, поместите курсор редактора на первую строку и нажмите </font></font><span class="dynamic-keybinding keybinding win" data-osx="F9" data-win="F9" data-linux="F9" title="macOS: F9, Linux: F9"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">F9</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> или щелкните в левом желобе редактора рядом с номерами строк. </font><font style="vertical-align: inherit;">Красный круг появится в желобе.</font></font></p>
+<p><img src="./Создание приложений Node.js с помощью кода Visual Studio_files/app-js-breakpoint-set.png" alt="Точка останова app.js установлена"></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Чтобы начать отладку, выберите «Отладка» на панели действий:</font></font></p>
+<p><img src="./Создание приложений Node.js с помощью кода Visual Studio_files/debugicon.png" alt="Значок отладки"></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Теперь вы можете нажать «Отладка» на зеленой панели инструментов или нажать </font></font><span class="dynamic-keybinding keybinding win" data-osx="F5" data-win="F5" data-linux="F5" title="macOS: F5, Linux: F5"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">F5,</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> чтобы запустить и отладить «Hello World». </font><font style="vertical-align: inherit;">Ваша точка останова будет достигнута, и вы сможете просмотреть и просмотреть простое приложение. </font><font style="vertical-align: inherit;">Обратите внимание, что VS Code отображает другую цветную строку состояния, чтобы указать, что она находится в режиме отладки, и отображается консоль отладки.</font></font></p>
+<p><img src="./Создание приложений Node.js с помощью кода Visual Studio_files/hello-world-debugging.png" alt="привет мир отладки"></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Теперь, когда вы видели VS Code в действии с «Hello World», в следующем разделе показано использование VS Code с полнофункциональным веб-приложением Node.js.</font></font></p>
+<blockquote>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Примечание.</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Мы закончили с примером «Hello World», поэтому перейдите из этой папки, прежде чем создавать приложение Express. </font><font style="vertical-align: inherit;">Вы можете удалить папку «Hello», если хотите, так как она не требуется для остальной части пошагового руководства.</font></font></p>
+</blockquote>
+<h2 id="_an-express-application" data-needslink="_an-express-application"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Экспресс приложение</font></font><a class="hash-link hidden" aria-hidden="true" href="https://code.visualstudio.com/docs/nodejs/nodejs-tutorial#_an-express-application"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">#</font></font></a></h2>
+<p><a href="https://expressjs.com/" class="external-link" target="_blank"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Express</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - это очень популярный фреймворк для создания и запуска приложений Node.js. </font><font style="vertical-align: inherit;">Вы можете создать новое приложение Express с помощью инструмента Express Generator. </font><font style="vertical-align: inherit;">Экспресс-генератор поставляется в виде модуля npm и устанавливается с помощью инструмента командной строки npm </font></font><code>npm</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">.</font></font></p>
+<blockquote>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Совет:</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Чтобы проверить, что вы </font></font><code>npm</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">правильно установили на свой компьютер, введите </font></font><code>npm --help</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">с терминала, и вы должны увидеть документацию по использованию.</font></font></p>
+</blockquote>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Установите Express Generator, запустив в терминале следующее:</font></font></p>
+<pre class="shiki" style="background-color: #fff"><code><span style="color: #000000">npm install -g express-generator</span></code></pre>
+<p><font style="vertical-align: inherit;"></font><code>-g</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Коммутатор устанавливает генератор Экспресса во всем </font><font style="vertical-align: inherit;">мире на вашем компьютере , </font><font style="vertical-align: inherit;">так что </font><font style="vertical-align: inherit;">вы можете запустить его из любой точки мира.</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Теперь мы можем создать новое приложение Express, вызванное </font></font><code>myExpressApp</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">запуском:</font></font></p>
+<pre class="shiki" style="background-color: #fff"><code><span style="color: #000000">express myExpressApp --view pug</span></code></pre>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Это создаст новую папку </font></font><code>myExpressApp</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">с названием вашего приложения. </font><font style="vertical-align: inherit;">В </font></font><code>--view pug</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">параметрах говорят генератору использовать </font></font><a href="https://pugjs.org/api/getting-started.html" class="external-link" target="_blank"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">мопс</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> двигатель шаблона (ранее известный как </font></font><code>jade</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">).</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Чтобы установить все зависимости приложения (снова поставляются в виде модулей npm), перейдите в новую папку и выполните </font></font><code>npm install</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">:</font></font></p>
+<pre class="shiki" style="background-color: #fff"><code><span style="color: #795E26">cd</span><span style="color: #000000"> myExpressApp</span>
+<span style="color: #000000">npm install</span></code></pre>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">На данный момент мы должны проверить, что наше приложение работает. </font><font style="vertical-align: inherit;">Сгенерированное приложение Express содержит </font></font><code>package.json</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">файл, который содержит </font></font><code>start</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">скрипт для запуска </font></font><code>node ./bin/www</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">. </font><font style="vertical-align: inherit;">Это запустит приложение Node.js.</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Из терминала в папке приложения Express запустите:</font></font></p>
+<pre class="shiki" style="background-color: #fff"><code><span style="color: #000000">npm start</span></code></pre>
+<blockquote>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Совет:</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Вы можете включить проводник для сценариев npm в своем рабочем пространстве, используя эту </font></font><code>npm.enableScriptExplorer</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">настройку.</font></font></p>
+</blockquote>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Запустится веб-сервер Node.js, и вы можете перейти по </font></font><a href="http://localhost:3000/" class="external-link" target="_blank"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">адресу http: // localhost: 3000,</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> чтобы увидеть запущенное приложение.</font></font></p>
+<p><img src="./Создание приложений Node.js с помощью кода Visual Studio_files/express.png" alt="Ваше первое приложение Node Express"></p>
+<h2 id="_great-code-editing" data-needslink="_great-code-editing"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Отличное редактирование кода</font></font><a class="hash-link hidden" aria-hidden="true" href="https://code.visualstudio.com/docs/nodejs/nodejs-tutorial#_great-code-editing"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">#</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Закройте браузер и из терминала в </font></font><code>myExpressApp</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">папке, остановите сервер Node.js, нажав </font></font><span class="keybinding"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">сочетание клавиш </font><font style="vertical-align: inherit;">CTRL + C</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> .</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Теперь запустите VS Code:</font></font></p>
+<pre class="shiki" style="background-color: #fff"><code><span style="color: #000000">code </span><span style="color: #795E26">.</span></code></pre>
+<blockquote>
+<p><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Примечание.</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> Если вы использовали встроенный терминал VS Code для установки генератора Express и создания приложения, вы можете открыть </font></font><code>myExpressApp</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">папку из запущенного экземпляра VS Code с помощью команды « </font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Файл»</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> &gt; « </font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Открыть папку»</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> .</font></font></p>
+</blockquote>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Документация </font></font><a href="https://nodejs.org/api/" class="external-link" target="_blank"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Node.js</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> и </font></font><a href="https://expressjs.com/api.html" class="external-link" target="_blank"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Express</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> отлично справляется с объяснением того, как создавать многофункциональные приложения с использованием платформы и платформы. </font><font style="vertical-align: inherit;">Visual Studio Code позволит вам более продуктивно разрабатывать приложения такого типа, предоставляя отличные возможности редактирования кода и навигации.</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Откройте файл </font></font><code>app.js</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">и наведите курсор мыши на глобальный объект Node.js </font></font><code>__dirname</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">. </font><font style="vertical-align: inherit;">Обратите внимание, как VS Code понимает, что </font></font><code>__dirname</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">это строка. </font><font style="vertical-align: inherit;">Еще интереснее то, что вы можете получить полную версию IntelliSense для платформы Node.js. </font><font style="vertical-align: inherit;">Например, вы можете требовать </font></font><code>http</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">и получать полную IntelliSense для </font></font><code>http</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">класса при вводе в коде Visual Studio.</font></font></p>
+<p><img src="./Создание приложений Node.js с помощью кода Visual Studio_files/intellisense.png" alt="http IntelliSense"></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">VS Code использует файлы описания (типирования) TypeScript (например </font></font><code>node.d.ts</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">) для предоставления метаданных VS Code о </font><font style="vertical-align: inherit;">каркасах </font><font style="vertical-align: inherit;">на основе JavaScript, которые вы используете в своем приложении. </font><font style="vertical-align: inherit;">Файлы объявления типов написаны на TypeScript, поэтому они могут выражать типы данных параметров и функций, что позволяет VS Code предоставлять богатый опыт IntelliSense. </font><font style="vertical-align: inherit;">Благодаря функции </font></font><code>Automatic Type Acquisition</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">, которую вы </font><font style="vertical-align: inherit;">называете </font><font style="vertical-align: inherit;">, вам не нужно беспокоиться о загрузке этих файлов объявлений типов, VS Code установит их автоматически.</font></font></p>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Вы также можете написать код, который ссылается на модули в других файлах. </font><font style="vertical-align: inherit;">Например, </font></font><code>app.js</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">нам требуется </font></font><code>./routes/index</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">модуль, который экспортирует </font></font><code>Express.Router</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">класс. </font><font style="vertical-align: inherit;">Если вы включите IntelliSense </font></font><code>index</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">, вы сможете увидеть форму </font></font><code>Router</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">класса.</font></font></p>
+<p><img src="./Создание приложений Node.js с помощью кода Visual Studio_files/moduleintellisense.png" alt="Экспресс. Маршрутизатор IntelliSense"></p>
+<h2 id="_debug-your-express-app" data-needslink="_debug-your-express-app"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Отладка вашего экспресс-приложения</font></font><a class="hash-link hidden" aria-hidden="true" href="https://code.visualstudio.com/docs/nodejs/nodejs-tutorial#_debug-your-express-app"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">#</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Вам нужно будет создать файл конфигурации отладчика </font></font><code>launch.json</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">для вашего приложения Express. </font><font style="vertical-align: inherit;">Щелкните значок «Отладка» на панели </font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">действий,</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> а затем значок «Настроить механизм» в верхней части представления «Отладка», чтобы создать </font></font><code>launch.json</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">файл по </font><font style="vertical-align: inherit;">умолчанию </font><font style="vertical-align: inherit;">. </font><font style="vertical-align: inherit;">Выберите </font><font style="vertical-align: inherit;">среду </font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Node.js</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> , указав для </font></font><code>type</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">свойства in </font></font><code>configurations</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">значение </font></font><code>"node"</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">. </font><font style="vertical-align: inherit;">Когда создается первый файл, VS код будет выглядеть </font></font><code>package.json</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">для </font></font><code>start</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">сценария и будет использовать это значение в </font><font style="vertical-align: inherit;">качестве </font></font><code>program</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">(который в данном случае </font></font><code>"${workspaceFolder}\\bin\\www</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">) для </font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">запуска программы</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> конфигурации.</font></font></p>
+<pre class="shiki" style="background-color: #fff"><code><span style="color: #000000">{</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">"version"</span><span style="color: #000000">: </span><span style="color: #A31515">"0.2.0"</span><span style="color: #000000">,</span>
+<span style="color: #000000">  </span><span style="color: #0451A5">"configurations"</span><span style="color: #000000">: [</span>
+<span style="color: #000000">    {</span>
+<span style="color: #000000">      </span><span style="color: #0451A5">"type"</span><span style="color: #000000">: </span><span style="color: #A31515">"node"</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #0451A5">"request"</span><span style="color: #000000">: </span><span style="color: #A31515">"launch"</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #0451A5">"name"</span><span style="color: #000000">: </span><span style="color: #A31515">"Launch Program"</span><span style="color: #000000">,</span>
+<span style="color: #000000">      </span><span style="color: #0451A5">"program"</span><span style="color: #000000">: </span><span style="color: #A31515">"${workspaceFolder}\\bin\\www"</span>
+<span style="color: #000000">    }</span>
+<span style="color: #000000">  ]</span>
+<span style="color: #000000">}</span></code></pre>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Сохраните новый файл и убедитесь, что </font></font><strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Launch Program</font></font></strong><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> выбрана в раскрывающемся меню конфигурации в верхней части окна Debug. </font><font style="vertical-align: inherit;">Откройте </font></font><code>app.js</code><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">и установите точку останова в верхней части файла, в котором создается объект приложения Express, щелкнув мышью слева от номера строки. </font><font style="vertical-align: inherit;">Нажмите </font></font><span class="dynamic-keybinding keybinding win" data-osx="F5" data-win="F5" data-linux="F5" title="macOS: F5, Linux: F5"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">F5,</font></font></span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> чтобы начать отладку приложения. </font><font style="vertical-align: inherit;">VS Code запустит сервер в новом терминале и достигнет установленной нами точки останова. </font><font style="vertical-align: inherit;">Оттуда вы можете проверять переменные, создавать часы и просматривать ваш код.</font></font></p>
+<p><img src="./Создание приложений Node.js с помощью кода Visual Studio_files/debugsession.png" alt="Сеанс отладки"></p>
+<h2 id="_deploy-your-application" data-needslink="_deploy-your-application"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Разверните ваше приложение</font></font><a class="hash-link hidden" aria-hidden="true" href="https://code.visualstudio.com/docs/nodejs/nodejs-tutorial#_deploy-your-application"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">#</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Если вы хотите узнать, как развернуть свое веб-приложение, ознакомьтесь с </font><font style="vertical-align: inherit;">учебными руководствами </font></font><a href="https://code.visualstudio.com/docs/azure/deployment"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Развертывание приложений в Azure,</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> где мы покажем, как запустить ваш веб-сайт в Azure.</font></font></p>
+<hr>
+<h2 id="_next-steps" data-needslink="_next-steps"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Следующие шаги</font></font><a class="hash-link hidden" aria-hidden="true" href="https://code.visualstudio.com/docs/nodejs/nodejs-tutorial#_next-steps"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">#</font></font></a></h2>
+<p><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">С помощью Visual Studio Code можно изучить гораздо больше, попробуйте следующие темы:</font></font></p>
+<ul>
+<li><a href="https://code.visualstudio.com/docs/getstarted/settings"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Настройки</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - Узнайте, как настроить VS Code для своей работы.</font></font></li>
+<li><a href="https://code.visualstudio.com/docs/editor/debugging"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Отладка</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - это то, где VS Code действительно сияет.</font></font></li>
+<li><a href="https://www.youtube.com/watch?v=2oFKNL7vYV8" class="external-link" target="_blank"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Видео: Начало работы с отладкой Node.js</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - Узнайте, как подключиться к работающему процессу Node.js.</font></font></li>
+<li><a href="https://code.visualstudio.com/docs/nodejs/nodejs-debugging"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Отладка Node.js</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - узнайте больше о встроенной отладке Node.js в VS Code.</font></font></li>
+<li><a href="https://code.visualstudio.com/docs/nodejs/debugging-recipes"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Рецепты отладки</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - Примеры сценариев, таких как отладка на стороне клиента и контейнера.</font></font></li>
+<li><a href="https://code.visualstudio.com/docs/editor/tasks"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Задачи</font></font></a><font style="vertical-align: inherit;"><font style="vertical-align: inherit;"> - Выполнение заданий с Gulp, Grunt и Jake. </font><font style="vertical-align: inherit;">Показаны ошибки и предупреждения.</font></font></li>
+</ul>
+
+			<div class="feedback"><div data-reactroot="" class="widget"><form aria-label="Обратная связь"><div class="buttons"><h3><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Была ли эта документация полезной?</font></font></h3><br><button value="1"><!-- react-text: 7 --><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Да </font><span class="sr-only"><font style="vertical-align: inherit;">, эта страница была полезна</font></span></font><!-- /react-text --><span class="sr-only"><font style="vertical-align: inherit;"></font></span></button><button value="0"><!-- react-text: 10 --><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Нет </font><span class="sr-only"><font style="vertical-align: inherit;">, эта страница не была полезна</font></span></font><!-- /react-text --><span class="sr-only"><font style="vertical-align: inherit;"></font></span></button></div></form></div></div>
+			
+			<div class="body-footer"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">12/12/2019</font></font></div>
+			
+		</div>
+        <div class="col-sm-3 col-md-2 docs-subnavbar-container">
+            <nav id="docs-subnavbar" aria-label="На странице" data-spy="affix" data-offset-top="20" class="affix-top">
+				<h4 tabindex="0"><span class="sr-only"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">В этой статье 6 разделов </font></font></span><span aria-hidden="true"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">В этой статье</font></font></span></h4>
+                <ul class="nav">
+                	
+                		<li class=""><a href="https://code.visualstudio.com/docs/nodejs/nodejs-tutorial#_hello-world"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Привет, мир</font></font></a></li>
+                	
+                		<li class=""><a href="https://code.visualstudio.com/docs/nodejs/nodejs-tutorial#_an-express-application"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Экспресс приложение</font></font></a></li>
+                	
+                		<li class=""><a href="https://code.visualstudio.com/docs/nodejs/nodejs-tutorial#_great-code-editing"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Отличное редактирование кода</font></font></a></li>
+                	
+                		<li class=""><a href="https://code.visualstudio.com/docs/nodejs/nodejs-tutorial#_debug-your-express-app"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Отладка вашего экспресс-приложения</font></font></a></li>
+                	
+                		<li><a href="https://code.visualstudio.com/docs/nodejs/nodejs-tutorial#_deploy-your-application"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Разверните ваше приложение</font></font></a></li>
+                	
+                		<li class=""><a href="https://code.visualstudio.com/docs/nodejs/nodejs-tutorial#_next-steps"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Следующие шаги</font></font></a></li>
+                	
+                </ul>
+				<div class="connect-widget"><ul data-reactroot="" class="connect-links"><li id="connect-twitter-link"><a href="https://twitter.com/intent/tweet?original_referer=https://code.visualstudio.com/docs/nodejs/nodejs-tutorial&amp;ref_src=twsrc%5Etfw&amp;text=Build%20Node.js%20Apps%20with%20Visual%20Studio%20Code&amp;tw_p=tweetbutton&amp;url=https://code.visualstudio.com/docs/nodejs/nodejs-tutorial&amp;via=code" target="_blank"><img alt="щебет" src="./Создание приложений Node.js с помощью кода Visual Studio_files/twitter.svg"><!-- react-text: 5 --><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Чирикать эту ссылку</font></font><!-- /react-text --></a></li><li id="connect-rssfeed"><a href="https://code.visualstudio.com/feed.xml" target="_blank"><img alt="RSS" src="./Создание приложений Node.js с помощью кода Visual Studio_files/rss.svg"><!-- react-text: 9 --><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Подписывайся</font></font><!-- /react-text --></a></li><li id="connect-stack-overflow"><a href="https://stackoverflow.com/questions/tagged/vscode" target="_blank"><img alt="Переполнение стека" src="./Создание приложений Node.js с помощью кода Visual Studio_files/stackoverflow.svg"><!-- react-text: 13 --><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Задавать вопросы</font></font><!-- /react-text --></a></li><li id="connect-twitter"><a href="https://go.microsoft.com/fwlink/?LinkID=533687" target="_blank"><img alt="щебет" src="./Создание приложений Node.js с помощью кода Visual Studio_files/twitter.svg"><!-- react-text: 17 --><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Следуйте @ код</font></font><!-- /react-text --></a></li><li id="connect-uservoice"><a href="https://go.microsoft.com/fwlink/?LinkID=533482" target="_blank"><img alt="GitHub" src="./Создание приложений Node.js с помощью кода Visual Studio_files/github.svg"><!-- react-text: 21 --><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Запрос функции</font></font><!-- /react-text --></a></li><li id="connect-github"><a href="https://www.github.com/Microsoft/vscode/issues" target="_blank"><img alt="вопросы" src="./Создание приложений Node.js с помощью кода Visual Studio_files/issue.svg"><!-- react-text: 25 --><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Сообщить о проблемах</font></font><!-- /react-text --></a></li><li id="connect-youtube"><a href="https://www.youtube.com/channel/UCs5Y5_7XK8HLDX0SLNwkd3w" target="_blank"><img alt="YouTube" src="./Создание приложений Node.js с помощью кода Visual Studio_files/youtube.svg"><!-- react-text: 29 --><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Смотреть видео</font></font><!-- /react-text --></a></li></ul></div>
+			</nav>
+        </div>
+	</div>
+</div>
+      </div>
+  </div>
+
+  <footer role="contentinfo">
+      <div class="container">
+          <div class="row">
+              <div class="left col-md-7">
+                  <ul class="links">
+                      <li>
+                          <span class="message"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Привет из Сиэтла.</font></font></span>
+                      </li>
+                      <li>
+                          <a href="https://go.microsoft.com/fwlink/?LinkID=533687" onclick="followOnTwitter()" role="button" tabindex="0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Следуйте @ код</font></font></a>
+                      </li>
+                      <li>
+                          <div class="github-star-button">
+                              <iframe src="./Создание приложений Node.js с помощью кода Visual Studio_files/github-button.html" frameborder="0" scrolling="0" width="130px" height="20px" title="GitHub следовать за кнопкой" aria-label="GitHub следовать за кнопкой"></iframe>
+                          </div>
+                      </li>
+  
+                      <script>
+                          function followOnTwitter() {
+                              var windowFeatures = "location=yes,height=600,width=550,scrollbars=yes,status=yes";
+                              var originalReferer = "&original_referer=" + document.URL;
+                              var screenName = "&screen_name=code";
+                              var URL = "https://twitter.com/intent/follow?" + originalReferer + screenName;
+                              window.open(URL, "_blank", windowFeatures);
+                          }
+                      </script>
+                  </ul>
+              </div>
+              <div class="right col-md-5">
+                  <ul class="links">
+                      <li><a id="footer-support-link" href="https://support.microsoft.com/en-us/getsupport?wf=0&amp;tenant=ClassicCommercial&amp;oaspworkflow=start_1.0.0.0&amp;locale=en-us&amp;supportregion=en-us&amp;pesid=16064&amp;ccsid=636196895839595242" target="_blank"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Служба поддержки</font></font></a></li>
+                      <li><a id="footer-privacy-link" href="https://privacy.microsoft.com/en-us/privacystatement" target="_blank"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Конфиденциальность</font></font></a></li>
+                      <li><a id="footer-terms-link" href="https://www.microsoft.com/en-us/legal/intellectualproperty/copyright/default.aspx" target="_blank"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Условия эксплуатации</font></font></a></li>
+                      <li><a id="footer-license-link" href="https://code.visualstudio.com/License"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Лицензия</font></font></a></li>
+                  </ul>
+                  <div class="copyright">
+                      <a id="footer-microsoft-link" class="logo" href="https://www.microsoft.com/">
+                          <img class="microsoft-logo" src="./Создание приложений Node.js с помощью кода Visual Studio_files/microsoft-logo.png" height="20" alt="Домашняя страница Microsoft">
+                          <img class="microsoft-logo-inverted" src="./Создание приложений Node.js с помощью кода Visual Studio_files/microsoft-logo-inverted.png" height="20" alt="Домашняя страница Microsoft">
+                      </a>
+                      <span><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">© 2019 </font><span itemprop="publisher" itemscope="" itemtype="https://schema.org/Organization"><span itemprop="name"><font style="vertical-align: inherit;">Microsoft</font></span></span></font><span itemprop="publisher" itemscope="" itemtype="https://schema.org/Organization">
+  <span itemprop="name"><font style="vertical-align: inherit;"></font></span></span>
+                      </span>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </footer>
+  <script src="./Создание приложений Node.js с помощью кода Visual Studio_files/index.js.Без названия"></script>
+
+  
+
+  <script type="application/ld+json">
+    {
+      "@context" : "http://schema.org",
+      "@type" : "Product",
+      "name" : "Visual Studio Code",
+      "logo": "https://code.visualstudio.com/assets/favicon.ico",
+      "url" : "https://code.visualstudio.com",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": "https://code.visualstudio.com/Search?q={search_term_string}",
+        "query-input": "required name=search_term_string"
+      },
+      "sameAs" : [
+      "https://en.wikipedia.org/wiki/Visual_Studio_Code",
+      "https://www.facebook.com/visualstudio",
+      "https://twitter.com/code",
+      "https://blogs.msdn.com/b/vscode"
+      ]
+    }
+  </script>
+
+  <!-- [Begin] JSLL script includes -->
+  
+  <script type="text/javascript">
+    var config = {
+      coreData: {
+        appId: "vscode"
+      }
+    };
+    if (awa) {
+      awa.init(config);
+    }
+  </script>
+  <!-- [End] JSLL script includes --><div id="goog-gt-tt" class="skiptranslate" dir="ltr"><div style="padding: 8px;"><div><div class="logo"><img src="./Создание приложений Node.js с помощью кода Visual Studio_files/translate_24dp.png" width="20" height="20" alt="Google Переводчик"></div></div></div><div class="top" style="padding: 8px; float: left; width: 100%;"><h1 class="title gray">Исходный текст</h1></div><div class="middle" style="padding: 8px;"><div class="original-text"></div></div><div class="bottom" style="padding: 8px;"><div class="activity-links"><span class="activity-link">Предложить лучший вариант перевода</span><span class="activity-link"></span></div><div class="started-activity-container"><hr style="color: #CCC; background-color: #CCC; height: 1px; border: none;"><div class="activity-root"></div></div></div><div class="status-message" style="display: none;"></div></div>
+<div class="goog-te-spinner-pos"><div class="goog-te-spinner-animation"><svg xmlns="http://www.w3.org/2000/svg" class="goog-te-spinner" width="96px" height="96px" viewBox="0 0 66 66"><circle class="goog-te-spinner-path" fill="none" stroke-width="6" stroke-linecap="round" cx="33" cy="33" r="30"></circle></svg></div></div></body></html>

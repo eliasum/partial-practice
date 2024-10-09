@@ -1,0 +1,29 @@
+﻿<!--
+2021.08.13 11:31 IMM    
+    
+Если у нас несколько строк, и мы хотим, чтобы разделитель распространялся на несколько
+    строк, то мы можем задать свойство Grid.RowSpan:
+-->
+    
+<Window x:Class="GridSplitterApp2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:GridSplitterApp2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <GridSplitter Grid.Column="1" Grid.RowSpan="2" ShowsPreview="False" Width="3"
+    HorizontalAlignment="Center" VerticalAlignment="Stretch" />
+    </Grid>
+</Window>

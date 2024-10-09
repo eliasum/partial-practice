@@ -1,0 +1,7 @@
+d:\Rep\practice\C#\ITVDN\002. C# Базовый (основы ООП)\Урок 09. Делегаты\Delegates\001_Delegates\bin\Debug\001_Delegates.exe.config
+d:\Rep\practice\C#\ITVDN\002. C# Базовый (основы ООП)\Урок 09. Делегаты\Delegates\001_Delegates\bin\Debug\001_Delegates.exe
+d:\Rep\practice\C#\ITVDN\002. C# Базовый (основы ООП)\Урок 09. Делегаты\Delegates\001_Delegates\bin\Debug\001_Delegates.pdb
+d:\Rep\practice\C#\ITVDN\002. C# Базовый (основы ООП)\Урок 09. Делегаты\Delegates\001_Delegates\obj\Debug\001_Delegates.csprojAssemblyReference.cache
+d:\Rep\practice\C#\ITVDN\002. C# Базовый (основы ООП)\Урок 09. Делегаты\Delegates\001_Delegates\obj\Debug\001_Delegates.csproj.CoreCompileInputs.cache
+d:\Rep\practice\C#\ITVDN\002. C# Базовый (основы ООП)\Урок 09. Делегаты\Delegates\001_Delegates\obj\Debug\001_Delegates.exe
+d:\Rep\practice\C#\ITVDN\002. C# Базовый (основы ООП)\Урок 09. Делегаты\Delegates\001_Delegates\obj\Debug\001_Delegates.pdb

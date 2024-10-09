@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<!-- saved from url=(0038)https://metanit.com/sharp/wpf/14.1.php -->
+<html theme="dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>WPF | Привязка данных и контекст данных</title>
+
+<meta name="description" content="Привязка данных в WPF, подключение к контексту данных, свойство DataContext, вложенные контексты данных">
+<meta name="viewport" content="width=device-width">
+<link href="./WPF _ Привязка данных и контекст данных_files/style31.css" rel="stylesheet" type="text/css">
+<script src="./WPF _ Привязка данных и контекст данных_files/f(5).txt"></script><script src="./WPF _ Привязка данных и контекст данных_files/osd.js.Без названия"></script><script src="./WPF _ Привязка данных и контекст данных_files/f(6).txt"></script><script type="text/javascript" async="" src="./WPF _ Привязка данных и контекст данных_files/analytics.js.Без названия"></script><script src="./WPF _ Привязка данных и контекст данных_files/f(7).txt" id="google_shimpl"></script><script type="text/javascript" src="./WPF _ Привязка данных и контекст данных_files/context.js.Без названия" async=""></script><script type="text/javascript" src="./WPF _ Привязка данных и контекст данных_files/context.js.Без названия" async=""></script><script async="" src="./WPF _ Привязка данных и контекст данных_files/analytics.js.Без названия"></script><script type="text/javascript" async="" src="./WPF _ Привязка данных и контекст данных_files/embed.js.Без названия"></script><meta http-equiv="origin-trial" content="A88otRz1Fd3Nt567e2IYshC18LL3KGVXpVJW9oTCId4RYaygt23pbb4JqrbdIO/bwZPWEmRjBIRBu/bZbDR7Pg4AAABueyJvcmlnaW4iOiJodHRwczovL2ltYXNkay5nb29nbGVhcGlzLmNvbTo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MzQwODMxOTksImlzVGhpcmRQYXJ0eSI6dHJ1ZX0="><meta http-equiv="origin-trial" content="A0gCLbXCcL0R1Oc8tFPDs0G4Elz17w3zHp+Zst66+D17veE2o7fUcPsA114QtSTRqfVJLMeTSdeWOom0CcyCsgYAAAB7eyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MzQwODMxOTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A9RQ+LxFazAousxUwSCzaihJjHLO1UyjQp0teZKHl7WdbVjPDfHSKMd6D/ZI5MTjqClFycbl70EFd7cBJWXqKQEAAACBeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXRhZ3NlcnZpY2VzLmNvbTo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MzQwODMxOTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A6WKeWsdn1Ct+ZPqS9NCxxaiBoQ7wdTkK2/gE69Yu0gfBKJfo1gOvgkGmf5/xaIajT/RUb9AbnF1FsSZ47cCcQcAAACBeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MzQwODMxOTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A04ZCu7yjrHgwQJK5ISHhH1DSg0qqowEay3n70KO6wV3D2Mj+OX3Kw20aSMitzgdG1xfrN7sOJV/dZIk+RvCzA4AAAB2eyJvcmlnaW4iOiJodHRwczovL2dvb2dsZS5jb206NDQzIiwiZmVhdHVyZSI6IlRydXN0VG9rZW5zIiwiZXhwaXJ5IjoxNjM0MDgzMTk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="A2YAd4xOntTGygIDjApOTtXOgVI3IWsd5OnOGq3RbRkIQwyqYWNl1JGRAcvtm6VOHDj4n07T/J19VqLuJn3MmQ8AAACWeyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjMxNjYzOTk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlLCJ1c2FnZSI6InN1YnNldCJ9"><meta http-equiv="origin-trial" content="A2c5Ux+hivdkLh/KbZUGr6f7SCR0mZrBVfPJ+/OuDVHNwiYv+Lo83b9z5qL8sod78bQl0pSLtbvRWURo+xRl7AIAAACceyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjMxNjYzOTk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlLCJ1c2FnZSI6InN1YnNldCJ9"><meta http-equiv="origin-trial" content="AzNJ4sd3tVurolpdvWYZ4cmP9Po7RJhEHSqmC3pgxW9fFVZvchhtcMUgHAs97npxMD1jhXHO8s6q6Wy1MMLxKgEAAACceyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXRhZ3NlcnZpY2VzLmNvbTo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjMxNjYzOTk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlLCJ1c2FnZSI6InN1YnNldCJ9"><meta http-equiv="origin-trial" content="AwfG8hAcHnPa/kJ1Co0EvG/K0F9l1s2JZGiDLt2mhC3QI5Fh4qmsmSwrWObZFbRC9ieDaSLU6lHRxhGUF/i9sgoAAACBeyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiSW50ZXJlc3RDb2hvcnRBUEkiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="AwQ7dCmHkvR6FuOFxAuNnktYSQrGbL4dF+eBkrwNLALc69Wr//PnO1yzns3pjUoCaYbKHtVcnng2hU+8OUm0PAYAAACHeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiSW50ZXJlc3RDb2hvcnRBUEkiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="AysVDPGQTLD/Scn78x4mLwB1tMfje5jwUpAAzGRpWsr1NzoN7MTFhT3ClmImi2svDZA7V6nWGIV8YTPsSRTe0wYAAACHeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXRhZ3NlcnZpY2VzLmNvbTo0NDMiLCJmZWF0dXJlIjoiSW50ZXJlc3RDb2hvcnRBUEkiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><link rel="prefetch" as="style" href="https://c.disquscdn.com/next/embed/styles/lounge.8affdad980167da3f2dd9f1e933d0669.css"><link rel="prefetch" as="script" href="https://c.disquscdn.com/next/embed/common.bundle.ee2555081038338ea4f41cbb3ea1bc17.js"><link rel="prefetch" as="script" href="https://c.disquscdn.com/next/embed/lounge.bundle.dc50d72ac077058faccdd9a761fea0bc.js"><link rel="prefetch" as="script" href="https://disqus.com/next/config.js"><script async="" id="dsq_recs_scr" src="./WPF _ Привязка данных и контекст данных_files/recommendations.js.Без названия"></script><script charset="utf-8" src="./WPF _ Привязка данных и контекст данных_files/8a464769ab59207c563c.js.Без названия" crossorigin="anonymous" importance="high"></script><script async="" crossorigin="anonymous" src="./WPF _ Привязка данных и контекст данных_files/host.js.Без названия"></script><link rel="preconnect" href="https://yastatic.net/"><link rel="preconnect" href="https://avatars.mds.yandex.net/"><link rel="preconnect" href="https://mc.yandex.ru/"><meta id="https://yastatic.net/partner-code-bundles/42993/context_static.js"><link rel="preconnect" href="https://ads.adfox.ru/"><script charset="utf-8" src="./WPF _ Привязка данных и контекст данных_files/8beddd357f4129ed6ef7.js.Без названия" crossorigin="anonymous" importance="high"></script><script charset="utf-8" src="./WPF _ Привязка данных и контекст данных_files/e3e1ced9a894528c62ac.js.Без названия" crossorigin="anonymous" importance="high"></script><script charset="utf-8" src="./WPF _ Привязка данных и контекст данных_files/ebdb7f2d24a2659fa61f.js.Без названия" crossorigin="anonymous" importance="high"></script><link rel="prefetch" as="style" href="https://c.disquscdn.com/next/recommendations/styles/recommendations.eff219b98b7c4167b4b289065f36f391.css"><link rel="prefetch" as="script" href="https://c.disquscdn.com/next/recommendations/common.bundle.72e35017d98ea7f210961b0d5c38444a.js"><link rel="prefetch" as="script" href="https://c.disquscdn.com/next/recommendations/recommendations.bundle.08e1d1c6c9f7a3bde178911a9d04b1e5.js"><link rel="prefetch" as="script" href="https://disqus.com/next/config.js"><link rel="preload" href="./WPF _ Привязка данных и контекст данных_files/f(8).txt" as="script"><script type="text/javascript" src="./WPF _ Привязка данных и контекст данных_files/f(8).txt"></script><link rel="preload" href="./WPF _ Привязка данных и контекст данных_files/f(9).txt" as="script"><script type="text/javascript" src="./WPF _ Привязка данных и контекст данных_files/f(9).txt"></script><style type="text/css">.w71f1b3ef{opacity: !important;white-space:normal !important;visibility:visible !important}.w71f1b3ef,.w71f1b3ef yatag{display:block !important;font-family:inherit !important}.w71f1b3ef,.w71f1b3ef,.w71f1b3ef a,.w71f1b3ef b,.w71f1b3ef em,.w71f1b3ef iframe,.w71f1b3ef img,.w71f1b3ef table,.w71f1b3ef tbody,.w71f1b3ef td,.w71f1b3ef tr,.w71f1b3ef yatag{-webkit-box-sizing:content-box !important;box-sizing:content-box !important;color:inherit !important;font-size:inherit !important;font-weight:inherit !important;-webkit-hyphens:manual !important;-ms-hyphens:manual !important;hyphens:manual !important;-webkit-transition:none !important;-o-transition:none !important;transition:none !important}.w71f1b3ef,.w71f1b3ef a,.w71f1b3ef b,.w71f1b3ef em,.w71f1b3ef iframe,.w71f1b3ef img,.w71f1b3ef table,.w71f1b3ef tbody,.w71f1b3ef td,.w71f1b3ef tr{background:none !important;border:none !important;border-radius:0 !important;border-spacing:0 !important;border-collapse:collapse !important;clear:none !important;float:none !important;font-variant:normal !important;letter-spacing:normal !important;line-height:normal !important;margin:0 !important;max-height:none !important;max-width:none !important;min-height:0 !important;min-width:0 !important;outline:none !important;padding:0 !important;position:static !important;text-align:left !important;text-decoration:none !important;text-indent:0 !important;text-transform:none !important;vertical-align:baseline !important;visibility:inherit !important;word-spacing:normal !important}.w71f1b3ef,.w71f1b3ef a,.w71f1b3ef b,.w71f1b3ef em,.w71f1b3ef img,.w71f1b3ef table,.w71f1b3ef tbody,.w71f1b3ef td,.w71f1b3ef tr{height:auto !important}.w71f1b3ef table{display:table !important;empty-cells:hide !important;table-layout:fixed !important}.w71f1b3ef table,.w71f1b3ef td{font-size:100% !important}.w71f1b3ef td{display:table-cell !important;vertical-align:middle !important}.w71f1b3ef{width:auto !important;height:auto !important;overflow:visible !important}.w71f1b3ef .q91ffc202{position:relative !important;margin:auto !important;display:-webkit-box !important;display:-ms-flexbox !important;display:flex !important;-webkit-box-pack:center !important;-ms-flex-pack:center !important;justify-content:center !important;-webkit-box-align:center !important;-ms-flex-align:center !important;align-items:center !important;overflow:hidden !important}.w71f1b3ef .o4a8bbcad,.w71f1b3ef .m6c2096cf{position:absolute !important;z-index:1 !important;top:0 !important;left:0 !important;right:0 !important;bottom:0 !important;width:100% !important;height:100% !important;display:none !important}.w71f1b3ef .h698cea85{position:relative !important;z-index:2 !important}.w71f1b3ef .jc2ba7f2{position:relative !important;top:0 !important;left:0 !important;width:100% !important;height:100% !important}.w71f1b3ef .jc2ba7f2 iframe{position:absolute !important;top:0 !important;left:0 !important;width:100% !important;height:100% !important}.w71f1b3ef .jb879eded{position:absolute !important;width:100% !important;right:0 !important;top:0 !important;z-index:20 !important}.w71f1b3ef .m790f3df5{position:absolute !important;z-index:21 !important;top:0 !important;left:0 !important;width:100% !important;height:100% !important}.w71f1b3ef .s762f3947{position:absolute !important;top:0 !important;left:0 !important;z-index:10 !important;height:16px !important;padding:0 4px !important;font-size:11px !important;line-height:16px !important;color:#000 !important;text-decoration:none !important;background:#fff !important;border:1px solid #e5e5e5 !important;border-bottom-right-radius:3px !important;cursor:pointer !important}.w71f1b3ef .y3cbd5483{border:1px solid #303050 !important}.w71f1b3ef .da03aba27{max-width:100% !important;max-height:100% !important}.w71f1b3ef .da03aba27 .o4a8bbcad,.w71f1b3ef .da03aba27 .m6c2096cf{display:block !important}.w71f1b3ef .da03aba27 .m6c2096cf{-webkit-filter:blur(10px) saturate(0) contrast(400%) !important;filter:blur(10px) saturate(0) contrast(400%) !important}.w71f1b3ef .da03aba27 .o4a8bbcad{background-color:rgba(38,38,38,.9) !important}.w71f1b3ef .k4afc5e41{-webkit-box-pack:start !important;-ms-flex-pack:start !important;justify-content:flex-start !important}.w71f1b3ef .s644b66b5,.w71f1b3ef .y931fb39d{visibility:hidden !important;opacity:0 !important}.w71f1b3ef .y931fb39d{max-width:1px !important;max-height:1px !important}.w71f1b3ef .if54af7f2{position:absolute !important;left:-1000px !important;top:-1000px !important;width:1px !important;height:1px !important;display:block !important}.w71f1b3ef .jb39a23a6{width:24px !important;height:24px !important;cursor:pointer !important;position:absolute !important;right:4px !important;top:4px !important;z-index:10 !important}.w71f1b3ef .t77ce46b3{display:-webkit-box !important;display:-ms-flexbox !important;display:flex !important;-webkit-box-align:center !important;-ms-flex-align:center !important;align-items:center !important;-webkit-box-pack:center !important;-ms-flex-pack:center !important;justify-content:center !important;pointer-events:auto !important;border-radius:16px !important;-webkit-user-select:none !important;-moz-user-select:none !important;-ms-user-select:none !important;user-select:none !important;-webkit-tap-highlight-color:transparent !important}.w71f1b3ef .t77ce46b3:before{content:"" !important;position:absolute !important;width:36px !important;height:36px !important;top:50% !important;left:50% !important;-webkit-transform:translate(-50%,-50%) !important;transform:translate(-50%,-50%) !important}.w71f1b3ef .t77ce46b3:hover .l9f331456{opacity:.8 !important}.w71f1b3ef .t77ce46b3.m20632cc5,.w71f1b3ef .t77ce46b3.u99c9fe7{-webkit-backdrop-filter:none !important;backdrop-filter:none !important}.w71f1b3ef .t77ce46b3.m20632cc5 .l9f331456,.w71f1b3ef .t77ce46b3.u99c9fe7 .l9f331456{background:none !important}.w71f1b3ef .t77ce46b3.m20632cc5 .pd4821818,.w71f1b3ef .t77ce46b3.u99c9fe7 .pd4821818{-webkit-filter:none !important;filter:none !important}.w71f1b3ef .t77ce46b3.m20632cc5:hover{background-color:#e9e9e9 !important}.w71f1b3ef .t77ce46b3.m20632cc5 .pd4821818 svg{fill:#242526 !important}.w71f1b3ef .t77ce46b3.u99c9fe7:hover{background-color:rgba(248,250,255,.2) !important}.w71f1b3ef .t77ce46b3.u99c9fe7 .pd4821818 svg{fill:#fff !important}.w71f1b3ef .l9f331456{height:100% !important;width:100% !important;position:absolute !important;top:0 !important;left:0 !important;z-index:-1 !important;opacity:.6 !important;border-radius:inherit !important;-webkit-transition:opacity .15s !important;-o-transition:opacity .15s !important;transition:opacity .15s !important}.w71f1b3ef .pd4821818{display:-webkit-box !important;display:-ms-flexbox !important;display:flex !important;-webkit-box-align:center !important;-ms-flex-align:center !important;align-items:center !important;-webkit-box-pack:center !important;-ms-flex-pack:center !important;justify-content:center !important;pointer-events:none !important;-webkit-filter:drop-shadow(0 1px 1px rgba(0,0,0,.05)) drop-shadow(0 2px 2px rgba(0,0,0,.05)) drop-shadow(0 4px 4px rgba(0,0,0,.05)) drop-shadow(0 0 8px rgba(0,0,0,.05)) !important;filter:drop-shadow(0 1px 1px rgba(0,0,0,.05)) drop-shadow(0 2px 2px rgba(0,0,0,.05)) drop-shadow(0 4px 4px rgba(0,0,0,.05)) drop-shadow(0 0 8px rgba(0,0,0,.05)) !important}.w71f1b3ef .pd4821818.b31b45359 svg{fill:#fff !important}.w71f1b3ef .pd4821818.m9ff34fb svg{fill:#242526 !important}.w71f1b3ef .g5e9f71f{height:100% !important;width:100% !important;position:absolute !important;top:0 !important;left:0 !important;z-index:-1 !important;opacity:.6 !important;border-radius:inherit !important}.w71f1b3ef .j11a5197a{cursor:pointer !important;position:absolute !important;left:4px !important;top:4px !important;z-index:10 !important;font-family:Helvetica,Arial,sans-serif !important;height:12px !important;-webkit-box-sizing:border-box !important;box-sizing:border-box !important;line-height:9px !important;padding:2px 4px !important;color:hsla(0,0%,100%,.8) !important;border-radius:16px !important;font-size:7px !important;text-transform:uppercase !important;letter-spacing:.125em !important;text-shadow:0 1px 1px rgba(0,0,0,.05),0 2px 2px rgba(0,0,0,.05),0 4px 4px rgba(0,0,0,.05),0 0 8px rgba(0,0,0,.05) !important;pointer-events:none !important}.w71f1b3ef .j11a5197a.m20632cc5,.w71f1b3ef .j11a5197a.m9ff34fb{color:#575c66 !important}.w71f1b3ef .j11a5197a.b31b45359,.w71f1b3ef .j11a5197a.u99c9fe7{color:#fff !important}.w71f1b3ef .j11a5197a.ua359e45a,.w71f1b3ef .j11a5197a.me1c842a6{top:auto !important;left:auto !important;right:0 !important;bottom:0 !important;background:none !important;text-shadow:none !important;font-size:7px !important;padding:0 !important;line-height:normal !important;height:auto !important;opacity:.8 !important;-webkit-backdrop-filter:none !important;backdrop-filter:none !important}.w71f1b3ef .c40a29165{white-space:nowrap !important}@media not all and (min-resolution:0.001dpcm){@supports (-webkit-appearance:none){.w71f1b3ef .j11a5197a{text-shadow:0 1px 2px rgba(0,0,0,.15) !important}}}@supports ((-webkit-backdrop-filter:blur(16px)) or (backdrop-filter:blur(16px))){.w71f1b3ef .l9f331456,.w71f1b3ef .g5e9f71f{opacity:.1 !important}.w71f1b3ef .t77ce46b3,.w71f1b3ef .j11a5197a{-webkit-backdrop-filter:blur(16px) !important;backdrop-filter:blur(16px) !important}.w71f1b3ef .t77ce46b3:hover .l9f331456{opacity:.4 !important}}.w71f1b3ef .u7736926{margin:0 2px !important}.w71f1b3ef .kb6624bdc,.w71f1b3ef .e327c25c1{text-decoration:none !important;pointer-events:auto !important;color:inherit !important}</style><script async="" crossorigin="anonymous" src="./WPF _ Привязка данных и контекст данных_files/watch.js.Без названия"></script><style nonce="">#102681c067{width:1px;height:1px;position:relative;}</style><style nonce="">#id5954{width:1px;height:1px;top:0px;left:0px;position:absolute;}</style><style nonce="">#ya_partner_R-A-201190-3{width:100%;height:100%;position:relative;}</style><style nonce="">#id5814{width:100%;height:100%;top:0px;left:0px;position:absolute;}</style><style type="text/css">.s5c711c6e{opacity: !important;white-space:normal !important;visibility:visible !important}.s5c711c6e,.s5c711c6e yatag{display:block !important;font-family:inherit !important}.s5c711c6e,.s5c711c6e,.s5c711c6e a,.s5c711c6e b,.s5c711c6e em,.s5c711c6e iframe,.s5c711c6e img,.s5c711c6e table,.s5c711c6e tbody,.s5c711c6e td,.s5c711c6e tr,.s5c711c6e yatag{-webkit-box-sizing:content-box !important;box-sizing:content-box !important;color:inherit !important;font-size:inherit !important;font-weight:inherit !important;-webkit-hyphens:manual !important;-ms-hyphens:manual !important;hyphens:manual !important;-webkit-transition:none !important;-o-transition:none !important;transition:none !important}.s5c711c6e,.s5c711c6e a,.s5c711c6e b,.s5c711c6e em,.s5c711c6e iframe,.s5c711c6e img,.s5c711c6e table,.s5c711c6e tbody,.s5c711c6e td,.s5c711c6e tr{background:none !important;border:none !important;border-radius:0 !important;border-spacing:0 !important;border-collapse:collapse !important;clear:none !important;float:none !important;font-variant:normal !important;letter-spacing:normal !important;line-height:normal !important;margin:0 !important;max-height:none !important;max-width:none !important;min-height:0 !important;min-width:0 !important;outline:none !important;padding:0 !important;position:static !important;text-align:left !important;text-decoration:none !important;text-indent:0 !important;text-transform:none !important;vertical-align:baseline !important;visibility:inherit !important;word-spacing:normal !important}.s5c711c6e,.s5c711c6e a,.s5c711c6e b,.s5c711c6e em,.s5c711c6e img,.s5c711c6e table,.s5c711c6e tbody,.s5c711c6e td,.s5c711c6e tr{height:auto !important}.s5c711c6e table{display:table !important;empty-cells:hide !important;table-layout:fixed !important}.s5c711c6e table,.s5c711c6e td{font-size:100% !important}.s5c711c6e td{display:table-cell !important;vertical-align:middle !important}.s5c711c6e{width:auto !important;height:auto !important;overflow:visible !important}.s5c711c6e .q91ffc202{position:relative !important;margin:auto !important;display:-webkit-box !important;display:-ms-flexbox !important;display:flex !important;-webkit-box-pack:center !important;-ms-flex-pack:center !important;justify-content:center !important;-webkit-box-align:center !important;-ms-flex-align:center !important;align-items:center !important;overflow:hidden !important}.s5c711c6e .o4a8bbcad,.s5c711c6e .m6c2096cf{position:absolute !important;z-index:1 !important;top:0 !important;left:0 !important;right:0 !important;bottom:0 !important;width:100% !important;height:100% !important;display:none !important}.s5c711c6e .h698cea85{position:relative !important;z-index:2 !important}.s5c711c6e .jc2ba7f2{position:relative !important;top:0 !important;left:0 !important;width:100% !important;height:100% !important}.s5c711c6e .jc2ba7f2 iframe{position:absolute !important;top:0 !important;left:0 !important;width:100% !important;height:100% !important}.s5c711c6e .jb879eded{position:absolute !important;width:100% !important;right:0 !important;top:0 !important;z-index:20 !important}.s5c711c6e .m790f3df5{position:absolute !important;z-index:21 !important;top:0 !important;left:0 !important;width:100% !important;height:100% !important}.s5c711c6e .s762f3947{position:absolute !important;top:0 !important;left:0 !important;z-index:10 !important;height:16px !important;padding:0 4px !important;font-size:11px !important;line-height:16px !important;color:#000 !important;text-decoration:none !important;background:#fff !important;border:1px solid #e5e5e5 !important;border-bottom-right-radius:3px !important;cursor:pointer !important}.s5c711c6e .y3cbd5483{border:1px solid #303050 !important}.s5c711c6e .da03aba27{max-width:100% !important;max-height:100% !important}.s5c711c6e .da03aba27 .o4a8bbcad,.s5c711c6e .da03aba27 .m6c2096cf{display:block !important}.s5c711c6e .da03aba27 .m6c2096cf{-webkit-filter:blur(10px) saturate(0) contrast(400%) !important;filter:blur(10px) saturate(0) contrast(400%) !important}.s5c711c6e .da03aba27 .o4a8bbcad{background-color:rgba(38,38,38,.9) !important}.s5c711c6e .k4afc5e41{-webkit-box-pack:start !important;-ms-flex-pack:start !important;justify-content:flex-start !important}.s5c711c6e .s644b66b5,.s5c711c6e .y931fb39d{visibility:hidden !important;opacity:0 !important}.s5c711c6e .y931fb39d{max-width:1px !important;max-height:1px !important}.s5c711c6e .if54af7f2{position:absolute !important;left:-1000px !important;top:-1000px !important;width:1px !important;height:1px !important;display:block !important}.s5c711c6e .jb39a23a6{width:24px !important;height:24px !important;cursor:pointer !important;position:absolute !important;right:4px !important;top:4px !important;z-index:10 !important}.s5c711c6e .t77ce46b3{display:-webkit-box !important;display:-ms-flexbox !important;display:flex !important;-webkit-box-align:center !important;-ms-flex-align:center !important;align-items:center !important;-webkit-box-pack:center !important;-ms-flex-pack:center !important;justify-content:center !important;pointer-events:auto !important;border-radius:16px !important;-webkit-user-select:none !important;-moz-user-select:none !important;-ms-user-select:none !important;user-select:none !important;-webkit-tap-highlight-color:transparent !important}.s5c711c6e .t77ce46b3:before{content:"" !important;position:absolute !important;width:36px !important;height:36px !important;top:50% !important;left:50% !important;-webkit-transform:translate(-50%,-50%) !important;transform:translate(-50%,-50%) !important}.s5c711c6e .t77ce46b3:hover .l9f331456{opacity:.8 !important}.s5c711c6e .t77ce46b3.m20632cc5,.s5c711c6e .t77ce46b3.u99c9fe7{-webkit-backdrop-filter:none !important;backdrop-filter:none !important}.s5c711c6e .t77ce46b3.m20632cc5 .l9f331456,.s5c711c6e .t77ce46b3.u99c9fe7 .l9f331456{background:none !important}.s5c711c6e .t77ce46b3.m20632cc5 .pd4821818,.s5c711c6e .t77ce46b3.u99c9fe7 .pd4821818{-webkit-filter:none !important;filter:none !important}.s5c711c6e .t77ce46b3.m20632cc5:hover{background-color:#e9e9e9 !important}.s5c711c6e .t77ce46b3.m20632cc5 .pd4821818 svg{fill:#242526 !important}.s5c711c6e .t77ce46b3.u99c9fe7:hover{background-color:rgba(248,250,255,.2) !important}.s5c711c6e .t77ce46b3.u99c9fe7 .pd4821818 svg{fill:#fff !important}.s5c711c6e .l9f331456{height:100% !important;width:100% !important;position:absolute !important;top:0 !important;left:0 !important;z-index:-1 !important;opacity:.6 !important;border-radius:inherit !important;-webkit-transition:opacity .15s !important;-o-transition:opacity .15s !important;transition:opacity .15s !important}.s5c711c6e .pd4821818{display:-webkit-box !important;display:-ms-flexbox !important;display:flex !important;-webkit-box-align:center !important;-ms-flex-align:center !important;align-items:center !important;-webkit-box-pack:center !important;-ms-flex-pack:center !important;justify-content:center !important;pointer-events:none !important;-webkit-filter:drop-shadow(0 1px 1px rgba(0,0,0,.05)) drop-shadow(0 2px 2px rgba(0,0,0,.05)) drop-shadow(0 4px 4px rgba(0,0,0,.05)) drop-shadow(0 0 8px rgba(0,0,0,.05)) !important;filter:drop-shadow(0 1px 1px rgba(0,0,0,.05)) drop-shadow(0 2px 2px rgba(0,0,0,.05)) drop-shadow(0 4px 4px rgba(0,0,0,.05)) drop-shadow(0 0 8px rgba(0,0,0,.05)) !important}.s5c711c6e .pd4821818.b31b45359 svg{fill:#fff !important}.s5c711c6e .pd4821818.m9ff34fb svg{fill:#242526 !important}.s5c711c6e .g5e9f71f{height:100% !important;width:100% !important;position:absolute !important;top:0 !important;left:0 !important;z-index:-1 !important;opacity:.6 !important;border-radius:inherit !important}.s5c711c6e .j11a5197a{cursor:pointer !important;position:absolute !important;left:4px !important;top:4px !important;z-index:10 !important;font-family:Helvetica,Arial,sans-serif !important;height:12px !important;-webkit-box-sizing:border-box !important;box-sizing:border-box !important;line-height:9px !important;padding:2px 4px !important;color:hsla(0,0%,100%,.8) !important;border-radius:16px !important;font-size:7px !important;text-transform:uppercase !important;letter-spacing:.125em !important;text-shadow:0 1px 1px rgba(0,0,0,.05),0 2px 2px rgba(0,0,0,.05),0 4px 4px rgba(0,0,0,.05),0 0 8px rgba(0,0,0,.05) !important;pointer-events:none !important}.s5c711c6e .j11a5197a.m20632cc5,.s5c711c6e .j11a5197a.m9ff34fb{color:#575c66 !important}.s5c711c6e .j11a5197a.b31b45359,.s5c711c6e .j11a5197a.u99c9fe7{color:#fff !important}.s5c711c6e .j11a5197a.ua359e45a,.s5c711c6e .j11a5197a.me1c842a6{top:auto !important;left:auto !important;right:0 !important;bottom:0 !important;background:none !important;text-shadow:none !important;font-size:7px !important;padding:0 !important;line-height:normal !important;height:auto !important;opacity:.8 !important;-webkit-backdrop-filter:none !important;backdrop-filter:none !important}.s5c711c6e .c40a29165{white-space:nowrap !important}@media not all and (min-resolution:0.001dpcm){@supports (-webkit-appearance:none){.s5c711c6e .j11a5197a{text-shadow:0 1px 2px rgba(0,0,0,.15) !important}}}@supports ((-webkit-backdrop-filter:blur(16px)) or (backdrop-filter:blur(16px))){.s5c711c6e .l9f331456,.s5c711c6e .g5e9f71f{opacity:.1 !important}.s5c711c6e .t77ce46b3,.s5c711c6e .j11a5197a{-webkit-backdrop-filter:blur(16px) !important;backdrop-filter:blur(16px) !important}.s5c711c6e .t77ce46b3:hover .l9f331456{opacity:.4 !important}}.s5c711c6e .u7736926{margin:0 2px !important}.s5c711c6e .kb6624bdc,.s5c711c6e .e327c25c1{text-decoration:none !important;pointer-events:auto !important;color:inherit !important}</style><style nonce="">#ya_partner_R-A-201190-2{width:100%;height:100%;position:relative;}</style><style nonce="">#id7176{width:100%;height:100%;top:0px;left:0px;position:absolute;}</style><link rel="preload" href="./WPF _ Привязка данных и контекст данных_files/f(8).txt" as="script"><script type="text/javascript" src="./WPF _ Привязка данных и контекст данных_files/f(8).txt"></script><link rel="preload" href="./WPF _ Привязка данных и контекст данных_files/f(9).txt" as="script"><script type="text/javascript" src="./WPF _ Привязка данных и контекст данных_files/f(9).txt"></script><link rel="preload" href="./WPF _ Привязка данных и контекст данных_files/f(8).txt" as="script"><script type="text/javascript" src="./WPF _ Привязка данных и контекст данных_files/f(8).txt"></script><link rel="preload" href="./WPF _ Привязка данных и контекст данных_files/f(9).txt" as="script"><script type="text/javascript" src="./WPF _ Привязка данных и контекст данных_files/f(9).txt"></script></head>
+<body aria-hidden="false">
+<div id="container">
+
+<div id="header">
+<div id="logo">
+<a class="logoTitle" href="https://metanit.com/" title="На главную">METANIT.COM</a>
+<div class="logoDefinition">Сайт о программировании</div> 
+</div>
+
+<div class="socialbtns">
+<ul>
+<li><a title="Посмотреть меню" rel="nofollow" class="fa fa-lg fa-bars"></a></li>
+<li><a href="https://metanit.com/donations.php" title="Помощь сайту" rel="nofollow" class="fa fa-lg fa-usd"></a></li>
+<li><a href="https://vk.com/metanit" title="Группа в ВКонтакте" rel="nofollow" class="fa fa-lg fa-vk"></a></li>
+<li><a href="https://twitter.com/Eugene225" title="Твиттер" rel="nofollow" class="fa fa-lg fa-twitter"></a></li>
+<li><a href="https://www.facebook.com/metanitcom" title="Страница в Facebook" rel="nofollow" class="fa fa-lg fa-facebook"></a></li>
+<li><a href="https://www.youtube.com/user/Eugene22584/" title="Канал сайта на Youtube" rel="nofollow" class="fa fa-lg fa-youtube"></a></li>
+<li><a href="https://t.me/metanit" title="Телеграмм" class="fa fa-lg fa-tel"></a></li>
+<li><i id="toggle-theme" class="fa fa-lg fa-adjust"></i></li>
+</ul>
+</div>
+
+<div id="search" class="transp">
+<form action="https://www.google.ru/" id="cse-search-box">
+  <div>
+    <input type="hidden" name="cx" value="partner-pub-3716042175333627:1096498938">
+    <input type="hidden" name="ie" value="UTF-8">
+    <input type="text" name="q" placeholder="" style="background: url(&quot;https://www.google.com/cse/static/images/1x/ru/branding.png&quot;) left 9px top 50% no-repeat rgb(255, 255, 255);">
+    <input type="submit" name="sa" value="Найти">
+  </div>
+<input name="siteurl" value="metanit.com/sharp/wpf/14.1.php" type="hidden"><input name="ref" value="" type="hidden"><input name="ss" value="" type="hidden"></form>
+</div>
+<div class="icon-vk"></div>
+<div id="magnifying-glass"></div>
+
+<div class="menuButton" id="menuButton">
+	<span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+</div>
+
+<div id="menu" class="menu">
+<ul class="mainmenu">
+   <li><a href="https://metanit.com/news/">Новости</a></li>
+   <li><a href="https://metanit.com/sharp/">C#</a></li>
+   <li><a href="https://metanit.com/java/">Java</a></li>
+   <li><a href="https://metanit.com/web/">WEB</a></li>
+   <li><a href="https://metanit.com/python/">Python</a></li>
+   <li><a href="https://metanit.com/cpp/">C/C++</a></li>
+   <li><a href="https://metanit.com/sql/">SQL</a></li>
+   <li><a href="https://metanit.com/nosql/mongodb/">MongoDB</a></li>
+   <li><a href="https://metanit.com/go/">Go</a></li>
+   <li><a href="https://metanit.com/visualbasic/tutorial/">VB.NET</a></li>
+   <li><a href="https://metanit.com/swift/tutorial/">Swift</a></li>
+   <li><a href="https://metanit.com/kotlin/">Kotlin</a></li>
+   <li><a href="https://metanit.com/dart/">Dart</a></li>
+   <li><a href="https://metanit.com/php/">PHP</a></li>
+   <li><a href="https://metanit.com/rust/">Rust</a></li>
+   <li><a href="https://metanit.com/f/">F#</a></li>
+</ul>
+</div>
+</div>
+<div id="content_right"> 
+<div id="content_right_inner"> 
+<div id="content_center"> 
+<div id="menC" class="menC">
+<div class="articleText" id="articleText">
+<h1>Работа с данными</h1><h2>Привязка данных и контекст данных</h2><div class="date">Последнее обновление: 26.02.2016</div>
+
+<div class="socialBlock">
+<div class="share socialtop">
+<ul>
+<li><a title="Поделиться в Вконтакте" rel="nofollow" class="fa fa-lg fa-vk" onclick="window.open(&quot;http://vk.com/share.php?url=https://metanit.com/sharp/wpf/14.1.php&quot;,&quot;Поделиться в ВКОНТАКТЕ&quot;,&quot;width=420,height=230,resizable=yes,scrollbars=yes,status=yes&quot;)"></a></li>
+<li><a title="Поделиться в Одноклассниках" rel="nofollow" class="fa fa-lg fa-odnoklassniki" onclick="window.open(&quot;https://connect.ok.ru/offer?url=https://metanit.com/sharp/wpf/14.1.php&quot;,&quot;Поделиться в Одноклассниках&quot;,&quot;width=420,height=230,resizable=yes,scrollbars=yes,status=yes&quot;)"></a></li>
+<li><a title="Поделиться в Твиттере" rel="nofollow" class="fa fa-lg fa-twitter" onclick="window.open(&quot;http://twitter.com/share?url=https://metanit.com/sharp/wpf/14.1.php&quot;,&quot;Поделиться в Твиттере&quot;,&quot;width=420,height=230,resizable=yes,scrollbars=yes,status=yes&quot;)"></a></li>
+<li><a title="Поделиться в Фейсбуке" rel="nofollow" class="fa fa-lg fa-facebook" onclick="window.open(&quot;http://www.facebook.com/sharer.php?u=https://metanit.com/sharp/wpf/14.1.php&quot;,&quot;Поделиться в Facebook&quot;,&quot;width=420,height=230,resizable=yes,scrollbars=yes,status=yes&quot;)"></a></li>
+</ul>
+</div>
+
+</div>
+
+<div style="margin-top:23px;margin-left:6px;"><div></div>
+<script async="" src="./WPF _ Привязка данных и контекст данных_files/f(10).txt"></script>
+<style>
+.footer-adaptive { width: 320px; height: 100px; }
+@media(min-width: 480px) { .footer-adaptive { width: 468px; height: 60px; } }
+@media(min-width: 760px) { .footer-adaptive { width: 728px; height: 90px;  } }
+@media(min-width: 1000px) { .footer-adaptive { width: 468px; height: 60px;  } }
+@media(min-width: 1122px) { .footer-adaptive{ width: 728px; height: 90px;} }
+@media(min-width: 1400px) { .footer-adaptive { width: 970px; height: 90px;} }
+</style>
+<!-- footer_adaptive -->
+<ins class="adsbygoogle footer-adaptive" style="display: inline-block; width: 728px; height: 90px;" data-ad-client="ca-pub-3716042175333627" data-ad-slot="9659512088" data-adsbygoogle-status="done" data-ad-status="filled"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;" tabindex="0" title="Advertisement" aria-label="Advertisement"><ins id="aswift_0_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><iframe id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;border:0;width:728px;height:90px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="728" height="90" frameborder="0" src="./WPF _ Привязка данных и контекст данных_files/ads.html" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" allow="attribution-reporting" data-google-container-id="a!1" data-google-query-id="CJDTksCMzvICFRR0GQodxnEKqw" data-load-complete="true"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+
+<p>Большую роль при работе с данными играет механизм привязки. Ранее в одной из прошлых тем рассматривалась привязка элементов и их свойств. В этой же 
+теме сделаем больший упор на привязку данных.</p>
+<p>Для создания привязки применяется элемент <span class="b">Binding</span> и его свойства:</p>
+<ul>
+<li><p><span class="b">ElementName</span>: имя элемента, к которому идет привязка. Если мы говорим о привязке данных, то данное свойство задействуется редко за 
+исключением тех случаев, когда данные определены в виде свойства в определенном элементе управления</p></li>
+<li><p><span class="b">Path</span>: ссылка на свойство объекта, к которому идет привязка</p></li>
+<li><p><span class="b">Source</span>: ссылка на источник данных, который не является элементом управления</p></li>
+</ul>
+<p>Свойства элемента Binding помогают установить источник привязки. Для установки источника или контекста данных в элементах управления WPF предусмотрено 
+свойство <span class="b">DataContext</span>. Рассмотрим на примерах их использование.</p>
+<p>Пусть у нас в проекте определен следующий класс Phone:</p>
+<pre class="brush:c#;">public class Phone
+{
+    public string Name { get; set; }
+    public Company Company { get; set; }
+    public decimal Price { get; set; }
+}
+
+public class Company
+{
+    public string Title { get; set; }
+}
+</pre>
+<p>Это сложный класс, который включает кроме простых данных типа string и decimal также и сложный объект Company.</p>
+<p>Определим в классе окна MainWindow свойство, которое будет представлять объект Phone:</p>
+<pre class="brush:c#;">public partial class MainWindow : Window
+{
+    public Phone MyPhone { get; set; }
+	public MainWindow()
+    {
+        InitializeComponent();
+
+        MyPhone = new Phone 
+		{ 
+			Name = "Lumia 630", 
+			Company = new Company { Title = "Microsoft" }, 
+			Price = 1000 
+		};
+		this.DataContext = MyPhone;
+    }
+}
+</pre>
+<p>Здесь установлено свойство <code>DataContext</code> класса MainWindow, после чего мы сможем получить значения из MyPhone в любом элементе в пределах MainWindow:</p>
+<pre class="brush:xml;">&lt;Window x:Class="DataApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DataApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="250" Width="300"&gt;
+    &lt;StackPanel&gt;
+        &lt;TextBlock Text="{Binding Path=Name}" /&gt;
+        &lt;TextBlock DataContext="{Binding Path=Company}" Text="{Binding Path=Title}" /&gt;
+    &lt;/StackPanel&gt;
+&lt;/Window&gt;
+</pre>
+<p>Причем контекст данных переходит от корневых элементов к вложенным вниз по логическому дереву. Так, мы установили в качестве контекста для всего окна объект MyPhone. 
+Однако элементы внутри окна могут конкретизировать контекст, взять какую-то его часть:</p>
+<pre class="brush:xml;">&lt;TextBlock DataContext="{Binding Path=Company}" Text="{Binding Path=Title}" /&gt;</pre>
+<p>Данный текстовый блок устанавливает в качестве контекста объект Company из общего контекста MyPhone:</p>
+<img src="./WPF _ Привязка данных и контекст данных_files/14.1.png" alt="Контекст данных для элементов WPF">
+<p>В тоже время нам необязательно конкретизировать контекст для текстового блока, вместо этого мы могли бы с помощью нотации точки обратиться к 
+вложенным свойствам:</p>
+<pre class="brush:xml;">&lt;TextBlock Text="{Binding Path=Company.Title}" /&gt;</pre>
+<p>При этом надо учитывать, что когда мы определяем простое свойство объекта в коде c#, то установить в качестве контекста данных мы можем его только там же в коде C#, 
+как, например, выше контекст данных устанавливается в конструкторе окна. Однако если мы вместо простого свойства определим свойство зависимостей, тогда 
+мы сможем устанавливать контекст данных и в коде xaml:</p>
+<pre class="brush:c#;">public partial class MainWindow : Window
+{
+    public static readonly DependencyProperty PhoneProperty;
+    
+	public Phone Phone
+    {
+        get { return (Phone)GetValue(PhoneProperty); }
+        set { SetValue(PhoneProperty, value); }
+    }
+
+    static MainWindow()
+    {
+        PhoneProperty = DependencyProperty.Register(
+            "Phone",
+            typeof(Phone),
+            typeof(MainWindow));
+    }
+
+    public MainWindow()
+    {
+        InitializeComponent();
+
+        Phone = new Phone 
+		{ 
+			Name = "Lumia 630", 
+			Company = new Company { Title = "Microsoft" }, 
+			Price = 1000 
+		};
+    }
+}
+</pre>
+<p>В данном случае контекст данных уже не устанавливается, а вместо обычного свойства определено свойство зависимостей. Тогда в коде xaml мы можем обратиться 
+к этому свойству следующим образом:</p>
+<pre class="brush:xml;">&lt;Window x:Class="DataApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DataApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="250" Width="300" Name="mainWindow"&gt;
+    &lt;StackPanel&gt;
+        &lt;TextBlock Text="{Binding ElementName=mainWindow, Path=Phone.Name}" /&gt;
+        &lt;TextBlock  Text="{Binding ElementName=mainWindow, Path=Phone.Company.Title}" /&gt;
+    &lt;/StackPanel&gt;
+&lt;/Window&gt;
+</pre>
+<p>Для ссылки на свойство необходимо установить имя окна: <code>Name="mainWindow"</code>. Также мы могли бы сделать то же самое, используя контекст данных:</p>
+<pre class="brush:xml;">&lt;StackPanel DataContext="{Binding ElementName=mainWindow, Path=Phone}"&gt;
+    &lt;TextBlock Text="{Binding Path=Name}" /&gt;
+    &lt;TextBlock DataContext="{Binding Path=Company}" Text="{Binding Path=Title}" /&gt;
+&lt;/StackPanel&gt;
+</pre>
+<h3>Подключение к ресурсам</h3>
+<p>Также в качестве контекста данных можно установить какой-нибудь ресурс. Например:</p>
+<pre class="brush:xml;">&lt;Window x:Class="DataApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DataApp"
+        mc:Ignorable="d"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        Title="MainWindow" Height="250" Width="300" Name="mainWindow"&gt;
+    &lt;Window.Resources&gt;
+        &lt;local:Company x:Key="googleCompany" Title="Google" /&gt;
+        &lt;local:Phone x:Key="nexusPhone" Name="Nexus X5" Price="25000" Company="{StaticResource googleCompany}"  /&gt;
+    &lt;/Window.Resources&gt;
+    &lt;StackPanel DataContext="{StaticResource nexusPhone}"&gt;
+        &lt;TextBlock Text="{Binding Path=Name}" /&gt;
+        &lt;TextBlock DataContext="{Binding Path=Company}" Text="{Binding Path=Title}" /&gt;
+    &lt;/StackPanel&gt;
+&lt;/Window&gt;
+</pre>
+<img src="./WPF _ Привязка данных и контекст данных_files/14.2.png" alt="Ресурсы и DataContext в WPF">
+<div style="margin-top:25px;clear:both;">
+<style>
+.metanit-rect { width: 300px; height: 250px; }
+@media(min-width: 500px) { .metanit-rect { width: 336px; height: 280px; } }
+@media(min-width: 760px) { .metanit-rect { width: 728px; height: 90px;  } }
+@media(min-width: 1000px) { .metanit-rect { width: 336px; height: 280px;  } }
+@media(min-width: 1122px) { .metanit-rect{ width: 728px; height: 90px;} }
+@media(min-width: 1400px) { .metanit-rect{ width: 970px; height: 90px;} }
+</style>
+<!-- metanit_rect -->
+<ins class="adsbygoogle metanit-rect" style="display: inline-block; width: 728px; height: 90px;" data-ad-client="ca-pub-3716042175333627" data-ad-slot="3119477283" data-adsbygoogle-status="done" data-ad-status="filled"><ins id="aswift_1_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;" tabindex="0" title="Advertisement" aria-label="Advertisement"><ins id="aswift_1_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><iframe id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;border:0;width:728px;height:90px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="728" height="90" frameborder="0" src="https://googleads.g.doubleclick.net/pagead/ads?client=ca-pub-3716042175333627&amp;output=html&amp;h=90&amp;slotname=3119477283&amp;adk=2200389565&amp;adf=465247175&amp;pi=t.ma~as.3119477283&amp;w=728&amp;lmt=1629960514&amp;rafmt=12&amp;psa=0&amp;format=728x90&amp;url=https%3A%2F%2Fmetanit.com%2Fsharp%2Fwpf%2F14.1.php&amp;flash=0&amp;wgl=1&amp;uach=WyJXaW5kb3dzIiwiMTAuMCIsIng4NiIsIiIsIjkyLjAuNDUxNS4xNTkiLFtdLG51bGwsbnVsbCxudWxsXQ..&amp;tt_state=W3siaXNzdWVyT3JpZ2luIjoiaHR0cHM6Ly9hdHRlc3RhdGlvbi5hbmRyb2lkLmNvbSIsInN0YXRlIjo3fV0.&amp;dt=1629960471799&amp;bpp=2&amp;bdt=824&amp;idt=655&amp;shv=r20210823&amp;mjsv=m202108240101&amp;ptt=9&amp;saldr=aa&amp;abxe=1&amp;cookie=ID%3D0a78f80a1f20b590-22f44affbdc8007b%3AT%3D1629960624%3ART%3D1629960624%3AS%3DALNI_MZoZC_odS6BxhPcpPJlkBTkpBqfvQ&amp;gpic=00000000-0000-0000-0000-000000000000&amp;prev_fmts=728x90%2C160x600%2C0x0%2C1263x609&amp;nras=2&amp;correlator=5953404187648&amp;frm=20&amp;pv=1&amp;ga_vid=412718875.1629960472&amp;ga_sid=1629960472&amp;ga_hid=1399021144&amp;ga_fc=0&amp;u_tz=420&amp;u_his=2&amp;u_java=0&amp;u_h=720&amp;u_w=1280&amp;u_ah=680&amp;u_aw=1280&amp;u_cd=24&amp;u_nplug=3&amp;u_nmime=4&amp;adx=180&amp;ady=4048&amp;biw=1263&amp;bih=552&amp;scr_x=0&amp;scr_y=1917&amp;eid=31062370%2C44748553%2C21067496%2C31062297&amp;oid=3&amp;psts=AGkb-H8HAQ3VngNKGFgDXBCONk1h9TLsLWs0zJbumLGhAzEiM0WZshOwLJGwSm0J6Z6vGAqMjYlaO9t5AVBs08K0tw%2CAGkb-H9efUldPeNOKH9YdWEUDO1mFSHX-Z_mQXQPefP3vnmzPnYRcHi88e7wvRA-dsABCIp2FXW6Oc_wYj-aYeg5GA&amp;pvsid=62824078817046&amp;pem=948&amp;eae=0&amp;fc=896&amp;brdim=0%2C0%2C0%2C0%2C1280%2C0%2C1280%2C680%2C1280%2C552&amp;vis=1&amp;rsz=%7C%7CoeEbr%7C&amp;abl=CS&amp;pfx=0&amp;fu=256&amp;bc=31&amp;ifi=2&amp;uci=a!2&amp;btvi=1&amp;fsb=1&amp;xpc=KYsUfGYPeG&amp;p=https%3A//metanit.com&amp;dtd=43193" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" allow="attribution-reporting" data-google-container-id="a!2" data-google-query-id="CJm2sNSMzvICFRxbwgodoMkL5g" data-load-complete="true"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+
+<div class="nav"><p><a href="https://metanit.com/sharp/wpf/12.4.php">Назад</a><a href="https://metanit.com/sharp/wpf/">Содержание</a><a href="https://metanit.com/sharp/wpf/14.2.php">Вперед</a></p></div></div>
+<div class="socialBlock">
+<div class="share socialbottom">
+<ul>
+<li><a title="Поделиться в Вконтакте" rel="nofollow" class="fa fa-lg fa-vk" onclick="window.open(&quot;http://vk.com/share.php?url=https://metanit.com/sharp/wpf/14.1.php&quot;,&quot;Поделиться в ВКОНТАКТЕ&quot;,&quot;width=420,height=230,resizable=yes,scrollbars=yes,status=yes&quot;)"></a></li>
+<li><a title="Поделиться в Одноклассниках" rel="nofollow" class="fa fa-lg fa-odnoklassniki" onclick="window.open(&quot;https://connect.ok.ru/offer?url=https://metanit.com/sharp/wpf/14.1.php&quot;,&quot;Поделиться в Одноклассниках&quot;,&quot;width=420,height=230,resizable=yes,scrollbars=yes,status=yes&quot;)"></a></li>
+<li><a title="Поделиться в Твиттере" rel="nofollow" class="fa fa-lg fa-twitter" onclick="window.open(&quot;http://twitter.com/share?url=https://metanit.com/sharp/wpf/14.1.php&quot;,&quot;Поделиться в Твиттере&quot;,&quot;width=420,height=230,resizable=yes,scrollbars=yes,status=yes&quot;)"></a></li>
+<li><a title="Поделиться в Фейсбуке" rel="nofollow" class="fa fa-lg fa-facebook" onclick="window.open(&quot;http://www.facebook.com/sharer.php?u=https://metanit.com/sharp/wpf/14.1.php&quot;,&quot;Поделиться в Facebook&quot;,&quot;width=420,height=230,resizable=yes,scrollbars=yes,status=yes&quot;)"></a></li>
+</ul>
+</div>
+</div>
+
+<style>
+.commentABl { margin: 25px 0px 15px 0px;}
+@media(min-width: 860px) { .commentABl { margin: 35px 10px 15px 15px;  } }
+</style>
+<div class="commentABl" style="clear:both;">
+<div id="yandex_rtb_R-A-201190-3" style="display:inline-block;width:320px;vertical-align:top; margin-right:12px;"><yatag class="w1c617dcf w71f1b3ef"><yatag class="if54af7f2"></yatag><yatag class="q91ffc202 k4afc5e41 ke084c976"><yatag class="h698cea85" style="width: 300px !important; height: 250px !important;"><yatag id="ya_partner_R-A-201190-3" class="jc2ba7f2" style="width: 300px !important; height: 250px !important; transform: none !important;"><yatag class="jb879eded h871051eb cbb74feeb"><yatag data-close="true" class="t77ce46b3 jb39a23a6 u99c9fe7"><yatag class="l9f331456"></yatag><yatag class="pd4821818"><svg width="8" height="20" fill="#fff" xmlns="http://www.w3.org/2000/svg"><circle cx="4" cy="4" r="1.5"></circle><circle cx="4" cy="10" r="1.5"></circle><circle cx="4" cy="16" r="1.5"></circle></svg></yatag></yatag></yatag><iframe frameborder="no" scrolling="no" allowtransparency="true" hidefocus="true" tabindex="-1" marginwidth="0" marginheight="0" src="./WPF _ Привязка данных и контекст данных_files/render.html" sandbox="allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-scripts allow-forms" id="id5814" style="opacity: 1;"></iframe></yatag></yatag></yatag></yatag></div>
+<div id="yandex_rtb_R-A-201190-2" style="display:inline-block;width:320px;vertical-align:top;"><yatag class="w1c617dcf s5c711c6e"><yatag class="if54af7f2"></yatag><yatag class="q91ffc202 k4afc5e41 ke084c976"><yatag class="h698cea85" style="width: 320px !important; height: 100px !important;"><yatag id="ya_partner_R-A-201190-2" class="jc2ba7f2" style="width: 320px !important; height: 100px !important; transform: none !important;"><yatag class="jb879eded c78018c6a cbb74feeb"><yatag data-close="true" class="t77ce46b3 jb39a23a6 u99c9fe7"><yatag class="l9f331456"></yatag><yatag class="pd4821818"><svg width="8" height="20" fill="#fff" xmlns="http://www.w3.org/2000/svg"><circle cx="4" cy="4" r="1.5"></circle><circle cx="4" cy="10" r="1.5"></circle><circle cx="4" cy="16" r="1.5"></circle></svg></yatag></yatag></yatag><iframe frameborder="no" scrolling="no" allowtransparency="true" hidefocus="true" tabindex="-1" marginwidth="0" marginheight="0" src="./WPF _ Привязка данных и контекст данных_files/render(1).html" sandbox="allow-same-origin allow-popups allow-popups-to-escape-sandbox allow-scripts allow-forms" id="id7176" style="opacity: 1;"></iframe></yatag></yatag></yatag></yatag></div>
+</div>
+
+<div id="disqus_recommendations" style="margin-bottom: 12px;"><iframe id="dsq-app3725" name="dsq-app3725" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./WPF _ Привязка данных и контекст данных_files/saved_resource.html" style="width: 100% !important; border: none !important; overflow: hidden !important; height: 240px !important; display: inline !important; box-sizing: border-box !important;" horizontalscrolling="no" verticalscrolling="no"></iframe></div><div id="disqus_thread" style="margin-left:8px;margin-right:8px;clear:both;"><iframe id="dsq-app6269" name="dsq-app6269" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./WPF _ Привязка данных и контекст данных_files/saved_resource(1).html" style="width: 1px !important; min-width: 100% !important; border: none !important; overflow: hidden !important; height: 681px !important;" horizontalscrolling="no" verticalscrolling="no"></iframe></div>
+<script type="text/javascript">
+var disqus_shortname = 'metanitcom';
+(function() {
+var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+</div>
+</div> 
+<div id="menR" class="menR">
+<style>
+.meta-vert { width: 300px; height: 250px; }
+@media(min-width: 500px) { .meta-vert { width: 336px; height: 280px; } }
+@media(min-width: 1000px) { .meta-vert { width: 160px; height: 600px; } }
+</style>
+<!-- meta_vert -->
+<ins class="adsbygoogle meta-vert" style="display: inline-block; width: 160px; height: 600px;" data-ad-client="ca-pub-3716042175333627" data-ad-slot="4596210485" data-adsbygoogle-status="done" data-ad-status="filled"><ins id="aswift_2_expand" style="display:inline-table;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:160px;background-color:transparent;" tabindex="0" title="Advertisement" aria-label="Advertisement"><ins id="aswift_2_anchor" style="display:block;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:160px;background-color:transparent;"><iframe id="aswift_2" name="aswift_2" style="left:0;position:absolute;top:0;border:0;width:160px;height:600px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="160" height="600" frameborder="0" src="./WPF _ Привязка данных и контекст данных_files/ads(1).html" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" allow="attribution-reporting" data-google-container-id="a!3" data-google-query-id="CPbblMCMzvICFRSqGQod1Z4IAQ" data-load-complete="true"></iframe></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<style>
+.dn {font-size:12.5px;margin:3px;}
+.dh{font-weight:bold;margin-left:2px;}
+</style>
+<div class="dn">
+<div class="dh">Помощь сайту</div>
+
+<div class="dh">WebMoney</div>
+<ul>
+<li>P378451176208</li>
+<li>Z280152397659</li>
+</ul>
+<div class="dh">ЮMoney/Яндекс-Деньги</div>
+<ul>
+<li>410011174743222</li>
+</ul>
+<div class="dh">PayPal</div>
+<ul>
+<li>metanit22@mail.ru</li>
+</ul>
+<div class="dh">Перевод на карту</div>
+<ul>
+<li>Номер карты: 4048415020898850</li>
+</ul>
+</div>
+
+</div>
+</div>
+</div> 
+<div class="menT" id="menT" style="max-height: 4022px;"><ul id="browser" class="filetree treeview"> 
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 1. Введение в WPF</span>
+		<ul style="display: none;">
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/1.php">Особенности платформы WPF</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/wpf/1.2.php">Начало работы с WPF</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 2. XAML</span>
+		<ul style="display: none;">
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/2.php">Введение в язык XAML</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/2.2.php">Файлы отделенного кода</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/2.3.php">Сложные свойства и конвертеры типов</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/wpf/2.4.php">Пространства имен из C# в XAML</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 3. Компоновка</span>
+		<ul style="display: none;">
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/4.php">Введение в компоновку</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/4.2.php">Grid</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/4.3.php">GridSplitter</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/4.4.php">StackPanel</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/4.5.php">DockPanel</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/4.6.php">WrapPanel</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/4.7.php">Canvas</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/wpf/4.8.php">Свойства компоновки элементов</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 4. Элементы управления</span>
+		<ul style="display: none;">
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/5.1.php">Обзор элементов управления и их свойств</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/5.19.php">Элементы управления содержимым</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/5.2.php">Кнопки</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/5.18.php">CheckBox и RadioButton</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/5.3.php">Всплывающие подсказки ToolTip и Popup</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/5.4.php">Контейнеры GroupBox и Expander</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/5.20.php">ScrollViewer. Создание прокрутки</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/5.5.php">Текстовые элементы управления</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/5.6.php">Элементы управления списками</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/5.7.php">ListBox</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/5.8.php">ComboBox</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/5.9.php">ListView</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/5.10.php">Создание вкладок и TabControl</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/5.11.php">Меню</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/5.12.php">ToolBar</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/5.13.php">TreeView</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/5.14.php">DataGrid</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/5.15.php">ProgressBar и Slider</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/5.16.php">Работа с датами. Calendar и DatePicker</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/wpf/5.17.php">Работа с изображениями. Image и InkCanvas</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 5. DependencyObject и свойства зависимостей</span>
+		<ul style="display: none;">
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/13.php">Введение в Dependency Property</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/13.2.php">Прикрепляемые свойства / attached property</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/wpf/13.3.php">Создание свойств зависимостей</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 6. Модель событий в WPF</span>
+		<ul style="display: none;">
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/6.php">Маршрутизация событий</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/6.2.php">События клавиатуры</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/wpf/6.3.php">События мыши и фокуса</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 7. Команды</span>
+		<ul style="display: none;">
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/7.1.php">Основы команд</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/wpf/7.2.php">Создание новых команд</a></span></li>
+		</ul>
+	</li>
+	<li><span class="folder"><a href="https://metanit.com/sharp/wpf/8.php">Глава 8. Кисти</a></span></li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 9. Ресурсы</span>
+		<ul style="display: none;">
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/9.php">Концепция ресурсов в WPF</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/9.2.php">Статические и динамические ресурсы</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/wpf/9.3.php">Словари ресурсов</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 10. Привязка</span>
+		<ul style="display: none;">
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/11.php">Введение в привязку данных</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/11.2.php">Интерфейс INotifyPropertyChanged</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/wpf/11.3.php">Форматирование привязки и конвертеры значений</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 11. Стили, триггеры и темы</span>
+		<ul style="display: none;">
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/10.php">Стили</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/10.2.php">Триггеры</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/wpf/10.3.php">Темы</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 12. Приложение и класс Application</span>
+		<ul style="display: none;">
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/3.php">Класс Application</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/3.2.php">Работа с классом Application</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/wpf/3.3.php">Ресурсы приложения</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 13. Шаблоны элементов управления</span>
+		<ul style="display: none;">
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/12.php">Логическое и визуальное дерево</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/12.2.php">Создание и использование шаблонов</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/12.3.php">Визуальные состояния</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/wpf/12.4.php">Круглое окно</a></span></li>
+		</ul>
+	</li>
+	<li class="closed collapsable"><div class="hitarea closed-hitarea collapsable-hitarea"></div><span class="folder aMItem">Глава 14. Работа с данными</span>
+		<ul style="display: block;">
+			<li><span class="file aMItem"><a href="https://metanit.com/sharp/wpf/14.1.php" class="aMItem">Привязка данных и контекст данных</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/14.2.php">Работа с коллекциями данных. ObservableCollection</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/14.3.php">ItemTemplate и DataTemplate</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/14.4.php">ItemsPanel. Установка панели элементов</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/14.5.php">Виртуализация</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/14.6.php">Провайдеры данных. ObjectDataProvider</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/14.7.php">XmlDataProvider</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/14.8.php">Иерархические данные и HierarchicalDataTemplate</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/wpf/14.php">Валидация данных</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 15. Взаимодействие с базой данных</span>
+		<ul style="display: none;">
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/19.1.php">Создание базы данных</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/19.2.php">Подключение к базе данных</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/wpf/19.3.php">Работа с Entity Framework</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 16. Документы</span>
+		<ul style="display: none;">
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/15.php">Потоковые документы</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/15.2.php">Контейнеры потоковых документов</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/15.3.php">RichTextBox и редактирование документов</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/15.4.php">Фиксированные документы</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/wpf/15.5.php">Аннотации</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 17. Работа с графикой</span>
+		<ul style="display: none;">
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/17.php">Фигуры</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/17.2.php">Пути и геометрии</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/17.3.php">PathGeometry</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/wpf/17.4.php">Трансформации</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 18. Трехмерная графика</span>
+		<ul style="display: none;">
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/18.1.php">Основы работы с трехмерной графикой</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/18.3.php">Определение трехмерного объекта</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/18.4.php">Освещение</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/18.5.php">Камера</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/18.2.php">Создание куба. Текстурирование</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/18.6.php">Трехмерные трансформации и анимации</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/wpf/18.7.php">Взаимодействие с трехмерными объектами</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 19. Анимация</span>
+		<ul style="display: none;">
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/16.php">Основы анимаций</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/16.2.php">Анимация в XAML</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/16.3.php">Анимации по ключевым кадрам</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/16.4.php">Анимация пути</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/wpf/16.5.php">Плавность анимации</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 20. Окна</span>
+		<ul style="display: none;">
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/20.1.php">Класс Window</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/20.2.php">Взаимодействие между окнами</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/wpf/20.3.php">Диалоговые окна</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 21. Паттерн MVVM</span>
+		<ul style="display: none;">
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/22.1.php">Определение паттерна MVVM</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/22.2.php">Реализация MVVM. ViewModel</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/22.3.php">Команды в MVVM</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/22.4.php">Передача параметров команде</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/22.5.php">Взаимодействие команд и событий</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/wpf/22.6.php">Работа с диалоговыми окнами</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable lastExpandable"><div class="hitarea closed-hitarea expandable-hitarea lastExpandable-hitarea"></div><span class="folder">Глава 22. SQLite в WPF</span>
+		<ul style="display: none;">
+			<li><span class="file"><a href="https://metanit.com/sharp/wpf/21.1.php">Работа с SQLite</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/wpf/21.2.php">MVVM и SQLite</a></span></li>
+		</ul>
+	</li>
+</ul></div>
+<div id="footer">
+
+<div class="bootomLinks">
+<a href="https://vk.com/metanit" title="Присоединиться к группе вконтакте" rel="nofollow">
+Вконтакте</a>|
+<a href="https://twitter.com/Eugene225" title="Подписаться на твит-ленту" rel="nofollow">
+Twitter</a>|
+<a href="https://www.youtube.com/user/Eugene22584/" title="Подписаться на канал на youtube" rel="nofollow">
+Канал сайта на youtube</a>|
+<a href="https://metanit.com/donations.php" rel="nofollow">Помощь сайту</a>
+</div>
+<p>Контакты для связи: metanit22@mail.ru</p>
+<p>Copyright © metanit.com, 2012-2021. Все права защищены.</p>
+</div>
+</div>
+<script type="text/javascript" src="./WPF _ Привязка данных и контекст данных_files/jquery.min.js.Без названия"></script>
+<script type="text/javascript" src="./WPF _ Привязка данных и контекст данных_files/jquery.treeview.min.js.Без названия"></script>
+<script type="text/javascript" src="./WPF _ Привязка данных и контекст данных_files/syntax12.js.Без названия"></script>
+<script type="text/javascript">SyntaxHighlighter.all();</script>
+<script>
+$(function() { 
+	$("#menuButton").on('click', function(){
+          $(this).toggleClass('menu-opened');
+          var mainmenu = $('.mainmenu');
+          if (mainmenu.hasClass('open')) { 
+            mainmenu.removeClass('open');
+          }
+          else {
+            mainmenu.addClass('open');
+          }
+        });
+	$('.submenu-button').on('click', function() {
+            $(this).toggleClass('submenu-opened');
+            if ($(this).siblings('ul').hasClass('open')) {
+              $(this).siblings('ul').removeClass('open');
+			  $(this).children('span').removeClass('open');
+			  $(this).children('span').addClass('close');
+            }
+            else {
+              $(this).siblings('ul').addClass('open');
+			  $(this).children('span').removeClass('close');
+			  $(this).children('span').addClass('open');
+            }
+          });
+  $("#toggle-theme").on("click", function() {
+		if(document.documentElement.hasAttribute("theme")){
+			document.documentElement.removeAttribute("theme");
+			document.cookie="theme=1;expires=Mon, 19 Feb 2001 12:00:00 UTC;path=/;";
+		}
+		else{
+			document.documentElement.setAttribute("theme", "dark");
+			var expire = new Date();
+			expire.setHours(expire.getHours() + 7);
+			document.cookie="theme=1;expires=" + expire.toUTCString() + ";path=/;";
+		}
+	});
+	$('#magnifying-glass').on('click', function() {
+            if ($('#search').hasClass('transp')) {
+              $('#search').removeClass('transp').show();
+            }
+            else {
+              $('#search').addClass('transp').hide();
+            }
+          });
+		  
+	$('#browser').treeview();$('#navigation').treeview({persist: 'location',collapsed: true, unique: true});
+	
+	$("li:contains('Глава 14.')").removeClass('expandable').addClass('collapsable').children('ul').css({"display":"block"});
+	$("li:contains('Глава 14.')").children('div').removeClass('expandable-hitarea').addClass('collapsable-hitarea');
+	$("li:contains('Глава .')").removeClass('lastExpandable').addClass('lastCollapsable').children('ul').css({"display":"block"});
+	$("li:contains('Глава .')").children('div').removeClass('lastExpandable-hitarea').addClass('lastCollapsable-hitarea');
+	
+	
+	var url = "//metanit.com" + location.pathname;
+	
+	$('.file a[href="' + url + '"]').addClass('aMItem').parent().addClass('aMItem').closest('li.collapsable').find('span.folder').addClass('aMItem');
+	
+	$(".fa-bars").on('click', function() {
+		$(".menT").toggleClass("menTOpened");
+		$("#content_right_inner").toggleClass("contentRightInnerOpened");
+	});
+
+
+
+
+	$(".share .fa-vk").attr('onclick','window.open("http://vk.com/share.php?url=' + window.location.href+'","Поделиться в ВКОНТАКТЕ","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")');
+	$(".share .fa-odnoklassniki").attr('onclick','window.open("https://connect.ok.ru/offer?url=' + window.location.href+'","Поделиться в Одноклассниках","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")');
+	$(".share .fa-twitter").attr('onclick','window.open("http://twitter.com/share?url=' + window.location.href+'","Поделиться в Твиттере","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")');
+	$(".share .fa-facebook").attr('onclick','window.open("http://www.facebook.com/sharer.php?u=' + window.location.href +'","Поделиться в Facebook","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")');
+});
+</script>
+<script>
+window.onload= function(){
+	setMenC();
+};
+window.onresize= function(){
+	setMenC();
+};
+
+function setMenC(){
+	if(window.innerWidth >859){
+			
+		var h = document.getElementById("articleText").clientHeight;
+		document.getElementById("menT").style.maxHeight=h + "px";
+	}
+}
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-35780297-1', 'metanit.com');
+  ga('send', 'pageview');
+
+</script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="./WPF _ Привязка данных и контекст данных_files/js"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-35780297-1');
+</script>
+
+
+<script async="" defer="" type="text/javascript" src="./WPF _ Привязка данных и контекст данных_files/brand"></script>
+<script type="text/javascript">
+    (function(w, d, n, s, t) {
+        w[n] = w[n] || [];
+        w[n].push(function() {
+            Ya.Context.AdvManager.render({
+                blockId: "R-A-201190-3",
+                renderTo: "yandex_rtb_R-A-201190-3",
+                horizontalAlign: false,
+                async: true
+            });
+        });
+        t = d.getElementsByTagName("script")[0];
+        s = d.createElement("script");
+        s.type = "text/javascript";
+        s.src = "//an.yandex.ru/system/context.js";
+        s.async = true;
+        t.parentNode.insertBefore(s, t);
+    })(this, this.document, "yandexContextAsyncCallbacks");
+</script>
+<script type="text/javascript">
+    (function(w, d, n, s, t) {
+        w[n] = w[n] || [];
+        w[n].push(function() {
+            Ya.Context.AdvManager.render({
+                blockId: "R-A-201190-2",
+                renderTo: "yandex_rtb_R-A-201190-2",
+                async: true
+            });
+        });
+        t = d.getElementsByTagName("script")[0];
+        s = d.createElement("script");
+        s.type = "text/javascript";
+        s.src = "//an.yandex.ru/system/context.js";
+        s.async = true;
+        t.parentNode.insertBefore(s, t);
+    })(this, this.document, "yandexContextAsyncCallbacks");
+</script>
+
+<ins class="adsbygoogle adsbygoogle-noablate" data-adsbygoogle-status="done" style="display: none !important;" data-ad-status="unfilled"><ins id="aswift_3_expand" style="display:inline-table;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;" tabindex="0" title="Advertisement" aria-label="Advertisement"><ins id="aswift_3_anchor" style="display:block;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;"><iframe id="aswift_3" name="aswift_3" style="left:0;position:absolute;top:0;border:0;width:undefinedpx;height:undefinedpx;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" frameborder="0" src="./WPF _ Привязка данных и контекст данных_files/ads(2).html" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" allow="attribution-reporting" data-google-container-id="a!4" data-load-complete="true"></iframe></ins></ins></ins><iframe style="display: none;" src="./WPF _ Привязка данных и контекст данных_files/saved_resource(2).html"></iframe><iframe style="display: none;" src="./WPF _ Привязка данных и контекст данных_files/saved_resource(3).html"></iframe><iframe id="google_osd_static_frame_8909466055142" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;" src="./WPF _ Привязка данных и контекст данных_files/saved_resource(4).html"></iframe><div style="position: fixed; left: -99px;"><div id="102681c067"><iframe frameborder="no" scrolling="no" allowtransparency="true" hidefocus="true" tabindex="-1" marginwidth="0" marginheight="0" src="./WPF _ Привязка данных и контекст данных_files/render(2).html" id="id5954" style="opacity: 1;"></iframe></div></div></body><iframe id="google_esf" name="google_esf" src="./WPF _ Привязка данных и контекст данных_files/zrt_lookup.html" style="display: none;"></iframe><ins class="adsbygoogle adsbygoogle-noablate" data-adsbygoogle-status="done" style="display: none !important; width: 100vw !important; height: 100vh !important; inset: 0px auto auto 0px !important; clear: none !important; float: none !important; margin: 0px !important; max-height: none !important; max-width: none !important; opacity: 1 !important; overflow: visible !important; padding: 0px !important; position: fixed !important; vertical-align: baseline !important; visibility: visible !important; z-index: 2147483647 !important; background-color: transparent;" aria-hidden="true" data-ad-status="filled" data-vignette-loaded="true"><ins id="aswift_4_expand" style="display: inline-table !important; border: none !important; height: 100vh !important; margin: 0px !important; padding: 0px !important; position: relative !important; visibility: visible !important; width: 100vw !important; background-color: transparent !important; inset: auto !important; clear: none !important; float: none !important; max-height: none !important; max-width: none !important; opacity: 1 !important; overflow: visible !important; vertical-align: baseline !important; z-index: auto !important;" tabindex="0" title="Advertisement" aria-label="Advertisement"><ins id="aswift_4_anchor" style="display: block !important; border: none !important; height: 100vh !important; margin: 0px !important; padding: 0px !important; position: relative !important; visibility: visible !important; width: 100vw !important; background-color: transparent !important; inset: auto !important; clear: none !important; float: none !important; max-height: none !important; max-width: none !important; opacity: 1 !important; overflow: visible !important; vertical-align: baseline !important; z-index: auto !important;"><iframe id="aswift_4" name="" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" width="" height="" frameborder="0" src="./WPF _ Привязка данных и контекст данных_files/zrt_lookup(1).html" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" allow="attribution-reporting" style="width: 100vw !important; height: 100vh !important; inset: 0px auto auto 0px !important; position: absolute !important; clear: none !important; display: inline !important; float: none !important; margin: 0px !important; max-height: none !important; max-width: none !important; opacity: 1 !important; overflow: visible !important; padding: 0px !important; vertical-align: baseline !important; visibility: visible !important; z-index: auto !important;" data-google-container-id="a!5" data-google-query-id="CJ3llMCMzvICFVxcwgod4xsCKg" data-load-complete="true"></iframe></ins></ins></ins></html>

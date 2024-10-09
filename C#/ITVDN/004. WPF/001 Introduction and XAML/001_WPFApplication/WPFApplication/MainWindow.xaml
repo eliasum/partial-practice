@@ -1,0 +1,45 @@
+﻿<!--2021.07.20 10:52 IMM-->
+<!--x:Class="WPFApplication.MainWindow" - определение класса с кодом окна
+    
+    Подключения пространств имен для создания элементов управления в разметке.
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"-->
+
+<!--1. Дескриптор Window - корневой элемент XAML разметки, наследуется от класса ContentControl, 
+    поэтому может содержать только один элемент. Этим элементом является Grid.
+    2. x:Class="WPFApplication.MainWindow" - подключение code-behind (CB)
+    3. xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation - подключение пространства имён элементов управления
+    4. xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml - именованное через ':x' пространство имен для обращения к нему из кода;
+    это пространство имен используется для корректной компиляции XAML разметки-->
+<Window x:Class="WPFApplication.MainWindow" 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Главное окно" 
+        Height="350"
+        Width="525">
+    <!--Grid - контейнер компоновки-->
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="11*"/>
+            <ColumnDefinition Width="93*"/>
+        </Grid.ColumnDefinitions>
+
+        <!--Блок текста-->
+        <!--1. Margin - отступы от краёв окна: Л, В, П, Н
+            2. Foreground - цвет текста-->
+        <TextBlock 
+                   Margin="157,95,200,202.5" 
+                   Foreground="Red"
+                   Text="Введите свое имя" Grid.Column="1"/>
+
+        <!--Поле ввода-->
+        <!--AcceptsTab - навигация по приложению с помощью кнопки 'Tab'-->
+        <TextBox Name="textBoxName" 
+                 Margin="155,145,200,147.5" Text="" AcceptsTab="False" Grid.Column="1"/>
+        <!--Кнопка-->
+        <Button 
+                Content="Ok" 
+                Margin="156,188,200,104.5"
+                Click="Button_Click" Grid.Column="1"/>
+    </Grid>
+</Window>

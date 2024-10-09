@@ -1,0 +1,6 @@
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\001 - Navigation\FileSystemWatcherDemo2\bin\Debug\FileSystemWatcherDemo2.exe
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\001 - Navigation\FileSystemWatcherDemo2\bin\Debug\FileSystemWatcherDemo2.pdb
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\001 - Navigation\FileSystemWatcherDemo2\obj\x86\Debug\005_FileSystemWatcher.csprojAssemblyReference.cache
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\001 - Navigation\FileSystemWatcherDemo2\obj\x86\Debug\005_FileSystemWatcher.csproj.CoreCompileInputs.cache
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\001 - Navigation\FileSystemWatcherDemo2\obj\x86\Debug\FileSystemWatcherDemo2.exe
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\001 - Navigation\FileSystemWatcherDemo2\obj\x86\Debug\FileSystemWatcherDemo2.pdb

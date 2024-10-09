@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="hasSidebar hasPageActions hasBreadcrumb conceptual has-default-focus theme-light" lang="ru-ru" dir="ltr" data-css-variable-support="true" data-authenticated="false" data-auth-status-determined="false" data-target="docs" x-ms-format-detection="none">
+
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta property="og:title" content="Копирование столбцов из одной таблицы в другую (ядро СУБД) - SQL Server" />
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://docs.microsoft.com/ru-ru/sql/relational-databases/tables/copy-columns-from-one-table-to-another-database-engine" />
+			<meta property="og:description" content="Копирование столбцов из одной таблицы в другую (компонент Database Engine)" />
+		<meta property="og:image" content="https://docs.microsoft.com/en-us/media/logos/logo-ms-social.png" />
+		<meta property="og:image:alt" content="Microsoft Logo" />
+
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:site" content="@docsmsft" />
+
+	<meta name="color-scheme" content="light dark">
+
+
+	<meta name="author" content="stevestein" />
+<meta name="bilingual_type" content="hover over" />
+<meta name="breadcrumb_path" content="../../breadcrumb/toc.json" />
+<meta name="depot_name" content="SQL.sql-content" />
+<meta name="description" content="Копирование столбцов из одной таблицы в другую (компонент Database Engine)" />
+<meta name="document_id" content="1b5fc089-b5c7-2cd4-ebd6-d5748c60cf43" />
+<meta name="document_version_independent_id" content="02580732-b267-d260-b7a9-d5c7736be1ce" />
+<meta name="enable_loc_sxs" content="true" />
+<meta name="gitcommit" content="https://github.com/MicrosoftDocs/sql-docs-pr.ru-ru/blob/5f7f97fb6e11a3442d41a44e8bb133cfce895c46/docs/relational-databases/tables/copy-columns-from-one-table-to-another-database-engine.md" />
+<meta name="locale" content="ru-ru" />
+<meta name="manager" content="jroth" />
+<meta name="monikerRange" content=">=aps-pdw-2016||=azuresqldb-current||=azure-sqldw-latest||>=sql-server-2016||>=sql-server-linux-2017||=azuresqldb-mi-current" />
+<meta name="monikers" content="aps-pdw-2016" />
+<meta name="monikers" content="aps-pdw-2016-au7" />
+<meta name="monikers" content="azure-sqldw-latest" />
+<meta name="monikers" content="azuresqldb-current" />
+<meta name="monikers" content="azuresqldb-mi-current" />
+<meta name="monikers" content="sql-server-2016" />
+<meta name="monikers" content="sql-server-2017" />
+<meta name="monikers" content="sql-server-linux-2017" />
+<meta name="monikers" content="sql-server-linux-ver15" />
+<meta name="monikers" content="sql-server-ver15" />
+<meta name="ms.assetid" content="5f5e70dc-69f9-44b8-bc48-b5d51ac20d77" />
+<meta name="ms.author" content="sstein" />
+<meta name="ms.contentlocale" content="ru-RU" />
+<meta name="ms.custom" content="" />
+<meta name="ms.date" content="09/01/2016" />
+<meta name="ms.lasthandoff" content="01/30/2021" />
+<meta name="ms.locfileid" content="99181495" />
+<meta name="ms.openlocfilehash" content="46341304bf8f05e53a4143e8c5a151d2f9023155" />
+<meta name="ms.prod" content="sql" />
+<meta name="ms.prod_service" content="table-view-index, sql-database, sql-data-warehouse, pdw" />
+<meta name="ms.reviewer" content="" />
+<meta name="ms.sourcegitcommit" content="33f0f190f962059826e002be165a2bef4f9e350c" />
+<meta name="ms.technology" content="table-view-index" />
+<meta name="ms.topic" content="conceptual" />
+<meta name="ms.translationtype" content="HT" />
+<meta name="original_content_git_url" content="https://github.com/MicrosoftDocs/sql-docs-pr.ru-ru/blob/live-sxs/docs/relational-databases/tables/copy-columns-from-one-table-to-another-database-engine.md" />
+<meta name="recommendations" content="true" />
+<meta name="search.ms_docsetname" content="sql-content" />
+<meta name="search.ms_product" content="SQL" />
+<meta name="search.ms_sitename" content="Docs" />
+<meta name="site_name" content="Docs" />
+<meta name="toc_preview" content="true" />
+<meta name="uhfHeaderId" content="MSDocsHeader-DocsSQL" />
+<meta name="updated_at" content="2021-02-03 01:27 AM" />
+<meta name="page_type" content="conceptual" />
+<meta name="toc_rel" content="../../toc.json" />
+<meta name="word_count" content="1068" />
+
+
+	<meta name="scope" content="sql" />
+<link href="https://docs.microsoft.com/ru-ru/sql/relational-databases/tables/copy-columns-from-one-table-to-another-database-engine" rel="canonical">
+	<title>Копирование столбцов из одной таблицы в другую (ядро СУБД) - SQL Server | Microsoft Docs</title>
+
+		<link rel="stylesheet" href="/_themes/docs.theme/master/ru-ru/_themes/styles/c4247d81.site-ltr.css ">
+
+	
+
+
+	<script type="text/javascript" src="https://ff.kis.v2.scr.kaspersky-labs.com/FD126C42-EBFA-4E12-B309-BB3FDD723AC1/main.js?attr=cXpBuIoXSHpZtWhwCKsKS20DoYQSwhB2T1djl4a1I1FzZdiytwbAfpcb_uQOMj5YAhpOG47GkNkGScjaOwxF5EPRsm_8V0F23EoZWtkHraEE83M97FKEgDZ5jmzLkG4wDD0JE3SOWwaRCQfx8arlHCpa3T_7ffOuFLt6idi4hUBnAU3uBh7QEGRQ9nnV0KQUx1ChXtU6Y3uWfnvgEgCVpA" charset="UTF-8"></script><script id="msdocs-script">
+	var msDocs = {
+		data: {
+			timeOrigin: Date.now(),
+			contentLocale: 'ru-ru',
+			contentDir: 'ltr',
+			userLocale: 'ru-ru',
+			userDir: 'ltr',
+			pageTemplate: 'Conceptual',
+			brand: '',
+			context: {
+
+			},
+			hasBinaryRating: true,
+			hasGithubIssues: true,
+			showFeedbackReport: false,
+			enableTutorialFeedback: false,
+			feedbackSystem: 'GitHub',
+			feedbackGitHubRepo: 'MicrosoftDocs/sql-docs.ru-ru',
+			feedbackProductUrl: 'https://feedback.azure.com/forums/908035-sql-server/',
+			contentGitUrl: 'https://github.com/MicrosoftDocs/sql-docs.ru-ru/blob/live/docs/relational-databases/tables/copy-columns-from-one-table-to-another-database-engine.md',
+			extendBreadcrumb: true,
+			isEditDisplayable: true,
+			hideViewSource: false,
+			hasPageActions: true,
+			hasBookmark: true,
+			hasShare: true,
+			hasRecommendations: true,
+			contributors: [
+						{ name: "stevestein", url: "https://github.com/stevestein" },
+						{ name: "olprod", url: "https://github.com/olprod" },
+						{ name: "OpenLocalizationService", url: "https://github.com/OpenLocalizationService" },
+						{ name: "Saisang", url: "https://github.com/Saisang" }
+],
+		},
+		functions:{}
+	};
+	</script>
+	<script src="https://wcpstatic.microsoft.com/mscc/lib/v2/wcp-consent.js"></script>
+	<script src="/static/third-party/jsll/4.3.4/jsll-4.js"></script>
+	<script>window.jsllAwa = window.awa;</script>
+	<script nomodule src="/static/third-party/bluebird/3.5.0/bluebird.min.js" integrity="sha384-aD4BDeDGeLXLpPK4yKeqtZQa9dv4a/7mQ+4L5vwshIYH1Mc2BrXvHd32iHzYCQy5" crossorigin="anonymous"></script>
+	<script nomodule src="/static/third-party/fetch/3.0.0/fetch.umd.min.js" integrity="sha384-EQIXrC5K2+7X8nGgLkB995I0/6jfAvvyG1ieZ+WYGxgJHFMD/alsG9fSDWvzb5Y1" crossorigin="anonymous"></script>
+	<script nomodule src="/static/third-party/template/1.4.0/template.min.js" integrity="sha384-1zKzI6ldTVHMU7n0W2HpE/lhHI+UG4D9IIaxbj3kT2UhCWicdTuJkTtnKuu0CQzN" crossorigin="anonymous"></script>
+	<script nomodule src="/static/third-party/url/0.5.7/url.min.js" integrity="sha384-vn7xBMtpSTfzaTRWxj0kVq0UcsbBrTOgZ/M1ISHqe1V358elYva+lfiEC+T8jLPc" crossorigin="anonymous"></script>
+	<script src="/_themes/docs.theme/master/ru-ru/_themes/scripts/f0a172e9.index-polyfills.js"></script>
+
+		<script src="/_themes/docs.theme/master/ru-ru/_themes/scripts/ae3be5a4.index-docs.js"></script>
+</head>
+
+<body lang="ru-ru" dir="ltr">
+	<div class="header-holder has-default-focus">
+		<a href="#main" class="skip-to-main-link has-outline-color-text visually-hidden-until-focused is-fixed has-inner-focus focus-visible has-top-zero has-left-zero has-right-zero has-padding-medium has-text-centered has-body-background-medium" tabindex="1">Пропустить и перейти к основному содержимому</a>
+		
+		<div id="ignite-banner-holder" class="has-default-focus has-overflow-hidden"></div>
+		
+		<div hidden id="cookie-consent-holder"></div>
+		<!-- liquid-tag banners global -->
+		<div id="headerAreaHolder" data-bi-name="header">
+<header role="banner" itemscope="itemscope" itemtype="http://schema.org/Organization">
+	<div class="nav-bar">
+		<div class="nav-bar-brand">
+			<a itemprop="url" href="https://www.microsoft.com" aria-label="Microsoft" class="nav-bar-button">
+				<div class="nav-bar-logo has-background-image theme-display is-light" role="presentation" aria-hidden="true" itemprop="logo" itemscope="itemscope"></div>
+				<div class="nav-bar-logo has-background-image theme-display is-dark is-high-contrast" role="presentation" aria-hidden="true" itemprop="logo" itemscope="itemscope"></div>
+			</a>
+		</div>
+	</div>
+	<div class="nav-bar has-border-top is-hidden-mobile"></div>
+</header>		</div>
+
+						<div class="content-header uhf-container has-padding has-default-focus has-border-bottom-none" data-bi-name="content-header">
+					<nav class="breadcrumb-holder has-padding-none has-padding-left-medium-tablet has-padding-right-medium-tablet has-padding-left-none-uhf-tablet has-padding-left-none-uhf-tablet has-padding-none-desktop has-flex-grow" data-bi-name="breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList" role="navigation" aria-label="Навигатор">
+						<ul id="page-breadcrumbs" class="breadcrumbs">
+						</ul>
+					</nav>
+				<div class="content-header-controls">
+					<button type="button" class="contents-button button" data-bi-name="contents-expand" aria-haspopup="true">
+						<span class="icon"><span class="docon docon-menu" aria-hidden="true"></span></span>
+						<span class="contents-expand-title">Содержимое</span>
+					</button>
+					<button type="button" class="ap-collapse-behavior ap-expanded button" data-bi-name="ap-collapse" aria-controls="action-panel">
+						<span class="icon"><span class="docon docon-exit-mode" aria-hidden="true"></span></span>
+						<span>Выйти из режима фокусировки</span>
+					</button>
+				</div>
+				<div class="has-padding-none-tablet has-padding-medium is-size-small is-flex-touch has-flex-justify-content-space-between-touch has-flex-grow page-action-holder">
+					<ul class="is-hidden-mobile action-list has-flex-justify-content-start has-flex-justify-content-end-tablet is-flex is-flex-row has-flex-wrap has-flex-grow is-unstyled">
+						<li>
+							<button type="button" class="bookmark button is-text has-inner-focus is-small is-icon-only-touch" data-list-type="bookmarks" data-bi-name="bookmark" title="Добавить эту страницу в закладки">
+								<span class="icon" aria-hidden="true">
+									<span class="docon docon-single-bookmark"></span>
+								</span>
+								<span class="bookmark-status is-visually-hidden-touch is-hidden-portrait">Закладка</span>
+							</button>
+						</li>
+							<li id="feedback-section-link">
+								<a href="#feedback" class="button is-text has-inner-focus is-small is-icon-only-touch" data-bi-name="comments" title="Отправить отзыв об этой странице">
+									<span class="icon" aria-hidden="true">
+										<span class="docon docon-comment-lines"></span>
+									</span>
+									<span class="is-visually-hidden-touch is-hidden-portrait">Обратная связь</span>
+								</a>
+							</li>
+								<li id="contenteditbtn">
+									<a href="https://github.com/MicrosoftDocs/sql-docs.ru-ru/blob/live/docs/relational-databases/tables/copy-columns-from-one-table-to-another-database-engine.md" class="button is-text has-inner-focus is-icon-only-touch is-small" title="Редактировать этот документ" data-bi-name="edit" data-original_content_git_url="https://github.com/MicrosoftDocs/sql-docs-pr.ru-ru/blob/live-sxs/docs/relational-databases/tables/copy-columns-from-one-table-to-another-database-engine.md" data-original_content_git_url_template="{repo}/blob/{branch}/docs/relational-databases/tables/copy-columns-from-one-table-to-another-database-engine.md" data-pr_repo="" data-pr_branch="">
+									<span class="icon" aria-hidden="true">
+										<span class="docon docon-edit-outline"></span>
+									</span>
+									<span class="is-visually-hidden-touch is-hidden-portrait">Изменить</span>
+								</a>
+							</li>
+						<li>
+<div class="sharing dropdown has-caret">
+	<button class="dropdown-trigger button is-text is-fullwidth has-flex-justify-content-start has-inner-focus is-small is-icon-only-touch" aria-controls="sharing-menu" aria-expanded="false" title="Поделиться этим документом" data-bi-name="share">
+		<span class="icon" aria-hidden="true">
+			<span class="docon docon-sharing"></span>
+		</span>
+		<span class="is-visually-hidden-touch is-hidden-portrait">Поделиться</span>
+	</button>
+	<div class="dropdown-menu has-padding-small" id="sharing-menu">
+		<ul data-bi-name="share-links">
+			<li>
+				<a class="button is-text is-fullwidth has-flex-justify-content-start has-inner-focus is-small share-twitter" data-bi-name="twitter">
+					<span class="icon">
+						<span class="docon docon-brand-twitter has-text-primary" aria-hidden="true"></span>
+					</span>
+					<span>Twitter</span>
+				</a>
+			</li>
+			<li>
+				<a class="button is-text is-fullwidth has-flex-justify-content-start has-inner-focus is-small share-linkedin" data-bi-name="linkedin">
+					<span class="icon">
+						<span class="docon docon-brand-linkedin has-text-primary" aria-hidden="true"></span>
+					</span>
+					<span>LinkedIn</span>
+				</a>
+			</li>
+			<li>
+				<a class="button is-text is-fullwidth has-flex-justify-content-start has-inner-focus is-small share-facebook" data-bi-name="facebook">
+					<span class="icon">
+						<span class="docon docon-brand-facebook has-text-primary" aria-hidden="true"></span>
+					</span>
+					<span>Facebook</span>
+				</a>
+			</li>
+			<li>
+				<a class="button is-text is-fullwidth has-flex-justify-content-start has-inner-focus is-small share-email" data-bi-name="email">
+					<span class="icon">
+						<span class="docon docon-mail-message-fill has-text-primary" aria-hidden="true"></span>
+					</span>
+					<span>Адрес электронной почты</span>
+				</a>
+			</li>
+		</ul>
+	</div>
+</div>						</li>
+						<li>
+
+<div class="lang-toggle-container">
+	<label for="language-toggle" aria-hidden="true" tabindex="-1">Прочитать на английском</label>
+	<div class="checkbox-toggle-wrapper">
+		<input type="checkbox" id="language-toggle" aria-label="Прочитать на английском">
+		<label for="language-toggle" class="switch"></label>
+	</div>
+</div>						</li>
+					</ul>
+					<button type="button" class="has-border contents-button button is-small is-text is-hidden-tablet has-inner-focus" aria-label="Содержимое" data-bi-name="contents-expand">
+						<span class="icon">
+							<span class="docon docon-editor-list-bullet" aria-hidden="true"></span>
+						</span>
+						<span class="contents-expand-title">Оглавление</span>
+					</button>
+					<div class="is-invisible"></div>
+					<div class="is-hidden-tablet level-item is-flexible level-right">
+						<button type="button" class="page-actions-button button is-small is-text is-hidden-tablet has-inner-focus has-border is-full-height  has-margin-left-small" aria-label="Действия страницы" data-bi-name="pageactions">
+							<span class="icon">
+								<span class="docon docon-more-vertical" aria-hidden="true"></span>
+							</span>
+						</button>
+					</div>
+				</div>
+			</div>
+
+
+
+		<div id="disclaimer-holder" class="has-overflow-hidden has-default-focus">
+			<!-- liquid-tag banners sectional -->
+		</div>
+	</div>
+
+	<div class="mainContainer  uhf-container has-top-padding  has-default-focus" data-bi-name="body">
+
+		<div class="columns has-large-gaps is-gapless-mobile ">
+
+			<div id="left-container" class="left-container is-hidden-mobile column is-one-third-tablet is-one-quarter-desktop">
+				<nav id="affixed-left-container" class="is-fixed is-flex is-flex-column" role="navigation" aria-label="Основной"></nav>
+			</div>
+
+			<section class="primary-holder column is-two-thirds-tablet is-three-quarters-desktop">
+				<div class="columns is-gapless-mobile has-large-gaps ">
+
+
+				<div id="main-column" class="column  is-full is-four-fifths-desktop ">
+
+					<main id="main" role="main" class="content " data-bi-name="content" lang="ru-ru" dir="ltr">
+
+
+
+						<h1 id="copy-columns-from-one-table-to-another-database-engine"><span data-ttu-id="c43f8-103">Копирование столбцов из одной таблицы в другую (компонент Database Engine)</span><span class="sxs-lookup"><span data-stu-id="c43f8-103">Copy Columns from One Table to Another (Database Engine)</span></span></h1>
+
+						<ul class="metadata page-metadata" data-bi-name="page info" lang="ru-ru" dir="ltr">
+							<li>
+								<time class="is-invisible" data-article-date aria-label="Дата проверки статьи" datetime="2016-09-01T00:00:00.000Z" data-article-date-source="ms.date">09/01/2016</time>
+							</li>
+									<li class="readingTime">Чтение занимает 2 мин</li>
+								<li class="contributors-holder">
+									<ul class="facepile has-margin-left-none is-small" data-bi-name="contributors">
+														<li class="facepile-item">
+															<a href="https://github.com/stevestein" title="stevestein" aria-label="stevesteinПрофиль GitHub" data-src="https://github.com/stevestein.png?size=32" data-contributor-name="stevestein" class="facepile-item-coin"
+															>
+																<img class="facepile-item-coin-image durable-image" aria-hidden="true" src="https://github.com/stevestein.png?size=32" role="presentation" onerror="this.className='facepile-item-coin-image durable-image has-error';"/>
+																<span class="facepile-item-coin-text durable-image-fallback facepile-item-teal"aria-hidden="true">s</span>
+															</a>
+														</li>
+														<li class="facepile-item">
+															<a href="https://github.com/olprod" title="olprod" aria-label="olprodПрофиль GitHub" data-src="https://github.com/olprod.png?size=32" data-contributor-name="olprod" class="facepile-item-coin"
+															>
+																<img class="facepile-item-coin-image durable-image" aria-hidden="true" src="https://github.com/olprod.png?size=32" role="presentation" onerror="this.className='facepile-item-coin-image durable-image has-error';"/>
+																<span class="facepile-item-coin-text durable-image-fallback facepile-item-red"aria-hidden="true">o</span>
+															</a>
+														</li>
+														<li class="facepile-item">
+															<a href="https://github.com/OpenLocalizationService" title="OpenLocalizationService" aria-label="OpenLocalizationServiceПрофиль GitHub" data-src="https://github.com/OpenLocalizationService.png?size=32" data-contributor-name="OpenLocalizationService" class="facepile-item-coin"
+															>
+																<img class="facepile-item-coin-image durable-image" aria-hidden="true" src="https://github.com/OpenLocalizationService.png?size=32" role="presentation" onerror="this.className='facepile-item-coin-image durable-image has-error';"/>
+																<span class="facepile-item-coin-text durable-image-fallback facepile-item-blue"aria-hidden="true">O</span>
+															</a>
+														</li>
+														<li class="facepile-item">
+															<a href="https://github.com/Saisang" title="Saisang" aria-label="SaisangПрофиль GitHub" data-src="https://github.com/Saisang.png?size=32" data-contributor-name="Saisang" class="facepile-item-coin"
+															>
+																<img class="facepile-item-coin-image durable-image" aria-hidden="true" src="https://github.com/Saisang.png?size=32" role="presentation" onerror="this.className='facepile-item-coin-image durable-image has-error';"/>
+																<span class="facepile-item-coin-text durable-image-fallback facepile-item-teal"aria-hidden="true">S</span>
+															</a>
+														</li>
+									</ul>
+								</li>
+						</ul>
+
+						<nav id="center-doc-outline" class="doc-outline is-hidden-desktop" data-bi-name="intopic toc" role="navigation" aria-label="Структура статьи">
+							<h3>В этой статье</h3>
+						</nav>
+
+						<!-- <content> -->
+							<p><span data-ttu-id="30039-101"><span data-ttu-id="a9465-101"><strong>Применимо к:</strong></span><span class="sxs-lookup"><span data-stu-id="a9465-101"><strong>Applies to:</strong></span></span> <span data-ttu-id="04082-101"><token><img src="../../includes/media/yes-icon.png?view=sql-server-ver15" alt="да" data-linktype="relative-path"><span data-ttu-id="cf51e-101">SQL Server 2016 (13.x);</span><span class="sxs-lookup"><span data-stu-id="cf51e-101">SQL Server 2016 (13.x)</span></span></token></span><span class="sxs-lookup"><span data-stu-id="04082-101"><token><img src="../../includes/media/yes-icon.png?view=sql-server-ver15" alt="yes" data-linktype="relative-path"><span data-ttu-id="cf51e-101">SQL Server 2016 (13.x);</span><span class="sxs-lookup"><span data-stu-id="cf51e-101">SQL Server 2016 (13.x)</span></span></token></span></span> и более поздние версии <span data-ttu-id="8bb44-101"><token><img src="../../includes/media/yes-icon.png?view=sql-server-ver15" alt="Да" data-linktype="relative-path"><span data-ttu-id="8d487-101">База данных SQL Azure</span><span class="sxs-lookup"><span data-stu-id="8d487-101">Azure SQL Database</span></span></token></span><span class="sxs-lookup"><span data-stu-id="8bb44-101"><token><img src="../../includes/media/yes-icon.png?view=sql-server-ver15" alt="Yes" data-linktype="relative-path"><span data-ttu-id="8d487-101">База данных SQL Azure</span><span class="sxs-lookup"><span data-stu-id="8d487-101">Azure SQL Database</span></span></token></span></span> <span data-ttu-id="b342a-101"><token><img src="../../includes/media/yes-icon.png?view=sql-server-ver15" alt="Да" data-linktype="relative-path"><span data-ttu-id="e1f94-101">Управляемый экземпляр SQL Azure</span><span class="sxs-lookup"><span data-stu-id="e1f94-101">Azure SQL Managed Instance</span></span></token></span><span class="sxs-lookup"><span data-stu-id="b342a-101"><token><img src="../../includes/media/yes-icon.png?view=sql-server-ver15" alt="Yes" data-linktype="relative-path"><span data-ttu-id="e1f94-101">Управляемый экземпляр SQL Azure</span><span class="sxs-lookup"><span data-stu-id="e1f94-101">Azure SQL Managed Instance</span></span></token></span></span> <span data-ttu-id="2991d-101"><token><img src="../../includes/media/yes-icon.png?view=sql-server-ver15" alt="да" data-linktype="relative-path"><span data-ttu-id="a0abc-101">Azure Synapse Analytics</span><span class="sxs-lookup"><span data-stu-id="a0abc-101">Azure Synapse Analytics</span></span></token></span><span class="sxs-lookup"><span data-stu-id="2991d-101"><token><img src="../../includes/media/yes-icon.png?view=sql-server-ver15" alt="yes" data-linktype="relative-path"><span data-ttu-id="a0abc-101">Azure Synapse Analytics</span><span class="sxs-lookup"><span data-stu-id="a0abc-101">Azure Synapse Analytics</span></span></token></span></span> <span data-ttu-id="e22e7-101"><token><img src="../../includes/media/yes-icon.png?view=sql-server-ver15" alt="да" data-linktype="relative-path"><span data-ttu-id="998a2-101">Параллельное хранилище данных</span><span class="sxs-lookup"><span data-stu-id="998a2-101">Parallel Data Warehouse</span></span></token></span><span class="sxs-lookup"><span data-stu-id="e22e7-101"><token><img src="../../includes/media/yes-icon.png?view=sql-server-ver15" alt="yes" data-linktype="relative-path"><span data-ttu-id="998a2-101">Параллельное хранилище данных</span><span class="sxs-lookup"><span data-stu-id="998a2-101">Parallel Data Warehouse</span></span></token></span></span></span><span class="sxs-lookup"><span data-stu-id="30039-101"><span data-ttu-id="a9465-101"><strong>Применимо к:</strong></span><span class="sxs-lookup"><span data-stu-id="a9465-101"><strong>Applies to:</strong></span></span> <span data-ttu-id="04082-101"><token><img src="../../includes/media/yes-icon.png?view=sql-server-ver15" alt="да" data-linktype="relative-path"><span data-ttu-id="cf51e-101">SQL Server 2016 (13.x);</span><span class="sxs-lookup"><span data-stu-id="cf51e-101">SQL Server 2016 (13.x)</span></span></token></span><span class="sxs-lookup"><span data-stu-id="04082-101"><token><img src="../../includes/media/yes-icon.png?view=sql-server-ver15" alt="yes" data-linktype="relative-path"><span data-ttu-id="cf51e-101">SQL Server 2016 (13.x);</span><span class="sxs-lookup"><span data-stu-id="cf51e-101">SQL Server 2016 (13.x)</span></span></token></span></span> and later <span data-ttu-id="8bb44-101"><token><img src="../../includes/media/yes-icon.png?view=sql-server-ver15" alt="Да" data-linktype="relative-path"><span data-ttu-id="8d487-101">База данных SQL Azure</span><span class="sxs-lookup"><span data-stu-id="8d487-101">Azure SQL Database</span></span></token></span><span class="sxs-lookup"><span data-stu-id="8bb44-101"><token><img src="../../includes/media/yes-icon.png?view=sql-server-ver15" alt="Yes" data-linktype="relative-path"><span data-ttu-id="8d487-101">База данных SQL Azure</span><span class="sxs-lookup"><span data-stu-id="8d487-101">Azure SQL Database</span></span></token></span></span> <span data-ttu-id="b342a-101"><token><img src="../../includes/media/yes-icon.png?view=sql-server-ver15" alt="Да" data-linktype="relative-path"><span data-ttu-id="e1f94-101">Управляемый экземпляр SQL Azure</span><span class="sxs-lookup"><span data-stu-id="e1f94-101">Azure SQL Managed Instance</span></span></token></span><span class="sxs-lookup"><span data-stu-id="b342a-101"><token><img src="../../includes/media/yes-icon.png?view=sql-server-ver15" alt="Yes" data-linktype="relative-path"><span data-ttu-id="e1f94-101">Управляемый экземпляр SQL Azure</span><span class="sxs-lookup"><span data-stu-id="e1f94-101">Azure SQL Managed Instance</span></span></token></span></span> <span data-ttu-id="2991d-101"><token><img src="../../includes/media/yes-icon.png?view=sql-server-ver15" alt="да" data-linktype="relative-path"><span data-ttu-id="a0abc-101">Azure Synapse Analytics</span><span class="sxs-lookup"><span data-stu-id="a0abc-101">Azure Synapse Analytics</span></span></token></span><span class="sxs-lookup"><span data-stu-id="2991d-101"><token><img src="../../includes/media/yes-icon.png?view=sql-server-ver15" alt="yes" data-linktype="relative-path"><span data-ttu-id="a0abc-101">Azure Synapse Analytics</span><span class="sxs-lookup"><span data-stu-id="a0abc-101">Azure Synapse Analytics</span></span></token></span></span> <span data-ttu-id="e22e7-101"><token><img src="../../includes/media/yes-icon.png?view=sql-server-ver15" alt="да" data-linktype="relative-path"><span data-ttu-id="998a2-101">Параллельное хранилище данных</span><span class="sxs-lookup"><span data-stu-id="998a2-101">Parallel Data Warehouse</span></span></token></span><span class="sxs-lookup"><span data-stu-id="e22e7-101"><token><img src="../../includes/media/yes-icon.png?view=sql-server-ver15" alt="yes" data-linktype="relative-path"><span data-ttu-id="998a2-101">Параллельное хранилище данных</span><span class="sxs-lookup"><span data-stu-id="998a2-101">Parallel Data Warehouse</span></span></token></span></span></span></span></p>
+<p><span data-ttu-id="c43f8-104">В этом разделе описывается копирование столбцов из одной таблицы в другую, когда копируется либо только определение столбца, либо определение и данные из <span data-ttu-id="e18e4-101">SQL Server</span><span class="sxs-lookup"><span data-stu-id="e18e4-101">SQL Server</span></span> с помощью среды <span data-ttu-id="9211a-101">SQL Server Management Studio</span><span class="sxs-lookup"><span data-stu-id="9211a-101">SQL Server Management Studio</span></span> или <span data-ttu-id="f6ccd-101">Transact-SQL</span><span class="sxs-lookup"><span data-stu-id="f6ccd-101">Transact-SQL</span></span>.</span><span class="sxs-lookup"><span data-stu-id="c43f8-104">This topic describes how to copy columns from one table to another, copying either just the column definition, or the definition and data in <span data-ttu-id="e18e4-101">SQL Server</span><span class="sxs-lookup"><span data-stu-id="e18e4-101">SQL Server</span></span> by using <span data-ttu-id="9211a-101">SQL Server Management Studio</span><span class="sxs-lookup"><span data-stu-id="9211a-101">SQL Server Management Studio</span></span> or <span data-ttu-id="f6ccd-101">Transact-SQL</span><span class="sxs-lookup"><span data-stu-id="f6ccd-101">Transact-SQL</span></span>.</span></span></p>
+<p><span data-ttu-id="c43f8-105"><strong>В этом разделе</strong></span><span class="sxs-lookup"><span data-stu-id="c43f8-105"><strong>In This Topic</strong></span></span></p>
+<ul>
+<li><p><span data-ttu-id="c43f8-106"><strong>Перед началом работы</strong></span><span class="sxs-lookup"><span data-stu-id="c43f8-106"><strong>Before you begin:</strong></span></span></p>
+<p><a href="#Restrictions" data-linktype="self-bookmark"><span data-ttu-id="c43f8-107">Ограничения</span><span class="sxs-lookup"><span data-stu-id="c43f8-107">Limitations and Restrictions</span></span></a></p>
+<p><a href="#Security" data-linktype="self-bookmark"><span data-ttu-id="c43f8-108">Безопасность</span><span class="sxs-lookup"><span data-stu-id="c43f8-108">Security</span></span></a></p>
+</li>
+<li><p><span data-ttu-id="c43f8-109"><strong>Копирование столбцов с помощью:</strong></span><span class="sxs-lookup"><span data-stu-id="c43f8-109"><strong>To copy columns, using:</strong></span></span></p>
+<p><a href="#SSMSProcedure" data-linktype="self-bookmark"><span data-ttu-id="c43f8-110">Среда SQL Server Management Studio</span><span class="sxs-lookup"><span data-stu-id="c43f8-110">SQL Server Management Studio</span></span></a></p>
+<p><a href="#TsqlProcedure" data-linktype="self-bookmark"><span data-ttu-id="c43f8-111">Transact-SQL</span><span class="sxs-lookup"><span data-stu-id="c43f8-111">Transact-SQL</span></span></a></p>
+</li>
+</ul>
+<h2 id="before-you-begin"><a name="BeforeYouBegin"></a> <span data-ttu-id="c43f8-112">Перед началом</span><span class="sxs-lookup"><span data-stu-id="c43f8-112">Before You Begin</span></span></h2>
+<h3 id="limitations-and-restrictions"><a name="Restrictions"></a> <span data-ttu-id="c43f8-113">Ограничения</span><span class="sxs-lookup"><span data-stu-id="c43f8-113">Limitations and Restrictions</span></span></h3>
+<p><span data-ttu-id="c43f8-114">При копировании из одной базы данных в другую столбца, имеющего псевдоним типа данных, исходный тип данных в целевой базе данных может оказаться недоступным.</span><span class="sxs-lookup"><span data-stu-id="c43f8-114">When you copy a column that has an alias data type from one database to another, the alias data type may not be available in the destination database.</span></span> <span data-ttu-id="c43f8-115">В этом случае столбцу будет назначен ближайший подходящий базовый тип данных, доступный в целевой базе данных.</span><span class="sxs-lookup"><span data-stu-id="c43f8-115">In such a case, the column will be assigned the nearest matching base data type available in that database.</span></span></p>
+<h3 id="security"><a name="Security"></a> <span data-ttu-id="c43f8-116">безопасность</span><span class="sxs-lookup"><span data-stu-id="c43f8-116">Security</span></span></h3>
+<h4 id="permissions"><a name="Permissions"></a> <span data-ttu-id="c43f8-117">Permissions</span><span class="sxs-lookup"><span data-stu-id="c43f8-117">Permissions</span></span></h4>
+<p><span data-ttu-id="c43f8-118">Требуется разрешение ALTER на таблицу.</span><span class="sxs-lookup"><span data-stu-id="c43f8-118">Requires ALTER permission on the table.</span></span></p>
+<h2 id="using-sql-server-management-studio"><a name="SSMSProcedure"></a> <span data-ttu-id="c43f8-119">Использование среды SQL Server Management Studio</span><span class="sxs-lookup"><span data-stu-id="c43f8-119">Using SQL Server Management Studio</span></span></h2>
+<h4 id="to-copy-column-definitions-from-one-table-to-another"><span data-ttu-id="c43f8-120">Копирование определения столбца из одной таблицы в другую</span><span class="sxs-lookup"><span data-stu-id="c43f8-120">To copy column definitions from one table to another</span></span></h4>
+<ol>
+<li><p><span data-ttu-id="c43f8-121">Щелкнув правой кнопкой мыши, откройте таблицу со столбцами, предназначенными к копированию, и таблицу, в которую необходимо выполнить копирование, затем нажмите кнопку <strong>Разработка</strong>.</span><span class="sxs-lookup"><span data-stu-id="c43f8-121">Open the table with columns you want to copy and the one you want to copy into by right-clicking the tables, and then clicking <strong>Design</strong>.</span></span></p>
+</li>
+<li><p><span data-ttu-id="c43f8-122">Выберите вкладку исходной таблицы и выделите нужные столбцы.</span><span class="sxs-lookup"><span data-stu-id="c43f8-122">Click the tab for the table with the columns you want to copy and select those columns.</span></span></p>
+</li>
+<li><p><span data-ttu-id="c43f8-123">В меню <strong>Правка</strong> выберите <strong>Копировать</strong>.</span><span class="sxs-lookup"><span data-stu-id="c43f8-123">From the <strong>Edit</strong> menu, click <strong>Copy</strong>.</span></span></p>
+</li>
+<li><p><span data-ttu-id="c43f8-124">Выберите вкладку таблицы, в которую требуется скопировать столбцы.</span><span class="sxs-lookup"><span data-stu-id="c43f8-124">Click the tab for the table into which you want to copy the columns.</span></span></p>
+</li>
+<li><p><span data-ttu-id="c43f8-125">Выделите столбец, после которого нужно поместить вставляемые столбцы, и в меню <strong>Правка</strong> выберите <strong>Вставить</strong>.</span><span class="sxs-lookup"><span data-stu-id="c43f8-125">Select the column you want to follow the inserted columns and, from the <strong>Edit</strong> menu, click <strong>Paste</strong>.</span></span></p>
+</li>
+</ol>
+<h4 id="to-copy-data-from-one-table-to-another"><span data-ttu-id="c43f8-126">Копирование данных из одной таблицы в другую</span><span class="sxs-lookup"><span data-stu-id="c43f8-126">To copy data from one table to another</span></span></h4>
+<ol>
+<li><p><span data-ttu-id="c43f8-127">Следуйте приведенным выше инструкциям для копирования определения столбцов.</span><span class="sxs-lookup"><span data-stu-id="c43f8-127">Follow the directions for copying column definitions above.</span></span></p>
+<div class="NOTE">
+<p>Примечание</p>
+<p><span data-ttu-id="c43f8-128">Прежде чем скопировать данные из одной таблицы в другую, убедитесь, что типы данных целевых столбцов совместимы с типами данных исходных.</span><span class="sxs-lookup"><span data-stu-id="c43f8-128">Before you begin to copy data from one table to another, make sure that the data types in the destination columns are compatible with the data types of the source columns</span></span></p>
+</div>
+</li>
+<li><p><span data-ttu-id="c43f8-129">Откройте новое окно редактора запросов.</span><span class="sxs-lookup"><span data-stu-id="c43f8-129">Open a new Query Editor window.</span></span></p>
+</li>
+<li><p><span data-ttu-id="c43f8-130">Щелкните редактор запросов правой кнопкой мыши и выберите <strong>Создать запрос в редакторе</strong>.</span><span class="sxs-lookup"><span data-stu-id="c43f8-130">Right-click the Query Editor, and then click <strong>Design Query in Editor</strong>.</span></span></p>
+</li>
+<li><p><span data-ttu-id="c43f8-131">В диалоговом окне <strong>Добавление таблицы</strong> выберите исходную и целевую таблицы, нажмите кнопку <strong>Добавить</strong>, а затем закройте диалоговое окно <strong>Добавление таблицы</strong> .</span><span class="sxs-lookup"><span data-stu-id="c43f8-131">In the <strong>Add Table</strong> dialog box, select the source and destination table, click <strong>Add</strong>, and then close the <strong>Add Table</strong> dialog box.</span></span></p>
+</li>
+<li><p><span data-ttu-id="c43f8-132">Щелкните правой кнопкой мыши пустую область редактора запросов, наведите указатель на пункт <strong>Изменить тип</strong> и выберите <strong>Вставить результаты</strong>.</span><span class="sxs-lookup"><span data-stu-id="c43f8-132">Right-click an open area of the Query Editor, point to <strong>Change Type</strong>, and then click <strong>Insert Results</strong>.</span></span></p>
+</li>
+<li><p><span data-ttu-id="c43f8-133">В диалоговом окне <strong>Выбор целевой таблицы для инструкции Insert Results</strong> выберите целевую таблицу.</span><span class="sxs-lookup"><span data-stu-id="c43f8-133">In the <strong>Choose Target Table for Insert Results</strong> dialog box, select the destination table.</span></span></p>
+</li>
+<li><p><span data-ttu-id="c43f8-134">В верхней части конструктора запросов щелкните исходный столбец исходной таблицы.</span><span class="sxs-lookup"><span data-stu-id="c43f8-134">In the upper portion of the Query Designer, click the source column in the source table.</span></span></p>
+</li>
+<li><p><span data-ttu-id="c43f8-135">Конструктор запросов создал запрос INSERT.</span><span class="sxs-lookup"><span data-stu-id="c43f8-135">The Query Designer has now created an INSERT query.</span></span> <span data-ttu-id="c43f8-136">Нажмите кнопку &quot;ОК&quot;, чтобы поместить запрос в исходное окно редактора запросов.</span><span class="sxs-lookup"><span data-stu-id="c43f8-136">Click OK to place the query into the original Query Editor window.</span></span></p>
+</li>
+<li><p><span data-ttu-id="c43f8-137">Выполните запрос, чтобы вставить данные из исходной таблицы в целевую.</span><span class="sxs-lookup"><span data-stu-id="c43f8-137">Execute the query to insert the data from the source table to the destination table.</span></span></p>
+</li>
+</ol>
+<h2 id="using-transact-sql"><a name="TsqlProcedure"></a> <span data-ttu-id="c43f8-138">Использование Transact-SQL</span><span class="sxs-lookup"><span data-stu-id="c43f8-138">Using Transact-SQL</span></span></h2>
+<h4 id="to-copy-column-definitions-from-one-table-to-another"><span data-ttu-id="c43f8-139">Копирование определения столбца из одной таблицы в другую</span><span class="sxs-lookup"><span data-stu-id="c43f8-139">To copy column definitions from one table to another</span></span></h4>
+<ol>
+<li><span data-ttu-id="c43f8-140">Нельзя копировать отдельные столбцы из одной таблицы в другую (существующую) с использованием инструкций Transact-SQL.</span><span class="sxs-lookup"><span data-stu-id="c43f8-140">You cannot copy individual columns from one table to another existing table by using Transact-SQL statements.</span></span> <span data-ttu-id="c43f8-141">Однако можно создать новую таблицу в файловой группе по умолчанию и вставить в нее результирующие строки из запроса с помощью инструкции SELECT INTO.</span><span class="sxs-lookup"><span data-stu-id="c43f8-141">However, you can create a new table in the default filegroup and inserts the resulting rows from the query into it by using SELECT INTO.</span></span> <span data-ttu-id="c43f8-142">Дополнительные сведения см. в разделе <a href="../../t-sql/queries/select-into-clause-transact-sql?view=sql-server-ver15" data-linktype="relative-path">Предложение INTO (Transact-SQL)</a>.</span><span class="sxs-lookup"><span data-stu-id="c43f8-142">For more information, see <a href="../../t-sql/queries/select-into-clause-transact-sql?view=sql-server-ver15" data-linktype="relative-path">INTO Clause (Transact-SQL)</a>.</span></span></li>
+</ol>
+<h4 id="to-copy-data-from-one-table-to-another"><span data-ttu-id="c43f8-143">Копирование данных из одной таблицы в другую</span><span class="sxs-lookup"><span data-stu-id="c43f8-143">To copy data from one table to another</span></span></h4>
+<ol>
+<li><p><span data-ttu-id="c43f8-144">В <strong>обозревателе объектов</strong> подключитесь к экземпляру компонента <span data-ttu-id="3a3eb-101">Компонент Database Engine</span><span class="sxs-lookup"><span data-stu-id="3a3eb-101">Database Engine</span></span>.</span><span class="sxs-lookup"><span data-stu-id="c43f8-144">In <strong>Object Explorer</strong>, connect to an instance of <span data-ttu-id="3a3eb-101">Компонент Database Engine</span><span class="sxs-lookup"><span data-stu-id="3a3eb-101">Database Engine</span></span>.</span></span></p>
+</li>
+<li><p><span data-ttu-id="c43f8-145">На стандартной панели выберите пункт <strong>Создать запрос</strong>.</span><span class="sxs-lookup"><span data-stu-id="c43f8-145">On the Standard bar, click <strong>New Query</strong>.</span></span></p>
+</li>
+<li><p><span data-ttu-id="c43f8-146">Скопируйте следующий пример в окно запроса и нажмите кнопку <strong>Выполнить</strong>.</span><span class="sxs-lookup"><span data-stu-id="c43f8-146">Copy and paste the following example into the query window and click <strong>Execute</strong>.</span></span></p>
+<pre><code>USE AdventureWorks2012;  
+GO  
+CREATE TABLE dbo.EmployeeSales  
+( BusinessEntityID   varchar(11) NOT NULL,  
+  SalesYTD money NOT NULL  
+);  
+GO  
+INSERT INTO dbo.EmployeeSales  
+    SELECT BusinessEntityID, SalesYTD   
+    FROM Sales.SalesPerson;  
+GO  
+</code></pre>
+</li>
+</ol>
+
+						<!-- </content> -->
+
+						</main>
+
+						<!-- page rating section -->
+								<div class="is-hidden-desktop has-border-top has-margin-top-large has-padding-top-large binary-rating-holder">
+									
+	
+	
+
+	<div class="feedback-verbatim has-border-bottom has-padding-bottom-large has-margin-bottom-small" data-bi-name="rating">
+    <div class="binary-rating">
+        <div class="binary-rating-buttons">
+				<h3 class="has-text-weight-semibold has-margin-top-none has-margin-bottom-small is-size-h4 has-margin-bottom-medium">Были ли сведения на этой странице полезными?</h3>
+			<div>
+                <button class="thumb-rating like has-inner-focus" title="Да" data-bi-name="rating-yes" aria-expanded="false" data-bi-sat="1" aria-controls="rating-container-desktop">
+                    <span aria-hidden="true" class="icon docon docon-like"></span>
+                    <span>Да</span>
+                </button>
+                <button class="thumb-rating dislike has-inner-focus" title="Нет" data-bi-name="rating-no" data-bi-sat="0" aria-expanded="false" aria-controls="rating-container-desktop">
+                    <span aria-hidden="true" class="icon docon docon-dislike"></span>
+                    <span>Нет</span>
+                </button>
+            </div>
+        </div>
+        <form class="feedback-verbatim-form is-hidden" id="rating-container-desktop">
+            <div class="verbatim-textarea box is-relative has-box-shadow-none has-border has-margin-top-small has-padding-extra-small is-size-extra-small">
+                <label for="rating-textarea-desktop" class="visually-hidden">Хотите оставить дополнительный отзыв?</label>
+                <textarea id="rating-textarea-desktop" rows="4" maxlength="999" placeholder="Хотите оставить дополнительный отзыв?" required class="textarea has-border-none has-box-shadow-none has-inner-focus"></textarea>
+            </div>
+            <div class="buttons is-right has-margin-top-medium has-margin-right-extra-small">
+                <button class="skip-rating button is-transparent has-text-primary is-small has-border-none" type="button">Пропустить</button>
+                <button class="submit-rating button is-primary is-small" data-bi-name="rating-verbatim" disabled type="submit">Отправить</button>
+            </div>
+        </form>
+    </div>
+    <div class="thankyou-rating is-hidden" tabindex="-1">
+        <p>Спасибо!</p>
+    </div>
+</div>									</div>
+						<!-- end page rating section -->
+
+
+						<!-- recommendations section -->
+							<section id="recommendations-section" data-bi-name="recommendations"></section>
+						<!-- end recommendations section -->
+
+						<!-- feedback section -->
+<section class="feedback-section is-relative" data-bi-name="feedback-section">
+
+    <h2 id="feedback" class="title is-3 has-margin-top-large">Обратная связь</h2>
+
+    <div class="alert choose-feedback-type">
+        <p aria-hidden="true" id="send-feedback-about">Отправить и просмотреть отзыв по</p>
+
+        <div class="choose-feedback-buttons has-margin-top-medium">
+                <a class="button has-external-link-indicator feedback-type-product has-margin-bottom-small" aria-label="Отправить отзыв об этом продукте" href="https://feedback.azure.com/forums/908035-sql-server/" data-bi-name="product-feedback">
+                    <span>Этот продукт</span>
+                </a>
+
+			<a class="button feedback-type-product has-margin-bottom-small github-link" aria-label="Отправить отзыв об этой странице" data-bi-name="create-issue-on-github">
+				<span aria-hidden="true" class="docon docon-brand-github has-padding-right-extra-small"></span>
+				<span>Эта страница</span>
+			</a>
+        </div>
+    </div>
+
+    <div class="action-container is-flex has-flex-justify-content-end has-margin-top-small has-margin-bottom-small">
+        <a class="view-on-github has-external-link-indicator" data-bi-name="view-on-github" href="https://github.com/MicrosoftDocs/sql-docs.ru-ru/issues">
+            <span aria-hidden="true" class="docon docon-brand-github"></span>
+            <span>Просмотреть все отзывы по странице</span>
+        </a>
+    </div>
+</section>
+						<!-- end feedback section -->
+
+						<!-- feedback report section -->
+						<!-- end feedback report section -->
+
+						<div class="footerContainer is-visible-interactive has-default-focus ">
+
+
+
+	<footer id="footer-interactive" data-bi-name="footer" class="footer-layout">
+
+    <div class="is-flex is-full-height has-padding-right-extra-large-desktop">
+			<a data-mscc-ic="false" class="locale-selector-link has-flex-shrink-none" href="#" data-bi-name="select-locale"><span class="icon docon docon-world is-size-large has-margin-right-small" aria-hidden="true"></span><span class="local-selector-link-text"></span></a>
+		<div class="has-margin-left-medium has-margin-right-medium has-flex-shrink-none">
+<div class="dropdown has-caret-up">
+	<button class="dropdown-trigger button is-transparent is-small is-icon-only-touch has-inner-focus theme-dropdown-trigger"
+		aria-controls="theme-menu-interactive" aria-expanded="false" title="Тема" data-bi-name="theme">
+		<span class="icon">
+			<span class="docon docon-sun" aria-hidden="true"></span>
+		</span>
+		<span>Тема</span>
+	</button>
+	<div class="dropdown-menu" id="theme-menu-interactive" role="menu">
+		<ul class="theme-selector has-padding-small">
+			<li class="theme is-block">
+				<button class="button is-text is-small theme-control is-fullwidth has-flex-justify-content-start"
+					data-theme-to="light">
+					<span class="theme-light has-margin-right-small">
+						<span
+							class="theme-selector-icon css-variable-support has-border is-inline-block has-body-background"
+							aria-hidden="true">
+							<svg class="svg" xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 22 14">
+								<rect width="22" height="14" class="has-fill-body-background" />
+								<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+								<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+								<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+								<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+								<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+							</svg>
+						</span>
+					</span>
+					<span role="menuitem">
+Светлая					</span>
+				</button>
+			</li>
+			<li class="theme is-block">
+				<button class="button is-text is-small theme-control is-fullwidth has-flex-justify-content-start"
+					data-theme-to="dark">
+					<span class="theme-dark has-margin-right-small">
+						<span
+							class="has-border theme-selector-icon css-variable-support is-inline-block has-body-background"
+							aria-hidden="true">
+							<svg class="svg" xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 22 14">
+								<rect width="22" height="14" class="has-fill-body-background" />
+								<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+								<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+								<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+								<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+								<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+							</svg>
+						</span>
+					</span>
+					<span role="menuitem">
+Темная					</span>
+				</button>
+			</li>
+			<li class="theme is-block">
+				<button class="button is-text is-small theme-control is-fullwidth has-flex-justify-content-start"
+					data-theme-to="high-contrast">
+					<span class="theme-high-contrast has-margin-right-small">
+						<span
+							class="has-border theme-selector-icon css-variable-support is-inline-block has-body-background"
+							aria-hidden="true">
+							<svg class="svg" xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 22 14">
+								<rect width="22" height="14" class="has-fill-body-background" />
+								<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+								<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+								<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+								<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+								<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+							</svg>
+						</span>
+					</span>
+					<span role="menuitem">
+Высокая контрастность					</span>
+				</button>
+			</li>
+		</ul>
+	</div>
+</div>		</div>
+	</div>
+    <ul class="links" data-bi-name="footerlinks">
+		<li class="manage-cookies-holder" hidden></li>
+			<li><a data-mscc-ic="false" href="https://docs.microsoft.com/ru-ru/previous-versions/" data-bi-name="archivelink">Документация по предыдущей версии</a></li>
+			<li><a data-mscc-ic="false" href="https://docs.microsoft.com/ru-ru/teamblog" data-bi-name="bloglink">Блог</a></li>
+			<li><a data-mscc-ic="false" href="https://docs.microsoft.com/ru-ru/contribute" data-bi-name="contributorGuide">Участие в доработке</a></li>
+				<li><a data-mscc-ic="false" href="https://go.microsoft.com/fwlink/?LinkId=521839" data-bi-name="privacy">Конфиденциальность и файлы cookie</a></li>
+			<li><a data-mscc-ic="false" href="https://docs.microsoft.com/ru-ru/legal/termsofuse" data-bi-name="termsofuse">Условия использования</a></li>
+				<li><a data-mscc-ic="false" href="https://aka.ms/sitefeedback" data-bi-name="feedback">Отзывы о сайте</a></li>
+			<li><a data-mscc-ic="false" href="https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/EN-US.aspx" data-bi-name="trademarks">Товарные знаки</a></li>
+		<li>&copy; Microsoft 2021</li>
+    </ul>
+</footer>
+						</div>
+					</div>
+
+					<div class="is-size-small right-container column is-one-quarter is-one-fifth-desktop is-hidden-mobile is-hidden-tablet-only" data-bi-name="pageactions" role="complementary" aria-label="Действия страницы">
+						<div id="affixed-right-container" class="doc-outline is-fixed is-vertically-scrollable">
+								
+	
+	
+
+	<div class="feedback-verbatim has-border-bottom has-padding-bottom-small has-margin-bottom-small" data-bi-name="rating">
+    <div class="binary-rating">
+        <div class="binary-rating-buttons">
+
+				<h3 class="has-text-weight-semibold has-margin-top-none has-margin-bottom-small">Были ли сведения на этой странице полезными?</h3>
+			<div>
+                <button class="thumb-rating like has-inner-focus" title="Да" data-bi-name="rating-yes" aria-expanded="false" data-bi-sat="1" aria-controls="rating-container-mobile">
+                    <span aria-hidden="true" class="icon docon docon-like"></span>
+                    <span>Да</span>
+                </button>
+                <button class="thumb-rating dislike has-inner-focus" title="Нет" data-bi-name="rating-no" data-bi-sat="0" aria-expanded="false" aria-controls="rating-container-mobile">
+                    <span aria-hidden="true" class="icon docon docon-dislike"></span>
+                    <span>Нет</span>
+                </button>
+            </div>
+        </div>
+        <form class="feedback-verbatim-form is-hidden" id="rating-container-mobile">
+            <div class="verbatim-textarea box is-relative has-box-shadow-none has-border has-margin-top-small has-padding-extra-small is-size-extra-small">
+                <label for="rating-textarea-mobile" class="visually-hidden">Хотите оставить дополнительный отзыв?</label>
+                <textarea id="rating-textarea-mobile" rows="4" maxlength="999" placeholder="Хотите оставить дополнительный отзыв?" required class="textarea has-border-none has-box-shadow-none has-inner-focus"></textarea>
+            </div>
+            <div class="buttons is-right has-margin-top-medium has-margin-right-extra-small">
+                <button class="skip-rating button is-transparent has-text-primary is-small has-border-none" type="button">Пропустить</button>
+                <button class="submit-rating button is-primary is-small" data-bi-name="rating-verbatim" disabled type="submit">Отправить</button>
+            </div>
+        </form>
+    </div>
+    <div class="thankyou-rating is-hidden" tabindex="-1">
+        <p>Спасибо!</p>
+    </div>
+</div>							<nav id="side-doc-outline" data-bi-name="intopic toc" role="navigation" aria-label="Структура статьи">
+								<h3>В этой статье</h3>
+							</nav>
+						</div>
+					</div>
+
+					<!--end of div.columns -->
+				</div>
+
+			<!--end of .primary-holder -->
+			</section>
+
+			<aside id="interactive-container" class="interactive-container is-visible-interactive column has-body-background-dark ">
+			</aside>
+		</div>
+
+		<!--end of .mainContainer -->
+	</div>
+
+	<div class="footerContainer has-default-focus is-hidden-interactive ">
+
+
+
+	<footer id="footer" data-bi-name="footer" class="footer-layout uhf-container has-padding" role="contentinfo">
+
+    <div class="is-flex is-full-height has-padding-right-extra-large-desktop">
+			<a data-mscc-ic="false" class="locale-selector-link has-flex-shrink-none" href="#" data-bi-name="select-locale"><span class="icon docon docon-world is-size-large has-margin-right-small" aria-hidden="true"></span><span class="local-selector-link-text"></span></a>
+		<div class="has-margin-left-medium has-margin-right-medium has-flex-shrink-none">
+<div class="dropdown has-caret-up">
+	<button class="dropdown-trigger button is-transparent is-small is-icon-only-touch has-inner-focus theme-dropdown-trigger"
+		aria-controls="theme-menu" aria-expanded="false" title="Тема" data-bi-name="theme">
+		<span class="icon">
+			<span class="docon docon-sun" aria-hidden="true"></span>
+		</span>
+		<span>Тема</span>
+	</button>
+	<div class="dropdown-menu" id="theme-menu" role="menu">
+		<ul class="theme-selector has-padding-small">
+			<li class="theme is-block">
+				<button class="button is-text is-small theme-control is-fullwidth has-flex-justify-content-start"
+					data-theme-to="light">
+					<span class="theme-light has-margin-right-small">
+						<span
+							class="theme-selector-icon css-variable-support has-border is-inline-block has-body-background"
+							aria-hidden="true">
+							<svg class="svg" xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 22 14">
+								<rect width="22" height="14" class="has-fill-body-background" />
+								<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+								<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+								<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+								<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+								<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+							</svg>
+						</span>
+					</span>
+					<span role="menuitem">
+Светлая					</span>
+				</button>
+			</li>
+			<li class="theme is-block">
+				<button class="button is-text is-small theme-control is-fullwidth has-flex-justify-content-start"
+					data-theme-to="dark">
+					<span class="theme-dark has-margin-right-small">
+						<span
+							class="has-border theme-selector-icon css-variable-support is-inline-block has-body-background"
+							aria-hidden="true">
+							<svg class="svg" xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 22 14">
+								<rect width="22" height="14" class="has-fill-body-background" />
+								<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+								<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+								<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+								<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+								<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+							</svg>
+						</span>
+					</span>
+					<span role="menuitem">
+Темная					</span>
+				</button>
+			</li>
+			<li class="theme is-block">
+				<button class="button is-text is-small theme-control is-fullwidth has-flex-justify-content-start"
+					data-theme-to="high-contrast">
+					<span class="theme-high-contrast has-margin-right-small">
+						<span
+							class="has-border theme-selector-icon css-variable-support is-inline-block has-body-background"
+							aria-hidden="true">
+							<svg class="svg" xmlns="http://www.w3.org/2000/svg"
+								viewBox="0 0 22 14">
+								<rect width="22" height="14" class="has-fill-body-background" />
+								<rect x="5" y="5" width="12" height="4" class="has-fill-secondary" />
+								<rect x="5" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="8" y="2" width="2" height="1" class="has-fill-secondary" />
+								<rect x="11" y="2" width="3" height="1" class="has-fill-secondary" />
+								<rect x="1" y="1" width="2" height="2" class="has-fill-secondary" />
+								<rect x="5" y="10" width="7" height="2" rx="0.3" class="has-fill-primary" />
+								<rect x="19" y="1" width="2" height="2" rx="1" class="has-fill-secondary" />
+							</svg>
+						</span>
+					</span>
+					<span role="menuitem">
+Высокая контрастность					</span>
+				</button>
+			</li>
+		</ul>
+	</div>
+</div>		</div>
+	</div>
+    <ul class="links" data-bi-name="footerlinks">
+		<li class="manage-cookies-holder" hidden></li>
+			<li><a data-mscc-ic="false" href="https://docs.microsoft.com/ru-ru/previous-versions/" data-bi-name="archivelink">Документация по предыдущей версии</a></li>
+			<li><a data-mscc-ic="false" href="https://docs.microsoft.com/ru-ru/teamblog" data-bi-name="bloglink">Блог</a></li>
+			<li><a data-mscc-ic="false" href="https://docs.microsoft.com/ru-ru/contribute" data-bi-name="contributorGuide">Участие в доработке</a></li>
+				<li><a data-mscc-ic="false" href="https://go.microsoft.com/fwlink/?LinkId=521839" data-bi-name="privacy">Конфиденциальность и файлы cookie</a></li>
+			<li><a data-mscc-ic="false" href="https://docs.microsoft.com/ru-ru/legal/termsofuse" data-bi-name="termsofuse">Условия использования</a></li>
+				<li><a data-mscc-ic="false" href="https://aka.ms/sitefeedback" data-bi-name="feedback">Отзывы о сайте</a></li>
+			<li><a data-mscc-ic="false" href="https://www.microsoft.com/en-us/legal/intellectualproperty/Trademarks/EN-US.aspx" data-bi-name="trademarks">Товарные знаки</a></li>
+		<li>&copy; Microsoft 2021</li>
+    </ul>
+</footer>
+	</div>
+
+	<div id="action-panel" role="region" aria-label="Панель действий" class="action-panel has-default-focus" tabindex="-1"></div>
+</body>
+</html>

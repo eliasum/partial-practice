@@ -1,0 +1,25 @@
+﻿<!--2021.08.06 15:15 IMM-->
+  
+<!--
+Создание элементов в коде C#
+
+Еще одну форму взаимодействия C# и XAML представляет создание визуальных элементов в коде C#. Например, 
+    изменим код xaml следующим образом:
+-->
+
+<Window x:Class="XamlApp2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Grid x:Name="layoutGrid">
+
+    </Grid>
+</Window>
+    
+<!--
+Здесь для элемента Grid установлено свойство x:Name, через которое мы можем к нему обращаться в коде.
+    И также изменим код C#.
+-->

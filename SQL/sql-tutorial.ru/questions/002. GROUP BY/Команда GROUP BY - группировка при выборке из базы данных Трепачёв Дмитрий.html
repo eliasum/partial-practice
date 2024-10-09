@@ -1,0 +1,2234 @@
+<!DOCTYPE html>
+<html lang="ru"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<meta charset="utf-8">
+		<title>Команда GROUP BY - группировка при выборке из базы данных | Трепачёв Дмитрий</title>
+		
+		<script async="" src="%D0%9A%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%B0%20GROUP%20BY%20-%20%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%20%D0%BF%D1%80%D0%B8%20%D0%B2%D1%8B%D0%B1%D0%BE%D1%80%D0%BA%D0%B5%20%D0%B8%D0%B7%20%D0%B1%D0%B0%D0%B7%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%A2%D1%80%D0%B5%D0%BF%D0%B0%D1%87%D1%91%D0%B2%20%D0%94%D0%BC%D0%B8%D1%82%D1%80%D0%B8%D0%B9_files/tag.js"></script><script src="%D0%9A%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%B0%20GROUP%20BY%20-%20%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%20%D0%BF%D1%80%D0%B8%20%D0%B2%D1%8B%D0%B1%D0%BE%D1%80%D0%BA%D0%B5%20%D0%B8%D0%B7%20%D0%B1%D0%B0%D0%B7%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%A2%D1%80%D0%B5%D0%BF%D0%B0%D1%87%D1%91%D0%B2%20%D0%94%D0%BC%D0%B8%D1%82%D1%80%D0%B8%D0%B9_files/jquery.js"></script>
+		<script src="%D0%9A%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%B0%20GROUP%20BY%20-%20%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%20%D0%BF%D1%80%D0%B8%20%D0%B2%D1%8B%D0%B1%D0%BE%D1%80%D0%BA%D0%B5%20%D0%B8%D0%B7%20%D0%B1%D0%B0%D0%B7%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%A2%D1%80%D0%B5%D0%BF%D0%B0%D1%87%D1%91%D0%B2%20%D0%94%D0%BC%D0%B8%D1%82%D1%80%D0%B8%D0%B9_files/activator.js"></script>
+		
+		<link rel="stylesheet" href="%D0%9A%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%B0%20GROUP%20BY%20-%20%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%20%D0%BF%D1%80%D0%B8%20%D0%B2%D1%8B%D0%B1%D0%BE%D1%80%D0%BA%D0%B5%20%D0%B8%D0%B7%20%D0%B1%D0%B0%D0%B7%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%A2%D1%80%D0%B5%D0%BF%D0%B0%D1%87%D1%91%D0%B2%20%D0%94%D0%BC%D0%B8%D1%82%D1%80%D0%B8%D0%B9_files/bootstrap.css">
+		<script src="%D0%9A%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%B0%20GROUP%20BY%20-%20%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%20%D0%BF%D1%80%D0%B8%20%D0%B2%D1%8B%D0%B1%D0%BE%D1%80%D0%BA%D0%B5%20%D0%B8%D0%B7%20%D0%B1%D0%B0%D0%B7%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%A2%D1%80%D0%B5%D0%BF%D0%B0%D1%87%D1%91%D0%B2%20%D0%94%D0%BC%D0%B8%D1%82%D1%80%D0%B8%D0%B9_files/bootstrap.js"></script>
+		
+		<link rel="stylesheet" href="%D0%9A%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%B0%20GROUP%20BY%20-%20%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%20%D0%BF%D1%80%D0%B8%20%D0%B2%D1%8B%D0%B1%D0%BE%D1%80%D0%BA%D0%B5%20%D0%B8%D0%B7%20%D0%B1%D0%B0%D0%B7%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%A2%D1%80%D0%B5%D0%BF%D0%B0%D1%87%D1%91%D0%B2%20%D0%94%D0%BC%D0%B8%D1%82%D1%80%D0%B8%D0%B9_files/layout.css">
+		<link rel="stylesheet" href="%D0%9A%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%B0%20GROUP%20BY%20-%20%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%20%D0%BF%D1%80%D0%B8%20%D0%B2%D1%8B%D0%B1%D0%BE%D1%80%D0%BA%D0%B5%20%D0%B8%D0%B7%20%D0%B1%D0%B0%D0%B7%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%A2%D1%80%D0%B5%D0%BF%D0%B0%D1%87%D1%91%D0%B2%20%D0%94%D0%BC%D0%B8%D1%82%D1%80%D0%B8%D0%B9_files/styles.css">
+		<link rel="stylesheet" href="%D0%9A%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%B0%20GROUP%20BY%20-%20%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%20%D0%BF%D1%80%D0%B8%20%D0%B2%D1%8B%D0%B1%D0%BE%D1%80%D0%BA%D0%B5%20%D0%B8%D0%B7%20%D0%B1%D0%B0%D0%B7%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%A2%D1%80%D0%B5%D0%BF%D0%B0%D1%87%D1%91%D0%B2%20%D0%94%D0%BC%D0%B8%D1%82%D1%80%D0%B8%D0%B9_files/classes.css">
+		
+		<meta name="description" content="Команда GROUP BY группирует результаты при выборке из базы данных. К сгруппированным результатам можно применять любые SQL функции.">
+		<link href="http://old.code.mu/favicon.ico" rel="shortcut icon" type="image/x-icon">
+
+		<script src="%D0%9A%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%B0%20GROUP%20BY%20-%20%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%20%D0%BF%D1%80%D0%B8%20%D0%B2%D1%8B%D0%B1%D0%BE%D1%80%D0%BA%D0%B5%20%D0%B8%D0%B7%20%D0%B1%D0%B0%D0%B7%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%A2%D1%80%D0%B5%D0%BF%D0%B0%D1%87%D1%91%D0%B2%20%D0%94%D0%BC%D0%B8%D1%82%D1%80%D0%B8%D0%B9_files/css.js"></script>
+		<script src="%D0%9A%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%B0%20GROUP%20BY%20-%20%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%20%D0%BF%D1%80%D0%B8%20%D0%B2%D1%8B%D0%B1%D0%BE%D1%80%D0%BA%D0%B5%20%D0%B8%D0%B7%20%D0%B1%D0%B0%D0%B7%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%A2%D1%80%D0%B5%D0%BF%D0%B0%D1%87%D1%91%D0%B2%20%D0%94%D0%BC%D0%B8%D1%82%D1%80%D0%B8%D0%B9_files/answers.js"></script>
+		<script src="%D0%9A%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%B0%20GROUP%20BY%20-%20%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%20%D0%BF%D1%80%D0%B8%20%D0%B2%D1%8B%D0%B1%D0%BE%D1%80%D0%BA%D0%B5%20%D0%B8%D0%B7%20%D0%B1%D0%B0%D0%B7%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%A2%D1%80%D0%B5%D0%BF%D0%B0%D1%87%D1%91%D0%B2%20%D0%94%D0%BC%D0%B8%D1%82%D1%80%D0%B8%D0%B9_files/scripts.htm"></script>
+		<script src="%D0%9A%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%B0%20GROUP%20BY%20-%20%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%20%D0%BF%D1%80%D0%B8%20%D0%B2%D1%8B%D0%B1%D0%BE%D1%80%D0%BA%D0%B5%20%D0%B8%D0%B7%20%D0%B1%D0%B0%D0%B7%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%A2%D1%80%D0%B5%D0%BF%D0%B0%D1%87%D1%91%D0%B2%20%D0%94%D0%BC%D0%B8%D1%82%D1%80%D0%B8%D0%B9_files/mr-koder.js"></script>
+		
+		<link rel="stylesheet" href="%D0%9A%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%B0%20GROUP%20BY%20-%20%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%20%D0%BF%D1%80%D0%B8%20%D0%B2%D1%8B%D0%B1%D0%BE%D1%80%D0%BA%D0%B5%20%D0%B8%D0%B7%20%D0%B1%D0%B0%D0%B7%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%A2%D1%80%D0%B5%D0%BF%D0%B0%D1%87%D1%91%D0%B2%20%D0%94%D0%BC%D0%B8%D1%82%D1%80%D0%B8%D0%B9_files/prism.css">
+		<meta name="google-site-verification" content="Af0TM2OrwIEtjoQXxYz2-1C-21E1m7DB23_kWpE9sLg">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	</head>
+	<body>
+		<div class="wrapper">
+			<header>
+				<div class="top">
+					<div class="top-left"><img data-module="mr-koder" data-behavior="img" src="%D0%9A%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%B0%20GROUP%20BY%20-%20%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%20%D0%BF%D1%80%D0%B8%20%D0%B2%D1%8B%D0%B1%D0%BE%D1%80%D0%BA%D0%B5%20%D0%B8%D0%B7%20%D0%B1%D0%B0%D0%B7%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%A2%D1%80%D0%B5%D0%BF%D0%B0%D1%87%D1%91%D0%B2%20%D0%94%D0%BC%D0%B8%D1%82%D1%80%D0%B8%D0%B9_files/relax.png" style="display: inline-block;"></div>
+					<div class="top-right">Трепачёв Д.П. © 2012-2020 г.</div>
+					<div class="top-center">
+						<!--
+						Переходите на новую версию сайта по адресу <a href="http://code.mu">code.mu</a><br>
+						там доступен новый учебник по JavaScript (на ES6), по верстке (на флексах),<br>
+						а также Wordpress, Vue, Laravel, NodeJS, AJAX, ООП в PHP&rarr;
+						-->
+						<a href="http://mentor.code.mu/">
+							Запись на курсы по HTML, CSS, JavaScript, PHP, фреймворкам и CMS,<br>
+							<b>а также</b>: помощь в поиске работы и заказов, стажировка
+							на реальных проектах→
+							
+							<!--
+							ВНИМАНИЕ! АКЦИЯ! С 23 по 27 марта<br>
+							при записи на курсы HTML CSS или на курсы JavaScript - скидка <b>25%</b>&rarr;
+							-->
+						</a>
+					</div>
+				</div>
+				<div class="header">
+					<div class="top-menu">
+						<nav class="navbar navbar-default">
+	<div class="container-fluid">
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="http://old.code.mu/">theory.phphtml.net</a>
+		</div>
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<ul class="nav navbar-nav">
+				<li class="dropdown active" data-module="activator" data-activate="" data-activate-folder="/css/, /pseudo/, /html/, /attr/, /php/, /sql/, /javascript/, /jquery/">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Справочники <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="http://old.code.mu/html/" data-module="activator" data-activate="" data-activate-parent="" data-activate-folder="/html/, /attr/">Справочник по тегам и атрибутам HTML5</a></li>
+						<li><a href="http://old.code.mu/css/" data-module="activator" data-activate="" data-activate-parent="" data-activate-folder="">Справочник по свойствам CSS3</a></li>	
+						<li><a href="http://old.code.mu/javascript/" data-module="activator" data-activate="" data-activate-parent="" data-activate-folder="">Справочник по методам JavaScript</a></li>	
+						<li><a href="http://old.code.mu/jquery/" data-module="activator" data-activate="" data-activate-parent="" data-activate-folder="">Справочник по методам jQuery</a></li>	
+						<li><a href="http://old.code.mu/canvas/" data-module="activator" data-activate="" data-activate-parent="" data-activate-folder="">Справочник по работе с Canvas</a></li>	
+						<li><a href="http://old.code.mu/php/" data-module="activator" data-activate="" data-activate-parent="" data-activate-folder"="">Справочник по функциям PHP</a></li>	
+						<li class="active"><a href="http://old.code.mu/sql/" data-module="activator" data-activate="" data-activate-parent="" data-activate-folder="">Справочник по командам MySQL</a></li>	
+					</ul>
+				</li>
+				<li class="dropdown" data-module="activator" data-activate="" data-activate-folder="/books/">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Учебники <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="http://old.code.mu/books/css/" data-module="activator" data-activate="" data-activate-parent="" data-activate-folder="">Учебник HTML+CSS для новичков</a></li>
+						<li><a href="http://old.code.mu/books/javascript/" data-module="activator" data-activate="" data-activate-parent="" data-activate-folder="">Учебник JavaScript+jQuery для новичков</a></li>
+						<li><a href="http://old.code.mu/books/php/" data-module="activator" data-activate="" data-activate-parent="" data-activate-folder="">Учебник PHP+SQL для новичков</a></li>
+						<li><a href="http://old.code.mu/books/advanced/javascript/" data-module="activator" data-activate="" data-activate-parent="" data-activate-folder="">Фреймворки JavaScript</a></li>
+						<li><a href="http://old.code.mu/books/advanced/php/" data-module="activator" data-activate="" data-activate-parent="" data-activate-folder="">Фреймворки PHP, парсинг</a></li>
+						<li class="divider"></li>
+						<li><a href="http://code.mu/ru/javascript/prime/">Новый учебник по JavaScript (на ES6)</a></li>
+						<li><a href="http://code.mu/ru/markup/prime/">Новый учебник по HTML CSS (на флексах, не дописан)</a></li>
+						<li><a href="http://code.mu/ru/php/book/oop/">Учебник по ООП и MVC на PHP</a></li>
+						<li><a href="http://code.mu/ru/javascript/server/nodejs/prime/">Учебник по NodeJS</a></li>
+						<li><a href="http://code.mu/ru/javascript/framework/vue/prime/">Учебник по фреймворку Vue</a></li>
+						<li><a href="http://code.mu/ru/php/framework/laravel/prime/">Учебник по фреймворку Laravel</a></li>
+						<li><a href="http://code.mu/ru/ajax/prime/php/">Учебник по работе с AJAX на PHP</a></li>
+						<li><a href="http://code.mu/ru/cms/wordpress/prime/administration/">Учебник по Wordpress для администратора</a></li>
+						<li><a href="http://code.mu/ru/cms/wordpress/prime/development/">Учебник WordPress для PHP разработчика</a></li>
+					</ul>
+				</li>
+				<li class="dropdown" data-module="activator" data-activate="" data-activate-folder="/tasks/">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Задачники <b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="http://old.code.mu/tasks/css/" data-module="activator" data-activate="" data-activate-parent="" data-activate-folder="">Задачник HTML+CSS с нуля</a></li>
+						<li><a href="http://old.code.mu/tasks/javascript/" data-module="activator" data-activate="" data-activate-parent="" data-activate-folder="">Задачник JavaScript+jQuery с нуля</a></li>	
+						<li><a href="http://old.code.mu/tasks/php/" data-module="activator" data-activate="" data-activate-parent="" data-activate-folder="">Задачник PHP+SQL с нуля</a></li>	
+						<li><a href="http://old.code.mu/tasks/advanced/javascript/" data-module="activator" data-activate="" data-activate-parent="" data-activate-folder="">Задачник по фреймворкам JavaScript</a></li>
+						<li><a href="http://old.code.mu/tasks/advanced/php/" data-module="activator" data-activate="" data-activate-parent="" data-activate-folder="">Задачник по фреймворкам PHP, парсингу</a></li>
+					</ul>
+				</li>
+				<li class="dropdown" data-module="activator" data-activate="" data-activate-folder="/webinars/">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Вебинары<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="http://old.code.mu/webinars/css/" data-module="activator" data-activate="" data-activate-parent="" data-activate-folder="">Бесплатные вебинары по HTML+CSS</a></li>
+						<li><a href="http://old.code.mu/webinars/javascript/" data-module="activator" data-activate="" data-activate-parent="" data-activate-folder="">Бесплатные вебинары по JavaScript</a></li>
+						<li><a href="http://old.code.mu/webinars/php/" data-module="activator" data-activate="" data-activate-parent="" data-activate-folder="">Бесплатные вебинары по PHP</a></li>
+					</ul>
+				</li>
+				<!--
+				<li class="dropdown" data-module="activator" data-activate data-activate-folder="/video/">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Видео<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="/video/css/" data-module="activator" data-activate data-activate-parent data-activate-folder>Видео HTML+CSS</a></li>
+						<li><a href="/video/javascript/" data-module="activator" data-activate data-activate-parent data-activate-folder>Видео JavaScript</a></li>
+						<li><a href="/video/php/" data-module="activator" data-activate data-activate-parent data-activate-folder>Видео PHP</a></li>
+					</ul>
+				</li>
+				-->
+				<!--
+				<li class="dropdown" data-module="activator" data-activate data-activate-folder="/recipes/">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown">Рецепты<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="/recipes/css/" data-module="activator" data-activate data-activate-parent data-activate-folder>Рецепты HTML+CSS</a></li>
+						<li><a href="/recipes/javascript/" data-module="activator" data-activate data-activate-parent data-activate-folder>Рецепты JavaScript</a></li>
+						<li><a href="/recipes/php/" data-module="activator" data-activate data-activate-parent data-activate-folder>Рецепты PHP</a></li>
+					</ul>
+				</li>
+				<li class="dropdown" data-module="activator" data-activate data-activate-folder="/faq/">
+					<a href="#"  class="dropdown-toggle" data-toggle="dropdown">FAQ<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="/faq/css/" data-module="activator" data-activate data-activate-parent data-activate-folder>FAQ HTML+CSS</a></li>
+					</ul>
+				</li>
+				-->
+				<li class="dropdown" data-module="activator" data-activate="" data-activate-folder="/textbooks/">
+					<a href="http://old.code.mu/textbooks/">Книги</a>
+				</li>
+			</ul>
+			<!--
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					<form action="http://www.yandex.ru/yandsearch" target="_blank" class="navbar-form" role="search">
+						<input type="text" class="form-control" style="width: 150px;" placeholder="Поиск (исправлен)" name="text">
+						<input type="hidden" value="code.mu" name="site">
+						<button type="submit" class="btn btn-default">Найти</button>
+					</form>
+				</li>
+			</ul>
+			-->
+		</div>
+	</div>
+</nav>					</div>
+					
+					<div class="sub-menu" style="margin-bottom: -40px">
+						<a href="https://vk.com/topic-42967112_46226456">
+							Бесплатные курсы по JavaScript для новичков и не только. Начало 21-го октября→
+						</a>
+						<a href="https://vk.com/topic-42967112_46226495">
+							Конкурс CSS картинок. Тема: Хэллоуин. Призовой фонд: 100$. Подробности→
+						</a>
+					</div>
+					
+				</div> 
+			</header>
+			<div class="h1-block">
+					<a href="http://old.code.mu/sql/is-null.html" class="prev">◄</a>
+	<a href="http://old.code.mu/sql/having.html" class="next">►</a>
+
+				<h1>Команда GROUP BY</h1>
+							</div>
+			<aside>
+				<div class="sidebars">
+					<div class="left sidebar">
+						<div>
+	<h2>Основные запросы</h2>
+	<ul>
+		<li>
+			<a href="http://old.code.mu/sql/select.html" data-module="activator" data-activate="">                   
+				SELECT <br><span class="menu-hint">получение записей</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/insert.html" data-module="activator" data-activate="">                   
+				INSERT <br><span class="menu-hint">вставка записей</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/update.html" data-module="activator" data-activate="">                   
+				UPDATE <br><span class="menu-hint">редактирование записей</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/delete.html" data-module="activator" data-activate="">                   
+				DELETE <br><span class="menu-hint">удаление записей</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/count.html" data-module="activator" data-activate="">                   
+				COUNT <br><span class="menu-hint">подсчет записей</span>
+			</a>
+		</li>
+		
+	</ul>
+</div>
+<div>
+	<h2>Условия выборки</h2>
+	<ul>
+		<li>
+			<a href="http://old.code.mu/sql/where.html" data-module="activator" data-activate="">                   
+				WHERE <br><span class="menu-hint">условие</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/or.html" data-module="activator" data-activate="">                   
+				OR <br><span class="menu-hint">логическое ИЛИ</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/and.html" data-module="activator" data-activate="">                   
+				AND <br><span class="menu-hint">логическое И</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/order-by.html" data-module="activator" data-activate="">                   
+				ORDER BY <br><span class="menu-hint">сортировка</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/limit.html" data-module="activator" data-activate="">                   
+				LIMIT <br><span class="menu-hint">ограничение выборки</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/between.html" data-module="activator" data-activate="">                   
+				BETWEEN <br><span class="menu-hint">выбор из промежутка</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/in.html" data-module="activator" data-activate="">                   
+				IN <br><span class="menu-hint">заданные значения</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/like.html" data-module="activator" data-activate="">                   
+				LIKE <br><span class="menu-hint">T поиск по шаблону</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/as.html" data-module="activator" data-activate="">                   
+				AS <br><span class="menu-hint">смена имен полей</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/distinct.html" data-module="activator" data-activate="">                   
+				DISTINCT <br><span class="menu-hint">уникальные значения</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/not.html" data-module="activator" data-activate="">                   
+				NOT <br><span class="menu-hint">отрицание</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/is-not-null.html" data-module="activator" data-activate="">                   
+				IS NOT NULL <br><span class="menu-hint">значение не равно NULL</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/is-null.html" data-module="activator" data-activate="">                   
+				IS NULL <br><span class="menu-hint">значение равно NULL</span>
+			</a>
+		</li>
+	</ul>
+</div>
+<div>
+	<h2>Группировка</h2>
+	<ul>
+		<li>
+			<a href="http://old.code.mu/sql/group-by.html" data-module="activator" data-activate="" class="active">                   
+				GROUP BY <br><span class="menu-hint">группировка</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/having.html" data-module="activator" data-activate="">                   
+				HAVING <br><span class="menu-hint">условие на group by</span>
+			</a>
+		</li>
+	</ul>
+</div>
+<div>
+	<h2>Сложение строк</h2>
+	<ul>
+		<li>
+			<a href="http://old.code.mu/sql/concat.html" data-module="activator" data-activate="">                   
+				CONCAT <br><span class="menu-hint">сложение строк</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/concat_ws.html" data-module="activator" data-activate="">                   
+				CONCAT_WS <br><span class="menu-hint">сложение с разделителем</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/group_concat.html" data-module="activator" data-activate="">                   
+				GROUP_CONCAT <br><span class="menu-hint">сложение ячеек</span>
+			</a>
+		</li>
+	</ul>
+</div>
+<div>
+	<h2>Несколько таблиц</h2>
+	<ul>
+		<li>
+			<a href="http://old.code.mu/sql/union.html" data-module="activator" data-activate="">                   
+				UNION <br><span class="menu-hint">объединение таблиц</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/join.html" data-module="activator" data-activate="">                   
+				JOIN <br><span class="menu-hint">связывание таблиц</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/left-join.html" data-module="activator" data-activate="">                   
+				LEFT JOIN <br><span class="menu-hint">левый join</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/right-join.html" data-module="activator" data-activate="">                   
+				RIGHT JOIN <br><span class="menu-hint">правый join</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/inner-join.html" data-module="activator" data-activate="">                   
+				INNER JOIN <br><span class="menu-hint">внутренний join</span>
+			</a>
+		</li>
+		<!--
+			http://dimonchik.com/sql-select-into.html
+		-->
+		<li>
+			<a href="http://old.code.mu/sql/select-into.html" data-module="activator" data-activate="">                   
+				SELECT INTO <br><span class="menu-hint">копирование в другую таблицу</span>
+			</a>
+		</li>
+		
+	</ul>
+</div>
+<div>
+	<h2>Длина строк</h2>
+	<ul>
+		<li>
+			<a href="http://old.code.mu/sql/length.html" data-module="activator" data-activate="">                   
+				LENGTH <br><span class="menu-hint">длина строки</span>
+			</a>
+		</li>
+	</ul>
+</div>
+<div>
+	<h2>Изменение строк</h2>
+	<ul>
+		<li>
+			<a href="http://old.code.mu/sql/left.html" data-module="activator" data-activate="">                   
+				LEFT <br><span class="menu-hint">вырезание слева</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/right.html" data-module="activator" data-activate="">                   
+				RIGHT <br><span class="menu-hint">вырезание справа</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/substring.html" data-module="activator" data-activate="">                   
+				SUBSTRING <br><span class="menu-hint">взятие подстроки</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/mid.html" data-module="activator" data-activate="">                   
+				MID <br><span class="menu-hint">взятие подстроки</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/substring_index.html" data-module="activator" data-activate="">                   
+				SUBSTRING_INDEX <br><span class="menu-hint">взятие подстроки</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/replace.html" data-module="activator" data-activate="">                   
+				REPLACE <br><span class="menu-hint">поиск и замена</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/lpad.html" data-module="activator" data-activate="">                   
+				LPAD <br><span class="menu-hint">дополнение строки слева</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/rpad.html" data-module="activator" data-activate="">                   
+				RPAD <br><span class="menu-hint">дополнение строки справа</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/reverse.html" data-module="activator" data-activate="">                   
+				REVERSE <br><span class="menu-hint">переворот строки</span>
+			</a>
+		</li>	
+		<li>
+			<a href="http://old.code.mu/sql/repeat.html" data-module="activator" data-activate="">                   
+				REPEAT <br><span class="menu-hint">повторение строки</span>
+			</a>
+		</li>
+	</ul>
+</div>
+<div>
+	<h2>Поиск по строкам</h2>
+	<ul>
+		<li>
+			<a href="http://old.code.mu/sql/position.html" data-module="activator" data-activate="">                   
+				POSITION <br><span class="menu-hint">поиск подстроки</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/locate.html" data-module="activator" data-activate="">                   
+				LOCATE <br><span class="menu-hint">поиск подстроки</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/instr.html" data-module="activator" data-activate="">                   
+				INSTR <br><span class="menu-hint">поиск подстроки</span>
+			</a>
+		</li>
+	</ul>
+</div>
+<div>
+	<h2>Работа с пробелами</h2>
+	<ul>
+		<li>
+			<a href="http://old.code.mu/sql/trim.html" data-module="activator" data-activate="">                   
+				TRIM <br><span class="menu-hint">обрезание пробелов</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/ltrim.html" data-module="activator" data-activate="">                   
+				LTRIM <br><span class="menu-hint">обрезание пробелов слева</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/rtrim.html" data-module="activator" data-activate="">                   
+				RTRIM <br><span class="menu-hint">обрезание пробелов справа</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/space.html" data-module="activator" data-activate="">                   
+				SPACE <br><span class="menu-hint">строка из пробелов</span>
+			</a>
+		</li>
+	</ul>
+</div>	
+<div>
+	<h2>Работа с регистром</h2>
+	<ul>
+		<li>
+			<a href="http://old.code.mu/sql/lcase.html" data-module="activator" data-activate="">                   
+				LCASE, LOWER <br><span class="menu-hint">нижний регистр</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/ucase.html" data-module="activator" data-activate="">                   
+				UCASE, UPPER <br><span class="menu-hint">верхний регистр</span>
+			</a>
+		</li>
+	</ul>
+</div>
+<!--
+<div>
+	<h2>Структура базы данных</h2>
+		http://www.mysql.ru/docs/man/Miscellaneous_functions.html
+		
+		http://www.mysql.ru/docs/man/Data_Definition.html
+	
+	
+	<ul>
+		<li>
+			<a href="/sql/create-database.html" data-module="activator" data-activate>                   
+				CREATE DATABASE <br><span class="menu-hint">создание базы данных</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/create-table.html" data-module="activator" data-activate>                   
+				CREATE TABLE <br><span class="menu-hint">создание таблицы</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/drop.html" data-module="activator" data-activate>                   
+				DROP <br><span class="menu-hint">удаление баз и таблиц</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/alter.html" data-module="activator" data-activate>                   
+				ALTER <br><span class="menu-hint">изменение таблиц</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/truncate-table.html" data-module="activator" data-activate>                   
+				TRUNCATE TABLE <br><span class="menu-hint">очистка таблиц</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/rename.html" data-module="activator" data-activate>                   
+				RENAME <br><span class="menu-hint">очистка таблиц</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/create-index.html" data-module="activator" data-activate>                   
+				CREATE INDEX <br><span class="menu-hint">создание индекса</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/primary-key.html" data-module="activator" data-activate>                   
+				PRIMARY KEY <br><span class="menu-hint">первичный ключ</span>
+			</a>
+		</li>
+		
+			https://ru.wikipedia.org/wiki/%D0%92%D0%BD%D0%B5%D1%88%D0%BD%D0%B8%D0%B9_%D0%BA%D0%BB%D1%8E%D1%87
+		
+		<li>
+			<a href="/sql/foreign-key.html" data-module="activator" data-activate>                   
+				FOREIGN KEY <br><span class="menu-hint">поле связи</span>
+			</a>
+		</li>
+		
+	</ul>
+</div>
+<div>
+	<h2>Информация</h2>
+	<ul>
+		<li>
+			<a href="/sql/describe.html" data-module="activator" data-activate>                   
+				DESCRIBE <br><span class="menu-hint">информация о таблице</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/show-databases.html" data-module="activator" data-activate>                   
+				SHOW DATABASES <br><span class="menu-hint">информация о базах данных</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/show-columns.html" data-module="activator" data-activate>                   
+				SHOW COLUMNS <br><span class="menu-hint">информация о полях таблицы</span>
+			</a>
+		</li>
+		
+	</ul>
+</div>
+<div>
+	<h2>Условия</h2>
+	Полезные штуки местами
+		http://www.mysql.ru/docs/man/Comparison_Operators.html
+	<ul>
+		<li>
+			<a href="/sql/if-not-exists.html" data-module="activator" data-activate>                   
+				IF NOT EXISTS <br><span class="menu-hint">если не существует</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/if-exists.html" data-module="activator" data-activate>                   
+				IF EXISTS <br><span class="menu-hint">если существует</span>
+			</a>
+		</li>
+	</ul>
+</div>
+<div>
+	<h2>Полезное</h2>
+	
+		http://www.mysql.ru/docs/man/Miscellaneous_functions.html
+		LAST_INSERT_ID - клевая функция
+	
+	<ul>
+		<li>
+			<a href="/sql/last_insert_id.html" data-module="activator" data-activate>                   
+				LAST_INSERT_ID <br><span class="menu-hint">id последней записи</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/ignore.html" data-module="activator" data-activate>                   
+				IGNORE <br><span class="menu-hint"></span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/explain.html" data-module="activator" data-activate>                   
+				EXPLAIN <br><span class="menu-hint">план запроса</span>
+			</a>
+		</li>
+		
+	</ul>
+</div>
+-->					</div>
+					<div class="right sidebar">
+						<div>
+	<h2>Разное</h2>
+	<ul>
+		<li>
+			<a href="http://old.code.mu/sql/pages/types.html" data-module="activator" data-activate="">                   
+				Типы полей <br><span class="menu-hint"></span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/pages/normalization.html" data-module="activator" data-activate="">                   
+				Организация базы данных <br><span class="menu-hint">создание правильной структуры</span>
+			</a>
+		</li>
+		<!--
+		<li>
+			http://www.mysql.ru/docs/man/Arithmetic_functions.html
+			<a href="/sql/pages/math.html" data-module="activator" data-activate>                   
+				Арифметические операции <br><span class="menu-hint"></span>
+			</a>
+		</li>
+		-->
+		<li>
+			<a href="http://old.code.mu/sql/pages/subqueries.html" data-module="activator" data-activate="">                   
+				Подзапросы <br><span class="menu-hint"></span>
+			</a>
+		</li>
+		<li>
+			<!--
+				http://www.mysql.ru/docs/man/example-user-variables.html
+				
+				mysql> SELECT @min_price:=MIN(price),@max_price:=MAX(price) FROM shop;
+				mysql> SELECT * FROM shop WHERE price=@min_price OR price=@max_price;
+				
+				https://habrahabr.ru/post/133781/
+				тут еще про переменные
+				
+				цикл получается
+				SET @i = 0;
+				SELECT * FROM product WHERE MOD(@i:=@i+1, 2) = 0;
+			-->
+			<a href="http://old.code.mu/sql/pages/vars.html" data-module="activator" data-activate="">                   
+				Переменные sql <br><span class="menu-hint"></span>
+			</a>
+		</li>
+		
+	</ul>
+</div>
+
+<div>
+	<h2>Математические функции</h2>
+	<!--
+		http://www.mysql.ru/docs/man/Mathematical_functions.html
+		http://www.mysql.ru/docs/man/Group_by_functions.html
+	-->
+	<ul>
+		<li>
+			<a href="http://old.code.mu/sql/min.html" data-module="activator" data-activate="">                   
+				MIN <br><span class="menu-hint">минимальное значение</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/max.html" data-module="activator" data-activate="">                   
+				MAX <br><span class="menu-hint">максимальное значение</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/sum.html" data-module="activator" data-activate="">                   
+				SUM <br><span class="menu-hint">сумма полей</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/avg.html" data-module="activator" data-activate="">                   
+				AVG <br><span class="menu-hint">среднее арифметическое</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/round.html" data-module="activator" data-activate="">                   
+				ROUND <br><span class="menu-hint">округление</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/floor.html" data-module="activator" data-activate="">                   
+				FLOOR <br><span class="menu-hint">округление</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/ceiling.html" data-module="activator" data-activate="">                   
+				CEILING <br><span class="menu-hint">округление</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/truncate.html" data-module="activator" data-activate="">                   
+				TRUNCATE <br><span class="menu-hint">усечение числа</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/abs.html" data-module="activator" data-activate="">                   
+				ABS <br><span class="menu-hint">модуль числа</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/sign.html" data-module="activator" data-activate="">                   
+				SIGN <br><span class="menu-hint">знак числа</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/mod.html" data-module="activator" data-activate="">                   
+				MOD <br><span class="menu-hint">деление по модулю</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/pow.html" data-module="activator" data-activate="">                   
+				POW, POWER <br><span class="menu-hint">степень числа</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/sqrt.html" data-module="activator" data-activate="">                   
+				SQRT <br><span class="menu-hint">корень числа</span>
+			</a>
+		</li>
+		
+		<li>
+			<a href="http://old.code.mu/sql/rand.html" data-module="activator" data-activate="">                   
+				RAND <br><span class="menu-hint">случайное число</span>
+			</a>
+		</li>
+		
+		
+	</ul>
+</div>
+<div>
+	<h2>Списки</h2>
+	<ul>
+		<li>
+			<a href="http://old.code.mu/sql/least.html" data-module="activator" data-activate="">                   
+				LEAST <br><span class="menu-hint">минимальное из значений</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/greatest.html" data-module="activator" data-activate="">                   
+				GREATEST <br><span class="menu-hint">максимальное из значений</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/elt.html" data-module="activator" data-activate="">                   
+				ELT <br><span class="menu-hint">строка по номеру</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/field.html" data-module="activator" data-activate="">                   
+				FIELD <br><span class="menu-hint">номер по строке</span>
+			</a>
+		</li>
+	</ul>
+</div>
+<!--
+<div>
+	<h2>Хранение через запятую</h2>
+	<ul>
+		<li>
+			<a href="/sql/find_in_set.html" data-module="activator" data-activate>                   
+				FIND_IN_SET <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		
+		<li>
+			<a href="/sql/make_set.html" data-module="activator" data-activate>                   
+				MAKE_SET <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/export_set.html" data-module="activator" data-activate>                   
+				EXPORT_SET <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		
+	</ul>
+</div>
+-->
+<div>
+	<h2>Извлечение части даты</h2>
+	<ul>
+		<li>
+			<a href="http://old.code.mu/sql/day.html" data-module="activator" data-activate="">                   
+				DAY, DAYOFMONTH <br><span class="menu-hint">день из даты</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/month.html" data-module="activator" data-activate="">                   
+				MONTH <br><span class="menu-hint">месяц из даты</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/year.html" data-module="activator" data-activate="">                   
+				YEAR <br><span class="menu-hint">год из даты</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/hour.html" data-module="activator" data-activate="">                   
+				HOUR <br><span class="menu-hint">часы из даты</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/minute.html" data-module="activator" data-activate="">                   
+				MINUTE <br><span class="menu-hint">минуты из даты</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/second.html" data-module="activator" data-activate="">                   
+				SECOND <br><span class="menu-hint">секунды из даты</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/date.html" data-module="activator" data-activate="">                   
+				DATE <br><span class="menu-hint">дата из datetime</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/extract.html" data-module="activator" data-activate="">                   
+				EXTRACT <br><span class="menu-hint">части даты</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/weekday.html" data-module="activator" data-activate="">                   
+				WEEKDAY <br><span class="menu-hint">день недели</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/dayofweek.html" data-module="activator" data-activate="">                   
+				DAYOFWEEK <br><span class="menu-hint">день недели</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/dayname.html" data-module="activator" data-activate="">                   
+				DAYNAME <br><span class="menu-hint">название дня недели</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/monthname.html" data-module="activator" data-activate="">                   
+				MONTHNAME <br><span class="menu-hint">название месяца</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/dayofyear.html" data-module="activator" data-activate="">                   
+				DAYOFYEAR <br><span class="menu-hint">номер дня в году</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/week.html" data-module="activator" data-activate="">                   
+				WEEK <br><span class="menu-hint">ET номер недели в году</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/yearweek.html" data-module="activator" data-activate="">                   
+				YEARWEEK <br><span class="menu-hint">ET год и номер недели в году</span>
+			</a>
+		</li>
+	</ul>
+</div>	
+<div>
+	<h2>Получение даты и времени</h2>
+	<ul>
+		<li>
+			<a href="http://old.code.mu/sql/now.html" data-module="activator" data-activate="">                   
+				NOW, SYSDATE, CURRENT_TIMESTAMP <br><span class="menu-hint">текущие дата и время</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/current_date.html" data-module="activator" data-activate="">                   
+				CURRENT_DATE, CURDATE <br><span class="menu-hint">текущая дата</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/current_time.html" data-module="activator" data-activate="">                   
+				CURRENT_TIME, CURTIME <br><span class="menu-hint">текущее время</span>
+			</a>
+		</li>
+		
+	</ul>
+</div>	
+<div>
+	<h2>Преобразование даты</h2>
+	<ul>		
+		<li>
+			<a href="http://old.code.mu/sql/date_format.html" data-module="activator" data-activate="">                   
+				DATE_FORMAT <br><span class="menu-hint">смена формата даты</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/time_format.html" data-module="activator" data-activate="">                   
+				TIME_FORMAT <br><span class="menu-hint">смена формата времени</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/to_days.html" data-module="activator" data-activate="">                   
+				TO_DAYS <br><span class="menu-hint">дата в дни</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/from_days.html" data-module="activator" data-activate="">                   
+				FROM_DAYS <br><span class="menu-hint">дни в дату</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/sec_to_time.html" data-module="activator" data-activate="">                   
+				SEC_TO_TIME <br><span class="menu-hint">секунды в time</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/time_to_sec.html" data-module="activator" data-activate="">                   
+				TIME_TO_SEC <br><span class="menu-hint">время в секунды</span>
+			</a>
+		</li>
+	</ul>
+</div>	
+<div>
+	<h2>Сложение дат</h2>
+	<ul>
+		<li>
+			<a href="http://old.code.mu/sql/interval.html" data-module="activator" data-activate="">                   
+				INTERVAL <br><span class="menu-hint">операции с датами</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/date_add.html" data-module="activator" data-activate="">                   
+				DATE_ADD, ADDDATE <br><span class="menu-hint">сложение дат</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/date_sub.html" data-module="activator" data-activate="">                   
+				DATE_SUB, SUBDATE <br><span class="menu-hint">вычитание дат</span>
+			</a>
+		</li>
+		<!--
+		<li>
+			<a href="/sql/period_add.html" data-module="activator" data-activate>                   
+				PERIOD_ADD <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/period_diff.html" data-module="activator" data-activate>                   
+				PERIOD_DIFF <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		-->
+	</ul>
+</div>
+<!--
+<div>
+	<h2>?</h2>
+	<ul>
+		<li>
+			<a href="/sql/load_file.html" data-module="activator" data-activate>                   
+				LOAD_FILE <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+	</ul>
+</div>
+<div>
+	<h2>Тригонометрия</h2>
+	<ul>
+		<li>
+			<a href="/sql/sin.html" data-module="activator" data-activate>                   
+				SIN <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/cos.html" data-module="activator" data-activate>                   
+				COS <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/tan.html" data-module="activator" data-activate>                   
+				TAN <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/cot.html" data-module="activator" data-activate>                   
+				COT <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/asin.html" data-module="activator" data-activate>                   
+				ASIN <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/acos.html" data-module="activator" data-activate>                   
+				ACOS <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/atan.html" data-module="activator" data-activate>                   
+				ATAN <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/atan2.html" data-module="activator" data-activate>                   
+				ATAN2 <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/pi.html" data-module="activator" data-activate>                   
+				PI <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/degrees.html" data-module="activator" data-activate>                   
+				DEGREES <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/radians.html" data-module="activator" data-activate>                   
+				RADIANS <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/radians.html" data-module="activator" data-activate>                   
+				RADIANS <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		
+		
+	</ul>
+</div>
+<div>
+	<h2>Отдельные символы</h2>
+	<ul>
+		<li>
+			<a href="/sql/ascii.html" data-module="activator" data-activate>                   
+				ASCII <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/ord.html" data-module="activator" data-activate>                   
+				ORD <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		
+		<li>
+			<a href="/sql/char.html" data-module="activator" data-activate>                   
+				CHAR <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		
+	</ul>
+</div>
+<div>
+	<h2>Системы счисления</h2>
+	<ul>
+		<li>
+			<a href="/sql/bin.html" data-module="activator" data-activate>                   
+				BIN <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/oct.html" data-module="activator" data-activate>                   
+				OCT <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/hex.html" data-module="activator" data-activate>                   
+				HEX <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+	</ul>
+</div>
+-->					</div>
+				</div>
+			</aside>
+			<div class="content">
+				<main role="main">
+										<p>
+	Команда <strong>GROUP BY</strong> позволяет группировать результаты при выборке
+	из базы данных.
+</p>
+<p>
+	К сгруппированным результатам можно применять любые функции
+	(смотрите примеры).
+</p>
+
+<p class="also">
+	См. также команду <a class="sql" href="http://old.code.mu/sql/having.html">HAVING</a>,
+	которая позволяет накладывать условие на группы, созданные с помощью <span class="sql">GROUP BY</span>.
+</p>
+
+<h2>Синтаксис</h2>
+<div class="syntax-block">
+	<pre class="line-numbers language-sql"><code class=" language-sql"><span class="token keyword keyword-SELECT">SELECT</span> <span class="token operator">*</span> <span class="token keyword keyword-FROM">FROM</span> <span class="token string">имя_таблицы</span> <span class="token keyword keyword-WHERE">WHERE</span> <span class="token string">условие</span> <span class="token keyword keyword-GROUP">GROUP</span> <span class="token keyword keyword-BY">BY</span> <span class="token string">поле_для_группировки</span><span class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+</div>
+
+<h2>Примеры</h2>
+<p>
+	Все примеры будут по этой таблице <b>workers</b>, если не сказано иное:
+</p>
+<table class="table table-bordered table-colored">
+	<tbody><tr>
+		<th>id <br> <span class="field-name">айди</span></th>
+		<th>name <br> <span class="field-name">имя</span></th>
+		<th>age <br> <span class="field-name">возраст</span></th>
+		<th>salary <br> <span class="field-name">зарплата</span></th>
+	</tr>
+	<tr>
+		<td>1</td>
+		<td>Дима</td>
+		<td>23</td>
+		<td>100</td>
+	</tr>
+	<tr>
+		<td>2</td>
+		<td>Петя</td>
+		<td>23</td>
+		<td>200</td>
+	</tr>
+	<tr>
+		<td>3</td>
+		<td>Вася</td>
+		<td>23</td>
+		<td>300</td>
+	</tr>
+	<tr>
+		<td>4</td>
+		<td>Коля</td>
+		<td>24</td>
+		<td>1000</td>
+	</tr>
+	<tr>
+		<td>5</td>
+		<td>Иван</td>
+		<td>24</td>
+		<td>2000</td>
+	</tr>
+	<tr>
+		<td>6</td>
+		<td>Кирилл</td>
+		<td>25</td>
+		<td>1000</td>
+	</tr>
+</tbody></table>
+
+<h3>Пример <span class="-page-"></span></h3>
+<p>
+	В данном примере записи группируются по возрасту (будет 3 группы - 23 года, 24 года и 25 лет).
+	Затем для каждой группы применяется функция <a class="sql" href="http://old.code.mu/sql/sum.html">SUM</a>,
+	которая суммирует зарплаты внутри данной группы.
+</p>
+<p>
+	В результате для каждой из групп (23 года, 24 года и 25 лет) будет подсчитана суммарная
+	зарплата внутри этой группы:
+</p>
+<div class="example-block">
+	<pre class="line-numbers language-sql"><code class=" language-sql"><span class="token keyword keyword-SELECT">SELECT</span> <span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span>age, <span class="token keyword keyword-SUM">SUM</span>(salary) <span class="token keyword keyword-as">as</span> sum <span class="token keyword keyword-FROM">FROM</span> workers <span class="token keyword keyword-GROUP">GROUP</span> <span class="token keyword keyword-BY">BY</span> age<span class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+	<p class="example-result">
+		SQL запрос выберет следующие строки:
+	</p>
+	<table class="table table-bordered table-colored">
+		<tbody><tr>
+			<th>age <br> <span class="field-name">возраст</span></th>
+			<th>sum <br> <span class="field-name">сумма</span></th>
+		</tr>
+		<tr>
+			<td>23</td>
+			<td>600</td>
+		</tr>
+		<tr>
+			<td>24</td>
+			<td>3000</td>
+		</tr>
+		<tr>
+			<td>25</td>
+			<td>1000</td>
+		</tr>
+	</tbody></table>
+</div>
+
+<h3>Пример <span class="-page-"></span></h3>
+<p>
+	В данном примере мы используем дополнительное условие <a class="sql" href="http://old.code.mu/sql/where.html">WHERE</a>,
+	чтобы взять не все записи из таблицы:
+</p>
+<div class="example-block">
+	<pre class="line-numbers language-sql"><code class=" language-sql"><span class="token keyword keyword-SELECT">SELECT</span> <span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span>age, <span class="token keyword keyword-SUM">SUM</span>(salary) <span class="token keyword keyword-as">as</span> sum <span class="token keyword keyword-FROM">FROM</span> workers <span class="token keyword keyword-WHERE">WHERE</span> id&gt;=<span class="token number">2</span> <span class="token keyword keyword-GROUP">GROUP</span> <span class="token keyword keyword-BY">BY</span> age<span class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+	<p class="example-result">
+		SQL запрос выберет следующие строки:
+	</p>
+	<table class="table table-bordered table-colored">
+		<tbody><tr>
+			<th>age <br> <span class="field-name">возраст</span></th>
+			<th>sum <br> <span class="field-name">сумма</span></th>
+		</tr>
+		<tr>
+			<td>23</td>
+			<td>500</td>
+		</tr>
+		<tr>
+			<td>24</td>
+			<td>3000</td>
+		</tr>
+		<tr>
+			<td>25</td>
+			<td>1000</td>
+		</tr>
+	</tbody></table>
+</div>
+
+<h3>Пример <span class="-page-"></span></h3>
+<p>
+	В данном примере записи группируются по возрасту (будет 3 группы - 23 года, 24 года и 25 лет).
+	Затем для каждой группы применяется функция <a class="sql" href="http://old.code.mu/sql/max.html">MAX</a>,
+	которая находит максимальную зарплату внутри данной группы:
+</p>
+<div class="example-block">
+	<pre class="line-numbers language-sql"><code class=" language-sql"><span class="token keyword keyword-SELECT">SELECT</span> <span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span>age, <span class="token keyword keyword-MAX">MAX</span>(salary) <span class="token keyword keyword-as">as</span> max <span class="token keyword keyword-FROM">FROM</span> workers <span class="token keyword keyword-GROUP">GROUP</span> <span class="token keyword keyword-BY">BY</span> age<span class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+	<p class="example-result">
+		SQL запрос выберет следующие строки:
+	</p>
+	<table class="table table-bordered table-colored">
+		<tbody><tr>
+			<th>age <br> <span class="field-name">возраст</span></th>
+			<th>max <br> <span class="field-name">максимальная зарплата</span></th>
+		</tr>
+		<tr>
+			<td>23</td>
+			<td>300</td>
+		</tr>
+		<tr>
+			<td>24</td>
+			<td>2000</td>
+		</tr>
+		<tr>
+			<td>25</td>
+			<td>1000</td>
+		</tr>
+	</tbody></table>
+</div>
+
+<h3>Пример <span class="-page-"></span></h3>
+<p>
+	А теперь с помощью функции <a class="sql" href="http://old.code.mu/sql/min.html">MIN</a>
+	найдется минимальная зарплата внутри данной группы:
+</p>
+<div class="example-block">
+	<pre class="line-numbers language-sql"><code class=" language-sql"><span class="token keyword keyword-SELECT">SELECT</span> <span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span>age, <span class="token keyword keyword-MIN">MIN</span>(salary) <span class="token keyword keyword-as">as</span> min <span class="token keyword keyword-FROM">FROM</span> workers <span class="token keyword keyword-GROUP">GROUP</span> <span class="token keyword keyword-BY">BY</span> age<span class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+	<p class="example-result">
+		SQL запрос выберет следующие строки:
+	</p>
+	<table class="table table-bordered table-colored">
+		<tbody><tr>
+			<th>age <br> <span class="field-name">возраст</span></th>
+			<th>min <br> <span class="field-name">минимальная зарплата</span></th>
+		</tr>
+		<tr>
+			<td>23</td>
+			<td>100</td>
+		</tr>
+		<tr>
+			<td>24</td>
+			<td>1000</td>
+		</tr>
+		<tr>
+			<td>25</td>
+			<td>1000</td>
+		</tr>
+	</tbody></table>
+</div>
+
+<h3>Пример <span class="-page-"></span></h3>
+<p>
+	А теперь с помощью функции <a class="sql" href="http://old.code.mu/sql/count.html">COUNT</a>
+	найдется количество записей в группе:
+</p>
+<div class="example-block">
+	<pre class="line-numbers language-sql"><code class=" language-sql"><span class="token keyword keyword-SELECT">SELECT</span> <span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span><span class="token operator"></span>age, <span class="token keyword keyword-COUNT">COUNT</span>(*) <span class="token keyword keyword-as">as</span> count <span class="token keyword keyword-FROM">FROM</span> workers <span class="token keyword keyword-GROUP">GROUP</span> <span class="token keyword keyword-BY">BY</span> age<span class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+	<p class="example-result">
+		SQL запрос выберет следующие строки:
+	</p>
+	<table class="table table-bordered table-colored">
+		<tbody><tr>
+			<th>age <br> <span class="field-name">возраст</span></th>
+			<th>count <br> <span class="field-name">количество</span></th>
+		</tr>
+		<tr>
+			<td>23</td>
+			<td>3</td>
+		</tr>
+		<tr>
+			<td>24</td>
+			<td>2</td>
+		</tr>
+		<tr>
+			<td>25</td>
+			<td>1</td>
+		</tr>
+	</tbody></table>
+</div>										<div class="nav-block siblings-block">
+			<a href="http://old.code.mu/sql/is-null.html" class="prev"><span class="arrow">←</span> Предыдущая страница</a>
+				<a href="http://old.code.mu/sql/having.html" class="next">Следующая страница <span class="arrow">→</span></a>
+	</div>
+
+				</main>
+				<aside>
+					<div class="bottom-menu" id="menu">
+						<div class="left sidebar">
+							<div>
+	<h2>Основные запросы</h2>
+	<ul>
+		<li>
+			<a href="http://old.code.mu/sql/select.html" data-module="activator" data-activate="">                   
+				SELECT <br><span class="menu-hint">получение записей</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/insert.html" data-module="activator" data-activate="">                   
+				INSERT <br><span class="menu-hint">вставка записей</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/update.html" data-module="activator" data-activate="">                   
+				UPDATE <br><span class="menu-hint">редактирование записей</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/delete.html" data-module="activator" data-activate="">                   
+				DELETE <br><span class="menu-hint">удаление записей</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/count.html" data-module="activator" data-activate="">                   
+				COUNT <br><span class="menu-hint">подсчет записей</span>
+			</a>
+		</li>
+		
+	</ul>
+</div>
+<div>
+	<h2>Условия выборки</h2>
+	<ul>
+		<li>
+			<a href="http://old.code.mu/sql/where.html" data-module="activator" data-activate="">                   
+				WHERE <br><span class="menu-hint">условие</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/or.html" data-module="activator" data-activate="">                   
+				OR <br><span class="menu-hint">логическое ИЛИ</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/and.html" data-module="activator" data-activate="">                   
+				AND <br><span class="menu-hint">логическое И</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/order-by.html" data-module="activator" data-activate="">                   
+				ORDER BY <br><span class="menu-hint">сортировка</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/limit.html" data-module="activator" data-activate="">                   
+				LIMIT <br><span class="menu-hint">ограничение выборки</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/between.html" data-module="activator" data-activate="">                   
+				BETWEEN <br><span class="menu-hint">выбор из промежутка</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/in.html" data-module="activator" data-activate="">                   
+				IN <br><span class="menu-hint">заданные значения</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/like.html" data-module="activator" data-activate="">                   
+				LIKE <br><span class="menu-hint">T поиск по шаблону</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/as.html" data-module="activator" data-activate="">                   
+				AS <br><span class="menu-hint">смена имен полей</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/distinct.html" data-module="activator" data-activate="">                   
+				DISTINCT <br><span class="menu-hint">уникальные значения</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/not.html" data-module="activator" data-activate="">                   
+				NOT <br><span class="menu-hint">отрицание</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/is-not-null.html" data-module="activator" data-activate="">                   
+				IS NOT NULL <br><span class="menu-hint">значение не равно NULL</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/is-null.html" data-module="activator" data-activate="">                   
+				IS NULL <br><span class="menu-hint">значение равно NULL</span>
+			</a>
+		</li>
+	</ul>
+</div>
+<div>
+	<h2>Группировка</h2>
+	<ul>
+		<li>
+			<a href="http://old.code.mu/sql/group-by.html" data-module="activator" data-activate="" class="active">                   
+				GROUP BY <br><span class="menu-hint">группировка</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/having.html" data-module="activator" data-activate="">                   
+				HAVING <br><span class="menu-hint">условие на group by</span>
+			</a>
+		</li>
+	</ul>
+</div>
+<div>
+	<h2>Сложение строк</h2>
+	<ul>
+		<li>
+			<a href="http://old.code.mu/sql/concat.html" data-module="activator" data-activate="">                   
+				CONCAT <br><span class="menu-hint">сложение строк</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/concat_ws.html" data-module="activator" data-activate="">                   
+				CONCAT_WS <br><span class="menu-hint">сложение с разделителем</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/group_concat.html" data-module="activator" data-activate="">                   
+				GROUP_CONCAT <br><span class="menu-hint">сложение ячеек</span>
+			</a>
+		</li>
+	</ul>
+</div>
+<div>
+	<h2>Несколько таблиц</h2>
+	<ul>
+		<li>
+			<a href="http://old.code.mu/sql/union.html" data-module="activator" data-activate="">                   
+				UNION <br><span class="menu-hint">объединение таблиц</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/join.html" data-module="activator" data-activate="">                   
+				JOIN <br><span class="menu-hint">связывание таблиц</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/left-join.html" data-module="activator" data-activate="">                   
+				LEFT JOIN <br><span class="menu-hint">левый join</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/right-join.html" data-module="activator" data-activate="">                   
+				RIGHT JOIN <br><span class="menu-hint">правый join</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/inner-join.html" data-module="activator" data-activate="">                   
+				INNER JOIN <br><span class="menu-hint">внутренний join</span>
+			</a>
+		</li>
+		<!--
+			http://dimonchik.com/sql-select-into.html
+		-->
+		<li>
+			<a href="http://old.code.mu/sql/select-into.html" data-module="activator" data-activate="">                   
+				SELECT INTO <br><span class="menu-hint">копирование в другую таблицу</span>
+			</a>
+		</li>
+		
+	</ul>
+</div>
+<div>
+	<h2>Длина строк</h2>
+	<ul>
+		<li>
+			<a href="http://old.code.mu/sql/length.html" data-module="activator" data-activate="">                   
+				LENGTH <br><span class="menu-hint">длина строки</span>
+			</a>
+		</li>
+	</ul>
+</div>
+<div>
+	<h2>Изменение строк</h2>
+	<ul>
+		<li>
+			<a href="http://old.code.mu/sql/left.html" data-module="activator" data-activate="">                   
+				LEFT <br><span class="menu-hint">вырезание слева</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/right.html" data-module="activator" data-activate="">                   
+				RIGHT <br><span class="menu-hint">вырезание справа</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/substring.html" data-module="activator" data-activate="">                   
+				SUBSTRING <br><span class="menu-hint">взятие подстроки</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/mid.html" data-module="activator" data-activate="">                   
+				MID <br><span class="menu-hint">взятие подстроки</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/substring_index.html" data-module="activator" data-activate="">                   
+				SUBSTRING_INDEX <br><span class="menu-hint">взятие подстроки</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/replace.html" data-module="activator" data-activate="">                   
+				REPLACE <br><span class="menu-hint">поиск и замена</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/lpad.html" data-module="activator" data-activate="">                   
+				LPAD <br><span class="menu-hint">дополнение строки слева</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/rpad.html" data-module="activator" data-activate="">                   
+				RPAD <br><span class="menu-hint">дополнение строки справа</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/reverse.html" data-module="activator" data-activate="">                   
+				REVERSE <br><span class="menu-hint">переворот строки</span>
+			</a>
+		</li>	
+		<li>
+			<a href="http://old.code.mu/sql/repeat.html" data-module="activator" data-activate="">                   
+				REPEAT <br><span class="menu-hint">повторение строки</span>
+			</a>
+		</li>
+	</ul>
+</div>
+<div>
+	<h2>Поиск по строкам</h2>
+	<ul>
+		<li>
+			<a href="http://old.code.mu/sql/position.html" data-module="activator" data-activate="">                   
+				POSITION <br><span class="menu-hint">поиск подстроки</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/locate.html" data-module="activator" data-activate="">                   
+				LOCATE <br><span class="menu-hint">поиск подстроки</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/instr.html" data-module="activator" data-activate="">                   
+				INSTR <br><span class="menu-hint">поиск подстроки</span>
+			</a>
+		</li>
+	</ul>
+</div>
+<div>
+	<h2>Работа с пробелами</h2>
+	<ul>
+		<li>
+			<a href="http://old.code.mu/sql/trim.html" data-module="activator" data-activate="">                   
+				TRIM <br><span class="menu-hint">обрезание пробелов</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/ltrim.html" data-module="activator" data-activate="">                   
+				LTRIM <br><span class="menu-hint">обрезание пробелов слева</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/rtrim.html" data-module="activator" data-activate="">                   
+				RTRIM <br><span class="menu-hint">обрезание пробелов справа</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/space.html" data-module="activator" data-activate="">                   
+				SPACE <br><span class="menu-hint">строка из пробелов</span>
+			</a>
+		</li>
+	</ul>
+</div>	
+<div>
+	<h2>Работа с регистром</h2>
+	<ul>
+		<li>
+			<a href="http://old.code.mu/sql/lcase.html" data-module="activator" data-activate="">                   
+				LCASE, LOWER <br><span class="menu-hint">нижний регистр</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/ucase.html" data-module="activator" data-activate="">                   
+				UCASE, UPPER <br><span class="menu-hint">верхний регистр</span>
+			</a>
+		</li>
+	</ul>
+</div>
+<!--
+<div>
+	<h2>Структура базы данных</h2>
+		http://www.mysql.ru/docs/man/Miscellaneous_functions.html
+		
+		http://www.mysql.ru/docs/man/Data_Definition.html
+	
+	
+	<ul>
+		<li>
+			<a href="/sql/create-database.html" data-module="activator" data-activate>                   
+				CREATE DATABASE <br><span class="menu-hint">создание базы данных</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/create-table.html" data-module="activator" data-activate>                   
+				CREATE TABLE <br><span class="menu-hint">создание таблицы</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/drop.html" data-module="activator" data-activate>                   
+				DROP <br><span class="menu-hint">удаление баз и таблиц</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/alter.html" data-module="activator" data-activate>                   
+				ALTER <br><span class="menu-hint">изменение таблиц</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/truncate-table.html" data-module="activator" data-activate>                   
+				TRUNCATE TABLE <br><span class="menu-hint">очистка таблиц</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/rename.html" data-module="activator" data-activate>                   
+				RENAME <br><span class="menu-hint">очистка таблиц</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/create-index.html" data-module="activator" data-activate>                   
+				CREATE INDEX <br><span class="menu-hint">создание индекса</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/primary-key.html" data-module="activator" data-activate>                   
+				PRIMARY KEY <br><span class="menu-hint">первичный ключ</span>
+			</a>
+		</li>
+		
+			https://ru.wikipedia.org/wiki/%D0%92%D0%BD%D0%B5%D1%88%D0%BD%D0%B8%D0%B9_%D0%BA%D0%BB%D1%8E%D1%87
+		
+		<li>
+			<a href="/sql/foreign-key.html" data-module="activator" data-activate>                   
+				FOREIGN KEY <br><span class="menu-hint">поле связи</span>
+			</a>
+		</li>
+		
+	</ul>
+</div>
+<div>
+	<h2>Информация</h2>
+	<ul>
+		<li>
+			<a href="/sql/describe.html" data-module="activator" data-activate>                   
+				DESCRIBE <br><span class="menu-hint">информация о таблице</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/show-databases.html" data-module="activator" data-activate>                   
+				SHOW DATABASES <br><span class="menu-hint">информация о базах данных</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/show-columns.html" data-module="activator" data-activate>                   
+				SHOW COLUMNS <br><span class="menu-hint">информация о полях таблицы</span>
+			</a>
+		</li>
+		
+	</ul>
+</div>
+<div>
+	<h2>Условия</h2>
+	Полезные штуки местами
+		http://www.mysql.ru/docs/man/Comparison_Operators.html
+	<ul>
+		<li>
+			<a href="/sql/if-not-exists.html" data-module="activator" data-activate>                   
+				IF NOT EXISTS <br><span class="menu-hint">если не существует</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/if-exists.html" data-module="activator" data-activate>                   
+				IF EXISTS <br><span class="menu-hint">если существует</span>
+			</a>
+		</li>
+	</ul>
+</div>
+<div>
+	<h2>Полезное</h2>
+	
+		http://www.mysql.ru/docs/man/Miscellaneous_functions.html
+		LAST_INSERT_ID - клевая функция
+	
+	<ul>
+		<li>
+			<a href="/sql/last_insert_id.html" data-module="activator" data-activate>                   
+				LAST_INSERT_ID <br><span class="menu-hint">id последней записи</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/ignore.html" data-module="activator" data-activate>                   
+				IGNORE <br><span class="menu-hint"></span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/explain.html" data-module="activator" data-activate>                   
+				EXPLAIN <br><span class="menu-hint">план запроса</span>
+			</a>
+		</li>
+		
+	</ul>
+</div>
+-->						</div>
+						<div class="right sidebar">
+							<div>
+	<h2>Разное</h2>
+	<ul>
+		<li>
+			<a href="http://old.code.mu/sql/pages/types.html" data-module="activator" data-activate="">                   
+				Типы полей <br><span class="menu-hint"></span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/pages/normalization.html" data-module="activator" data-activate="">                   
+				Организация базы данных <br><span class="menu-hint">создание правильной структуры</span>
+			</a>
+		</li>
+		<!--
+		<li>
+			http://www.mysql.ru/docs/man/Arithmetic_functions.html
+			<a href="/sql/pages/math.html" data-module="activator" data-activate>                   
+				Арифметические операции <br><span class="menu-hint"></span>
+			</a>
+		</li>
+		-->
+		<li>
+			<a href="http://old.code.mu/sql/pages/subqueries.html" data-module="activator" data-activate="">                   
+				Подзапросы <br><span class="menu-hint"></span>
+			</a>
+		</li>
+		<li>
+			<!--
+				http://www.mysql.ru/docs/man/example-user-variables.html
+				
+				mysql> SELECT @min_price:=MIN(price),@max_price:=MAX(price) FROM shop;
+				mysql> SELECT * FROM shop WHERE price=@min_price OR price=@max_price;
+				
+				https://habrahabr.ru/post/133781/
+				тут еще про переменные
+				
+				цикл получается
+				SET @i = 0;
+				SELECT * FROM product WHERE MOD(@i:=@i+1, 2) = 0;
+			-->
+			<a href="http://old.code.mu/sql/pages/vars.html" data-module="activator" data-activate="">                   
+				Переменные sql <br><span class="menu-hint"></span>
+			</a>
+		</li>
+		
+	</ul>
+</div>
+
+<div>
+	<h2>Математические функции</h2>
+	<!--
+		http://www.mysql.ru/docs/man/Mathematical_functions.html
+		http://www.mysql.ru/docs/man/Group_by_functions.html
+	-->
+	<ul>
+		<li>
+			<a href="http://old.code.mu/sql/min.html" data-module="activator" data-activate="">                   
+				MIN <br><span class="menu-hint">минимальное значение</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/max.html" data-module="activator" data-activate="">                   
+				MAX <br><span class="menu-hint">максимальное значение</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/sum.html" data-module="activator" data-activate="">                   
+				SUM <br><span class="menu-hint">сумма полей</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/avg.html" data-module="activator" data-activate="">                   
+				AVG <br><span class="menu-hint">среднее арифметическое</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/round.html" data-module="activator" data-activate="">                   
+				ROUND <br><span class="menu-hint">округление</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/floor.html" data-module="activator" data-activate="">                   
+				FLOOR <br><span class="menu-hint">округление</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/ceiling.html" data-module="activator" data-activate="">                   
+				CEILING <br><span class="menu-hint">округление</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/truncate.html" data-module="activator" data-activate="">                   
+				TRUNCATE <br><span class="menu-hint">усечение числа</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/abs.html" data-module="activator" data-activate="">                   
+				ABS <br><span class="menu-hint">модуль числа</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/sign.html" data-module="activator" data-activate="">                   
+				SIGN <br><span class="menu-hint">знак числа</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/mod.html" data-module="activator" data-activate="">                   
+				MOD <br><span class="menu-hint">деление по модулю</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/pow.html" data-module="activator" data-activate="">                   
+				POW, POWER <br><span class="menu-hint">степень числа</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/sqrt.html" data-module="activator" data-activate="">                   
+				SQRT <br><span class="menu-hint">корень числа</span>
+			</a>
+		</li>
+		
+		<li>
+			<a href="http://old.code.mu/sql/rand.html" data-module="activator" data-activate="">                   
+				RAND <br><span class="menu-hint">случайное число</span>
+			</a>
+		</li>
+		
+		
+	</ul>
+</div>
+<div>
+	<h2>Списки</h2>
+	<ul>
+		<li>
+			<a href="http://old.code.mu/sql/least.html" data-module="activator" data-activate="">                   
+				LEAST <br><span class="menu-hint">минимальное из значений</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/greatest.html" data-module="activator" data-activate="">                   
+				GREATEST <br><span class="menu-hint">максимальное из значений</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/elt.html" data-module="activator" data-activate="">                   
+				ELT <br><span class="menu-hint">строка по номеру</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/field.html" data-module="activator" data-activate="">                   
+				FIELD <br><span class="menu-hint">номер по строке</span>
+			</a>
+		</li>
+	</ul>
+</div>
+<!--
+<div>
+	<h2>Хранение через запятую</h2>
+	<ul>
+		<li>
+			<a href="/sql/find_in_set.html" data-module="activator" data-activate>                   
+				FIND_IN_SET <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		
+		<li>
+			<a href="/sql/make_set.html" data-module="activator" data-activate>                   
+				MAKE_SET <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/export_set.html" data-module="activator" data-activate>                   
+				EXPORT_SET <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		
+	</ul>
+</div>
+-->
+<div>
+	<h2>Извлечение части даты</h2>
+	<ul>
+		<li>
+			<a href="http://old.code.mu/sql/day.html" data-module="activator" data-activate="">                   
+				DAY, DAYOFMONTH <br><span class="menu-hint">день из даты</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/month.html" data-module="activator" data-activate="">                   
+				MONTH <br><span class="menu-hint">месяц из даты</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/year.html" data-module="activator" data-activate="">                   
+				YEAR <br><span class="menu-hint">год из даты</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/hour.html" data-module="activator" data-activate="">                   
+				HOUR <br><span class="menu-hint">часы из даты</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/minute.html" data-module="activator" data-activate="">                   
+				MINUTE <br><span class="menu-hint">минуты из даты</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/second.html" data-module="activator" data-activate="">                   
+				SECOND <br><span class="menu-hint">секунды из даты</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/date.html" data-module="activator" data-activate="">                   
+				DATE <br><span class="menu-hint">дата из datetime</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/extract.html" data-module="activator" data-activate="">                   
+				EXTRACT <br><span class="menu-hint">части даты</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/weekday.html" data-module="activator" data-activate="">                   
+				WEEKDAY <br><span class="menu-hint">день недели</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/dayofweek.html" data-module="activator" data-activate="">                   
+				DAYOFWEEK <br><span class="menu-hint">день недели</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/dayname.html" data-module="activator" data-activate="">                   
+				DAYNAME <br><span class="menu-hint">название дня недели</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/monthname.html" data-module="activator" data-activate="">                   
+				MONTHNAME <br><span class="menu-hint">название месяца</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/dayofyear.html" data-module="activator" data-activate="">                   
+				DAYOFYEAR <br><span class="menu-hint">номер дня в году</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/week.html" data-module="activator" data-activate="">                   
+				WEEK <br><span class="menu-hint">ET номер недели в году</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/yearweek.html" data-module="activator" data-activate="">                   
+				YEARWEEK <br><span class="menu-hint">ET год и номер недели в году</span>
+			</a>
+		</li>
+	</ul>
+</div>	
+<div>
+	<h2>Получение даты и времени</h2>
+	<ul>
+		<li>
+			<a href="http://old.code.mu/sql/now.html" data-module="activator" data-activate="">                   
+				NOW, SYSDATE, CURRENT_TIMESTAMP <br><span class="menu-hint">текущие дата и время</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/current_date.html" data-module="activator" data-activate="">                   
+				CURRENT_DATE, CURDATE <br><span class="menu-hint">текущая дата</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/current_time.html" data-module="activator" data-activate="">                   
+				CURRENT_TIME, CURTIME <br><span class="menu-hint">текущее время</span>
+			</a>
+		</li>
+		
+	</ul>
+</div>	
+<div>
+	<h2>Преобразование даты</h2>
+	<ul>		
+		<li>
+			<a href="http://old.code.mu/sql/date_format.html" data-module="activator" data-activate="">                   
+				DATE_FORMAT <br><span class="menu-hint">смена формата даты</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/time_format.html" data-module="activator" data-activate="">                   
+				TIME_FORMAT <br><span class="menu-hint">смена формата времени</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/to_days.html" data-module="activator" data-activate="">                   
+				TO_DAYS <br><span class="menu-hint">дата в дни</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/from_days.html" data-module="activator" data-activate="">                   
+				FROM_DAYS <br><span class="menu-hint">дни в дату</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/sec_to_time.html" data-module="activator" data-activate="">                   
+				SEC_TO_TIME <br><span class="menu-hint">секунды в time</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/time_to_sec.html" data-module="activator" data-activate="">                   
+				TIME_TO_SEC <br><span class="menu-hint">время в секунды</span>
+			</a>
+		</li>
+	</ul>
+</div>	
+<div>
+	<h2>Сложение дат</h2>
+	<ul>
+		<li>
+			<a href="http://old.code.mu/sql/interval.html" data-module="activator" data-activate="">                   
+				INTERVAL <br><span class="menu-hint">операции с датами</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/date_add.html" data-module="activator" data-activate="">                   
+				DATE_ADD, ADDDATE <br><span class="menu-hint">сложение дат</span>
+			</a>
+		</li>
+		<li>
+			<a href="http://old.code.mu/sql/date_sub.html" data-module="activator" data-activate="">                   
+				DATE_SUB, SUBDATE <br><span class="menu-hint">вычитание дат</span>
+			</a>
+		</li>
+		<!--
+		<li>
+			<a href="/sql/period_add.html" data-module="activator" data-activate>                   
+				PERIOD_ADD <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/period_diff.html" data-module="activator" data-activate>                   
+				PERIOD_DIFF <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		-->
+	</ul>
+</div>
+<!--
+<div>
+	<h2>?</h2>
+	<ul>
+		<li>
+			<a href="/sql/load_file.html" data-module="activator" data-activate>                   
+				LOAD_FILE <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+	</ul>
+</div>
+<div>
+	<h2>Тригонометрия</h2>
+	<ul>
+		<li>
+			<a href="/sql/sin.html" data-module="activator" data-activate>                   
+				SIN <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/cos.html" data-module="activator" data-activate>                   
+				COS <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/tan.html" data-module="activator" data-activate>                   
+				TAN <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/cot.html" data-module="activator" data-activate>                   
+				COT <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/asin.html" data-module="activator" data-activate>                   
+				ASIN <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/acos.html" data-module="activator" data-activate>                   
+				ACOS <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/atan.html" data-module="activator" data-activate>                   
+				ATAN <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/atan2.html" data-module="activator" data-activate>                   
+				ATAN2 <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/pi.html" data-module="activator" data-activate>                   
+				PI <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/degrees.html" data-module="activator" data-activate>                   
+				DEGREES <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/radians.html" data-module="activator" data-activate>                   
+				RADIANS <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/radians.html" data-module="activator" data-activate>                   
+				RADIANS <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		
+		
+	</ul>
+</div>
+<div>
+	<h2>Отдельные символы</h2>
+	<ul>
+		<li>
+			<a href="/sql/ascii.html" data-module="activator" data-activate>                   
+				ASCII <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/ord.html" data-module="activator" data-activate>                   
+				ORD <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		
+		<li>
+			<a href="/sql/char.html" data-module="activator" data-activate>                   
+				CHAR <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		
+	</ul>
+</div>
+<div>
+	<h2>Системы счисления</h2>
+	<ul>
+		<li>
+			<a href="/sql/bin.html" data-module="activator" data-activate>                   
+				BIN <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/oct.html" data-module="activator" data-activate>                   
+				OCT <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+		<li>
+			<a href="/sql/hex.html" data-module="activator" data-activate>                   
+				HEX <br><span class="menu-hint">?</span>
+			</a>
+		</li>
+	</ul>
+</div>
+-->						</div>
+					</div>
+				</aside>
+			</div>
+			<footer>
+				<div class="footer">
+					<div class="C">
+	Трепачёв Дмитрий Петрович ©  2012-2020 г.
+	<br>
+	По всем вопросам пишите в контакт: <a href="https://vk.com/id55437525">Я в контакте</a>
+</div>				</div>
+			</footer>
+		</div>
+		<script>
+			$('iframe:not([style])').on('load', function(){$(this).height($(this).contents().find('html').height());})
+		</script>
+		<script src="%D0%9A%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%D0%B0%20GROUP%20BY%20-%20%D0%B3%D1%80%D1%83%D0%BF%D0%BF%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0%20%D0%BF%D1%80%D0%B8%20%D0%B2%D1%8B%D0%B1%D0%BE%D1%80%D0%BA%D0%B5%20%D0%B8%D0%B7%20%D0%B1%D0%B0%D0%B7%D1%8B%20%D0%B4%D0%B0%D0%BD%D0%BD%D1%8B%D1%85%20%D0%A2%D1%80%D0%B5%D0%BF%D0%B0%D1%87%D1%91%D0%B2%20%D0%94%D0%BC%D0%B8%D1%82%D1%80%D0%B8%D0%B9_files/prism.js"></script>
+		
+		<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(55311799, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/55311799" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->	
+</body></html>

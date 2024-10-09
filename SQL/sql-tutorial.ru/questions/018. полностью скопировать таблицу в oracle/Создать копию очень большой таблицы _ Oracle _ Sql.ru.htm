@@ -1,0 +1,1436 @@
+<!--?xml version="1.0"?-->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="ru" lang="ru"><head>
+  <title>Создать копию очень большой таблицы / Oracle / Sql.ru</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=windows-1251">
+  <link title="Sql.ru Forum search" type="application/opensearchdescription+xml" rel="search" href="https://www.sql.ru/forum/provider.xml">
+  <link rel="stylesheet" type="text/css" href="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/actualforum2.css" media="screen">
+    <!--[if lte IE 6]>
+    <link rel="stylesheet" type="text/css" href="/css/ie.css" media="screen" />
+    <![endif]-->
+  <meta name="Description" content="Создать копию очень большой таблицы / Oracle / Есть большая таблица с данными ~ 20Гигов. с которой нужно сделать копию в той-же схеме, что и оригинальная, при этом не останавливая работы пользователей. Есть ли какой-нибудь красивый способ сделать это в ORACLE, чтобы не положить нафиг сервак?Точная коп..."><link rel="canonical" href="https://www.sql.ru/forum/745617/sozdat-kopiu-ochen-bolshoy-tablicy"><link rel="next" href="https://www.sql.ru/forum/745617-2/sozdat-kopiu-ochen-bolshoy-tablicy">
+  <script src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/osd.js"></script><script src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/cookie.js"></script><script src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/show_ads_impl_fy2019.js" id="google_shimpl"></script><script async="" src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/tag.js"></script><script type="text/javascript">jQuery = false;</script>
+  <!--afhead-->
+<!--  <script type="text/javascript" src="/js/utils.js"></script> -->
+
+  <meta property="og:image" content="https://www.sql.ru/images/logofb.jpg">
+
+ <!-- Google Analytics -->
+ <script>
+ window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+ ga('create', 'UA-265508-1', 'sql.ru');
+ ga('send', 'pageview');
+ </script>
+ <script async="" src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/analytics.js"></script>
+ <!-- End Google Analytics -->
+<meta http-equiv="origin-trial" content="A+b/H0b8RPXNaJgaNFpO0YOFuGK6myDQXlwnJB3SwzvNMfcndat4DZYMrP4ClJIzYWo3/yP2S+8FTZ/lpqbPAAEAAABueyJvcmlnaW4iOiJodHRwczovL2ltYXNkay5nb29nbGVhcGlzLmNvbTo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzVGhpcmRQYXJ0eSI6dHJ1ZX0="><meta http-equiv="origin-trial" content="A9ZgbRtm4pU3oZiuNzOsKcC8ppFSZdcjP2qYcdQrFKVzkmiWH1kdYY1Mi9x7G8+PS8HV9Ha9Cz0gaMdKsiVZIgMAAAB7eyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="AxL6oBxcpn5rQDPKSAs+d0oxNyJYq2/4esBUh3Yx5z8QfcLu+AU8iFCXYRcr/CEEfDnkxxLTsvXPJFQBxHfvkgMAAACBeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXRhZ3NlcnZpY2VzLmNvbTo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A9KPtG5kl3oLTk21xqynDPGQ5t18bSOpwt0w6kGa6dEWbuwjpffmdUpR3W+faZDubGT+KIk2do0BX2ca16x8qAcAAACBeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A3HucHUo1oW9s+9kIKz8mLkbcmdaj5lxt3eiIMp1Nh49dkkBlg1Fhg4Fd/r0vL69mRRA36YutI9P/lJUfL8csQoAAACFeyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="A0OysezhLoCRYomumeYlubLurZTCmsjTb087OvtCy95jNM65cfEsbajrJnhaGwiTxhz38ZZbm+UhUwQuXfVPTg0AAACLeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="AxoOxdZQmIoA1WeAPDixRAeWDdgs7ZtVFfH2y19ziTgD1iaHE5ZGz2UdSjubkWvob9C5PrjUfkWi4ZSLgWk3Xg8AAACLeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXRhZ3NlcnZpY2VzLmNvbTo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="A7+rMYR5onPnACrz+niKSeFdH3xw1IyHo2AZSHmxrofRk9w4HcQPMYcpBUKu6OQ6zsdxf4m/vqa6tG6Na4OLpAQAAAB4eyJvcmlnaW4iOiJodHRwczovL2ltYXNkay5nb29nbGVhcGlzLmNvbTo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1RoaXJkUGFydHkiOnRydWV9"><link rel="preload" href="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/integrator.js" as="script"><script type="text/javascript" src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/integrator.js"></script><link rel="preload" href="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/integrator_002.js" as="script"><script type="text/javascript" src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/integrator_002.js"></script></head>
+
+<body>
+  <div id="page-container">
+    <div id="header">
+      <div class="header-wrap">
+        <div id="title">
+          <a href="https://www.sql.ru/" title="На главную страницу">SQL.ru</a>
+        </div>
+        <!--begin case_isguest-->
+<!--        <div id="login">
+          <form action="{url.login}" method="post">
+            <span class="close" onclick="hideLoginWindow(); return false;">x</span>
+
+            <div class="username">
+              <label for="login-input">Логин:</label> <input type="text" name="login" id=
+              "login-input" />
+            </div>
+
+            <div class="password">
+              <label for="pass-input">Пароль:</label> <input type="password" name="password" id=
+              "pass-input" />
+            </div>
+			
+			<div style="text-align:left;">
+				<label style="width:auto" for="cbremember">Запомнить меня</label>
+				<input type="checkbox" name="cbremember" id="cbremember" checked="checked" />
+			</div>
+
+            <div class="submit">
+              <input type="submit" value="Войти" />
+            </div>
+
+            <div class="links">
+              <a href="{url.register}">Регистрация</a> <a href="{url.remindpass}">Забыли пароль?</a>
+            </div>
+          </form>
+        </div>
+		<span id="login-link" onclick="showLoginWindow(); return false">Вход на сайт</span> -->
+		<!--end case_isguest-->
+		<!--begin case_ismember-->
+<!--		<span id="ismember">
+			<div onclick="document.location='{url.logout}'" id="logout-link"></div>
+			<a href="{url.profile}">{member.nick}</a>
+		</span> -->
+		<!--end case_ismember-->
+<!--        <form action="afsearch.aspx" method="get" id="top-search" name="top-search">
+          <div>
+            <input type="text" name="s" id="search-query" value="поиск" class="inactive"
+            onfocus="tffocus(this)" onblur="tfblur(this)" /> <input type="submit" value="найти" />
+          </div> 
+        </form> 
+-->
+     <ul id="top-menu">
+          <li><a href="https://www.sql.ru/">Главная</a></li>
+
+          <li><a href="https://www.sql.ru/articles">Статьи</a></li>
+
+          <li class="selected"><a href="https://www.sql.ru/forum">Форум</a></li>
+
+          <li><a href="https://www.sql.ru/blogs">Блоги</a></li>
+
+          <li><a href="https://www.sql.ru/books">Книги</a></li>
+
+          <li><a href="https://www.sql.ru/subscribe">Рассылка</a></li>
+
+          <li><a href="https://www.sql.ru/forum/job">Работа</a></li>
+
+          <li><a href="https://www.sql.ru/search">Поиск</a></li>
+
+          <li><a href="https://www.sql.ru/faq">FAQ</a></li>
+        </ul><div id="top-advert"><a href="https://www.sql.ru/actualadv/actualadvclick.aspx?ibnr=217&amp;isec=1003" target="_blank"><img src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/actualadvbnr.gif" alt="Hoster.ru" width="468" height="60" border="0"></a></div>
+      </div>
+    </div>
+
+    <div id="content-wrapper-forum">
+
+  <table class="forummenu">
+    <tbody><tr>
+      <td colspan="3">Добро пожаловать в форум, <b>Guest</b>&nbsp;&nbsp;&gt;&gt;&nbsp;&nbsp;
+      
+       <!--begin case_isguest-->
+       <a href="https://www.sql.ru/forum/login.aspx?action=login">Войти</a>&nbsp;|&nbsp;<a href="https://www.sql.ru/forum/register.aspx">Регистрация</a>&nbsp;|<!--end case_isguest-->
+       <a href="https://www.sql.ru/forum/actualsearch.aspx?bid=3">Поиск</a>&nbsp;|&nbsp;<a href="https://www.sql.ru/forum/rules.aspx">Правила</a>&nbsp;|
+      
+      </td> <!--  allowtransparency="true" -->
+
+      <td style="text-align:right;"><a style="font : 11px verdana" href="#" onclick="javascript:void(window.open('https://www.sql.ru/forum/actualutils.aspx?action=favtopic&amp;tid=745617&amp;h=402975850','ActualForum','height=200,width=500,resizable=1,scrollbars=yes,menubar=no,status=yes'));">
+      В избранное</a> | <a style="font : 11px verdana" href="#" onclick="javascript:void(window.open('https://www.sql.ru/forum/actualutils.aspx?action=subscribe&amp;tid=745617&amp;h=402975850','ActualForum','height=200,width=500,resizable=1,scrollbars=yes,menubar=no,status=yes'));">
+      Подписаться</a></td>
+    </tr>
+
+    <tr style="font:bold 13px; background-color:#fff">
+      <td colspan="2"><a class="forumLink" href="https://www.sql.ru/forum">Все форумы</a> / <a class="forumLink" href="https://www.sql.ru/forum/oracle">Oracle</a></td>
+
+      <td style="text-align:center;"></td>
+
+      <td style="text-align:right">
+	<a href="https://www.sql.ru/forum/actualpost.aspx?bid=3"><img class="button_img_new" src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/post.gif" alt="Новый топик"></a> &nbsp;&nbsp; <a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=0&amp;p=1" rel="nofollow"><img class="button_img_reply" src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/reply.gif" alt="Ответить"></a></td>
+    </tr>
+  </tbody></table>
+
+<!--  <h1 class="topic_subject">
+    Создать копию очень большой таблицы
+  </h1>
+<div class="smallInfo">Ответов: 34&nbsp;&nbsp;&nbsp;Последнее сообщение: 25 мар 10, 15:32</div>
+-->
+  
+  <!--afinfo-->
+  <!--begin case_ismultipage-->
+
+
+  <table class="sort_options" style="font-weight:bold;">
+    <tbody><tr>
+      <td align="left">Топик располагается на нескольких страницах:  [1]  <a href="https://www.sql.ru/forum/745617-2/sozdat-kopiu-ochen-bolshoy-tablicy"><b>2</b></a>  <a id="urlForumNext" style="text-decoration: none; font-weight:normal" href="https://www.sql.ru/forum/745617-2/sozdat-kopiu-ochen-bolshoy-tablicy">&nbsp;&nbsp;вперед &nbsp;<span style="color:#666666">Ctrl</span>&#8594;</a> &nbsp;&nbsp;&nbsp;&nbsp; <a href="https://www.sql.ru/forum/745617-a/sozdat-kopiu-ochen-bolshoy-tablicy"><b>все</b></a> </td>
+    </tr>
+  </tbody></table><!--end case_ismultipage-->
+  <!--begin threadtable-->
+
+
+  
+  <a name="8531519"></a>
+
+  <table class="msgTable">
+    <tbody><tr>
+        <td id="id8531519" class="messageHeader" colspan="2"><img src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/question.gif" alt="">&nbsp;Создать копию очень большой таблицы&nbsp;
+                <!--begin case_ismsgnew-->
+                <span class="newmessage">[new]</span>
+                <!--end case_ismsgnew-->
+        </td>
+    </tr>
+    <tr style="vertical-align:top">
+      <td style="width:15%" class="msgBody">
+       
+       <a href="https://www.sql.ru/forum/memberinfo.aspx?mid=134912">
+       auf1r2 </a><br>
+      <font style="color:#888;">Member</font><br>
+      <br>
+      <span class="smallInfo">Откуда: <br>
+	Сообщений: 25<br></span>
+      
+       </td>
+
+        <td class="msgBody">
+            Есть большая таблица с данными ~ 20Гигов. с которой нужно 
+сделать копию в той-же схеме, что и оригинальная, при этом не 
+останавливая работы пользователей. Есть ли какой-нибудь красивый способ 
+сделать это в ORACLE, чтобы не положить нафиг сервак?<br>Точная копия не требуется, т.е. если данные будут меняться в момент копирования из исходной таблицы - не существенно.<br><br>Oracle 10g on Sles 10. 
+	    
+
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2" class="msgFooter">
+            25 мар 10, 13:23&nbsp;&nbsp;&nbsp;&nbsp;[<a onclick="showCopyLinks(this, '8531519')" style="text-decoration:underline; cursor:pointer; position:relative">8531519</a>] &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531519&amp;p=1" rel="nofollow">Ответить</a>
+            | <a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531519&amp;p=1&amp;act=quot" rel="nofollow">Цитировать</a> 
+		
+            <a href="https://www.sql.ru/forum/actualutils.aspx?action=notifymod&amp;msg=8531519" rel="nofollow">Сообщить модератору</a>
+        </td>
+    </tr>
+  </tbody></table>
+  
+  <a name="8531597"></a>
+
+  <table class="msgTable">
+    <tbody><tr>
+        <td id="id8531597" class="messageHeader" colspan="2"><img src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/message.gif" alt="">&nbsp;Re: Создать копию очень большой таблицы&nbsp;
+                <!--begin case_ismsgnew-->
+                <span class="newmessage">[new]</span>
+                <!--end case_ismsgnew-->
+        </td>
+    </tr>
+    <tr style="vertical-align:top">
+      <td style="width:15%" class="msgBody">
+       
+       <a href="https://www.sql.ru/forum/memberinfo.aspx?mid=129236">
+       emctl </a><br>
+      <font style="color:#888;">Member</font><br>
+      <br>
+      <span class="smallInfo">Откуда: Киев<br>
+	Сообщений: 43<br></span>
+      
+       </td>
+
+        <td class="msgBody">
+            auf1r2,<br><br>Ну самый простой и быстрый (я так думаю) способ:<br><pre class="src"><font color="blue">create</font> <font color="blue">table</font> tmp_sometable <font color="blue">as</font> <font color="blue">select</font> * <font color="blue">from</font> sometable;</pre><br>Главное, чтоб место было. 
+	    
+
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2" class="msgFooter">
+            25 мар 10, 13:34&nbsp;&nbsp;&nbsp;&nbsp;[<a onclick="showCopyLinks(this, '8531597')" style="text-decoration:underline; cursor:pointer; position:relative">8531597</a>] &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531597&amp;p=1" rel="nofollow">Ответить</a>
+            | <a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531597&amp;p=1&amp;act=quot" rel="nofollow">Цитировать</a> 
+		
+            <a href="https://www.sql.ru/forum/actualutils.aspx?action=notifymod&amp;msg=8531597" rel="nofollow">Сообщить модератору</a>
+        </td>
+    </tr>
+  </tbody></table>
+  
+  <a name="8531608"></a>
+
+  <table class="msgTable">
+    <tbody><tr>
+        <td id="id8531608" class="messageHeader" colspan="2"><img src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/message.gif" alt="">&nbsp;Re: Создать копию очень большой таблицы&nbsp;
+                <!--begin case_ismsgnew-->
+                <span class="newmessage">[new]</span>
+                <!--end case_ismsgnew-->
+        </td>
+    </tr>
+    <tr style="vertical-align:top">
+      <td style="width:15%" class="msgBody">
+       
+       <a href="https://www.sql.ru/forum/memberinfo.aspx?mid=53094">
+       GL </a><br>
+      <font style="color:#888;">Member</font><br>
+      <br>
+      <span class="smallInfo">Откуда: Харьков<br>
+	Сообщений: 1513<br></span>
+      
+       </td>
+
+        <td class="msgBody">
+            auf1r2,<br><br>Сделайте dpexp, подмонтируйте как external table.<br><br>Конечная цель какая? И что вы подразумеваете под "не положить нафиг сервак"? Мало места под архивлоги? Недостаточно undo? 
+	    
+
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2" class="msgFooter">
+            25 мар 10, 13:35&nbsp;&nbsp;&nbsp;&nbsp;[<a onclick="showCopyLinks(this, '8531608')" style="text-decoration:underline; cursor:pointer; position:relative">8531608</a>] &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531608&amp;p=1" rel="nofollow">Ответить</a>
+            | <a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531608&amp;p=1&amp;act=quot" rel="nofollow">Цитировать</a> 
+		
+            <a href="https://www.sql.ru/forum/actualutils.aspx?action=notifymod&amp;msg=8531608" rel="nofollow">Сообщить модератору</a>
+        </td>
+    </tr>
+  </tbody></table>
+  
+  <a name="8531636"></a>
+
+  <table class="msgTable">
+    <tbody><tr>
+        <td id="id8531636" class="messageHeader" colspan="2"><img src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/message.gif" alt="">&nbsp;Re: Создать копию очень большой таблицы&nbsp;
+                <!--begin case_ismsgnew-->
+                <span class="newmessage">[new]</span>
+                <!--end case_ismsgnew-->
+        </td>
+    </tr>
+    <tr style="vertical-align:top">
+      <td style="width:15%" class="msgBody">
+       
+       <a href="https://www.sql.ru/forum/memberinfo.aspx?mid=31871">
+       comphead </a><br>
+      <font style="color:#888;">Member</font><br>
+      <br>
+      <span class="smallInfo">Откуда: Киев<br>
+	Сообщений: 3390<br></span>
+      
+       </td>
+
+        <td class="msgBody">
+            auf1r2,<br><br>как вариант<br><pre class="src">ctas <font color="blue">where</font> <font color="darkblue"><b>1</b></font>=<font color="darkblue"><b>2</b></font>
+
+<font color="blue">for</font> 
+<font color="blue">insert</font> 
+
+<font color="blue">commit</font> <font color="blue">when</font> rowcnt = <font color="darkblue"><b>1000</b></font>; <font color="teal">-- допустим подтверждение после каждых 1000 строк</font>
+<font color="blue">end</font> <font color="blue">loop</font></pre> 
+	    
+
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2" class="msgFooter">
+            25 мар 10, 13:37&nbsp;&nbsp;&nbsp;&nbsp;[<a onclick="showCopyLinks(this, '8531636')" style="text-decoration:underline; cursor:pointer; position:relative">8531636</a>] &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531636&amp;p=1" rel="nofollow">Ответить</a>
+            | <a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531636&amp;p=1&amp;act=quot" rel="nofollow">Цитировать</a> 
+		
+            <a href="https://www.sql.ru/forum/actualutils.aspx?action=notifymod&amp;msg=8531636" rel="nofollow">Сообщить модератору</a>
+        </td>
+    </tr>
+  </tbody></table>
+  
+  <a name="8531645"></a>
+
+  <table class="msgTable">
+    <tbody><tr>
+        <td id="id8531645" class="messageHeader" colspan="2"><img src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/message.gif" alt="">&nbsp;Re: Создать копию очень большой таблицы&nbsp;
+                <!--begin case_ismsgnew-->
+                <span class="newmessage">[new]</span>
+                <!--end case_ismsgnew-->
+        </td>
+    </tr>
+    <tr style="vertical-align:top">
+      <td style="width:15%" class="msgBody">
+       
+       <a href="https://www.sql.ru/forum/memberinfo.aspx?mid=99344">
+       AlexFF__| </a><br>
+      <font style="color:#888;">Member</font><br>
+      <br>
+      <span class="smallInfo">Откуда: <br>
+	Сообщений: 2865<br></span>
+      
+       </td>
+
+        <td class="msgBody">
+            ctas nologging 
+	    
+
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2" class="msgFooter">
+            25 мар 10, 13:39&nbsp;&nbsp;&nbsp;&nbsp;[<a onclick="showCopyLinks(this, '8531645')" style="text-decoration:underline; cursor:pointer; position:relative">8531645</a>] &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531645&amp;p=1" rel="nofollow">Ответить</a>
+            | <a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531645&amp;p=1&amp;act=quot" rel="nofollow">Цитировать</a> 
+		
+            <a href="https://www.sql.ru/forum/actualutils.aspx?action=notifymod&amp;msg=8531645" rel="nofollow">Сообщить модератору</a>
+        </td>
+    </tr>
+  </tbody></table>
+  
+  <a name="8531675"></a>
+
+  <table class="msgTable">
+    <tbody><tr>
+        <td id="id8531675" class="messageHeader" colspan="2"><img src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/message.gif" alt="">&nbsp;Re: Создать копию очень большой таблицы&nbsp;
+                <!--begin case_ismsgnew-->
+                <span class="newmessage">[new]</span>
+                <!--end case_ismsgnew-->
+        </td>
+    </tr>
+    <tr style="vertical-align:top">
+      <td style="width:15%" class="msgBody">
+       
+       <a href="https://www.sql.ru/forum/memberinfo.aspx?mid=31871">
+       comphead </a><br>
+      <font style="color:#888;">Member</font><br>
+      <br>
+      <span class="smallInfo">Откуда: Киев<br>
+	Сообщений: 3390<br></span>
+      
+       </td>
+
+        <td class="msgBody">
+            auf1r2,<br><br>если таблица партицированная, а по идее с таким размером она такой должна быть, то можно побаловаться с копиями партиций. 
+	    
+
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2" class="msgFooter">
+            25 мар 10, 13:43&nbsp;&nbsp;&nbsp;&nbsp;[<a onclick="showCopyLinks(this, '8531675')" style="text-decoration:underline; cursor:pointer; position:relative">8531675</a>] &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531675&amp;p=1" rel="nofollow">Ответить</a>
+            | <a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531675&amp;p=1&amp;act=quot" rel="nofollow">Цитировать</a> 
+		
+            <a href="https://www.sql.ru/forum/actualutils.aspx?action=notifymod&amp;msg=8531675" rel="nofollow">Сообщить модератору</a>
+        </td>
+    </tr>
+  </tbody></table>
+  
+  <a name="8531704"></a>
+
+  <table class="msgTable">
+    <tbody><tr>
+        <td id="id8531704" class="messageHeader" colspan="2"><img src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/message.gif" alt="">&nbsp;Re: Создать копию очень большой таблицы&nbsp;
+                <!--begin case_ismsgnew-->
+                <span class="newmessage">[new]</span>
+                <!--end case_ismsgnew-->
+        </td>
+    </tr>
+    <tr style="vertical-align:top">
+      <td style="width:15%" class="msgBody">
+       
+       <a href="https://www.sql.ru/forum/memberinfo.aspx?mid=42974">
+       dmidek </a><br>
+      <font style="color:#888;">Member</font><br>
+      <br>
+      <span class="smallInfo">Откуда: Киев - Дортмунд<br>
+	Сообщений: 118266<br></span>
+      
+       </td>
+
+        <td class="msgBody">
+            <table style="border: solid 1px #888888; margin :10px" cellspacing="0" cellpadding="4" border="0" bgcolor="#DDDDDD"><tbody><tr height="1"><td style="font: bold 11px Arial;">emctl</td></tr><tr><td style="font : xx-small Verdana,Arial; padding : 7px" bgcolor="#EFEFFF">auf1r2,<br><br>Ну самый простой и быстрый (я так думаю) способ:<br><pre class="src"><font color="blue">create</font> <font color="blue">table</font> tmp_sometable <font color="blue">as</font> <font color="blue">select</font> * <font color="blue">from</font> sometable;</pre><br>Главное, чтоб место было.</td></tr></tbody></table><br><br>На всякий , при таком методе от копии много "отвяжется" - констрейнты, индексы и т.п.<br>Не факт, что они нужны, но надо это иметь в виду. 
+	    
+
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2" class="msgFooter">
+            25 мар 10, 13:46&nbsp;&nbsp;&nbsp;&nbsp;[<a onclick="showCopyLinks(this, '8531704')" style="text-decoration:underline; cursor:pointer; position:relative">8531704</a>] &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531704&amp;p=1" rel="nofollow">Ответить</a>
+            | <a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531704&amp;p=1&amp;act=quot" rel="nofollow">Цитировать</a> 
+		
+            <a href="https://www.sql.ru/forum/actualutils.aspx?action=notifymod&amp;msg=8531704" rel="nofollow">Сообщить модератору</a>
+        </td>
+    </tr>
+  </tbody></table>
+  
+  <a name="8531708"></a>
+
+  <table class="msgTable">
+    <tbody><tr>
+        <td id="id8531708" class="messageHeader" colspan="2"><img src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/message.gif" alt="">&nbsp;Re: Создать копию очень большой таблицы&nbsp;
+                <!--begin case_ismsgnew-->
+                <span class="newmessage">[new]</span>
+                <!--end case_ismsgnew-->
+        </td>
+    </tr>
+    <tr style="vertical-align:top">
+      <td style="width:15%" class="msgBody">
+       
+       <a href="https://www.sql.ru/forum/memberinfo.aspx?mid=134912">
+       auf1r2 </a><br>
+      <font style="color:#888;">Member</font><br>
+      <br>
+      <span class="smallInfo">Откуда: <br>
+	Сообщений: 25<br></span>
+      
+       </td>
+
+        <td class="msgBody">
+            Конечная цель - получить копию таблицы для анализа. На 
+основной таблице мешает то что данные постоянно меняются. Копия может 
+быть не точной, т.е. если в момент пока будет создаваться копия данные в
+ основной таблице поменяются меня не беспокоит.<br><br>А не положит, потому что я подозреваю, что<br><pre class="src"><font color="blue">create</font> <font color="blue">table</font> tmp_sometable <font color="blue">as</font> <font color="blue">select</font> * <font color="blue">from</font> sometable;</pre>создает временной слепок таблицы перед копированием? Или я не прав. Меня устроят и сырые данные.<br>И
+ еще есть подозрение что приведенный выше SQL завершится неудачей из-за 
+мутирования исходной таблицы во время выполнения селекта? 
+	    
+
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2" class="msgFooter">
+            25 мар 10, 13:46&nbsp;&nbsp;&nbsp;&nbsp;[<a onclick="showCopyLinks(this, '8531708')" style="text-decoration:underline; cursor:pointer; position:relative">8531708</a>] &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531708&amp;p=1" rel="nofollow">Ответить</a>
+            | <a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531708&amp;p=1&amp;act=quot" rel="nofollow">Цитировать</a> 
+		
+            <a href="https://www.sql.ru/forum/actualutils.aspx?action=notifymod&amp;msg=8531708" rel="nofollow">Сообщить модератору</a>
+        </td>
+    </tr>
+  </tbody></table>
+  
+  <a name="8531731"></a>
+
+  <table class="msgTable">
+    <tbody><tr>
+        <td id="id8531731" class="messageHeader" colspan="2"><img src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/message.gif" alt="">&nbsp;Re: Создать копию очень большой таблицы&nbsp;
+                <!--begin case_ismsgnew-->
+                <span class="newmessage">[new]</span>
+                <!--end case_ismsgnew-->
+        </td>
+    </tr>
+    <tr style="vertical-align:top">
+      <td style="width:15%" class="msgBody">
+       
+       <a href="https://www.sql.ru/forum/memberinfo.aspx?mid=31871">
+       comphead </a><br>
+      <font style="color:#888;">Member</font><br>
+      <br>
+      <span class="smallInfo">Откуда: Киев<br>
+	Сообщений: 3390<br></span>
+      
+       </td>
+
+        <td class="msgBody">
+            auf1r2,<br><br>делать CTAS такой большой таблицы чревато неприятностями.<br><br>мой вариант через копию структуры и вставку строк с промежуточными комитами вас устроит? 
+	    
+
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2" class="msgFooter">
+            25 мар 10, 13:48&nbsp;&nbsp;&nbsp;&nbsp;[<a onclick="showCopyLinks(this, '8531731')" style="text-decoration:underline; cursor:pointer; position:relative">8531731</a>] &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531731&amp;p=1" rel="nofollow">Ответить</a>
+            | <a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531731&amp;p=1&amp;act=quot" rel="nofollow">Цитировать</a> 
+		
+            <a href="https://www.sql.ru/forum/actualutils.aspx?action=notifymod&amp;msg=8531731" rel="nofollow">Сообщить модератору</a>
+        </td>
+    </tr>
+  </tbody></table>
+  
+  <a name="8531774"></a>
+
+  <table class="msgTable">
+    <tbody><tr>
+        <td id="id8531774" class="messageHeader" colspan="2"><img src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/message.gif" alt="">&nbsp;Re: Создать копию очень большой таблицы&nbsp;
+                <!--begin case_ismsgnew-->
+                <span class="newmessage">[new]</span>
+                <!--end case_ismsgnew-->
+        </td>
+    </tr>
+    <tr style="vertical-align:top">
+      <td style="width:15%" class="msgBody">
+       
+       <a href="https://www.sql.ru/forum/memberinfo.aspx?mid=42974">
+       dmidek </a><br>
+      <font style="color:#888;">Member</font><br>
+      <br>
+      <span class="smallInfo">Откуда: Киев - Дортмунд<br>
+	Сообщений: 118266<br></span>
+      
+       </td>
+
+        <td class="msgBody">
+            <table style="border: solid 1px #888888; margin :10px" cellspacing="0" cellpadding="4" border="0" bgcolor="#DDDDDD"><tbody><tr height="1"><td style="font: bold 11px Arial;">comphead</td></tr><tr><td style="font : xx-small Verdana,Arial; padding : 7px" bgcolor="#EFEFFF">auf1r2,<br><br>делать CTAS такой большой таблицы чревато неприятностями.<br><br>мой вариант через копию структуры и вставку строк с промежуточными комитами вас устроит?</td></tr></tbody></table><br><br>Как вариация BULK + LIMIT + FORALL 
+	    
+
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2" class="msgFooter">
+            25 мар 10, 13:52&nbsp;&nbsp;&nbsp;&nbsp;[<a onclick="showCopyLinks(this, '8531774')" style="text-decoration:underline; cursor:pointer; position:relative">8531774</a>] &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531774&amp;p=1" rel="nofollow">Ответить</a>
+            | <a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531774&amp;p=1&amp;act=quot" rel="nofollow">Цитировать</a> 
+		
+            <a href="https://www.sql.ru/forum/actualutils.aspx?action=notifymod&amp;msg=8531774" rel="nofollow">Сообщить модератору</a>
+        </td>
+    </tr>
+  </tbody></table>
+  
+  <a name="8531786"></a>
+
+  <table class="msgTable">
+    <tbody><tr>
+        <td id="id8531786" class="messageHeader" colspan="2"><img src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/message.gif" alt="">&nbsp;Re: Создать копию очень большой таблицы&nbsp;
+                <!--begin case_ismsgnew-->
+                <span class="newmessage">[new]</span>
+                <!--end case_ismsgnew-->
+        </td>
+    </tr>
+    <tr style="vertical-align:top">
+      <td style="width:15%" class="msgBody">
+       
+       <a href="https://www.sql.ru/forum/memberinfo.aspx?mid=31871">
+       comphead </a><br>
+      <font style="color:#888;">Member</font><br>
+      <br>
+      <span class="smallInfo">Откуда: Киев<br>
+	Сообщений: 3390<br></span>
+      
+       </td>
+
+        <td class="msgBody">
+            <table style="border: solid 1px #888888; margin :10px" cellspacing="0" cellpadding="4" border="0" bgcolor="#DDDDDD"><tbody><tr height="1"><td style="font: bold 11px Arial;">dmidek</td></tr><tr><td style="font : xx-small Verdana,Arial; padding : 7px" bgcolor="#EFEFFF"><table style="border: solid 1px #888888; margin :10px" cellspacing="0" cellpadding="4" border="0" bgcolor="#DDDDDD"><tbody><tr height="1"><td style="font: bold 11px Arial;">comphead</td></tr><tr><td style="font : xx-small Verdana,Arial; padding : 7px" bgcolor="#EFEFFF">auf1r2,<br><br>делать CTAS такой большой таблицы чревато неприятностями.<br><br>мой вариант через копию структуры и вставку строк с промежуточными комитами вас устроит?</td></tr></tbody></table><br><br>Как вариация BULK + LIMIT + FORALL</td></tr></tbody></table><br><br>кстати да, множественное связывание даст выигрыш! 
+	    
+
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2" class="msgFooter">
+            25 мар 10, 13:53&nbsp;&nbsp;&nbsp;&nbsp;[<a onclick="showCopyLinks(this, '8531786')" style="text-decoration:underline; cursor:pointer; position:relative">8531786</a>] &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531786&amp;p=1" rel="nofollow">Ответить</a>
+            | <a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531786&amp;p=1&amp;act=quot" rel="nofollow">Цитировать</a> 
+		
+            <a href="https://www.sql.ru/forum/actualutils.aspx?action=notifymod&amp;msg=8531786" rel="nofollow">Сообщить модератору</a>
+        </td>
+    </tr>
+  </tbody></table>
+  
+  <a name="8531799"></a>
+
+  <table class="msgTable">
+    <tbody><tr>
+        <td id="id8531799" class="messageHeader" colspan="2"><img src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/message.gif" alt="">&nbsp;Re: Создать копию очень большой таблицы&nbsp;
+                <!--begin case_ismsgnew-->
+                <span class="newmessage">[new]</span>
+                <!--end case_ismsgnew-->
+        </td>
+    </tr>
+    <tr style="vertical-align:top">
+      <td style="width:15%" class="msgBody">
+       
+       <a href="https://www.sql.ru/forum/memberinfo.aspx?mid=134912">
+       auf1r2 </a><br>
+      <font style="color:#888;">Member</font><br>
+      <br>
+      <span class="smallInfo">Откуда: <br>
+	Сообщений: 25<br></span>
+      
+       </td>
+
+        <td class="msgBody">
+            <pre class="src">ctas <font color="blue">where</font> <font color="darkblue"><b>1</b></font>=<font color="darkblue"><b>2</b></font>
+
+<font color="blue">for</font> 
+<font color="blue">insert</font> 
+
+<font color="blue">commit</font> <font color="blue">when</font> rowcnt = <font color="darkblue"><b>1000</b></font>; <font color="teal">-- допустим подтверждение после каждых 1000 строк</font>
+<font color="blue">end</font> <font color="blue">loop</font>
+</pre><br>мутирования не будет на селекте? если нет, то устроит. 
+	    
+
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2" class="msgFooter">
+            25 мар 10, 13:54&nbsp;&nbsp;&nbsp;&nbsp;[<a onclick="showCopyLinks(this, '8531799')" style="text-decoration:underline; cursor:pointer; position:relative">8531799</a>] &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531799&amp;p=1" rel="nofollow">Ответить</a>
+            | <a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531799&amp;p=1&amp;act=quot" rel="nofollow">Цитировать</a> 
+		
+            <a href="https://www.sql.ru/forum/actualutils.aspx?action=notifymod&amp;msg=8531799" rel="nofollow">Сообщить модератору</a>
+        </td>
+    </tr>
+  </tbody></table>
+  
+  <a name="8531836"></a>
+
+  <table class="msgTable">
+    <tbody><tr>
+        <td id="id8531836" class="messageHeader" colspan="2"><img src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/message.gif" alt="">&nbsp;Re: Создать копию очень большой таблицы&nbsp;
+                <!--begin case_ismsgnew-->
+                <span class="newmessage">[new]</span>
+                <!--end case_ismsgnew-->
+        </td>
+    </tr>
+    <tr style="vertical-align:top">
+      <td style="width:15%" class="msgBody">
+       
+       <a href="https://www.sql.ru/forum/memberinfo.aspx?mid=53094">
+       GL </a><br>
+      <font style="color:#888;">Member</font><br>
+      <br>
+      <span class="smallInfo">Откуда: Харьков<br>
+	Сообщений: 1513<br></span>
+      
+       </td>
+
+        <td class="msgBody">
+            <table style="border: solid 1px #888888; margin :10px" cellspacing="0" cellpadding="4" border="0" bgcolor="#DDDDDD"><tbody><tr height="1"><td style="font: bold 11px Arial;">auf1r2</td></tr><tr><td style="font : xx-small Verdana,Arial; padding : 7px" bgcolor="#EFEFFF">мутирования не будет на селекте? если нет, то устроит.</td></tr></tbody></table>Мутирования - не будет (вы не понимаете термина), а вот Snapshot too old - запросто. 
+	    
+
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2" class="msgFooter">
+            25 мар 10, 13:57&nbsp;&nbsp;&nbsp;&nbsp;[<a onclick="showCopyLinks(this, '8531836')" style="text-decoration:underline; cursor:pointer; position:relative">8531836</a>] &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531836&amp;p=1" rel="nofollow">Ответить</a>
+            | <a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531836&amp;p=1&amp;act=quot" rel="nofollow">Цитировать</a> 
+		
+            <a href="https://www.sql.ru/forum/actualutils.aspx?action=notifymod&amp;msg=8531836" rel="nofollow">Сообщить модератору</a>
+        </td>
+    </tr>
+  </tbody></table>
+  
+  <a name="8531865"></a>
+
+  <table class="msgTable">
+    <tbody><tr>
+        <td id="id8531865" class="messageHeader" colspan="2"><img src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/message.gif" alt="">&nbsp;Re: Создать копию очень большой таблицы&nbsp;
+                <!--begin case_ismsgnew-->
+                <span class="newmessage">[new]</span>
+                <!--end case_ismsgnew-->
+        </td>
+    </tr>
+    <tr style="vertical-align:top">
+      <td style="width:15%" class="msgBody">
+       
+       <a href="https://www.sql.ru/forum/memberinfo.aspx?mid=42974">
+       dmidek </a><br>
+      <font style="color:#888;">Member</font><br>
+      <br>
+      <span class="smallInfo">Откуда: Киев - Дортмунд<br>
+	Сообщений: 118266<br></span>
+      
+       </td>
+
+        <td class="msgBody">
+            <table style="border: solid 1px #888888; margin :10px" cellspacing="0" cellpadding="4" border="0" bgcolor="#DDDDDD"><tbody><tr height="1"><td style="font: bold 11px Arial;">comphead</td></tr><tr><td style="font : xx-small Verdana,Arial; padding : 7px" bgcolor="#EFEFFF"><table style="border: solid 1px #888888; margin :10px" cellspacing="0" cellpadding="4" border="0" bgcolor="#DDDDDD"><tbody><tr height="1"><td style="font: bold 11px Arial;">dmidek</td></tr><tr><td style="font : xx-small Verdana,Arial; padding : 7px" bgcolor="#EFEFFF"><table style="border: solid 1px #888888; margin :10px" cellspacing="0" cellpadding="4" border="0" bgcolor="#DDDDDD"><tbody><tr height="1"><td style="font: bold 11px Arial;">comphead</td></tr><tr><td style="font : xx-small Verdana,Arial; padding : 7px" bgcolor="#EFEFFF">auf1r2,<br><br>делать CTAS такой большой таблицы чревато неприятностями.<br><br>мой вариант через копию структуры и вставку строк с промежуточными комитами вас устроит?</td></tr></tbody></table><br><br>Как вариация BULK + LIMIT + FORALL</td></tr></tbody></table><br><br>кстати да, множественное связывание даст выигрыш!</td></tr></tbody></table><br><br>ИМХО начиная с десятки вроде бы практически нет - они там "подкрутили"<br>for loop 
+	    
+
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2" class="msgFooter">
+            25 мар 10, 13:59&nbsp;&nbsp;&nbsp;&nbsp;[<a onclick="showCopyLinks(this, '8531865')" style="text-decoration:underline; cursor:pointer; position:relative">8531865</a>] &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531865&amp;p=1" rel="nofollow">Ответить</a>
+            | <a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531865&amp;p=1&amp;act=quot" rel="nofollow">Цитировать</a> 
+		
+            <a href="https://www.sql.ru/forum/actualutils.aspx?action=notifymod&amp;msg=8531865" rel="nofollow">Сообщить модератору</a>
+        </td>
+    </tr>
+  </tbody></table>
+  
+  <a name="8531884"></a>
+
+  <table class="msgTable">
+    <tbody><tr>
+        <td id="id8531884" class="messageHeader" colspan="2"><img src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/message.gif" alt="">&nbsp;Re: Создать копию очень большой таблицы&nbsp;
+                <!--begin case_ismsgnew-->
+                <span class="newmessage">[new]</span>
+                <!--end case_ismsgnew-->
+        </td>
+    </tr>
+    <tr style="vertical-align:top">
+      <td style="width:15%" class="msgBody">
+       
+       <a href="https://www.sql.ru/forum/memberinfo.aspx?mid=129236">
+       emctl </a><br>
+      <font style="color:#888;">Member</font><br>
+      <br>
+      <span class="smallInfo">Откуда: Киев<br>
+	Сообщений: 43<br></span>
+      
+       </td>
+
+        <td class="msgBody">
+            <table style="border: solid 1px #888888; margin :10px" cellspacing="0" cellpadding="4" border="0" bgcolor="#DDDDDD"><tbody><tr height="1"><td style="font: bold 11px Arial;">auf1r2</td></tr><tr><td style="font : xx-small Verdana,Arial; padding : 7px" bgcolor="#EFEFFF">Конечная
+ цель - получить копию таблицы для анализа. На основной таблице мешает 
+то что данные постоянно меняются. Копия может быть не точной, т.е. если в
+ момент пока будет создаваться копия данные в основной таблице 
+поменяются меня не беспокоит.<br><br>А не положит, потому что я подозреваю, что<br><pre class="src"><font color="blue">create</font> <font color="blue">table</font> tmp_sometable <font color="blue">as</font> <font color="blue">select</font> * <font color="blue">from</font> sometable;</pre>создает временной слепок таблицы перед копированием? Или я не прав. Меня устроят и сырые данные.<br>И
+ еще есть подозрение что приведенный выше SQL завершится неудачей из-за 
+мутирования исходной таблицы во время выполнения селекта?</td></tr></tbody></table><br><br>Ну, вобще-то, если таблица нужна для последующего анализа, то для этого оракл специально придумал materialized view 
+	    
+
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2" class="msgFooter">
+            25 мар 10, 14:00&nbsp;&nbsp;&nbsp;&nbsp;[<a onclick="showCopyLinks(this, '8531884')" style="text-decoration:underline; cursor:pointer; position:relative">8531884</a>] &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531884&amp;p=1" rel="nofollow">Ответить</a>
+            | <a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531884&amp;p=1&amp;act=quot" rel="nofollow">Цитировать</a> 
+		
+            <a href="https://www.sql.ru/forum/actualutils.aspx?action=notifymod&amp;msg=8531884" rel="nofollow">Сообщить модератору</a>
+        </td>
+    </tr>
+  </tbody></table>
+  
+  <a name="8531918"></a>
+
+  <table class="msgTable">
+    <tbody><tr>
+        <td id="id8531918" class="messageHeader" colspan="2"><img src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/message.gif" alt="">&nbsp;Re: Создать копию очень большой таблицы&nbsp;
+                <!--begin case_ismsgnew-->
+                <span class="newmessage">[new]</span>
+                <!--end case_ismsgnew-->
+        </td>
+    </tr>
+    <tr style="vertical-align:top">
+      <td style="width:15%" class="msgBody">
+       
+       <a href="https://www.sql.ru/forum/memberinfo.aspx?mid=134912">
+       auf1r2 </a><br>
+      <font style="color:#888;">Member</font><br>
+      <br>
+      <span class="smallInfo">Откуда: <br>
+	Сообщений: 25<br></span>
+      
+       </td>
+
+        <td class="msgBody">
+            <table style="border: solid 1px #888888; margin :10px" cellspacing="0" cellpadding="4" border="0" bgcolor="#DDDDDD"><tbody><tr height="1"><td style="font: bold 11px Arial;">GL</td></tr><tr><td style="font : xx-small Verdana,Arial; padding : 7px" bgcolor="#EFEFFF"><table style="border: solid 1px #888888; margin :10px" cellspacing="0" cellpadding="4" border="0" bgcolor="#DDDDDD"><tbody><tr height="1"><td style="font: bold 11px Arial;">auf1r2</td></tr><tr><td style="font : xx-small Verdana,Arial; padding : 7px" bgcolor="#EFEFFF">мутирования не будет на селекте? если нет, то устроит.</td></tr></tbody></table>Мутирования - не будет (вы не понимаете термина), а вот Snapshot too old - запросто.</td></tr></tbody></table><br><br>спасибо, я не настолько глубоко знаю oracle, просто натыкался уже на это.<br>собственно в этом и вопрос, как сделать чтобы не было Snapshot too old ?<br><br>делать
+ селект по диапазону первичного ключа от начала до конца таблицы и инсер
+ пачками по 1000 записей я могу, просто хотел бы просвятиться, вдруг 
+есть красивый метов сделать сырую копию данных ? 
+	    
+
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2" class="msgFooter">
+            25 мар 10, 14:03&nbsp;&nbsp;&nbsp;&nbsp;[<a onclick="showCopyLinks(this, '8531918')" style="text-decoration:underline; cursor:pointer; position:relative">8531918</a>] &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531918&amp;p=1" rel="nofollow">Ответить</a>
+            | <a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531918&amp;p=1&amp;act=quot" rel="nofollow">Цитировать</a> 
+		
+            <a href="https://www.sql.ru/forum/actualutils.aspx?action=notifymod&amp;msg=8531918" rel="nofollow">Сообщить модератору</a>
+        </td>
+    </tr>
+  </tbody></table>
+  
+  <a name="8531938"></a>
+
+  <table class="msgTable">
+    <tbody><tr>
+        <td id="id8531938" class="messageHeader" colspan="2"><img src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/message.gif" alt="">&nbsp;Re: Создать копию очень большой таблицы&nbsp;
+                <!--begin case_ismsgnew-->
+                <span class="newmessage">[new]</span>
+                <!--end case_ismsgnew-->
+        </td>
+    </tr>
+    <tr style="vertical-align:top">
+      <td style="width:15%" class="msgBody">
+       
+       <a href="https://www.sql.ru/forum/memberinfo.aspx?mid=134912">
+       auf1r2 </a><br>
+      <font style="color:#888;">Member</font><br>
+      <br>
+      <span class="smallInfo">Откуда: <br>
+	Сообщений: 25<br></span>
+      
+       </td>
+
+        <td class="msgBody">
+            <table style="border: solid 1px #888888; margin :10px" cellspacing="0" cellpadding="4" border="0" bgcolor="#DDDDDD"><tbody><tr height="1"><td style="font: bold 11px Arial;">emctl</td></tr><tr><td style="font : xx-small Verdana,Arial; padding : 7px" bgcolor="#EFEFFF"><table style="border: solid 1px #888888; margin :10px" cellspacing="0" cellpadding="4" border="0" bgcolor="#DDDDDD"><tbody><tr height="1"><td style="font: bold 11px Arial;">auf1r2</td></tr><tr><td style="font : xx-small Verdana,Arial; padding : 7px" bgcolor="#EFEFFF">Конечная
+ цель - получить копию таблицы для анализа. На основной таблице мешает 
+то что данные постоянно меняются. Копия может быть не точной, т.е. если в
+ момент пока будет создаваться копия данные в основной таблице 
+поменяются меня не беспокоит.<br><br>А не положит, потому что я подозреваю, что<br><pre class="src"><font color="blue">create</font> <font color="blue">table</font> tmp_sometable <font color="blue">as</font> <font color="blue">select</font> * <font color="blue">from</font> sometable;</pre>создает временной слепок таблицы перед копированием? Или я не прав. Меня устроят и сырые данные.<br>И
+ еще есть подозрение что приведенный выше SQL завершится неудачей из-за 
+мутирования исходной таблицы во время выполнения селекта?</td></tr></tbody></table><br><br>Ну, вобще-то, если таблица нужна для последующего анализа, то для этого оракл специально придумал materialized view</td></tr></tbody></table><br><br>я
+ знаю про  materialized view. Тогда вопрос. На таких размеров таблице 
+если создать  materialized view, не быдет ли того самого Snapshot too 
+old. ? 
+	    
+
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2" class="msgFooter">
+            25 мар 10, 14:05&nbsp;&nbsp;&nbsp;&nbsp;[<a onclick="showCopyLinks(this, '8531938')" style="text-decoration:underline; cursor:pointer; position:relative">8531938</a>] &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531938&amp;p=1" rel="nofollow">Ответить</a>
+            | <a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531938&amp;p=1&amp;act=quot" rel="nofollow">Цитировать</a> 
+		
+            <a href="https://www.sql.ru/forum/actualutils.aspx?action=notifymod&amp;msg=8531938" rel="nofollow">Сообщить модератору</a>
+        </td>
+    </tr>
+  </tbody></table>
+  
+  <a name="8531958"></a>
+
+  <table class="msgTable">
+    <tbody><tr>
+        <td id="id8531958" class="messageHeader" colspan="2"><img src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/message.gif" alt="">&nbsp;Re: Создать копию очень большой таблицы&nbsp;
+                <!--begin case_ismsgnew-->
+                <span class="newmessage">[new]</span>
+                <!--end case_ismsgnew-->
+        </td>
+    </tr>
+    <tr style="vertical-align:top">
+      <td style="width:15%" class="msgBody">
+       
+       <a href="https://www.sql.ru/forum/memberinfo.aspx?mid=134912">
+       auf1r2 </a><br>
+      <font style="color:#888;">Member</font><br>
+      <br>
+      <span class="smallInfo">Откуда: <br>
+	Сообщений: 25<br></span>
+      
+       </td>
+
+        <td class="msgBody">
+            <table style="border: solid 1px #888888; margin :10px" cellspacing="0" cellpadding="4" border="0" bgcolor="#DDDDDD"><tbody><tr height="1"><td style="font: bold 11px Arial;">dmidek</td></tr><tr><td style="font : xx-small Verdana,Arial; padding : 7px" bgcolor="#EFEFFF"><table style="border: solid 1px #888888; margin :10px" cellspacing="0" cellpadding="4" border="0" bgcolor="#DDDDDD"><tbody><tr height="1"><td style="font: bold 11px Arial;">comphead</td></tr><tr><td style="font : xx-small Verdana,Arial; padding : 7px" bgcolor="#EFEFFF">auf1r2,<br><br>делать CTAS такой большой таблицы чревато неприятностями.<br><br>мой вариант через копию структуры и вставку строк с промежуточными комитами вас устроит?</td></tr></tbody></table><br><br>Как вариация BULK + LIMIT + FORALL</td></tr></tbody></table><br><br>Не могли бы вы пояснить, что есть BULK + LIMIT + FORALL ? 
+	    
+
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2" class="msgFooter">
+            25 мар 10, 14:07&nbsp;&nbsp;&nbsp;&nbsp;[<a onclick="showCopyLinks(this, '8531958')" style="text-decoration:underline; cursor:pointer; position:relative">8531958</a>] &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531958&amp;p=1" rel="nofollow">Ответить</a>
+            | <a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531958&amp;p=1&amp;act=quot" rel="nofollow">Цитировать</a> 
+		
+            <a href="https://www.sql.ru/forum/actualutils.aspx?action=notifymod&amp;msg=8531958" rel="nofollow">Сообщить модератору</a>
+        </td>
+    </tr>
+  </tbody></table>
+  
+  <a name="8531982"></a>
+
+  <table class="msgTable">
+    <tbody><tr>
+        <td id="id8531982" class="messageHeader" colspan="2"><img src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/message.gif" alt="">&nbsp;Re: Создать копию очень большой таблицы&nbsp;
+                <!--begin case_ismsgnew-->
+                <span class="newmessage">[new]</span>
+                <!--end case_ismsgnew-->
+        </td>
+    </tr>
+    <tr style="vertical-align:top">
+      <td style="width:15%" class="msgBody">
+       
+       <a href="https://www.sql.ru/forum/memberinfo.aspx?mid=42974">
+       dmidek </a><br>
+      <font style="color:#888;">Member</font><br>
+      <br>
+      <span class="smallInfo">Откуда: Киев - Дортмунд<br>
+	Сообщений: 118266<br></span>
+      
+       </td>
+
+        <td class="msgBody">
+            <table style="border: solid 1px #888888; margin :10px" cellspacing="0" cellpadding="4" border="0" bgcolor="#DDDDDD"><tbody><tr height="1"><td style="font: bold 11px Arial;">auf1r2</td></tr><tr><td style="font : xx-small Verdana,Arial; padding : 7px" bgcolor="#EFEFFF"><table style="border: solid 1px #888888; margin :10px" cellspacing="0" cellpadding="4" border="0" bgcolor="#DDDDDD"><tbody><tr height="1"><td style="font: bold 11px Arial;">dmidek</td></tr><tr><td style="font : xx-small Verdana,Arial; padding : 7px" bgcolor="#EFEFFF"><table style="border: solid 1px #888888; margin :10px" cellspacing="0" cellpadding="4" border="0" bgcolor="#DDDDDD"><tbody><tr height="1"><td style="font: bold 11px Arial;">comphead</td></tr><tr><td style="font : xx-small Verdana,Arial; padding : 7px" bgcolor="#EFEFFF">auf1r2,<br><br>делать CTAS такой большой таблицы чревато неприятностями.<br><br>мой вариант через копию структуры и вставку строк с промежуточными комитами вас устроит?</td></tr></tbody></table><br><br>Как вариация BULK + LIMIT + FORALL</td></tr></tbody></table><br><br>Не могли бы вы пояснить, что есть BULK + LIMIT + FORALL ?</td></tr></tbody></table><br><br>Это вставка записей, не по одной , а "пакетами".<br><br>Почитайте например здесь<br><a href="http://download.oracle.com/docs/cd/B28359_01/appdev.111/b28370/tuning.htm#i48876" target="_blank">Reducing Loop Overhead for DML Statements and Queries with Bulk SQL</a><br><br>На форуме масса примеров 
+	    
+
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2" class="msgFooter">
+            25 мар 10, 14:10&nbsp;&nbsp;&nbsp;&nbsp;[<a onclick="showCopyLinks(this, '8531982')" style="text-decoration:underline; cursor:pointer; position:relative">8531982</a>] &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531982&amp;p=1" rel="nofollow">Ответить</a>
+            | <a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8531982&amp;p=1&amp;act=quot" rel="nofollow">Цитировать</a> 
+		
+            <a href="https://www.sql.ru/forum/actualutils.aspx?action=notifymod&amp;msg=8531982" rel="nofollow">Сообщить модератору</a>
+        </td>
+    </tr>
+  </tbody></table>
+  
+  <a name="8532050"></a>
+
+  <table class="msgTable">
+    <tbody><tr>
+        <td id="id8532050" class="messageHeader" colspan="2"><img src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/message.gif" alt="">&nbsp;Re: Создать копию очень большой таблицы&nbsp;
+                <!--begin case_ismsgnew-->
+                <span class="newmessage">[new]</span>
+                <!--end case_ismsgnew-->
+        </td>
+    </tr>
+    <tr style="vertical-align:top">
+      <td style="width:15%" class="msgBody">
+       
+       <a href="https://www.sql.ru/forum/memberinfo.aspx?mid=24806">
+       Elic </a><br>
+      <font style="color:#888;">Member</font><br>
+      <br>
+      <span class="smallInfo">Откуда: <br>
+	Сообщений: 30098<br></span>
+      
+       </td>
+
+        <td class="msgBody">
+            <table style="border: solid 1px #888888; margin :10px" cellspacing="0" cellpadding="4" border="0" bgcolor="#DDDDDD"><tbody><tr height="1"><td style="font: bold 11px Arial;">dmidek</td></tr><tr><td style="font : xx-small Verdana,Arial; padding : 7px" bgcolor="#EFEFFF"><table style="border: solid 1px #888888; margin :10px" cellspacing="0" cellpadding="4" border="0" bgcolor="#DDDDDD"><tbody><tr height="1"><td style="font: bold 11px Arial;">comphead</td></tr><tr><td style="font : xx-small Verdana,Arial; padding : 7px" bgcolor="#EFEFFF">мой вариант через копию структуры и вставку строк с промежуточными комитами вас устроит?</td></tr></tbody></table>Как вариация BULK + LIMIT + FORALL</td></tr></tbody></table>Как насчёт 1555-ой? :) 
+	    
+
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2" class="msgFooter">
+            25 мар 10, 14:17&nbsp;&nbsp;&nbsp;&nbsp;[<a onclick="showCopyLinks(this, '8532050')" style="text-decoration:underline; cursor:pointer; position:relative">8532050</a>] &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8532050&amp;p=1" rel="nofollow">Ответить</a>
+            | <a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8532050&amp;p=1&amp;act=quot" rel="nofollow">Цитировать</a> 
+		
+            <a href="https://www.sql.ru/forum/actualutils.aspx?action=notifymod&amp;msg=8532050" rel="nofollow">Сообщить модератору</a>
+        </td>
+    </tr>
+  </tbody></table>
+  
+  <a name="8532124"></a>
+
+  <table class="msgTable">
+    <tbody><tr>
+        <td id="id8532124" class="messageHeader" colspan="2"><img src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/message.gif" alt="">&nbsp;Re: Создать копию очень большой таблицы&nbsp;
+                <!--begin case_ismsgnew-->
+                <span class="newmessage">[new]</span>
+                <!--end case_ismsgnew-->
+        </td>
+    </tr>
+    <tr style="vertical-align:top">
+      <td style="width:15%" class="msgBody">
+       
+       <a href="https://www.sql.ru/forum/memberinfo.aspx?mid=53094">
+       GL </a><br>
+      <font style="color:#888;">Member</font><br>
+      <br>
+      <span class="smallInfo">Откуда: Харьков<br>
+	Сообщений: 1513<br></span>
+      
+       </td>
+
+        <td class="msgBody">
+            <table style="border: solid 1px #888888; margin :10px" cellspacing="0" cellpadding="4" border="0" bgcolor="#DDDDDD"><tbody><tr height="1"><td style="font: bold 11px Arial;">auf1r2</td></tr><tr><td style="font : xx-small Verdana,Arial; padding : 7px" bgcolor="#EFEFFF">как сделать чтобы не было Snapshot too old ?</td></tr></tbody></table>Иметь
+ достаточно undo. Достаточно - это растяжимое понятие, связанное, прежде
+ всего, с интенсивностью обновления таблицы, из которой читаете, 
+временем операции по созданию дубликата и параметром undo_retention.<br><table style="border: solid 1px #888888; margin :10px" cellspacing="0" cellpadding="4" border="0" bgcolor="#DDDDDD"><tbody><tr height="1"><td style="font: bold 11px Arial;">auf1r2</td></tr><tr><td style="font : xx-small Verdana,Arial; padding : 7px" bgcolor="#EFEFFF">просто хотел бы просвятиться, вдруг есть красивый метов сделать сырую копию данных ?</td></tr></tbody></table>Сорри, так не получится. 
+	    
+
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2" class="msgFooter">
+            25 мар 10, 14:26&nbsp;&nbsp;&nbsp;&nbsp;[<a onclick="showCopyLinks(this, '8532124')" style="text-decoration:underline; cursor:pointer; position:relative">8532124</a>] &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8532124&amp;p=1" rel="nofollow">Ответить</a>
+            | <a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8532124&amp;p=1&amp;act=quot" rel="nofollow">Цитировать</a> 
+		
+            <a href="https://www.sql.ru/forum/actualutils.aspx?action=notifymod&amp;msg=8532124" rel="nofollow">Сообщить модератору</a>
+        </td>
+    </tr>
+  </tbody></table>
+  
+  <a name="8532144"></a>
+
+  <table class="msgTable">
+    <tbody><tr>
+        <td id="id8532144" class="messageHeader" colspan="2"><img src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/message.gif" alt="">&nbsp;Re: Создать копию очень большой таблицы&nbsp;
+                <!--begin case_ismsgnew-->
+                <span class="newmessage">[new]</span>
+                <!--end case_ismsgnew-->
+        </td>
+    </tr>
+    <tr style="vertical-align:top">
+      <td style="width:15%" class="msgBody">
+       
+       <a href="https://www.sql.ru/forum/memberinfo.aspx?mid=42974">
+       dmidek </a><br>
+      <font style="color:#888;">Member</font><br>
+      <br>
+      <span class="smallInfo">Откуда: Киев - Дортмунд<br>
+	Сообщений: 118266<br></span>
+      
+       </td>
+
+        <td class="msgBody">
+            <table style="border: solid 1px #888888; margin :10px" cellspacing="0" cellpadding="4" border="0" bgcolor="#DDDDDD"><tbody><tr height="1"><td style="font: bold 11px Arial;">Elic</td></tr><tr><td style="font : xx-small Verdana,Arial; padding : 7px" bgcolor="#EFEFFF"><table style="border: solid 1px #888888; margin :10px" cellspacing="0" cellpadding="4" border="0" bgcolor="#DDDDDD"><tbody><tr height="1"><td style="font: bold 11px Arial;">dmidek</td></tr><tr><td style="font : xx-small Verdana,Arial; padding : 7px" bgcolor="#EFEFFF"><table style="border: solid 1px #888888; margin :10px" cellspacing="0" cellpadding="4" border="0" bgcolor="#DDDDDD"><tbody><tr height="1"><td style="font: bold 11px Arial;">comphead</td></tr><tr><td style="font : xx-small Verdana,Arial; padding : 7px" bgcolor="#EFEFFF">мой вариант через копию структуры и вставку строк с промежуточными комитами вас устроит?</td></tr></tbody></table>Как вариация BULK + LIMIT + FORALL</td></tr></tbody></table>Как насчёт 1555-ой? :)</td></tr></tbody></table><br><br>Риск есть конечно :) 
+	    
+
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2" class="msgFooter">
+            25 мар 10, 14:27&nbsp;&nbsp;&nbsp;&nbsp;[<a onclick="showCopyLinks(this, '8532144')" style="text-decoration:underline; cursor:pointer; position:relative">8532144</a>] &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8532144&amp;p=1" rel="nofollow">Ответить</a>
+            | <a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8532144&amp;p=1&amp;act=quot" rel="nofollow">Цитировать</a> 
+		
+            <a href="https://www.sql.ru/forum/actualutils.aspx?action=notifymod&amp;msg=8532144" rel="nofollow">Сообщить модератору</a>
+        </td>
+    </tr>
+  </tbody></table>
+  
+  <a name="8532218"></a>
+
+  <table class="msgTable">
+    <tbody><tr>
+        <td id="id8532218" class="messageHeader" colspan="2"><img src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/message.gif" alt="">&nbsp;Re: Создать копию очень большой таблицы&nbsp;
+                <!--begin case_ismsgnew-->
+                <span class="newmessage">[new]</span>
+                <!--end case_ismsgnew-->
+        </td>
+    </tr>
+    <tr style="vertical-align:top">
+      <td style="width:15%" class="msgBody">
+       
+       <a href="https://www.sql.ru/forum/memberinfo.aspx?mid=12950">
+       debosh </a><br>
+      <font style="color:#888;">Member</font><br>
+      <br>
+      <span class="smallInfo">Откуда: <br>
+	Сообщений: 326<br></span>
+      
+       </td>
+
+        <td class="msgBody">
+            auf1r2,<br><br>Приходилось несколько раз проводить подобные инсинуации, правда на 8i и давно.<br>пробовали и ctas и for и forall.<br>В конце концов сошлись на том, что exp/imp - наименее геморройный вариант для таких операций. :)<br>Причем даже если использовать exp ... query. 
+	    
+
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2" class="msgFooter">
+            25 мар 10, 14:34&nbsp;&nbsp;&nbsp;&nbsp;[<a onclick="showCopyLinks(this, '8532218')" style="text-decoration:underline; cursor:pointer; position:relative">8532218</a>] &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8532218&amp;p=1" rel="nofollow">Ответить</a>
+            | <a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8532218&amp;p=1&amp;act=quot" rel="nofollow">Цитировать</a> 
+		
+            <a href="https://www.sql.ru/forum/actualutils.aspx?action=notifymod&amp;msg=8532218" rel="nofollow">Сообщить модератору</a>
+        </td>
+    </tr>
+  </tbody></table>
+  
+  <a name="8532221"></a>
+
+  <table class="msgTable">
+    <tbody><tr>
+        <td id="id8532221" class="messageHeader" colspan="2"><img src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/message.gif" alt="">&nbsp;Re: Создать копию очень большой таблицы&nbsp;
+                <!--begin case_ismsgnew-->
+                <span class="newmessage">[new]</span>
+                <!--end case_ismsgnew-->
+        </td>
+    </tr>
+    <tr style="vertical-align:top">
+      <td style="width:15%" class="msgBody">
+       
+       <a href="https://www.sql.ru/forum/memberinfo.aspx?mid=134912">
+       auf1r2 </a><br>
+      <font style="color:#888;">Member</font><br>
+      <br>
+      <span class="smallInfo">Откуда: <br>
+	Сообщений: 25<br></span>
+      
+       </td>
+
+        <td class="msgBody">
+            Я проверил 1555-я таки появляется.  Нужен какой-нибудь workaround.. 
+	    
+
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2" class="msgFooter">
+            25 мар 10, 14:34&nbsp;&nbsp;&nbsp;&nbsp;[<a onclick="showCopyLinks(this, '8532221')" style="text-decoration:underline; cursor:pointer; position:relative">8532221</a>] &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8532221&amp;p=1" rel="nofollow">Ответить</a>
+            | <a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8532221&amp;p=1&amp;act=quot" rel="nofollow">Цитировать</a> 
+		
+            <a href="https://www.sql.ru/forum/actualutils.aspx?action=notifymod&amp;msg=8532221" rel="nofollow">Сообщить модератору</a>
+        </td>
+    </tr>
+  </tbody></table>
+  
+  <a name="8532252"></a>
+
+  <table class="msgTable">
+    <tbody><tr>
+        <td id="id8532252" class="messageHeader" colspan="2"><img src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/message.gif" alt="">&nbsp;Re: Создать копию очень большой таблицы&nbsp;
+                <!--begin case_ismsgnew-->
+                <span class="newmessage">[new]</span>
+                <!--end case_ismsgnew-->
+        </td>
+    </tr>
+    <tr style="vertical-align:top">
+      <td style="width:15%" class="msgBody">
+       
+       <a href="https://www.sql.ru/forum/memberinfo.aspx?mid=134912">
+       auf1r2 </a><br>
+      <font style="color:#888;">Member</font><br>
+      <br>
+      <span class="smallInfo">Откуда: <br>
+	Сообщений: 25<br></span>
+      
+       </td>
+
+        <td class="msgBody">
+            <table style="border: solid 1px #888888; margin :10px" cellspacing="0" cellpadding="4" border="0" bgcolor="#DDDDDD"><tbody><tr height="1"><td style="font: bold 11px Arial;">debosh</td></tr><tr><td style="font : xx-small Verdana,Arial; padding : 7px" bgcolor="#EFEFFF">auf1r2,<br><br>Приходилось несколько раз проводить подобные инсинуации, правда на 8i и давно.<br>пробовали и ctas и for и forall.<br>В конце концов сошлись на том, что exp/imp - наименее геморройный вариант для таких операций. :)<br>Причем даже если использовать exp ... query.</td></tr></tbody></table><br>Как exp поведет себя на работающей базе? Таблицу не залочит? 
+	    
+
+        </td>
+    </tr>
+
+    <tr>
+        <td colspan="2" class="msgFooter">
+            25 мар 10, 14:38&nbsp;&nbsp;&nbsp;&nbsp;[<a onclick="showCopyLinks(this, '8532252')" style="text-decoration:underline; cursor:pointer; position:relative">8532252</a>] &nbsp;&nbsp;&nbsp;&nbsp;<a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8532252&amp;p=1" rel="nofollow">Ответить</a>
+            | <a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=8532252&amp;p=1&amp;act=quot" rel="nofollow">Цитировать</a> 
+		
+            <a href="https://www.sql.ru/forum/actualutils.aspx?action=notifymod&amp;msg=8532252" rel="nofollow">Сообщить модератору</a>
+        </td>
+    </tr>
+  </tbody></table>
+  
+  <!--end threadtable-->
+   <!--begin case_ismultipage-->
+
+  <table class="sort_options" style="font-weight:bold;">
+    <tbody><tr>
+      <td align="left">Топик располагается на нескольких страницах:  [1]  <a href="https://www.sql.ru/forum/745617-2/sozdat-kopiu-ochen-bolshoy-tablicy"><b>2</b></a>  <a id="urlForumNext" style="text-decoration: none; font-weight:normal" href="https://www.sql.ru/forum/745617-2/sozdat-kopiu-ochen-bolshoy-tablicy">&nbsp;&nbsp;вперед &nbsp;<span style="color:#666666">Ctrl</span>&#8594;</a> &nbsp;&nbsp;&nbsp;&nbsp; <a href="https://www.sql.ru/forum/745617-a/sozdat-kopiu-ochen-bolshoy-tablicy"><b>все</b></a> </td>
+    </tr>
+  </tbody></table><!--end case_ismultipage-->
+
+  <table class="forummenu">
+    <tbody><tr style="font:bold 13px; background-color:#fff">
+      <td colspan="2"><a class="forumLink" href="https://www.sql.ru/forum">Все форумы</a> / <a class="forumLink" href="https://www.sql.ru/forum/oracle">Oracle</a>
+      </td>
+      <td style="text-align:right"><a href="https://www.sql.ru/forum/actualpost.aspx?bid=3&amp;tid=745617&amp;mid=0&amp;p=1"><img class="button_img_reply" src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/reply.gif" alt="Ответить"></a></td>
+    </tr>
+  </tbody></table><select id="forumSelector" name="bid" class="flatbutton" onchange="forumSelectorChanged()"> <option class="optiongroup" value="-7">Виртуальные форумы</option><option value="sqlru-3-days"><!--sel40_-->&nbsp;&nbsp;Темы из всех форумов за 3 дня</option><option value="myforums"><!--sel-6_-->&nbsp;&nbsp;Мои избранные форумы</option><option class="optiongroup" value="-1">Использование СУБД</option><option value="microsoft-sql-server"><!--sel1_-->&nbsp;&nbsp;Microsoft SQL Server</option><option value="interbase"><!--sel2_-->&nbsp;&nbsp;Firebird, InterBase</option><option value="oracle" selected="selected">&nbsp;&nbsp;Oracle</option><option value="access"><!--sel4_-->&nbsp;&nbsp;Microsoft Access</option><option value="db2"><!--sel5_-->&nbsp;&nbsp;IBM DB2, WebSphere, IMS, U2, etc</option><option value="mysql"><!--sel6_-->&nbsp;&nbsp;MySQL</option><option value="postgresql"><!--sel7_-->&nbsp;&nbsp;PostgreSQL</option><option value="olap-dwh"><!--sel26_-->&nbsp;&nbsp;OLAP и DWH</option><option value="sybase"><!--sel30_-->&nbsp;&nbsp;Sybase ASA, ASE, IQ</option><option value="informix"><!--sel29_-->&nbsp;&nbsp;Informix</option><option value="db-other"><!--sel23_-->&nbsp;&nbsp;Другие СУБД</option><option value="foxpro"><!--sel37_-->&nbsp;&nbsp;FoxPro, Visual FoxPro</option><option value="cache"><!--sel56_-->&nbsp;&nbsp;Cach&#233;, Ensemble, DeepSee, MiniM, IRIS, GT.M</option><option value="sqlite"><!--sel69_-->&nbsp;&nbsp;SQLite</option><option value="nosql-bigdata"><!--sel73_-->&nbsp;&nbsp;NoSQL, Big Data</option><option class="optiongroup" value="-2">Дискуcсии</option><option value="db-comparison"><!--sel10_-->&nbsp;&nbsp;Сравнение СУБД</option><option value="db-design"><!--sel36_-->&nbsp;&nbsp;Проектирование БД</option><option value="job"><!--sel9_-->&nbsp;&nbsp;Работа</option><option value="erp-crm"><!--sel53_-->&nbsp;&nbsp;ERP и учетные системы</option><option value="systems-architecture"><!--sel58_-->&nbsp;&nbsp;Разработка информационных систем</option><option value="testing-qa"><!--sel52_-->&nbsp;&nbsp;Тестирование и QA</option><option value="reporting"><!--sel57_-->&nbsp;&nbsp;Отчетные системы</option><option value="za-rubezhom"><!--sel33_-->&nbsp;&nbsp;Наши за рубежом</option><option value="certification"><!--sel8_-->&nbsp;&nbsp;Сертификация и обучение</option><option value="hardware"><!--sel62_-->&nbsp;&nbsp;Hardware</option><option value="dev-management"><!--sel64_-->&nbsp;&nbsp;Управление процессом разработки ИС</option><option value="legal"><!--sel72_-->&nbsp;&nbsp;Юридические вопросы в ИТ</option><option class="optiongroup" value="-3">Microsoft.NET</option><option value="dotnet"><!--sel34_-->&nbsp;&nbsp;WinForms, .Net Framework</option><option value="asp-net"><!--sel19_-->&nbsp;&nbsp;ASP.NET</option><option value="ado-linq-ef-orm"><!--sel12_-->&nbsp;&nbsp;ADO.NET, LINQ, Entity Framework, NHibernate, DAL, ORM</option><option value="wpf-silverlight"><!--sel35_-->&nbsp;&nbsp;WPF, Silverlight</option><option value="wcf-ws-remoting"><!--sel71_-->&nbsp;&nbsp;WCF, Web Services, Remoting</option><option class="optiongroup" value="-4">Программирование</option><option value="delphi"><!--sel20_-->&nbsp;&nbsp;Delphi</option><option value="cpp"><!--sel21_-->&nbsp;&nbsp;C++</option><option value="visual-basic"><!--sel22_-->&nbsp;&nbsp;Visual Basic</option><option value="programming"><!--sel24_-->&nbsp;&nbsp;Программирование</option><option value="java"><!--sel38_-->&nbsp;&nbsp;Java</option><option value="mobile-dev"><!--sel78_-->&nbsp;&nbsp;Разработка под мобильные платформы</option><option value="powerbuilder"><!--sel39_-->&nbsp;&nbsp;PowerBuilder</option><option value="ms-office"><!--sel46_-->&nbsp;&nbsp;Microsoft Office</option><option value="sharepoint"><!--sel74_-->&nbsp;&nbsp;SharePoint</option><option value="xml"><!--sel59_-->&nbsp;&nbsp;XML, XSL, XPath, XQuery</option><option class="optiongroup" value="-9">Web Технологии</option><option value="php-perl"><!--sel18_-->&nbsp;&nbsp;PHP, Perl, Python</option><option value="html-javascript-css"><!--sel61_-->&nbsp;&nbsp;HTML, JavaScript, VBScript, CSS</option><option class="optiongroup" value="-6">Администрирование ОС</option><option value="windows"><!--sel27_-->&nbsp;&nbsp;Windows</option><option value="linux"><!--sel28_-->&nbsp;&nbsp;Unix-системы</option><option value="other-os"><!--sel41_-->&nbsp;&nbsp;Другие: Mac OS, PalmOS, BeOS, PocketPC</option><option class="optiongroup" value="-5">SQL.RU</option><option value="sqlru"><!--sel11_-->&nbsp;&nbsp;Обсуждение нашего сайта</option><option value="question-answer"><!--sel17_-->&nbsp;&nbsp;Вопрос-Ответ</option><option value="test"><!--sel15_-->&nbsp;&nbsp;Test</option></select><script language="javascript">function forumSelectorChanged()  { if (document.getElementById("forumSelector").value.indexOf("-")==0) return;window.location.href = 'https://www.sql.ru/forum/'+document.getElementById("forumSelector").value; } </script>
+
+  <form>
+    <input type="hidden" name="tt" id="tt">
+    <script language="Javascript" type="text/javascript">
+
+        var http = null;
+        var nextClicked = false;
+        var af_ForumId = "3";
+        var af_TopicId = "745617";
+        var af_TopicUserId = "134912";
+        var af_TopicUserName = "auf1r2";
+
+
+        function HlMsg() {
+
+            if (location.hash.length>1) {
+                var sHash = location.hash.substring(1,location.hash.length);
+                var obj = document.getElementById("id"+sHash);
+                //if (obj!=null) obj.style.backgroundColor=sClr;
+                if (obj!=null) obj.style.backgroundImage = "url('/css/images/top-bg_green.gif')";
+            } }
+        HlMsg();
+
+        document.onkeydown = function(e) { handleKeys(e); };
+        document.onkeyup = function(e) { handleKeysUp(e); };
+        var ctrlDown=false;
+        function handleKeys(e) {
+
+            var evt = (e) ? e : window.event;
+            if (evt.keyCode==17) ctrlDown=true;
+
+            if ((window.AFEditor) && (window.AFEditor.loaded!=undefined) && (window.AFEditor.IsVisible())) return ;// && (window.AFEditor.IsVisible()) return;
+
+            if (evt.keyCode==27)  { var links_mid = document.getElementById('links_mid'); links_mid.style.display="none";}
+            if ((ctrlDown)&&((evt.keyCode==39)||(evt.keyCode==37))) { navigateNextPrev(evt.keyCode);
+                evt.returnValue = false;
+            }
+        }
+        function handleKeysUp(e) {
+            var evt = (e) ? e : window.event;
+            if (evt.keyCode==17) ctrlDown=false;}
+
+        function navigateNextPrev(key) {
+            var lnk="";
+            if (key==37) { lnk="urlForumPrev";}
+            if (key==39) { lnk="urlForumNext";}
+            if (document.getElementById(lnk)!=null) window.location=document.getElementById(lnk).href;
+        }
+
+        function doVote() {
+            var rads = document.getElementsByName("pollOption");
+            var rado = "";
+            for (var i = 0; i < rads.length; i++) {
+                if (rads[i].checked) { rado += ","+rads[i].value;  }
+            }
+            if (rado == "") {
+                document.getElementById("pollMsg").innerHTML = "Пожалуйста укажите вариант опроса.";
+                return;
+            }
+
+            document.getElementById("voteBtn").disabled = true;
+            document.getElementById("voteBtn").value = "подождите...";
+
+            http = getHTTPObject();
+            if (http != null) {
+                http.open("GET", 'https://www.sql.ru/forum/afpoll.aspx?action=vote&tid=745617&oid=' + rado + '&hash=402975850', true);
+                http.onreadystatechange = handleHttpResponseVote;
+                http.send(null);
+            }
+        }
+        function handleHttpResponseVote() {
+            if (http.readyState == 4) {
+                var res = http.responseText;
+                if (res != '-1')
+                    var old = document.getElementById('poll'), div1 = document.createElement('div');
+                div1.innerHTML = res;
+                old.parentNode.replaceChild(div1.firstChild, old);
+            }
+        }
+    function gotoNextFound(msgId, topicId, search, searchId) {
+            if (nextClicked) return;
+            nextClicked = true;
+            var div = document.getElementById('nextSearch');
+            div.style.backgroundRepeat = 'no-repeat';
+            div.style.backgroundPosition = '4px 50%';
+            div.style.backgroundImage = "url('https://cdn.sql.ru/images/wait1.gif')";
+            msgId = div.msgId || msgId;
+            http = getHTTPObject();
+            if (http != null) {
+                http.open("GET", 'https://www.sql.ru/forum/actualutils.aspx?action=nextfoundurl&tid=' + topicId + '&msg=' + msgId + '&search=' + search + '&sid='+searchId, true);
+                http.onreadystatechange = handleNextFound1;
+                http.send(null);
+            }
+        }
+
+        function handleNextFound1() {
+            if (http.readyState == 4) {
+                res = http.responseText;
+                nextClicked = false;
+                var div = document.getElementById('nextSearch');
+                div.style.backgroundImage = 'none';
+                if (res != '-1') {
+                    if (getParameter("pg") == getParameter("pg", res)) {
+                        var ms = res.substring(res.indexOf('#') + 1);
+                        div.msgId = ms;
+                        var td = document.getElementById('id' + ms);
+                        if (!td) { window.location.href = res; return; }
+                        td = td.parentNode.parentNode.rows[1].cells[1];
+                        for (var i = 0; i < 2; ++i) { td.appendChild(div.parentNode.previousSibling); }
+                        td.appendChild(div.parentNode);
+                        //alert(ms);
+                        window.location.hash = ms;
+			HlMsg();
+                        return;
+                    }
+                    //alert("222");
+                    window.location.href = res;
+                } else { alert("Больше сообщений не найдено"); }
+            }
+        }
+
+    </script>
+    <script src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/actualjs.js" type="text/javascript">
+    </script> 
+    <script>
+        function showCopyLinks(el, mid) {
+            var d = document;
+            var links_mid = d.getElementById('links_mid');
+            var urlbb = "[url=https://www.sql.ru/forum/actualutils.aspx?action=gotomsg&tid=745617&msg="+mid+"]Создать копию очень большой таблицы[/url]";
+            var url = "https://www.sql.ru/forum/actualutils.aspx?action=gotomsg&tid=745617&msg="+mid;
+            var msg = "[msg="+mid+"]";
+
+            el.parentNode.appendChild(links_mid);
+            links_mid.setAttribute("style", "top:"+getElementPosition(el)+"px;");
+            links_mid.style.display = "block";
+            var input = links_mid.getElementsByTagName('input');
+            input[0].value = msg;
+            input[1].value = urlbb;
+            input[2].value = url;
+            input[0].select();
+
+        }
+
+        function hideCopyLinks(el) {
+            el.style.display = "none";
+        }
+
+
+        function getElementPosition(elem)
+        {
+
+            var l = 0;
+            var t = 15;
+
+            while (elem)
+            {
+                l += elem.offsetLeft;
+                t += elem.offsetTop;
+                elem = elem.offsetParent;
+            }
+
+            return {"left":l, "top":t};
+        }
+
+
+        function load_lightbox(el) {
+            if(!document.getElementById('lightbox')) {
+                var head= document.getElementsByTagName('head')[0];
+                var script= document.createElement('script');
+                var styles= document.createElement('link');
+
+                styles.type= 'text/css';
+                styles.rel= 'stylesheet';
+                styles.href= "/css/lightbox.css";
+                styles.media= "screen";
+
+                script.type= 'text/javascript';
+                script.src= '/js/lightbox.js';
+
+                window.lbImageShow = el;
+                head.appendChild(script);
+                head.appendChild(styles);
+            }
+        }
+
+        function Cpy(val) {
+            document.getElementById("tt").value = val;
+            if (document.selection) {
+                rng = document.getElementById("tt").createTextRange(); rng.execCommand("Copy");
+            } else {
+                try { netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect"); } catch (e) { }
+                var clipboard = Components.classes["@mozilla.org/widget/clipboard;1"].getService();
+                if (clipboard) {
+                    clipboard = clipboard.QueryInterface(Components.interfaces.nsIClipboard);
+                }
+                var transferable = Components.classes["@mozilla.org/widget/transferable;1"].createInstance();
+                if (transferable) {
+                    transferable = transferable.QueryInterface(Components.interfaces.nsITransferable);
+                }
+                if (clipboard && transferable) {
+                    transferable.addDataFlavor("text/unicode");
+                    var textObj = new Object();
+                    var textObj = Components.classes["@mozilla.org/supports-string;1"].createInstance(Components.interfaces.nsISupportsString);
+                    if (textObj) {
+                        textObj.data = document.getElementById("tt").value;
+                        transferable.setTransferData("text/unicode", textObj, textObj.data.length * 2);
+                        var clipid = Components.interfaces.nsIClipboard;
+                        clipboard.setData(transferable, null, clipid.kGlobalClipboard);
+                    }
+                }
+
+            }
+        }
+    </script>
+</form>
+<!--begin case_isguest-->
+<center>
+<br><br>
+<script async="" src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/adsbygoogle.js"></script>
+<!-- ads for guests (forum bottom) -->
+<ins class="adsbygoogle" style="display:inline-block;width:728px;height:90px" data-ad-client="ca-pub-2802880694650536" data-ad-slot="5556542488" data-adsbygoogle-status="done"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><ins id="aswift_0_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"></ins></ins></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<!--end case_isguest-->
+<div class="links_mid" id="links_mid">
+    <label onclick="Cpy(document.getElementById('links_e1').value);">Ссылка на сообщение</label><br>
+    <input id="links_e1" onclick="this.select()"><br>
+    <label onclick="Cpy(document.getElementById('links_e2').value);">Ссылка (включая название темы)</label><br>
+    <input id="links_e2" onclick="this.select()"><br>
+    <label onclick="Cpy(document.getElementById('links_e3').value);">Ссылка (URL)</label><br>
+    <input id="links_e3" onclick="this.select()">
+    <div class="hideCopyLinks" onclick="hideCopyLinks(this.parentNode)">x</div>
+</div>
+
+
+			<div id="footer">
+				<div class="copyright">2000-2021 © Alex Sibilev, SQL.ru<br>
+					<a style="font: 11px Verdana;color:#88C" href="https://www.sql.ru/feedback.aspx">Свяжитесь&nbsp;с&nbsp;нами</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;<a style="font: 11px Verdana;color:#88C" href="https://www.sql.ru/forum/agreement.aspx">Пользовательское&nbsp;соглашение</a></div>
+				<div class="copyright" style="font: 10px verdana">Generated in 24ms. [2ms]</div>
+				<div class="counters">
+				</div>
+			</div>
+		</center></div>
+		<script type="text/javascript">
+		  	//initScripts();
+		 	if (window.AF_Begin) { AF_Begin(); }
+		</script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript"> (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)}; m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym"); ym(9237463, "init", { clickmap:true, trackLinks:true, accurateTrackBounce:true });</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/9237463" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+	</div> <!--page containter-->
+	
+<ins class="adsbygoogle adsbygoogle-noablate" style="display: none !important;" data-adsbygoogle-status="done"><ins id="aswift_1_expand" style="display:inline-table;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;" tabindex="0" title="Advertisement" aria-label="Advertisement"><ins id="aswift_1_anchor" style="display:block;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;"><iframe id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;border:0;width:undefinedpx;height:undefinedpx;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/ads.htm" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!2" data-load-complete="true" frameborder="0"></iframe></ins></ins></ins><iframe id="google_osd_static_frame_1619266123662" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;"></iframe></body><iframe id="google_esf" name="google_esf" src="%D0%A1%D0%BE%D0%B7%D0%B4%D0%B0%D1%82%D1%8C%20%D0%BA%D0%BE%D0%BF%D0%B8%D1%8E%20%D0%BE%D1%87%D0%B5%D0%BD%D1%8C%20%D0%B1%D0%BE%D0%BB%D1%8C%D1%88%D0%BE%D0%B9%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%D1%8B%20_%20Oracle%20_%20Sql.ru_files/zrt_lookup.htm" style="display: none;" data-ad-client="ca-pub-2802880694650536"></iframe></html>

@@ -1,0 +1,6 @@
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\002 - FileRead, FileWrite\StringWriterDemo\bin\Debug\StringWriterDemo.exe
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\002 - FileRead, FileWrite\StringWriterDemo\bin\Debug\StringWriterDemo.pdb
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\002 - FileRead, FileWrite\StringWriterDemo\obj\x86\Debug\006_StringWriter.csproj.CoreCompileInputs.cache
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\002 - FileRead, FileWrite\StringWriterDemo\obj\x86\Debug\StringWriterDemo.exe
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\002 - FileRead, FileWrite\StringWriterDemo\obj\x86\Debug\StringWriterDemo.pdb
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\002 - FileRead, FileWrite\StringWriterDemo\obj\x86\Debug\006_StringWriter.csprojAssemblyReference.cache

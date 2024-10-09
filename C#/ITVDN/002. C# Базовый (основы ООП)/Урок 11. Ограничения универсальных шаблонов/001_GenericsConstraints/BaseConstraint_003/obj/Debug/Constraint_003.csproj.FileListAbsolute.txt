@@ -1,0 +1,6 @@
+d:\Rep\practice\C#\ITVDN\002. C# Базовый (основы ООП)\Урок 11. Ограничения универсальных шаблонов\GenericNewConstraint\BaseConstraint_003\bin\Debug\BaseConstraint_003.exe.config
+d:\Rep\practice\C#\ITVDN\002. C# Базовый (основы ООП)\Урок 11. Ограничения универсальных шаблонов\GenericNewConstraint\BaseConstraint_003\bin\Debug\BaseConstraint_003.exe
+d:\Rep\practice\C#\ITVDN\002. C# Базовый (основы ООП)\Урок 11. Ограничения универсальных шаблонов\GenericNewConstraint\BaseConstraint_003\bin\Debug\BaseConstraint_003.pdb
+d:\Rep\practice\C#\ITVDN\002. C# Базовый (основы ООП)\Урок 11. Ограничения универсальных шаблонов\GenericNewConstraint\BaseConstraint_003\obj\Debug\Constraint_003.csproj.CoreCompileInputs.cache
+d:\Rep\practice\C#\ITVDN\002. C# Базовый (основы ООП)\Урок 11. Ограничения универсальных шаблонов\GenericNewConstraint\BaseConstraint_003\obj\Debug\BaseConstraint_003.exe
+d:\Rep\practice\C#\ITVDN\002. C# Базовый (основы ООП)\Урок 11. Ограничения универсальных шаблонов\GenericNewConstraint\BaseConstraint_003\obj\Debug\BaseConstraint_003.pdb

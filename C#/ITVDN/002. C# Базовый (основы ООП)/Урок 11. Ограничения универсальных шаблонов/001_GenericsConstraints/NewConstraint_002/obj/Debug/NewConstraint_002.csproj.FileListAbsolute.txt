@@ -1,0 +1,7 @@
+d:\Rep\practice\C#\ITVDN\002. C# Базовый (основы ООП)\Урок 11. Ограничения универсальных шаблонов\GenericNewConstraint\NewConstraint_002\bin\Debug\NewConstraint_002.exe.config
+d:\Rep\practice\C#\ITVDN\002. C# Базовый (основы ООП)\Урок 11. Ограничения универсальных шаблонов\GenericNewConstraint\NewConstraint_002\bin\Debug\NewConstraint_002.exe
+d:\Rep\practice\C#\ITVDN\002. C# Базовый (основы ООП)\Урок 11. Ограничения универсальных шаблонов\GenericNewConstraint\NewConstraint_002\bin\Debug\NewConstraint_002.pdb
+d:\Rep\practice\C#\ITVDN\002. C# Базовый (основы ООП)\Урок 11. Ограничения универсальных шаблонов\GenericNewConstraint\NewConstraint_002\obj\Debug\NewConstraint_002.csprojAssemblyReference.cache
+d:\Rep\practice\C#\ITVDN\002. C# Базовый (основы ООП)\Урок 11. Ограничения универсальных шаблонов\GenericNewConstraint\NewConstraint_002\obj\Debug\NewConstraint_002.csproj.CoreCompileInputs.cache
+d:\Rep\practice\C#\ITVDN\002. C# Базовый (основы ООП)\Урок 11. Ограничения универсальных шаблонов\GenericNewConstraint\NewConstraint_002\obj\Debug\NewConstraint_002.exe
+d:\Rep\practice\C#\ITVDN\002. C# Базовый (основы ООП)\Урок 11. Ограничения универсальных шаблонов\GenericNewConstraint\NewConstraint_002\obj\Debug\NewConstraint_002.pdb

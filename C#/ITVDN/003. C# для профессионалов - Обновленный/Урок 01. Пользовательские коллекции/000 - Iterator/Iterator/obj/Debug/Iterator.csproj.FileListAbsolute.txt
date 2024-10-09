@@ -1,0 +1,6 @@
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 01. Пользовательские коллекции\000 - Iterator\Iterator\bin\Debug\Iterator.exe
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 01. Пользовательские коллекции\000 - Iterator\Iterator\bin\Debug\Iterator.pdb
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 01. Пользовательские коллекции\000 - Iterator\Iterator\obj\Debug\Iterator.csprojAssemblyReference.cache
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 01. Пользовательские коллекции\000 - Iterator\Iterator\obj\Debug\Iterator.csproj.CoreCompileInputs.cache
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 01. Пользовательские коллекции\000 - Iterator\Iterator\obj\Debug\Iterator.exe
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 01. Пользовательские коллекции\000 - Iterator\Iterator\obj\Debug\Iterator.pdb

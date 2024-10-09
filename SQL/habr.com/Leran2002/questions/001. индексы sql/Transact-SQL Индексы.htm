@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html class=" js flexbox flexboxlegacy canvas canvastext webgl no-touch geolocation postmessage no-websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients no-cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <script src="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/osd.js"></script><script src="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/cookie.js"></script><script src="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/show_ads_impl_fy2019.js" id="google_shimpl"></script><script type="text/javascript" async="" src="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/watch.js"></script><script async="" src="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/analytics.js"></script><script data-ad-client="ca-pub-0746224376054267" async="" src="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/adsbygoogle.js" data-checked-head="true"></script>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="user-scalable=yes, initial-scale=1.0, minimum-scale=0.5"><meta http-equiv="description" content="Описание создания индексов для таблиц базы данных SQL Server, ускоряющих поиск строк в этих таблицах">
+
+<link rel="stylesheet" href="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/main.css">
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link rel="apple-touch-icon" sizes="180x180" href="https://professorweb.ru/my/sql-server/2012/level3/img/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://professorweb.ru/my/sql-server/2012/level3/img/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://professorweb.ru/my/sql-server/2012/level3/img/favicon-16x16.png">
+<link rel="manifest" href="https://professorweb.ru/my/sql-server/2012/level3/img/site.webmanifest">
+<link rel="mask-icon" href="https://professorweb.ru/my/sql-server/2012/level3/img/safari-pinned-tab.svg" color="#5bbad5">
+<meta name="msapplication-TileColor" content="#b91d47">
+<meta name="theme-color" content="#b8133a">
+
+<link rel="stylesheet" href="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/font-awesome.css">
+<title>Transact-SQL | Индексы</title>
+<script src="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/357779"></script><meta http-equiv="origin-trial" content="A+b/H0b8RPXNaJgaNFpO0YOFuGK6myDQXlwnJB3SwzvNMfcndat4DZYMrP4ClJIzYWo3/yP2S+8FTZ/lpqbPAAEAAABueyJvcmlnaW4iOiJodHRwczovL2ltYXNkay5nb29nbGVhcGlzLmNvbTo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzVGhpcmRQYXJ0eSI6dHJ1ZX0="><meta http-equiv="origin-trial" content="A9ZgbRtm4pU3oZiuNzOsKcC8ppFSZdcjP2qYcdQrFKVzkmiWH1kdYY1Mi9x7G8+PS8HV9Ha9Cz0gaMdKsiVZIgMAAAB7eyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="AxL6oBxcpn5rQDPKSAs+d0oxNyJYq2/4esBUh3Yx5z8QfcLu+AU8iFCXYRcr/CEEfDnkxxLTsvXPJFQBxHfvkgMAAACBeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXRhZ3NlcnZpY2VzLmNvbTo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A9KPtG5kl3oLTk21xqynDPGQ5t18bSOpwt0w6kGa6dEWbuwjpffmdUpR3W+faZDubGT+KIk2do0BX2ca16x8qAcAAACBeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A3HucHUo1oW9s+9kIKz8mLkbcmdaj5lxt3eiIMp1Nh49dkkBlg1Fhg4Fd/r0vL69mRRA36YutI9P/lJUfL8csQoAAACFeyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="A0OysezhLoCRYomumeYlubLurZTCmsjTb087OvtCy95jNM65cfEsbajrJnhaGwiTxhz38ZZbm+UhUwQuXfVPTg0AAACLeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="AxoOxdZQmIoA1WeAPDixRAeWDdgs7ZtVFfH2y19ziTgD1iaHE5ZGz2UdSjubkWvob9C5PrjUfkWi4ZSLgWk3Xg8AAACLeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXRhZ3NlcnZpY2VzLmNvbTo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="A7+rMYR5onPnACrz+niKSeFdH3xw1IyHo2AZSHmxrofRk9w4HcQPMYcpBUKu6OQ6zsdxf4m/vqa6tG6Na4OLpAQAAAB4eyJvcmlnaW4iOiJodHRwczovL2ltYXNkay5nb29nbGVhcGlzLmNvbTo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1RoaXJkUGFydHkiOnRydWV9"><link rel="preload" href="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/integrator_002.js" as="script"><script type="text/javascript" src="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/integrator_002.js"></script><link rel="preload" href="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/integrator.js" as="script"><script type="text/javascript" src="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/integrator.js"></script></head>
+<body style="display: block;">
+<div id="main" style="height: auto !important;">
+   <div class="top-banner">
+        <div class="top-banner__wrapper">
+<img src="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/csh.png" alt="">
+            <span><a href="https://t.me/csharpovich" target="_blank">
+               &nbsp;Мы запустили ТГ-канал по урокам C#</a>
+            </span>
+        </div>
+    </div> 
+<nav class="navbar main-menu">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+            <a class="navbar-brand" href="https://professorweb.ru/">Professor Web</a>
+        </div>
+
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown ">
+                    <a href="https://professorweb.ru/my/csharp/charp_theory/level1/infocsharp.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">C# 5.0 и .NET 4.5 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://professorweb.ru/my/csharp/charp_theory/level1/index.php">Руководство C# - Часть 1</a></li>
+                        <li><a href="https://professorweb.ru/my/csharp/charp_theory/level1/index1.php">Руководство C# - Часть 2</a></li>
+                        <li><a href="https://professorweb.ru/my/csharp/base_net/level1/net_index.php">Основы .NET</a></li>
+                        <li><a href="https://professorweb.ru/my/csharp/assembly/level1/assembly_index.php">Сборки .NET</a></li>
+                        <li><a href="https://professorweb.ru/my/csharp/thread_and_files/1/thread_index.php">Потоки и файлы</a></li>
+                        <li><a href="https://professorweb.ru/my/csharp/web/level1/web_index.php">Работа с сетью</a></li>
+                        <li><a href="https://professorweb.ru/my/csharp/optimization/level1/">Оптимизация приложений</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown ">
+                    <a href="https://professorweb.ru/my/WPF/base_WPF/level1/info_WPF.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">WPF <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://professorweb.ru/my/WPF/base_WPF/level1/base_WPF_index.php">Основа WPF</a></li>
+                        <li><a href="https://professorweb.ru/my/WPF/UI_WPF/level6/UI_WPF_index.php">Элементы управления WPF</a></li>
+                        <li><a href="https://professorweb.ru/my/WPF/binding_and_styles_WPF/level8/bas_WPF_index.php">Привязка и стили</a></li>
+                        <li><a href="https://professorweb.ru/my/WPF/graphics_and_animation/level12/graph_animation_index.php">Графика и анимация</a></li>
+                        <li><a href="https://professorweb.ru/my/WPF/Template/level17/template_index.php">Шаблоны WPF</a></li>
+                        <li><a href="https://professorweb.ru/my/WPF/documents_WPF/level28/document_index.php">Периферия WPF</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown ">
+                    <a href="https://professorweb.ru/my/WPF/themes/DarkBlue_UI/info_themes.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Темы WPF <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://professorweb.ru/my/WPF/themes/DarkBlue_UI/theme_db.php">Dark Blue UI</a></li>
+                        <li><a href="https://professorweb.ru/my/WPF/themes/DarkOrange_UI/theme_or.php">Dark Orange UI</a></li>
+                    </ul>
+                </li>
+                <li class=""><a href="https://professorweb.ru/my/Silverlight/base/level1/s_index.php">Silverlight 5</a></li>
+                <li class="dropdown active">
+                    <a href="https://professorweb.ru/my/ADO_NET/base/level1/info_db.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Работа с БД <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://professorweb.ru/my/ADO_NET/base/level1/ado_net_index.php">ADO.NET</a></li>
+                        <li><a href="https://professorweb.ru/my/entity-framework/6/level1/">Entity Framework 6</a></li>
+                        <li><a href="https://professorweb.ru/my/sql-server/2012/level1/">SQL Server 2012</a></li>
+                        <li><a href="https://professorweb.ru/my/sql-server/window-functions/level1/">Оконные функции</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown ">
+                    <a href="https://professorweb.ru/my/LINQ/base/level1/info_linq.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">LINQ <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://professorweb.ru/my/LINQ/base/level1/linq_index.php">LINQ to Objects</a></li>
+                        <li><a href="https://professorweb.ru/my/LINQ/linq_xml/level5/linq_to_xml_index.php">LINQ to XML</a></li>
+                        <li><a href="https://professorweb.ru/my/LINQ/linq_sql/level8/linq_to_dataset_and_sql_index.php">LINQ to DataSet и SQL</a></li>
+                        <li><a href="https://professorweb.ru/my/LINQ/linq_entities/level14/linq_to_entities_index.php">LINQ to Entities</a></li>
+                        <li><a href="https://professorweb.ru/my/LINQ/PLINQ/level16/plinq_index.php">Parallel LINQ</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown ">
+                    <a href="https://professorweb.ru/my/ASP_NET/base/level1/aspnet_info.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">ASP.NET <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://professorweb.ru/my/ASP_NET/base/level1/base_aspnet_index.php">Основы ASP.NET</a></li>
+                        <li><a href="https://professorweb.ru/my/ASP_NET/sites/level1/">Веб-сайты</a></li>
+                        <li><a href="https://professorweb.ru/my/ASP_NET/security/level1/">Безопасность</a></li>
+                        <li><a href="https://professorweb.ru/my/ASP_NET/gamestore/level1/">Интернет магазин</a></li>
+                        <li><a href="https://professorweb.ru/my/ASP_NET/webforms_4_5/level1/">ASP.NET Web Forms 4.5</a></li>
+                        <li><a href="https://professorweb.ru/my/ASP_NET/mvc/level1/">ASP.NET MVC 5</a></li>
+                        <li><a href="https://professorweb.ru/my/ASP_NET/identity/level1/">Аутентификация</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown ">
+                    <a href="https://professorweb.ru/my/windows8/rt/level1/info_w8.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Windows 8/10 <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://professorweb.ru/my/windows8/rt/level1/">WinRT - основы</a></li>
+                        <li><a href="https://professorweb.ru/my/windows8/rt-ext/level1/">WinRT - расширения</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown ">
+                    <a href="https://professorweb.ru/my/programs/visual-studio/level1/info_programs.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Программы <span class="caret"></span></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="https://professorweb.ru/my/expression_blend/base/level1/info_eb4.php">Expression Blend 4</a></li>
+                        <li><a href="https://professorweb.ru/my/programs/visual-studio/level1/">Visual Studio</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+   <div itemscope="" itemtype="http://data-vocabulary.org/Review-aggregate" id="content" style="height: auto !important;">
+     <h1 itemprop="itemreviewed">Индексы</h1>
+     <div id="adv" class="daily-promo-unit daily-promo-unit--mode-link daily-promo-unit--wide" air-module="module.dailyPromoUnits" data-mode="link" data-type="feed" data-id="549" data-booster-type="views">
+
+     <div class="daily-promo-unit__container layout--a">
+
+       <!-- <a class="daily-promo-unit__label" href="https://docs.google.com/forms/d/e/1FAIpQLSfx0eqRpyAg1Tg1biZRXztMQpk0sTOyhInUOKJ-a0rnGlCQlQ/viewform?usp=sf_link" target="_blank">Купить эту строчку</a>-->
+
+        
+            
+            <a class="daily-promo-unit__overlay" href="https://ad.admitad.com/g/k3dfvevwit1ef3daf69465a37ca03db4ead7469b/" target="_blank"></a>
+
+            <div class="daily-promo-unit__inner">
+
+                
+<img class="andropov_image daily-promo-unit__image" air-module="module.andropov" data-andropov-type="image" data-image-name="" style="background-color: transparent;" src="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/top_banner.png">
+                <div class="daily-promo-unit__info">
+
+                    <div class="daily-promo-unit__title">Онлайн университет с трудоустройством</div>
+
+                    <div class="daily-promo-unit__description">8 
+востребованных направлений — выбирайте, в каком из них хотите 
+развиваться. Еще у нас есть программы для школьников и целых компаний.</div>
+
+                </div>
+
+                <div class="daily-promo-unit__buttons">
+
+
+                </div>
+
+            </div>
+
+        
+    </div> 
+    
+
+
+</div>
+
+     <meta itemprop="rating" content="4.4"><span class="get_votes" itemprop="votes">172</span>
+     <p class="maplink"><a href="https://professorweb.ru/my/ADO_NET/base/level1/info_db.php">Работа с базами данных в .NET Framework</a> --- <a href="https://professorweb.ru/my/sql-server/2012/level1/">SQL Server 2012</a> --- Индексы</p>
+<span class="sourcecode"><a target="_blank" rel="nofollow" href="https://drive.google.com/file/d/0B1bbH3I82mAVeHR5RG9YQ2p1YlU/view?usp=sharing">Исходники баз данных</a></span>
+<p>В этой статье рассматриваются индексы и их роль в оптимизации времени
+ выполнения запросов. В первой части статьи обсуждаются разные формы 
+индексов и способы их хранения. Далее исследуются три основные 
+инструкции языка Transact-SQL, применяемые для работы с индексами: 
+CREATE INDEX, ALTER INDEX и DROP INDEX. Потом рассматривается 
+фрагментация индексов ее влияния на производительность системы. После 
+этого дается несколько общих рекомендаций по созданию индексов и 
+описывается несколько специальных типов индексов.</p>
+<h2>Общие сведения</h2>
+<p>Системы баз данных обычно используют индексы для обеспечения быстрого
+ доступа к реляционным данным. Индекс представляет собой отдельную 
+физическую структуру данных, которая позволяет получать быстрый доступ к
+ одной или нескольким строкам данных. Таким образом, правильная 
+настройка индексов является ключевым аспектом улучшения 
+производительности запросов.</p>
+<p>Индекс базы данных во многом сходен с индексом (алфавитным 
+указателем) книги. Когда нам нужно быстро найти какую-либо тему в книге,
+ мы сначала смотрим в индексе, на каких страницах книги эта тема 
+рассматривается, а потом сразу же открываем нужную страницу. Подобным 
+образом, при поиске определенной строки таблицы компонент Database 
+Engine обращается к индексу, чтобы узнать ее физическое местонахождение.</p>
+<p>Но между индексом книги и индексом базы данных есть две существенные разницы: </p>
+<ul>
+   <li><p>Читатель книги имеет возможность самому решать, использовать 
+ли индекс в каждом конкретном случае или нет. Пользователь базы данных 
+такой возможности не имеет, и за него это решение принимает компонент 
+системы, называемый <em class="h">оптимизатором запросов</em>. 
+(Пользователь может манипулировать использованием индексов посредством 
+подсказок индексов, но эти подсказки рекомендуется применять только в 
+ограниченном числе специальных случаев.)</p></li>
+   <li><p>Индекс для определенной книги создается вместе с книгой, после
+ чего он больше не изменяется. Это означает, что индекс для определенной
+ темы всегда будет указывать на один и тот же номер страницы. В 
+противоположность, индекс базы данных может меняться при каждом 
+изменении соответствующих данных.</p></li>
+</ul>
+<p>Если для таблицы отсутствует подходящий индекс, для выборки строк система использует метод сканирования таблицы. Выражение <em class="h">сканирование таблицы</em>
+ означает, что система последовательно извлекает и исследует каждую 
+строку таблицы (от первой до последней), и помещает строку в 
+результирующий набор, если для нее удовлетворяется условие поиска в 
+предложении WHERE. Таким образом, все строки извлекаются в соответствии с
+ их физическим расположением в памяти. Этот метод менее эффективен, чем 
+доступ с использованием индексов, как объясняется далее.</p>
+<p>Индексы сохраняются в дополнительных структурах базы данных, называющихся <em class="h">страницами индексов</em>. Для каждой индексируемой строки имеется <em class="h">элемент индекса (index entry)</em>,
+ который сохраняется на странице индексов. Каждый элемент индекса 
+состоит из ключа индекса и указателя. Вот поэтому элемент индекса 
+значительно короче, чем строка таблицы, на которую он указывает. По этой
+ причине количество элементов индекса на каждой странице индексов 
+намного больше, чем количество строк в странице данных.</p><div style="width: 100%; height: auto; clear: both; text-align: center;" class="google-auto-placed ap_container"><ins style="display: block; margin: auto; background-color: transparent; height: 280px;" data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-0746224376054267" data-adsbygoogle-status="done"><ins id="aswift_1_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:940px;background-color:transparent;" tabindex="0" title="Advertisement" aria-label="Advertisement"><ins id="aswift_1_anchor" style="display: block; border: medium none; height: 280px; margin: 0px; padding: 0px; position: relative; visibility: visible; width: 940px; background-color: transparent; overflow: visible;"><iframe id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;border:0;width:940px;height:280px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" src="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/ads.htm" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!2" data-google-query-id="CIOk-Ni7-O8CFXUCogMdD24Puw" data-load-complete="true" width="940" height="280" frameborder="0"></iframe></ins></ins></ins></div>
+<p>Это свойство индексов играет очень важную роль, поскольку количество 
+операций ввода/вывода, требуемых для прохода по страницам индексов, 
+значительно меньше, чем количество операций ввода/вывода, требуемых для 
+прохода по соответствующим страницам данных. Иными словами, для 
+сканирования таблицы, скорей всего, потребовалось бы намного больше 
+операций ввода/вывода, чем для сканирования индекса этой таблицы.</p>
+<p>Индексы компонента Database Engine создаются, используя структуру 
+данных сбалансированного дерева B+. B+-дерево имеет древовидную 
+структуру, в которой все самые нижние узлы находятся на расстоянии 
+одинакового количества уровней от вершины (корневого узла) дерева. Это 
+свойство поддерживается даже тогда, когда в индексированный столбец 
+добавляются или удаляются данные.</p>
+<p>На рисунке ниже показана структура B+-дерева для таблицы Employee и 
+прямой доступ к строке в этой таблице со значением 25348 для столбца Id.
+ (Предполагается, что таблица Employee проиндексирована по столбцу Id.) 
+На этом рисунке можно также видеть, что B+-дерево состоит из корневого 
+узла, узлов дерева и промежуточных узлов, количество которых может быть 
+от нуля и больше: </p>
+<div class="imgcontent"><img src="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/img51884.png" alt="B+-дерево для столбца Id таблицы Employee"></div>
+<p>Поиск в этом дереве значения 25348 можно выполнить следующим образом.
+ Начиная с корня дерева, выполняется поиск наименьшего значения ключа, 
+большего или равного требуемому значению. Таким образом, в корневом узле
+ таким значением будет 29346, поэтому делается переход на промежуточный 
+узел, связанный с этим значением. В этом узле заданным требованиям 
+отвечает значение 28559, вследствие чего выполняется переход на узел 
+дерева, связанный с этим значением. Этот узел и содержит искомое 
+значение 25348. Определив требуемый индекс, мы можем извлечь его строку 
+из таблицы данных с помощью соответствующих указателей. (Альтернативным 
+эквивалентным подходом будет поиск меньшего или равного значения 
+индекса.)</p>
+<p>Индексированный поиск обычно является предпочтительным методом поиска
+ в таблицах с большим количеством строк по причине его очевидного 
+преимущества. Используя индексированный поиск, мы можем найти любую 
+строку в таблице за очень короткое время, применив лишь несколько 
+операций ввода/вывода. А последовательный поиск (т.е. сканирование 
+таблицы от первой строки до последней) требует тем больше времени, чем 
+дальше находится требуемая строка.</p><div style="width: 100%; height: auto; clear: both; text-align: center;" class="google-auto-placed ap_container"><ins style="display: block; margin: auto; background-color: transparent; height: 280px;" data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-0746224376054267" data-adsbygoogle-status="done"><ins id="aswift_2_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:940px;background-color:transparent;" tabindex="0" title="Advertisement" aria-label="Advertisement"><ins id="aswift_2_anchor" style="display: block; border: medium none; height: 280px; margin: 0px; padding: 0px; position: relative; visibility: visible; width: 940px; background-color: transparent; overflow: visible;"><iframe id="aswift_2" name="aswift_2" style="left:0;position:absolute;top:0;border:0;width:940px;height:280px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" src="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/ads.htm" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!3" data-google-query-id="CKLx-Ni7-O8CFZEJewodM8IF5A" data-load-complete="true" width="940" height="280" frameborder="0"></iframe></ins></ins></ins></div>
+<p>В следующих разделах мы рассмотрим два существующих типа индексов, 
+кластеризованные и некластеризованные, а также научимся создавать 
+индексы.</p>
+<h2>Кластеризованные индексы</h2>
+<p><dfn><strong>Кластеризованный индекс</strong></dfn> определяет 
+физический порядок данных в таблице. Компонент Database Engine позволяет
+ создавать для таблицы лишь один кластеризованный индекс, т.к. строки 
+таблицы нельзя упорядочить физически более чем одним способом. Поиск с 
+использованием кластеризованного индекса выполняется от корневого узла 
+B+-дерева по направлению к узлам дерева, которые связаны между собой в 
+двунаправленный связанный список (doubly linked list), называющийся <em class="h">цепочкой страниц (page chain)</em>.</p>
+<p>Важным свойством кластеризованного индекса является та особенность, 
+что его узлы дерева содержат страницы данных. (Узлы кластеризованного 
+индекса всех других уровней содержат страницы индекса.) Таблица, для 
+которой определен кластеризованный индекс (явно или неявно), называется 
+кластеризованной таблицей. Структура B+-дерева кластеризованного индекса
+ показана на рисунке ниже: </p>
+<!--<div class="ads-wrapper">
+    <div class="ad1"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<ins class="adsbygoogle"
+     style="display:inline-block;width:336px;height:280px"
+     data-ad-client="ca-pub-5819559848186638"
+     data-ad-slot="5818840068"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+    <div class="ad2"><script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+<ins class="adsbygoogle"
+     style="display:inline-block;width:336px;height:280px"
+     data-ad-client="ca-pub-5819559848186638"
+     data-ad-slot="5818840068"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+</div>    -->
+
+<div class="imgcontent"><img src="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/img51885.png" alt="Физическая структура кластеризованных индексов"></div>
+<p>Кластеризованный индекс создается по умолчанию для каждой таблицы, 
+для которой с помощью ограничения первичного ключа определен первичный 
+ключ. Кроме этого, каждый кластеризованный индекс однозначен по 
+умолчанию, т.е. в столбце, для которого определен кластеризованный 
+индекс, каждое значение данных может встречаться только один раз. Если 
+кластеризованный индекс создается для столбца, содержащего повторяющиеся
+ значения, система баз данных принудительно обеспечивает однозначность, 
+добавляя четырехбайтовый идентификатор к строкам, содержащим дубликаты 
+значений.</p>
+<p>Кластеризованные индексы обеспечивают очень быстрый доступ к данным, когда запрос осуществляет поиск в диапазоне значений.</p>
+<h2>Некластеризованные индексы</h2>
+<p>Структура некластеризованного индекса точно такая же, как и кластеризованного, но с двумя важными отличиями: </p>
+<ul>
+   <li><p>некластеризованный индекс не изменяет физическое упорядочивание строк таблицы;</p></li>
+   <li><p>страницы узлов некластеризованного индекса состоят из ключей индекса и закладок.</p></li>
+</ul>
+<p>Если для таблицы определить один или более некластеризованных 
+индексов, физический порядок строк этой таблицы не будет изменен. Для 
+каждого некластеризованного индекса компонент Database Engine создает 
+дополнительную индексную структуру, которая сохраняется в индексных 
+страницах. Структура B+-дерева некластеризованного индекса показана на 
+рисунке ниже: </p>
+<div class="imgcontent"><img src="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/img51886.png" alt="Структура некластеризованного индекса"></div>
+<p>Закладка в некластеризованном индексе указывает, где находится 
+строка, соответствующая ключу индекса. Составляющая закладки ключа 
+индекса может быть двух видов, в зависимости от того, является ли 
+таблица кластеризованной таблицей или кучей (heap). (Согласно 
+терминологии SQL Server, кучей называется таблица без кластеризованного 
+индекса.) Если существует кластеризованный индекс, то закладка 
+некластеризованного индекса показывает B+-дерево кластеризованного 
+индекса таблицы. Если таблица не имеет кластеризованного индекса, 
+закладка идентична <em class="h">идентификатору строки (RID - Row Identifier)</em>,
+ состоящего из трех частей: адреса файла, в котором хранится таблица, 
+адреса физического блока (страницы), в котором хранится строка, и 
+смещения строки в странице.</p>
+<p>Как уже упоминалось ранее, поиск данных с использованием 
+некластеризованного индекса можно осуществлять двумя разными способами, в
+ зависимости от типа таблицы: </p>
+<ul>
+   <li><p>куча - прохождение при поиске по структуре некластеризованного
+ индекса, после чего строка извлекается, используя идентификатор строки;</p></li>
+   <li><p>кластеризованная таблица - прохождение при поиске по структуре
+ некластеризованного индекса, после чего следует прохождение по 
+соответствующему кластеризованному индексу.</p></li>
+</ul>
+<p>В обоих случаях количество операций ввода/вывода довольно велико, 
+поэтому следует подходить к проектированию некластеризованного индекса с
+ осторожностью, и применять его только в том случае, если есть 
+уверенность, что его использование существенно повысит 
+производительность.</p>
+<h2>Язык Transact-SQL и индексы</h2>
+<p>Теперь, когда мы познакомились с физической структурой индексов, в 
+этом разделе рассмотрим, как их создавать, изменять и удалять, а также 
+как получать информацию о фрагментации индексов и редактировать 
+информацию об индексах. Все это подготовит нас к последующему обсуждению
+ использования индексов для улучшения производительности системы.</p>
+<h3>Создание индексов</h3>
+<p>Индекс для таблицы создается с помощью инструкции <strong class="h">CREATE INDEX</strong>. Эта инструкция имеет следующий синтаксис: </p>
+<div class="construct"><pre><code class="hljs sql"><span class="hljs-operator"><span class="hljs-keyword">CREATE</span> [<span class="hljs-keyword">UNIQUE</span>] [CLUSTERED | </span><u><span class="hljs-operator">NONCLUSTERED</span></u><span class="hljs-operator">] <span class="hljs-keyword">INDEX</span> index_name
+    <span class="hljs-keyword">ON</span> table_name (column1 [<span class="hljs-keyword">ASC</span> | <span class="hljs-keyword">DESC</span>] ,...)
+        [ INCLUDE ( column_name [ ,... ] ) ]
+        
+[<span class="hljs-keyword">WITH</span>
+    [FILLFACTOR=n]
+    [[, ] PAD_INDEX = {<span class="hljs-keyword">ON</span> | OFF}]
+    [[, ] DROP_EXISTING = {<span class="hljs-keyword">ON</span> | OFF}]
+    [[, ] SORT_IN_TEMPDB = {<span class="hljs-keyword">ON</span> | OFF}]
+    [[, ] IGNORE_DUP_KEY = {<span class="hljs-keyword">ON</span> | OFF}]
+    [[, ] ALLOW_ROW_LOCKS = {<span class="hljs-keyword">ON</span> | OFF}]
+    [[, ] ALLOW_PAGE_LOCKS = {<span class="hljs-keyword">ON</span> | OFF}]
+    [[, ] STATISTICS_NORECOMPUTE = {<span class="hljs-keyword">ON</span> | OFF}]
+    [[, ] ONLINE = {<span class="hljs-keyword">ON</span> | OFF}]]
+    [<span class="hljs-keyword">ON</span> file_group | <span class="hljs-string">"default"</span>]</span></code>
+
+
+<a href="https://professorweb.ru/my/sql-server/2012/level1/1_0.php" rel="no-follow" class="js_sample">Соглашения по синтаксису</a>
+</pre></div>
+<p>Параметр index_name задает имя создаваемого индекса. Индекс можно 
+создать для одного или больше столбцов одной таблицы, обозначаемой 
+параметром table_name. Столбец, для которого создается индекс, 
+указывается параметром column1. Числовой суффикс этого параметра 
+указывает на то, что индекс можно создать для нескольких столбцов 
+таблицы. Компонент Database Engine также поддерживает создание индексов 
+для представлений.</p><div style="width: 100%; height: auto; clear: both; text-align: center;" class="google-auto-placed ap_container"><ins style="display: block; margin: auto; background-color: transparent; height: 280px;" data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-0746224376054267" data-adsbygoogle-status="done"><ins id="aswift_3_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:940px;background-color:transparent;" tabindex="0" title="Advertisement" aria-label="Advertisement"><ins id="aswift_3_anchor" style="display: block; border: medium none; height: 280px; margin: 0px; padding: 0px; position: relative; visibility: visible; width: 940px; background-color: transparent; overflow: visible;"><iframe id="aswift_3" name="aswift_3" style="left:0;position:absolute;top:0;border:0;width:940px;height:280px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" src="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/ads.htm" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!4" data-google-query-id="CMvmhN67-O8CFUdVGAodkdIN-g" data-load-complete="true" width="940" height="280" frameborder="0"></iframe></ins></ins></ins></div>
+<p>Можно проиндексировать любой столбец таблицы. Это означает, что 
+столбцы, содержащие значения типа данных VARBINARY(max), BIGINT и 
+SQL_VARIANT, также могут быть индексированы.</p>
+<p>Индекс может быть простым или составным. Простой индекс создается по 
+одному столбцу, а составной индекс - по нескольким столбцам. Для 
+составного индекса существуют определенные ограничения, связанные с его 
+размером и количеством столбцов. Индекс может иметь максимум 900 байтов и
+ не более 16 столбцов.</p>
+<p><em class="h">Параметр UNIQUE</em> указывает, что проиндексированный 
+столбец может содержать только однозначные (т.е. неповторяющиеся) 
+значения. В однозначном составном индексе однозначной должна быть 
+комбинация значений всех столбцов каждой строки. Если ключевое слово 
+UNIQUE не указывается, то повторяющиеся значения в проиндексированном 
+столбце (столбцах) разрешаются.</p>
+<p><em class="h">Параметр CLUSTERED</em> задает кластеризованный индекс, а <em class="h">параметр NONCLUSTERED</em>
+ (применяется по умолчанию) указывает, что индекс не изменяет порядок 
+строк в таблице. Компонент Database Engine разрешает для таблицы 
+максимум 249 некластеризованных индексов.</p>
+<p>Возможности компонента Database Engine были расширены, позволяя 
+создать поддержку индексов с убывающим порядком значений столбцов. 
+Параметр ASC после имени столбца указывает, что индекс создается с 
+возрастающим порядком значений столбца, а параметр DESC означает 
+убывающий порядок значений столбца индекса. Таким образом, в 
+использовании индекса предоставляется большая гибкость. С убывающим 
+порядком следует создавать составные индексы на столбцах, значения 
+которых упорядочены в противоположных направлениях.</p>
+<p><em class="h">Параметр INCLUDE</em> позволяет указать неключевые 
+столбцы, которые добавляются к страницам узлов некластеризованного 
+индекса. Имена столбцов в списке INCLUDE не должны повторяться, и 
+столбец нельзя использовать одновременно как ключевой и неключевой.</p>
+<p>Чтобы по-настоящему понять полезность параметра INCLUDE, нужно понимать, что собой представляет <em class="h">покрывающий индекс (covering index)</em>.
+ Если все столбцы запроса включены в индекс, то можно получить 
+значительное повышение производительности, т.к. оптимизатор запросов 
+может определить местонахождение всех значений столбцов по страницам 
+индекса, не обращаясь к данным в таблице. Такая возможность называется 
+покрывающим индексом или покрывающим запросом. Поэтому включение в 
+страницы узлов некластеризованного индекса дополнительных неключевых 
+столбцов позволит получить больше покрывающих запросов, при этом их 
+производительность будет значительно повышена.</p>
+<p><em class="h">Параметр FILLFACTOR</em> задает заполнение в процентах 
+каждой страницы индекса во время его создания. Значение параметра 
+FILLFACTOR можно установить в диапазоне от 1 до 100. При значении n=100 
+каждая страница индекса заполняется на 100%, т.е. существующая страница 
+узла так же, как страница, не относящаяся к узлу, не будет иметь 
+свободного места для вставки новых строк. Поэтому это значение 
+рекомендуется применять только для статических таблиц. (Значение по 
+умолчанию, n=0, означает, что страницы узлов индекса заполняются 
+полностью, а каждая из промежуточных страниц содержит свободное место 
+для одной записи.)</p><div style="width: 100%; height: auto; clear: both; text-align: center;" class="google-auto-placed ap_container"><ins style="display: block; margin: auto; background-color: transparent; height: 280px;" data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-0746224376054267" data-adsbygoogle-status="done"><ins id="aswift_4_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:940px;background-color:transparent;" tabindex="0" title="Advertisement" aria-label="Advertisement"><ins id="aswift_4_anchor" style="display: block; border: medium none; height: 280px; margin: 0px; padding: 0px; position: relative; visibility: visible; width: 940px; background-color: transparent; overflow: visible;"><iframe id="aswift_4" name="aswift_4" style="left:0;position:absolute;top:0;border:0;width:940px;height:280px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" src="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/ads.htm" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!5" data-google-query-id="COP85t67-O8CFVCUGAodI-QJIA" data-load-complete="true" width="940" height="280" frameborder="0"></iframe></ins></ins></ins></div>
+<p>При значении параметра FILLFACTOR между 1 и 99 страницы узлов 
+создаваемой структуры индекса будут содержать свободное место. Чем 
+больше значение n, тем меньше свободного места в страницах узлов 
+индекса. Например, при значении n=60 каждая страница узлов индекса будет
+ иметь 40% свободного места для вставки строк индекса в дальнейшем. 
+(Строки индекса вставляются посредством инструкции INSERT или UPDATE.) 
+Таким образом, значение n=60 будет разумным для таблиц, данные которых 
+подвергаются довольно частым изменениям. При значениях параметра 
+FILLFACTOR между 1 и 99 промежуточные страницы индекса содержат 
+свободное место для одной записи каждая.</p>
+<p>После создания индекса в процессе его использования значение 
+FILLFACTOR не поддерживается. Иными словами, оно только указывает объем 
+зарезервированного места с имеющимися данными при задании процентного 
+соотношения для свободного места. Для восстановления исходного значения 
+параметра FILLFACTOR применяется инструкция ALTER INDEX.</p>
+<p><em class="h">Параметр PAD_INDEX</em> тесно связан с параметром 
+FILLFACTOR. Параметр FILLFACTOR в основном задает объем свободного 
+пространства в процентах от общего объема страниц узлов индекса. А 
+параметр PAD_INDEX указывает, что значение параметра FILLFACTOR 
+применяется как к страницам индекса, так и к страницам данных в индексе.</p>
+<p><em class="h">Параметр DROP_EXISTING</em> позволяет повысить 
+производительность при воспроизведении кластеризованного индекса для 
+таблицы, которая также имеет некластеризованный индекс. Более подробную 
+информацию смотрите далее в разделе "Пересоздание индекса".</p>
+<p><em class="h">Параметр SORT_IN_TEMPDB</em> применяется для помещения в
+ системную базу данных tempdb данных промежуточных операций сортировки, 
+применяющихся при создании индекса. Это может повысить 
+производительность, если база данных tempdb размещена на другом диске, 
+чем данные.</p>
+<p><em class="h">Параметр IGNORE_DUP_KEY</em> разрешает системе 
+игнорировать попытку вставки повторяющихся значений в индексированные 
+столбцы. Этот параметр следует применять только для того, чтобы избежать
+ прекращения выполнения длительной транзакции, когда инструкция INSERT 
+вставляет дубликат данных в индексированный столбец. Если этот параметр 
+активирован, то при попытке инструкции INSERT вставить в таблицу строки,
+ нарушающие однозначность индекса, система базы данных вместо аварийного
+ завершения выполнения всей инструкции просто выдает предупреждение. При
+ этом компонент Database Engine не вставляет строки с дубликатами 
+значений ключа, а просто игнорирует их и добавляет правильные строки. 
+Если же этот параметр не установлен, то выполнение всей инструкции будет
+ аварийно завершено.</p>
+<p>Когда <em class="h">параметр ALLOW_ROW_LOCKS</em> активирован (имеет значение on), система применяет блокировку строк. Подобным образом, когда активирован <em class="h">параметр ALLOW_PAGE_LOCKS</em>, система применяет блокировку страниц при параллельном доступе. <em class="h">Параметр STATISTICS_NORECOMPUTE</em> определяет состояние автоматического перерасчета статистики указанного индекса.</p>
+<p>Активированный <em class="h">параметр ONLINE</em> позволяет 
+создавать, пересоздавать и удалять индекс в диалоговом режиме. Данный 
+параметр позволяет в процессе изменения индекса одновременно изменять 
+данные основной таблицы или кластеризованного индекса и любых связанных 
+индексов. Например, в процессе пересоздания кластеризованного индекса 
+можно продолжать обновлять его данные и выполнять запросы по этим 
+данным.</p>
+<p><em class="h">Параметр ON</em> создает указанный индекс или на 
+файловой группе по умолчанию (значение default), или на указанной 
+файловой группе (значение file_group).</p>
+<p>В примере ниже показано создание некластеризованного индекса для столбца Id таблицы Employee: </p>
+<div class="titlecode sqlcode"></div>
+<div class="shortcode">
+   <pre><code class="sql hljs"><span class="hljs-operator"><span class="hljs-keyword">USE</span> SampleDb;</span>
+
+<span class="hljs-operator"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> ix_empid <span class="hljs-keyword">ON</span> Employee(Id);</span></code></pre>
+</div>
+<p>Создание однозначного составного индекса показано в примере ниже: </p>
+<div class="titlecode sqlcode"></div>
+<div class="shortcode">
+   <pre><code class="sql hljs"><span class="hljs-operator"><span class="hljs-keyword">USE</span> SampleDb;</span>
+
+<span class="hljs-operator"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">UNIQUE</span> <span class="hljs-keyword">INDEX</span> ix_empid_prnu
+    <span class="hljs-keyword">ON</span> Works_on (EmpId, ProjectNumber)
+    <span class="hljs-keyword">WITH</span> FILLFACTOR= <span class="hljs-number">80</span>;</span></code></pre>
+</div>
+<p>В этом примере значения в каждом столбце должны быть однозначными. 
+При создании индекса заполняется 80% пространства каждой страницы узлов 
+индекса.</p>
+<p>Создание однозначного индекса для столбца невозможно, если этот 
+столбец содержит повторяющиеся значения. Такой индекс можно создать лишь
+ в том случае, если каждое значение (включая значение NULL) встречается в
+ столбце только один раз. Кроме этого, любая попытка вставить или 
+изменить существующее значение данных в столбец, включенный в 
+существующий уникальный индекс, будет отвергнута системой в случае 
+дублирования значения.</p>
+<h3>Получение информации о фрагментации индекса</h3>
+<p>В течение жизненного цикла индекса он может подвергнуться 
+фрагментации, вследствие чего процесс хранения данных в страницах 
+индекса станет неэффективным. Существует два типа фрагментации индекса: 
+внутренняя фрагментация и внешняя фрагментация. Внутренняя фрагментация 
+определяет объем данных, хранящихся в каждой странице, а внешняя 
+фрагментация возникает при нарушении логического порядка страниц.</p>
+<p>Для получения информации о внутренней фрагментации индекса 
+применяется динамическое административное представление DMV, называемое <strong class="h">sys.dm_db_index_physical_stats</strong>.
+ Это DMV возвращает информацию об объеме и фрагментации данных и 
+индексов указанной страницы. Для каждой страницы возвращается одна 
+строка для каждого уровня B+-дерева. С помощью этого DMV можно получить 
+информацию о степени фрагментации строк в страницах данных, на основе 
+которой можно принять решение о необходимости реорганизации данных.</p><div style="width: 100%; height: auto; clear: both; text-align: center;" class="google-auto-placed ap_container"><ins style="display: block; margin: auto; background-color: transparent; height: 280px;" data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-0746224376054267" data-adsbygoogle-status="done"><ins id="aswift_5_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:940px;background-color:transparent;" tabindex="0" title="Advertisement" aria-label="Advertisement"><ins id="aswift_5_anchor" style="display: block; border: medium none; height: 280px; margin: 0px; padding: 0px; position: relative; visibility: visible; width: 940px; background-color: transparent; overflow: visible;"><iframe id="aswift_5" name="aswift_5" style="left:0;position:absolute;top:0;border:0;width:940px;height:280px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" src="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/ads.htm" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!6" data-google-query-id="CIO6suC7-O8CFVHLGAodcw8HDw" data-load-complete="true" width="940" height="280" frameborder="0"></iframe></ins></ins></ins></div>
+<p>Использование представления sys.dm_db_index_physical_stats показано в
+ примере ниже. (Прежде чем запускать пакет в примере на выполнение, 
+необходимо удалить все существующие индексы таблицы Works_on. Для 
+удаления индексов используется инструкция DROP INDEX, применение которой
+ показано позже.)</p>
+<div class="titlecode sqlcode"></div>
+<div class="shortcode">
+   <pre><code class="sql hljs"><span class="hljs-operator"><span class="hljs-keyword">USE</span> SampleDb;</span>
+
+<span class="hljs-operator"><span class="hljs-keyword">DECLARE</span> @dbId <span class="hljs-built_in">INT</span>;</span>
+<span class="hljs-operator"><span class="hljs-keyword">DECLARE</span> @tabId <span class="hljs-built_in">INT</span>;</span>
+<span class="hljs-operator"><span class="hljs-keyword">DECLARE</span> @indId <span class="hljs-built_in">INT</span>;</span>
+
+<span class="hljs-operator"><span class="hljs-keyword">SET</span> @dbId = DB_ID(<span class="hljs-string">'SampleDb'</span>);</span>
+<span class="hljs-operator"><span class="hljs-keyword">SET</span> @tabId = OBJECT_ID(<span class="hljs-string">'Employee'</span>);</span>
+
+<span class="hljs-operator"><span class="hljs-keyword">SELECT</span> avg_fragmentation_in_percent, avg_page_space_used_in_percent
+    <span class="hljs-keyword">FROM</span> sys.dm_db_index_physical_stats
+        (@dbId, @tabId, <span class="hljs-literal">NULL</span>, <span class="hljs-literal">NULL</span>, <span class="hljs-literal">NULL</span>);</span></code></pre>
+</div>
+<p>Как видно из примера, представление sys.dm_db_index_physical_stats 
+имеет пять параметров. Первые три параметра определяют идентификаторы 
+текущей базы данных, таблицы и индекса соответственно. Четвертый 
+параметр задает идентификатор раздела, а последний определяет уровень 
+сканирования, применяемый для получения статистической информации. 
+(Значение по умолчанию для определенного параметра можно указать 
+посредством значения NULL.)</p>
+<p>Наиболее важными из столбцов этого представления являются столбцы 
+avg_fragmentation_in_percent и avg_page_space_used_in_percent. В первом 
+указывается средний уровень фрагментации в процентах, а во втором 
+определяется объем занятого пространства в процентах.</p>
+<h3>Редактирование информации индекса</h3>
+<p>После ознакомления с информацией о фрагментации индекса, как было 
+рассмотрено в предыдущем разделе, эту и другую информацию индекса можно 
+редактировать с помощью следующих системных средств: </p>
+<ul>
+   <li><p>представления каталога sys.indexes;</p></li>
+   <li><p>представления каталога sys.index_columns;</p></li>
+   <li><p>системной процедуры sp_helpindex;</p></li>
+   <li><p>функции свойств objectproperty;</p></li>
+   <li><p>среды управления Management Studio сервера SQL Server;</p></li>
+   <li><p>динамического административного представления DMV sys.dm_db_index_usage_stats;</p></li>
+   <li><p>динамического административного представления DMV sys.dm_db_missing_index_details.</p></li>
+</ul>
+<p>Представление каталога <strong class="h">sys.indexes</strong> 
+содержит строку для каждого индекса и строку для каждой таблицы без 
+кластеризованного индекса. Наиболее важными столбцами этого 
+представления каталога являются столбцы object_id, name и index_id. 
+Столбец object_id содержит имя объекта базы данных, которой принадлежит 
+индекс, а столбцы name и index_id содержат имя и идентификатор этого 
+индекса соответственно.</p>
+<p>Представление каталога <strong class="h">sys.index_columns</strong> 
+содержит строку для каждого столбца, являющегося частью индекса или 
+кучи. Эту информацию можно использовать совместно с информацией, 
+полученной посредством представления каталога sys.indexes, для получения
+ дополнительных сведений о свойствах указанного индекса.</p>
+<p>Системная процедура <strong class="h">sp_helpindex</strong> 
+возвращает данные об индексах таблицы, а также статистическую информацию
+ для столбцов. Эта процедура имеет следующий синтаксис: </p>
+<div class="construct"><pre style="font-style:italic;">sp_helpindex [@db_object = ] 'name'
+</pre></div>
+<p>Здесь переменная @db_object представляет имя таблицы.</p>
+<p>Применительно к индексам, <em class="h">функция свойств objectproperty</em>
+ имеет два свойства: IsIndexed и IsIndexable. Первое свойство 
+предоставляет сведения о наличии индекса у таблицы или представления, а 
+второе указывает, поддается ли таблица или представление индексированию.</p>
+<p>Для редактирования информации существующего индекса с помощью среды 
+SQL Server Management Studio выберите требуемую базу данных в папке 
+Databases, разверните узел Tables, в этом узле разверните требуемую 
+таблицу и ее папку Indexes. В папке таблицы Indexes отобразится список 
+всех существующих индексов для данной таблицы. Двойной щелчок мышью по 
+индексу откроет диалоговое окно Index Properties со свойствами этого 
+индекса.
+(Создать новый индекс или удалить существующий можно также с помощью 
+среды Management Studio.)</p>
+<p>Представление <strong class="h">sys.dm_db_index_usage_stats</strong> 
+возвращает подсчет разных типов операций с индексами и время последнего 
+выполнения каждого типа операции. Каждая отдельная операция поиска, 
+просмотра или обновления по указанному индексу при исполнении одного 
+запроса считается использованием индекса и увеличивает на единицу 
+значение соответствующего счетчика в этом DMV. Таким образом можно 
+получить общую информацию о частоте использования индекса, чтобы на ее 
+основе определить, какие индексы используются больше, а какие меньше.</p><div style="width: 100%; height: auto; clear: both; text-align: center;" class="google-auto-placed ap_container"><ins style="display: block; margin: auto; background-color: transparent; height: 280px;" data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-0746224376054267" data-adsbygoogle-status="done"><ins id="aswift_6_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:940px;background-color:transparent;" tabindex="0" title="Advertisement" aria-label="Advertisement"><ins id="aswift_6_anchor" style="display: block; border: medium none; height: 280px; margin: 0px; padding: 0px; position: relative; visibility: visible; width: 940px; background-color: transparent; overflow: visible;"><iframe id="aswift_6" name="aswift_6" style="left:0;position:absolute;top:0;border:0;width:940px;height:280px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" src="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/ads.htm" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!7" data-google-query-id="CK2GwuG7-O8CFXURewodK_MBWQ" data-load-complete="true" width="940" height="280" frameborder="0"></iframe></ins></ins></ins></div>
+<p>Представление <strong class="h">sys.dm_db_missing_index_details</strong>
+ возвращает подробную информацию о столбцах таблицы, для которых 
+отсутствуют индексы. Наиболее важными столбцами этого DMV являются 
+столбцы index_handle и object_id. Значение в первом столбце определяет 
+конкретный отсутствующий индекс, а во втором - таблицу, в которой 
+отсутствует индекс.</p>
+<h3>Изменение индексов</h3>
+<p>Компонент Database Engine является одной из немногих систем баз данных, которые поддерживают инструкцию <strong class="h">ALTER INDEX</strong>.
+ Эту инструкцию можно использовать для выполнения операций по 
+обслуживанию индекса. Синтаксис инструкции ALTER INDEX очень сходен с 
+синтаксисом инструкции CREATE INDEX. Иными словами, эта инструкция 
+позволяет изменять значения параметров ALLOW_ROW_LOCKS, 
+ALLOW_PAGE_LOCKS, IGNORE_DUP_KEY и STATISTICS_NORECOMPUTE, которые были 
+описаны ранее при рассмотрении инструкции CREATE INDEX.</p>
+<p>Кроме вышеперечисленных параметров, инструкция ALTER INDEX поддерживает три другие параметра: </p>
+<ul>
+   <li><p><em class="h">параметр REBUILD</em>, используемый для пересоздания индекса;</p></li>
+   <li><p><em class="h">параметр REORGANIZE</em>, используемый для реорганизации страниц узлов индекса;</p></li>
+   <li><p><em class="h">параметр DISABLE</em>, используемый для отключения индекса. Эти три параметра рассматриваются в следующих подразделах.</p></li>
+</ul>
+<h4>Пересоздание индекса</h4>
+<p>При любом изменении данных, используя инструкции INSERT, UPDATE или 
+DELETE, возможна фрагментация данных. Если эти данные проиндексированы, 
+то также возможна фрагментация индекса, когда информация индекса 
+оказывается разбросанной по разным физическим страницам. В результате 
+фрагментации данных индекса компонент Database Engine может быть 
+вынужден выполнять дополнительные операции чтения данных, что понижает 
+общую производительность системы. В таком случае требуется пересоздать 
+(REBUILD) все фрагментированные индексы.</p>
+<p>Это можно сделать двумя способами: </p>
+<ul>
+   <li><p>посредством параметра REBUILD инструкции ALTER INDEX;</p></li>
+   <li><p>посредством параметра DROP_EXISTING инструкции CREATE INDEX.</p></li>
+</ul>
+<p>Параметр REBUILD применяется для пересоздания индексов. Если для 
+этого параметра вместо имени индекса указать ALL, будут вновь созданы 
+все индексы таблицы. (Разрешив динамическое пересоздание индексов, вам 
+не нужно будет удалять и создавать их заново.)</p>
+<p>Параметр DROP_EXISTING инструкции CREATE INDEX позволяет повысить 
+производительность при пересоздании кластеризованного индекса таблицы, 
+которая также имеет некластеризованные индексы. Он указывает, что 
+существующий кластеризованный или некластеризованный индекс нужно 
+удалить и создать заново указанный индекс. Как упоминалось ранее, каждый
+ некластеризованный индекс в кластеризованной таблице содержит в своих 
+узлах дерева соответствующие значения кластеризованного индекса таблицы.
+ По этой причине при удалении кластеризованного индекса таблицы 
+требуется создать вновь все ее некластеризованные индексы. Использование
+ параметра DROP_EXISTING позволяет избежать повторного пересоздания 
+некластеризованных индексов.</p>
+<p>Параметр DROP_EXISTING более мощный, чем параметр REBUILD, поскольку 
+он более гибкий и предоставляет несколько опций, таких как изменение 
+столбцов, составляющих индекс, и изменение некластеризованного индекса в
+ кластеризованный.</p>
+<h4>Реорганизация страниц узлов индекса</h4>
+<p>Параметр REORGANIZE инструкции ALTER INDEX задает реорганизацию 
+страниц узлов указанного индекса, чтобы физический порядок страниц 
+совпадал с их логическим порядком - слева направо. Это удаляет 
+определенный объем фрагментации индекса, повышая его производительность.</p>
+<h4>Отключение индекса</h4>
+<p>Параметр DISABLE отключает указанный индекс. Отключенный индекс 
+недоступен для применения, пока он не будет снова включен. Обратите 
+внимание, что отключенный индекс не изменяется при внесении изменений в 
+соответствующие данные. По этой причине, чтобы снова использовать 
+отключенный индекс, его нужно полностью создать вновь. Для включения 
+отключенного индекса применяется параметр REBUILD инструкции ALTER 
+TABLE.</p>
+<p>При отключенном кластеризованном индексе таблицы данные этой таблицы 
+будут недоступны, так как все страницы данных таблицы с кластеризованным
+ индексом хранятся в его узлах дерева.</p>
+<h3>Удаление и переименование индексов</h3>
+<p>Для удаления индексов в текущей базе данных применяется <strong class="h">инструкция DROP INDEX</strong>.
+ Обратите внимание, что удаление кластеризованного индекса таблицы может
+ быть очень ресурсоемкой операцией, т.к. потребуется пересоздать все 
+некластеризованные индексы. (Все некластеризованные индексы используют 
+ключ индекса кластеризованного индекса, как указатель в своих страницах 
+узлов.) Использование инструкции DROP INDEX для удаления индекса 
+показано в примере ниже: </p>
+<div class="titlecode sqlcode"></div>
+<div class="shortcode">
+   <pre><code class="sql hljs"><span class="hljs-operator"><span class="hljs-keyword">USE</span> SampleDb;</span>
+
+<span class="hljs-operator"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">INDEX</span> ix_empid <span class="hljs-keyword">ON</span> Employee;</span></code></pre>
+</div>
+<p>Инструкция DROP INDEX имеет дополнительный <em class="h">параметр MOVE TO</em>,
+ значение которого аналогично параметру ON инструкции CREATE INDEX. 
+Иными словами, с помощью этого параметра можно указать, куда переместить
+ строки данных, находящиеся в страницах узлов кластеризованного индекса.
+ Данные перемещаются в новое место в виде кучи. Для нового места 
+хранения данных можно указать или файловую группу по умолчанию, или 
+именованную файловую группу.</p>
+<p>Инструкцию DROP INDEX нельзя использовать для удаления индексов, 
+которые создаются неявно системой для ограничений целостности, таких 
+индексов, как PRIMARY KEY и UNIQUE. Чтобы удалить такие индексы, нужно 
+удалить соответствующее ограничение.</p>
+<p>Индексы можно переименовывать с помощью системной процедуры sp_rename.</p>
+<p>Индексы можно также создавать, изменять и удалять в среде Management 
+Studio с помощью диаграмм баз данных или обозревателя объектов. Но самым
+ простым способом будет использовать папку Indexes требуемой таблицы. 
+Управление индексами в среде Management Studio аналогично управлению 
+таблицами в этой среде.</p>
+<h2>Рекомендации по созданию и использованию индексов</h2>
+<p>Хотя компонент Database Engine не накладывает никаких практических 
+ограничений на количество индексов, по паре причин это количество 
+следует ограничивать. Во-первых, каждый индекс занимает определенный 
+объем дискового пространства, следовательно, существует вероятность 
+того, что общее количество страниц индекса базы данных может превысить 
+количество страниц данных в базе. Во-вторых, в отличие от получения 
+выгоды при использовании индекса для выборки данных, вставка и удаление 
+данных такой выгоды не предоставляют по причине необходимости 
+обслуживания индекса. Чем больше индексов имеет таблица, тем больший 
+требуется объем работы по их реорганизации. Общим правилом будет разумно
+ выбирать индексы для частых запросов, а затем оценивать их 
+использование.</p>
+<p>Некоторые рекомендации по созданию и использованию индексов 
+предоставляются в этом разделе. Последующие рекомендации являются всего 
+лишь общими правилами. В конечном итоге их эффективность будет зависеть 
+от способа использования базы данных на практике и типа наиболее часто 
+выполняемых запросов. Индексирование столбца, который никогда не будет 
+использоваться, не принесет никакой пользы.</p>
+<h3>Индексы и условия предложения WHERE</h3>
+<p>Если предложение WHERE инструкции SELECT содержит условие поиска с 
+одним столбцом, то для этого столбца следует создать индекс. Это 
+особенно рекомендуется при высокой селективности условия. Под 
+селективностью (selectivity) условия имеется в виду соотношение 
+количества строк, удовлетворяющих условию, к общему количеству строк в 
+таблице. Высокой селективности соответствует меньшему значению этого 
+соотношения. Обработка поиска с использованием индексированного столбца 
+будет наиболее успешной при селективности условия, не превышающей 5%.</p>
+<p>Столбец не следует индексировать при постоянном уровне селективности 
+условия 80% или более. В таком случае для страниц индекса потребуются 
+дополнительные операции ввода/вывода, которые уменьшат любую экономию 
+времени, достигаемую за счет использования индексов. В этом случае 
+быстрее выполнять поиск сканированием таблицы, что и будет обычно 
+выбрано оптимизатором запросов, делая индекс бесполезным.</p><div style="width: 100%; height: auto; clear: both; text-align: center;" class="google-auto-placed ap_container"><ins style="display: block; margin: auto; background-color: transparent; height: 280px;" data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-0746224376054267" data-adsbygoogle-status="done"><ins id="aswift_7_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:940px;background-color:transparent;" tabindex="0" title="Advertisement" aria-label="Advertisement"><ins id="aswift_7_anchor" style="display: block; border: medium none; height: 280px; margin: 0px; padding: 0px; position: relative; visibility: visible; width: 940px; background-color: transparent; overflow: visible;"><iframe id="aswift_7" name="aswift_7" style="left:0;position:absolute;top:0;border:0;width:940px;height:280px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" src="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/ads.htm" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!8" data-google-query-id="CJSBjue7-O8CFSQKewodL-4Geg" data-load-complete="true" width="940" height="280" frameborder="0"></iframe></ins></ins></ins></div>
+<p>Если условие поиска часто используемого запроса содержит операторы 
+AND, лучше всего будет создать составной индекс по всем столбцам 
+таблицы, указанным в предложении WHERE инструкции SELECT. Создание 
+такого составного индекса показано в примере ниже: </p>
+<div class="titlecode sqlcode"></div>
+<div class="shortcode">
+   <pre><code class="sql hljs"><span class="hljs-operator"><span class="hljs-keyword">USE</span> SampleDb;</span>
+
+<span class="hljs-operator"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> ix_works 
+    <span class="hljs-keyword">ON</span> Works_on(EmpId, EnterDate);</span>
+    
+<span class="hljs-operator"><span class="hljs-keyword">SELECT</span> EmpId, ProjectNumber, EnterDate
+    <span class="hljs-keyword">FROM</span> Works_on
+    <span class="hljs-keyword">WHERE</span> EmpId = <span class="hljs-number">28559</span> 
+        <span class="hljs-keyword">AND</span> EnterDate = <span class="hljs-string">'2007-08-01'</span>;</span></code></pre>
+</div>
+<p>В этом примере происходит создание составного индекса по всем 
+столбцам предложения WHERE. В этом запросе оператором AND соединены два 
+условия, поэтому для обоих столбцов в этих условиях следует создать 
+составной некластеризованный индекс.</p>
+<h3>Индексы и оператор соединения</h3>
+<p>В случае операции соединения рекомендуется создавать индекс для 
+каждого соединяемого столбца. Соединяемые столбцы часто представляют 
+первичный ключ одной из таблицы и соответствующий внешний ключ другой 
+таблицы. Если указываются ограничения для обеспечения целостности 
+PRIMARY KEY и FOREIGN KEY для соответствующих соединяемых столбцов, 
+следует создать только некластеризованный индекс для столбца внешнего 
+ключа, т.к. система неявно создаст кластеризованный индекс для столбца 
+первичного ключа.</p>
+<p>В примере ниже показано создание индексов, которые будут 
+использованы, если у вас есть запрос с операцией соединения и 
+дополнительным фильтром: </p>
+<div class="titlecode sqlcode"></div>
+<div class="shortcode">
+   <pre><code class="sql hljs"><span class="hljs-operator"><span class="hljs-keyword">USE</span> SampleDb;</span>
+
+<span class="hljs-operator"><span class="hljs-keyword">SELECT</span> LastName, FirstName
+    <span class="hljs-keyword">FROM</span> Employee, Works_on
+    <span class="hljs-keyword">WHERE</span> Employee.Id = Works_on.EmpId
+        <span class="hljs-keyword">AND</span> EnterDate = <span class="hljs-string">'2007-08-01'</span>;</span></code></pre>
+</div>
+<p>Для запроса в примере рекомендуется создать два отдельных индекса для
+ столбца Id в таблице Employee, и столбца EmpId в таблице Works_on. 
+Кроме этого, следует создать дополнительный индекс для столбца 
+EnterDate.</p>
+<h3>Покрывающий индекс</h3>
+<p>Как уже упоминалось ранее, включение всех столбцов запроса в индекс 
+может значительно повысить производительность запроса. Создание такого 
+индекса, называемого покрывающим (covering), показано в примере ниже: </p>
+<div class="titlecode sqlcode"></div>
+<div class="shortcode">
+   <pre><code class="sql hljs"><span class="hljs-operator"><span class="hljs-keyword">USE</span> AdventureWorks2012;</span>
+
+GO
+<span class="hljs-operator"><span class="hljs-keyword">DROP</span> <span class="hljs-keyword">INDEX</span> Person.Address.IX_Address_StateProvinceID;</span>
+
+GO
+<span class="hljs-operator"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">INDEX</span> ix_address_zip
+    <span class="hljs-keyword">ON</span> Person.Address (PostalCode)
+    INCLUDE (City, StateProvinceID);</span>
+
+GO
+<span class="hljs-operator"><span class="hljs-keyword">SELECT</span> City, StateProvinceID
+    <span class="hljs-keyword">FROM</span> Person.Address
+    <span class="hljs-keyword">WHERE</span> PostalCode = <span class="hljs-number">84407</span>;</span>
+</code></pre>
+</div>
+<p>В этом примере в первую очередь из таблицы Address удаляется индекс 
+IX_Address_StateProvinceID. Затем создается новый индекс, который помимо
+ столбца PostalCode включает два дополнительных столбца. Наконец, 
+инструкция SELECT в конце примера показывает запрос, покрываемый 
+индексом. Для этого запроса системе нет необходимости выполнять поиск 
+данных в страницах данных, поскольку оптимизатор запросов может найти 
+все значения столбцов в страницах узлов некластеризованного индекса.</p>
+<p>Покрывающие индексы рекомендуется применять по той причине, что 
+страницы индексов обычно содержат намного больше записей, чем 
+соответствующие страницы данных. Кроме этого, для того чтобы 
+использовать этот метод, фильтруемые столбцы должны быть первыми 
+ключевыми столбцами в индексе.</p>
+<h2>Индексы для вычисляемых столбцов</h2>
+<p>Компонент Database Engine позволяет создавать следующие специальные типы индексов: </p>
+<ul>
+   <li><p>индексированные представления;</p></li>
+   <li><p>фильтруемые индексы;</p></li>
+   <li><p>индексы для вычисляемых столбцов;</p></li>
+   <li><p>секционированные индексы;</p></li>
+   <li><p>индексы сохранения столбца;</p></li>
+   <li><p>XML-индексы;</p></li>
+   <li><p>полнотекстовые индексы.</p></li>
+</ul>
+<p>В этом разделе рассматриваются вычисляемые столбцы и связанные с ними индексы.</p>
+<p><dfn><strong>Вычисляемым столбцом</strong></dfn> называется столбец 
+таблицы, в котором сохраняются результаты вычислений данных таблицы. 
+Такой столбец может быть виртуальным или постоянным. Эти два типа 
+столбцов рассмотрены в следующих далее подразделах.</p>
+<h3>Виртуальные вычисляемые столбцы</h3>
+<p>Вычисляемый столбец, который не имеет соответствующего 
+кластеризованного индекса, является логическим, т.е. он физически на 
+жестком диске не хранится. Таким образом, он вычисляется при каждом 
+обращении к строке. Использование виртуальных вычисляемых столбцов 
+показано в примере ниже: </p>
+<div class="titlecode sqlcode"></div>
+<div class="shortcode">
+   <pre><code class="sql hljs"><span class="hljs-operator"><span class="hljs-keyword">USE</span> SampleDb;</span>
+
+<span class="hljs-operator"><span class="hljs-keyword">CREATE</span> <span class="hljs-keyword">TABLE</span> Orders (
+    OrderId <span class="hljs-built_in">INT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+    Price MONEY <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+    Quantity <span class="hljs-built_in">INT</span> <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+    OrderDate DATETIME <span class="hljs-keyword">NOT</span> <span class="hljs-literal">NULL</span>,
+    Total <span class="hljs-keyword">AS</span> Price * Quantity,
+    ShippedDate <span class="hljs-keyword">AS</span> <span class="hljs-keyword">DATEADD</span> (<span class="hljs-keyword">DAY</span>, <span class="hljs-number">7</span>, orderdate)
+);</span></code></pre>
+</div>
+<p>Таблица Orders в этом примере имеет два виртуальных вычисляемых 
+столбца: total и shippeddate. Столбец total вычисляется с использованием
+ двух других столбцов, price и quantity, а столбец shippeddate 
+вычисляется при использовании функции DATEADD и столбца orderdate.</p>
+<h3>Постоянные вычисляемые столбцы</h3>
+<p>Компонент Database Engine позволяет создавать индексы для 
+детерминированных вычисляемых столбцов, где базовые столбцы имеют точные
+ типы данных. (Вычисляемый столбец называется детерминированным, если 
+всегда возвращаются одни и те же значения для одних и тех же данных 
+таблицы.)</p>
+<p>Индексированный вычисляемый столбец может быть создан только в том 
+случае, если следующим параметрам инструкции SET присвоено значение ON 
+(эти параметры обеспечивают детерминированность столбца): </p>
+<ul>
+   <li><p>QUOTED_IDENTIFIER</p></li>
+   <li><p>CONCAT_NULL_YIELDS_NULL</p></li>
+   <li><p>ANSI_NULLS</p></li>
+   <li><p>ANSI_PADDING</p></li>
+   <li><p>ANSI_WARNINGS</p></li>
+</ul>
+<p>Кроме этого, параметру NUMERIC_ROUNDABORT нужно присвоить значение off.</p>
+<p>Если для вычисляемого столбца создать кластеризованный индекс, то 
+значения столбца будут существовать физически в соответствующих строках 
+таблицы, поскольку страницы узлов кластеризованного индекса содержат 
+строки данных. В примере ниже показано создание кластеризованного 
+индекса для вычисляемого столбца total из таблицы Orders: </p>
+<div class="titlecode sqlcode"></div>
+<div class="shortcode">
+   <pre><code class="sql hljs"><span class="hljs-operator"><span class="hljs-keyword">USE</span> SampleDb;</span>
+
+<span class="hljs-operator"><span class="hljs-keyword">CREATE</span> CLUSTERED <span class="hljs-keyword">INDEX</span> ix1 <span class="hljs-keyword">ON</span> Orders (Total);</span></code></pre>
+</div>
+<p>После выполнения инструкции CREATE INDEX вычисляемый столбец total 
+будет присутствовать в таблице физически. Это означает, что все 
+обновления базовых столбцов вычисляемого столбца будут вызывать его 
+обновление.</p>
+<p>Столбец можно сделать постоянным и другим способом, используя <em class="h">параметр PERSISTED</em>.
+ Этот параметр позволяет задать физическое наличие вычисляемого столбца,
+ даже не создавая соответствующего кластеризованного индекса. Эта 
+возможность требуется для создания физических вычисляемых столбцов, 
+которые создаются на столбцах с приблизительным типом данных (float или 
+real). (Как упоминалось ранее, индекс для вычисляемого столбца можно 
+создать только в том случае, если его базовые столбцы имеют точный тип 
+данных.)</p>
+     <div style="margin:30px auto;">
+<a href="https://codechick.io/"><img src="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/codechick.png" alt="CodeChick.io - Задачи по программированию с автоматической проверкой"></a>
+</div>
+
+
+<!--bottom-->
+
+
+<div class="numberpage">
+            <div class="prev"><a href="https://professorweb.ru/my/sql-server/2012/level3/3_4.php"></a></div>
+             <div class="block4"><a href="https://professorweb.ru/my/sql-server/2012/level3/3_4.php"></a></div>
+             <div class="block5_5"></div>
+             <div class="block6"><a href="https://professorweb.ru/my/sql-server/2012/level3/3_6.php"></a></div>
+             <div class="next"><a href="https://professorweb.ru/my/sql-server/2012/level3/3_6.php"></a></div>
+         </div>
+         <div id="endcontent"></div>
+    </div>
+    
+
+
+
+
+</div>
+
+<!--[if lte IE 8]>
+
+<meta http-equiv="refresh" content="0; url="../../../../404/ie.html" />
+
+<script type="text/javascript">
+
+/* <![CDATA[ */
+
+window.top.location = '../../../../404/ie.html';
+
+/* ]]> */
+
+</script>
+
+<![endif]-->
+
+<script src="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/jquery_002.js"></script>
+
+<script src="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/jquery_003.js"></script>
+
+<script src="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/highlight.js"></script>
+
+<script src="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/scripts.js"></script>
+     <!-- verify-advertiseru: "1cb76dec6c" -->
+
+<script type="text/javascript" src="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/357779_002" async=""></script>
+
+<div class="tests-fixed">
+  <span>
+    Пройди тесты 
+  </span>
+  <ul>
+    <li>
+      <a href="http://professorweb.ru/test/c-sharp-test.html" target="_blank">C# тест (легкий)</a>
+    </li>
+    <li>
+      <a href="http://professorweb.ru/test/asp-test.html" target="_blank">.NET тест (средний)</a>
+    </li>
+  </ul>
+</div>
+
+
+
+ <div class="bottom-banner">
+      <div class="bottom-banner__wrapper">
+<img src="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/bottom_banner.png" alt="">
+            <span> <a target="_blank" href="https://t.me/professorweb">
+              Лучший чат для C# программистов</a>
+            </span>
+        </div>
+    </div>
+<footer class="main-footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-2 col-sm-3">
+                <div class="logo-wrap">
+                    <a href="https://professorweb.ru/" class="logo">
+                        Professor Web
+                    </a>
+                </div>
+            </div>
+            <div class="col-lg-10 col-sm-9">
+                <ul class="unstyled">
+                    <li>
+                        <a href="https://professorweb.ru/">Наш любимый хостинг</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<a href="#" class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+</a>
+
+<script>
+    (function(i, s, o, g, r, a, m) {
+        i['GoogleAnalyticsObject'] = r;
+        i[r] = i[r] || function() {
+            (i[r].q = i[r].q || []).push(arguments)
+        }, i[r].l = 1 * new Date();
+        a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0];
+        a.async = 1;
+        a.src = g;
+        m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-26131629-1', 'auto');
+    ga('send', 'pageview');
+</script>
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter27718821 = new Ya.Metrika({
+                    id: 27718821,
+                    clickmap: true,
+                    trackLinks: true,
+                    accurateTrackBounce: true
+                });
+            } catch (e) {}
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function() {
+                n.parentNode.insertBefore(s, n);
+            };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else {
+            f();
+        }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/27718821" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+<!--[if lt IE 9]>
+    <script src="/../js/html5shiv/es5-shim.min.js"></script>
+    <script src="/../js/html5shiv/html5shiv.min.js"></script>
+    <script src="/../js/html5shiv/html5shiv-printshiv.min.js"></script>
+    <script src="/../js/respond/respond.min.js"></script>
+    <![endif]-->
+
+<script src="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/jquery-1.js"></script>
+<script src="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/bootstrap.js"></script>
+<script src="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/jquery.js"></script>
+<script src="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/modernizr.js"></script>
+<script src="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/prism.js"></script>
+<script src="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/common.js"></script>     
+    
+
+    
+<ins class="adsbygoogle adsbygoogle-noablate" style="display: none !important;" data-adsbygoogle-status="done"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;" tabindex="0" title="Advertisement" aria-label="Advertisement"><ins id="aswift_0_anchor" style="display:block;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;"><iframe id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;border:0;width:undefinedpx;height:undefinedpx;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" src="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/ads_008.htm" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!1" data-load-complete="true" frameborder="0"></iframe></ins></ins></ins><iframe id="google_osd_static_frame_424134337703" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;"></iframe></body><iframe id="google_esf" name="google_esf" src="Transact-SQL%20%D0%98%D0%BD%D0%B4%D0%B5%D0%BA%D1%81%D1%8B_files/zrt_lookup.htm" style="display: none;" data-ad-client="ca-pub-0746224376054267"></iframe></html>

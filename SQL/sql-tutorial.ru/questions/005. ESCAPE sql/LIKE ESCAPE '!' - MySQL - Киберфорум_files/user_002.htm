@@ -1,0 +1,309 @@
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><script type="text/javascript" async="" src="sync_data_003/publishertag.js"></script><script type="text/javascript" id="prebid" async="" src="sync_data_003/prebid.js"></script><style>body { margin:0; padding:0px; background-color: #fff; }</style>
+		<script>
+		(function() {
+			let frame = window;
+			let cmpFrame;
+		  
+			const cmpCallbacks = {};		  
+			while(frame) {
+			  try {
+				if (frame.frames['__tcfapiLocator']) {
+				  cmpFrame = frame;
+				  break;
+				}
+			  } catch(ignore) {}
+		  
+			  if (frame === window.top) {
+				break;		  
+			  }
+		  
+			  frame = frame.parent;
+			}
+		  
+			window.__tcfapi = function(cmd, version, callback, arg) {
+			  if (!cmpFrame) {
+				callback({msg: 'CMP not found'}, false);
+			  } else {
+				const callId = Math.random() + '';
+				const msg = {
+				  __tcfapiCall: {
+					command: cmd,
+					parameter: arg,
+					version: version,
+					callId: callId,
+				  },
+				};
+		  
+				cmpCallbacks[callId] = callback;
+				cmpFrame.postMessage(msg, '*');
+			  }
+			};
+		  
+			function postMessageHandler(event) {
+			  let json = {};
+
+			  try {
+				json = typeof event.data === 'string' ? JSON.parse(event.data) : event.data;
+			  } catch (ignore) {}
+		  
+			  const payload = json.__tcfapiReturn;
+		  
+			  if (payload) {
+				if (typeof cmpCallbacks[payload.callId] === 'function') {
+				  cmpCallbacks[payload.callId](payload.returnValue, payload.success);
+				  cmpCallbacks[payload.callId] = null;
+				}
+			  }
+			}
+		  
+			window.addEventListener('message', postMessageHandler, false);
+		  
+		  }());
+		</script>
+		</head>
+		<body ondragstart="return false;" ondrop="return false;" topmargin="0" marginwidth="0" marginheight="0" leftmargin="0"><iframe id="postbid_if_1603980760887" scrolling="no" marginwidth="0" marginheight="0" width="300" height="250" frameborder="0"></iframe><script>
+    (function(id) {
+        if (document.getElementById(id)) return;
+        var pbjsEl = document.createElement('script'); pbjsEl.type = 'text/javascript'; pbjsEl.id = id;
+        pbjsEl.async = true; var isHttps = 'https:' === document.location.protocol;
+        pbjsEl.src = '//hb.adpone.com/prebid.js';
+        var pbjsTargetEl = document.getElementsByTagName('head')[0];
+        pbjsTargetEl.insertBefore(pbjsEl, pbjsTargetEl.firstChild);
+    })('prebid');
+    (function(){
+        var passbackTagHtml = `&lt;script src&#x3D;&quot;&#x2F;&#x2F;ads.projectagoraservices.com&#x2F;?id&#x3D;8595&amp;uref&#x3D;https%3A%2F%2Fwww.cyberforum.ru%2F&quot; type&#x3D;&quot;text&#x2F;javascript&quot;&gt;&lt;&#x2F;script&gt;`;
+        function unencodeHtmlContent(escapedHtml) {
+            var elem = document.createElement('div');
+            elem.innerHTML = escapedHtml;
+            var result = '';
+            for (var i = 0; i < elem.childNodes.length; ++i) {
+                result = result + elem.childNodes[i].nodeValue;
+            }
+            return result;
+        }
+        function getPlacementScriptElement(){
+            if (document.currentScript)
+                return document.currentScript;
+            else {
+                var scripts = document.getElementsByTagName('script');
+                var currentScript_2 = scripts[scripts.length - 1];
+                return currentScript_2;
+            }
+        }
+        function getQueryString(script){
+            var queryString = script.src.replace(/^[^\?]+\??/,'');
+            return '?'+queryString;
+        }
+        function getParameterByName(name, url) {
+            if (!url) url = window.location.href;
+            name = name.replace(/[\[\]]/g, '\$&');
+            var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+                    results = regex.exec(url);
+            if (!results) return null;
+            if (!results[2]) return '';
+            try {
+                return decodeURIComponent(results[2].replace(/\+/g, ' '));
+            }catch(err){
+                return null;
+            }
+        }
+        var plmntScriptElement = getPlacementScriptElement();
+        var _id = new Date().getTime();
+        var _placementFrmId = 'postbid_if_' + _id;
+        var adUnitSizes = [[300,250]];
+        var adUnitBids = [
+                {
+                    bidder: 'ix',
+                    params: {
+                            siteId: '543887',
+                            size: [300,250],
+                    }
+                },
+                {
+                    bidder: 'connectad',
+                    params: {
+                            networkId: '10047',
+                            siteId: '1038496',
+                    }
+                },
+                {
+                    bidder: 'between',
+                    params: {
+                            w: '300',
+                            h: '250',
+                            s: '3950982',
+                    }
+                },
+                {
+                    bidder: 'sovrn',
+                    params: {
+                            tagid: '693281',
+                    }
+                },
+                {
+                    bidder: 'adform',
+                    params: {
+                            mid: '790079',
+                    }
+                },
+                {
+                    bidder: 'criteo',
+                    params: {
+                            zoneId: '1491572',
+                    }
+                },
+                {
+                    bidder: 'openx',
+                    params: {
+                            unit: '541007743',
+                            delDomain: 'adpone-d.openx.net',
+                    }
+                },
+                {
+                    bidder: 'rubicon',
+                    params: {
+                            accountId: '17210',
+                            siteId: '315066',
+                            zoneId: '1607382',
+                            sizes: '15',
+                            referrer: 'cyberforum.ru',
+                            position: 'atf',
+                    }
+                },
+                {
+                    bidder: 'appnexus',
+                    params: {
+                            placementId: '18697128',
+                    }
+                },
+                {
+                    bidder: 'smartadserver',
+                    params: {
+                            domain: 'https://prg.smartadserver.com',
+                            siteId: '345373',
+                            pageId: '1203659',
+                            formatId: '71867',
+                    }
+                },
+                {
+                    bidder: 'pubmatic',
+                    params: {
+                            publisherId: '156383',
+                            adSlot: 'cyberforum_300x250_ATF',
+                            kadpageurl: 'cyberforum.ru',
+                    }
+                },
+        ]
+        function getPlacementFrameId (){
+            return _placementFrmId;
+        }
+        function createPlacementIframe(id){
+            var frmEl = document.createElement('iframe');
+            frmEl.setAttribute('id', getPlacementFrameId());
+            frmEl.frameBorder = '0';
+            frmEl.scrolling = 'no';
+            frmEl.marginWidth = '0';
+            frmEl.marginHeight = '0';
+            frmEl.TOPMARGIN = '0';
+            frmEl.LEFTMARGIN = '0';
+            frmEl.ALLOWTRANSPARENCY = 'true';
+            frmEl.width = '0';
+            frmEl.height = '0';
+            return frmEl;
+        }
+        var plmntFrame = createPlacementIframe();
+        if (plmntScriptElement){
+            plmntScriptElement.parentNode.insertBefore(plmntFrame, plmntScriptElement);
+        }else {
+            return 0;
+        }
+        window.adpnPbjs = window.adpnPbjs || {};
+        adpnPbjs.que = adpnPbjs.que || [];
+        var adUnitCodeName = 'adpn-adtag-'  + _id;
+        adpnPbjs.que.push(function() {
+            var adUnits = [{
+                code: adUnitCodeName,
+                sizes: adUnitSizes,
+                mediaTypes: {
+                    banner: {
+                        sizes: adUnitSizes
+                    }
+                },
+                bids: adUnitBids
+            }];
+            adpnPbjs.setConfig({
+                consentManagement: {
+                    cmpApi: 'iab',
+                    timeout: 8000,
+                    allowAuctionWithoutConsent: true
+                },
+                userSync: {
+                    iframeEnabled: true,
+                    filterSettings: {
+                        iframe: {
+                            bidders: '*',
+                            filter: 'include'
+                        }
+                    }
+                },
+                schain: {
+                    validation: "strict",
+                    config: {
+                        ver:"1.0",
+                        complete: 1,
+                        nodes: [
+                            {
+                                "asi":"adpone.com",
+                                "sid":"a40cc036446e3a4a6da8",
+                                "hp":1
+                            }
+                        ]
+                    }
+                }
+            });
+            adpnPbjs.bidderSettings = {
+                smartadserver: {
+                    bidCpmAdjustment : function(bidCpm) {
+                        return bidCpm * 0.88 ;
+                    }
+                }
+            };
+            adpnPbjs.addAdUnits(adUnits);
+            adpnPbjs.requestBids({
+                adUnitCodes: [adUnitCodeName],
+                timeout: 4000,
+                bidsBackHandler: function() {
+                    var iframe = document.getElementById(getPlacementFrameId());
+                    var iframeDoc = iframe.contentWindow.document;
+                    var params = adpnPbjs.getAdserverTargetingForAdUnitCode(adUnitCodeName);
+                    if(params && params['hb_adid']){
+                        adpnPbjs.renderAd(iframeDoc, params['hb_adid']);
+                    } else {
+                        if (passbackTagHtml) {
+                            iframe.width = adUnitSizes[0][0];
+                            iframe.height = adUnitSizes[0][1];
+                            iframeDoc.write(unencodeHtmlContent(passbackTagHtml));
+                            iframeDoc.close();
+                        } else {
+                            if (iframe){
+                                iframe.parentNode.removeChild(iframe);
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    })();
+    var gd = '2020-09-17 13:22:55';
+</script>
+
+		
+		</body><iframe sandbox="allow-scripts allow-same-origin" id="24a1954ae6d5d968" allowtransparency="true" marginheight="0" marginwidth="0" hspace="0" vspace="0" style="height:0px;width:0px;display:none;" scrolling="no" src="https://acdn.adnxs.com/dmp/async_usersync.html" width="0" height="0" frameborder="0">
+    </iframe><iframe sandbox="allow-scripts allow-same-origin" id="25959bad15f55968" allowtransparency="true" marginheight="0" marginwidth="0" hspace="0" vspace="0" style="height:0px;width:0px;display:none;" scrolling="no" src="sync_data/connectmyusers.htm" width="0" height="0" frameborder="0">
+    </iframe><iframe sandbox="allow-scripts allow-same-origin" id="26676be36478ba6" allowtransparency="true" marginheight="0" marginwidth="0" hspace="0" vspace="0" style="height:0px;width:0px;display:none;" scrolling="no" src="https://ads.pubmatic.com/AdServer/js/showad.js#PIX&amp;kdntuid=1&amp;p=156383&amp;gdpr=0&amp;gdpr_consent=" width="0" height="0" frameborder="0">
+    </iframe><iframe sandbox="allow-scripts allow-same-origin" id="275781f62f57b0a" allowtransparency="true" marginheight="0" marginwidth="0" hspace="0" vspace="0" style="height:0px;width:0px;display:none;" scrolling="no" src="https://ads.betweendigital.com/sspmatch-iframe" width="0" height="0" frameborder="0">
+    </iframe><iframe sandbox="allow-scripts allow-same-origin" id="28a07af10cf32f" allowtransparency="true" marginheight="0" marginwidth="0" hspace="0" vspace="0" style="height:0px;width:0px;display:none;" scrolling="no" src="sync_data/ixmatch.htm" width="0" height="0" frameborder="0">
+    </iframe><iframe sandbox="allow-scripts allow-same-origin" id="29efc613d6c50d78" allowtransparency="true" marginheight="0" marginwidth="0" hspace="0" vspace="0" style="height:0px;width:0px;display:none;" scrolling="no" src="https://u.openx.net/w/1.0/pd?gdpr=0&amp;gdpr_consent=" width="0" height="0" frameborder="0">
+    </iframe><iframe sandbox="allow-scripts allow-same-origin" id="30e77837d91030f" allowtransparency="true" marginheight="0" marginwidth="0" hspace="0" vspace="0" style="height:0px;width:0px;display:none;" scrolling="no" src="https://eus.rubiconproject.com/usync.html" width="0" height="0" frameborder="0">
+    </iframe></html>

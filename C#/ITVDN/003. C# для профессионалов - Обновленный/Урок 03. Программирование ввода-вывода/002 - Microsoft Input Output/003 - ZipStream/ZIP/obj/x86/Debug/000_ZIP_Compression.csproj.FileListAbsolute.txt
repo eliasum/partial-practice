@@ -1,0 +1,6 @@
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\003 - ZipStream\ZIP\bin\Debug\ZIP.exe
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\003 - ZipStream\ZIP\bin\Debug\ZIP.pdb
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\003 - ZipStream\ZIP\obj\x86\Debug\000_ZIP_Compression.csprojAssemblyReference.cache
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\003 - ZipStream\ZIP\obj\x86\Debug\000_ZIP_Compression.csproj.CoreCompileInputs.cache
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\003 - ZipStream\ZIP\obj\x86\Debug\ZIP.exe
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\003 - ZipStream\ZIP\obj\x86\Debug\ZIP.pdb

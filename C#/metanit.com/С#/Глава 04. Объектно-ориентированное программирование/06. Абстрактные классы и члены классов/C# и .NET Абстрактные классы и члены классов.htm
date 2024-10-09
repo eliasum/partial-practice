@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html data-darkreader-mode="dynamic" data-darkreader-scheme="dark" theme="dark"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"><style class="darkreader darkreader--fallback" media="screen"></style><style class="darkreader darkreader--text" media="screen"></style><style class="darkreader darkreader--invert" media="screen">.jfk-bubble.gtx-bubble, .captcheck_answer_label > input + img, span#closed_text > img[src^="https://www.gstatic.com/images/branding/googlelogo"], span[data-href^="https://www.hcaptcha.com/"] > #icon, #bit-notification-bar-iframe, ::-webkit-calendar-picker-indicator {
+    filter: invert(100%) hue-rotate(180deg) contrast(90%) !important;
+}</style><style class="darkreader darkreader--inline" media="screen">[data-darkreader-inline-bgcolor] {
+  background-color: var(--darkreader-inline-bgcolor) !important;
+}
+[data-darkreader-inline-bgimage] {
+  background-image: var(--darkreader-inline-bgimage) !important;
+}
+[data-darkreader-inline-border] {
+  border-color: var(--darkreader-inline-border) !important;
+}
+[data-darkreader-inline-border-bottom] {
+  border-bottom-color: var(--darkreader-inline-border-bottom) !important;
+}
+[data-darkreader-inline-border-left] {
+  border-left-color: var(--darkreader-inline-border-left) !important;
+}
+[data-darkreader-inline-border-right] {
+  border-right-color: var(--darkreader-inline-border-right) !important;
+}
+[data-darkreader-inline-border-top] {
+  border-top-color: var(--darkreader-inline-border-top) !important;
+}
+[data-darkreader-inline-boxshadow] {
+  box-shadow: var(--darkreader-inline-boxshadow) !important;
+}
+[data-darkreader-inline-color] {
+  color: var(--darkreader-inline-color) !important;
+}
+[data-darkreader-inline-fill] {
+  fill: var(--darkreader-inline-fill) !important;
+}
+[data-darkreader-inline-stroke] {
+  stroke: var(--darkreader-inline-stroke) !important;
+}
+[data-darkreader-inline-outline] {
+  outline-color: var(--darkreader-inline-outline) !important;
+}
+[data-darkreader-inline-stopcolor] {
+  stop-color: var(--darkreader-inline-stopcolor) !important;
+}</style><style class="darkreader darkreader--variables" media="screen">:root {
+   --darkreader-neutral-background: #131516;
+   --darkreader-neutral-text: #d8d4cf;
+   --darkreader-selection-background: #004daa;
+   --darkreader-selection-text: #e8e6e3;
+}</style><style class="darkreader darkreader--root-vars" media="screen"></style><style class="darkreader darkreader--user-agent" media="screen">html {
+    background-color: #181a1b !important;
+}
+html, body, input, textarea, select, button {
+    background-color: #181a1b;
+}
+html, body, input, textarea, select, button {
+    border-color: #736b5e;
+    color: #e8e6e3;
+}
+a {
+    color: #3391ff;
+}
+table {
+    border-color: #545b5e;
+}
+::placeholder {
+    color: #b2aba1;
+}
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    background-color: #555b00 !important;
+    color: #e8e6e3 !important;
+}
+::-webkit-scrollbar {
+    background-color: #202324;
+    color: #aba499;
+}
+::-webkit-scrollbar-thumb {
+    background-color: #454a4d;
+}
+::-webkit-scrollbar-thumb:hover {
+    background-color: #575e62;
+}
+::-webkit-scrollbar-thumb:active {
+    background-color: #484e51;
+}
+::-webkit-scrollbar-corner {
+    background-color: #181a1b;
+}
+* {
+    scrollbar-color: #454a4d #202324;
+}
+::selection {
+    background-color: #004daa !important;
+    color: #e8e6e3 !important;
+}
+::-moz-selection {
+    background-color: #004daa !important;
+    color: #e8e6e3 !important;
+}</style>
+<title>C# и .NET | Абстрактные классы и члены классов</title>
+<meta charset="utf-8">
+<meta name="description" content="Использование абстрактных классов в языке программирования C# и .NET, их сущность, ключевое слово abstract, абстрактные методы и свойства">
+<meta name="viewport" content="width=device-width">
+<link href="C%23%20%D0%B8%20.NET%20%D0%90%D0%B1%D1%81%D1%82%D1%80%D0%B0%D0%BA%D1%82%D0%BD%D1%8B%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B8%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/style34.css" rel="stylesheet" type="text/css"><style class="darkreader darkreader--sync" media="screen"></style>
+<meta name="darkreader" content="137523ea58a44212b2f2653a2c479f82"><style class="darkreader darkreader--override" media="screen">.vimvixen-hint {
+    background-color: #7b5300 !important;
+    border-color: #d8b013 !important;
+    color: #f3e8c8 !important;
+}
+::placeholder {
+    opacity: 0.5 !important;
+}
+a[href="https://coinmarketcap.com/"] > svg[width="94"][height="16"] > path {
+    fill: var(--darkreader-neutral-text) !important;
+}
+#edge-translate-panel-body,
+.MuiTypography-body1 {
+    color: var(--darkreader-neutral-text) !important;
+}
+gr-main-header {
+    background-color: #0f3a48 !important;
+}
+embed[type="application/pdf"] { filter: invert(100%) contrast(90%); }</style><script type="text/javascript" async="" src="C%23%20%D0%B8%20.NET%20%D0%90%D0%B1%D1%81%D1%82%D1%80%D0%B0%D0%BA%D1%82%D0%BD%D1%8B%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B8%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/analytics.js"></script><script type="text/javascript" src="C%23%20%D0%B8%20.NET%20%D0%90%D0%B1%D1%81%D1%82%D1%80%D0%B0%D0%BA%D1%82%D0%BD%D1%8B%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B8%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/context.js" async=""></script><script type="text/javascript" src="C%23%20%D0%B8%20.NET%20%D0%90%D0%B1%D1%81%D1%82%D1%80%D0%B0%D0%BA%D1%82%D0%BD%D1%8B%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B8%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/context.js" async=""></script><script async="" src="C%23%20%D0%B8%20.NET%20%D0%90%D0%B1%D1%81%D1%82%D1%80%D0%B0%D0%BA%D1%82%D0%BD%D1%8B%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B8%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/analytics.js"></script><script type="text/javascript" async="" src="C%23%20%D0%B8%20.NET%20%D0%90%D0%B1%D1%81%D1%82%D1%80%D0%B0%D0%BA%D1%82%D0%BD%D1%8B%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B8%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/embed.js"></script><link rel="prefetch" as="style" href="C%23%20%D0%B8%20.NET%20%D0%90%D0%B1%D1%81%D1%82%D1%80%D0%B0%D0%BA%D1%82%D0%BD%D1%8B%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B8%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/a_data_002/lounge.css"><link rel="prefetch" as="script" href="C%23%20%D0%B8%20.NET%20%D0%90%D0%B1%D1%81%D1%82%D1%80%D0%B0%D0%BA%D1%82%D0%BD%D1%8B%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B8%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/a_data_002/common.js"><link rel="prefetch" as="script" href="C%23%20%D0%B8%20.NET%20%D0%90%D0%B1%D1%81%D1%82%D1%80%D0%B0%D0%BA%D1%82%D0%BD%D1%8B%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B8%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/a_data_002/lounge.js"><link rel="prefetch" as="script" href="C%23%20%D0%B8%20.NET%20%D0%90%D0%B1%D1%81%D1%82%D1%80%D0%B0%D0%BA%D1%82%D0%BD%D1%8B%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B8%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/a_data_002/config.js"><script async="" id="dsq_recs_scr" src="C%23%20%D0%B8%20.NET%20%D0%90%D0%B1%D1%81%D1%82%D1%80%D0%B0%D0%BA%D1%82%D0%BD%D1%8B%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B8%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/recommendations.js"></script><link rel="prefetch" as="style" href="C%23%20%D0%B8%20.NET%20%D0%90%D0%B1%D1%81%D1%82%D1%80%D0%B0%D0%BA%D1%82%D0%BD%D1%8B%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B8%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/a_data/recommendations.css"><link rel="prefetch" as="script" href="C%23%20%D0%B8%20.NET%20%D0%90%D0%B1%D1%81%D1%82%D1%80%D0%B0%D0%BA%D1%82%D0%BD%D1%8B%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B8%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/a_data/common.js"><link rel="prefetch" as="script" href="C%23%20%D0%B8%20.NET%20%D0%90%D0%B1%D1%81%D1%82%D1%80%D0%B0%D0%BA%D1%82%D0%BD%D1%8B%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B8%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/a_data/recommendations_002.js"><link rel="prefetch" as="script" href="C%23%20%D0%B8%20.NET%20%D0%90%D0%B1%D1%81%D1%82%D1%80%D0%B0%D0%BA%D1%82%D0%BD%D1%8B%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B8%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/a_data_002/config.js"></head>
+<body wfd-invisible="true">
+<div id="container">
+
+<div id="header">
+<div id="logo">
+<a class="logoTitle" href="https://metanit.com/" title="На главную">METANIT.COM</a>
+<div class="logoDefinition">Сайт о программировании</div> 
+</div>
+
+<div class="socialbtns">
+<ul>
+<li><a title="Посмотреть меню" rel="nofollow" class="fa fa-lg fa-bars" wfd-invisible="true"></a></li>
+<li><a href="https://metanit.com/donations.php" title="Помощь сайту" rel="nofollow" class="fa fa-lg fa-usd"></a></li>
+<li><a href="https://vk.com/metanit" title="Группа в ВКонтакте" rel="nofollow" class="fa fa-lg fa-vk"></a></li>
+<li><a href="https://twitter.com/Eugene225" title="Твиттер" rel="nofollow" class="fa fa-lg fa-twitter"></a></li>
+<li><a href="https://www.facebook.com/metanitcom" title="Страница в Facebook" rel="nofollow" class="fa fa-lg fa-facebook"></a></li>
+<li><a href="https://www.youtube.com/user/Eugene22584/" title="Канал сайта на Youtube" rel="nofollow" class="fa fa-lg fa-youtube"></a></li>
+<li><a href="https://t.me/metanit" title="Телеграмм" class="fa fa-lg fa-tel"></a></li>
+<li><i id="toggle-theme" class="fa fa-lg fa-adjust"></i></li>
+</ul>
+</div>
+
+<div id="search" class="transp" wfd-invisible="true">
+<form action="https://www.google.ru" id="cse-search-box">
+  <div>
+    <input type="hidden" name="cx" value="partner-pub-3716042175333627:1096498938" wfd-invisible="true">
+    <input type="hidden" name="ie" value="UTF-8" wfd-invisible="true">
+    <input type="text" name="q" style="background: rgb(255, 255, 255) url(&quot;https://www.google.com/cse/static/images/1x/ru/branding.png&quot;) no-repeat scroll left 9px top 50%; --darkreader-inline-bgcolor: #181a1b;" placeholder="" data-darkreader-inline-bgcolor="">
+    <input type="submit" name="sa" value="Найти">
+  </div>
+<input name="siteurl" value="metanit.com/sharp/tutorial/3.8.php" type="hidden" wfd-invisible="true"><input name="ref" value="www.yandex.ru/clck/jsredir?from=www.yandex.ru%3Bsearch%2F%3Bweb%3B%3B&amp;text=&amp;etext=2202.x-pej-2aUlKC4M1SgZ5PMSuzHW3mRfu3XhlBMN3EQ4NT-OLxH5qNleN9Vnhw5pr-ZZe3pHbMpjjul1BsBwj5LleOyRDbbfEhrqamSl8pWptpenllaXZpbnVvcXllYnlw.e52ddafae62baf5f7507d7e269d380b4c276578e&amp;uuid=&amp;state=jLT9ScZ_wbo,&amp;&amp;cst=AiuY0DBWFJ7q0qcCggtsKXHDCh35U590g0XKFMDypfXSZR37jj4NLkv6F62gR_BthdMeVDjkE1R5SXTUeRL7VqUwlEDcFmbIl5EZ3yo8LvCQLq-WXb9l-_-Brj_1EOrwlU6tPziScj2gNksHKesZ_-ItyDfidsdcKePGt-iWXV0PaE_We4cZMZ22pc7tg5HXtNERFd6fzK1KkdbeNO2-s7S-EG2V-uOYfRwdLJEtMOiNFM44qsChUJME3vbSjKXaaWXFMJZ2QkIXWxuv5V4jhQK2ob61Y4epYxsuqKJ8su-YfkK4FBIEAwV_8o-_kx7Bz0Pu_WJTkb8zoUSieBLmaBGfgDuWbLxJXKFqrD2FY2YqjN-Ivpehu8POW1FAKQ60w6Zi0c6VcQ1nHDqhaN2YTA3lyuvWHgmfO3kfZ" type="hidden" wfd-invisible="true"><input name="ss" value="" type="hidden" wfd-invisible="true"></form>
+</div>
+<div class="icon-vk"></div>
+<div id="magnifying-glass"></div>
+
+<div class="menuButton" id="menuButton" wfd-invisible="true">
+	<span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+</div>
+
+<div id="menu" class="menu">
+<ul class="mainmenu">
+   <li><a href="https://metanit.com/news/">Новости</a></li>
+   <li><a href="https://metanit.com/sharp/">C#</a></li>
+   <li><a href="https://metanit.com/java/">Java</a></li>
+   <li><a href="https://metanit.com/web/">WEB</a></li>
+   <li><a href="https://metanit.com/python/">Python</a></li>
+   <li><a href="https://metanit.com/cpp/">C/C++</a></li>
+   <li><a href="https://metanit.com/sql/">SQL</a></li>
+   <li><a href="https://metanit.com/nosql/mongodb/">MongoDB</a></li>
+   <li><a href="https://metanit.com/go/">Go</a></li>
+   <li><a href="https://metanit.com/visualbasic/tutorial/">VB.NET</a></li>
+   <li><a href="https://metanit.com/swift/tutorial/">Swift</a></li>
+   <li><a href="https://metanit.com/kotlin/">Kotlin</a></li>
+   <li><a href="https://metanit.com/dart/">Dart</a></li>
+   <li><a href="https://metanit.com/php/">PHP</a></li>
+   <li><a href="https://metanit.com/rust/">Rust</a></li>
+   <li><a href="https://metanit.com/f/">F#</a></li>
+</ul>
+</div>
+</div>
+<div id="content_right"> 
+<div id="content_right_inner"> 
+<div id="content_center"> 
+<div id="menC" class="menC">
+<div class="articleText" id="articleText">
+<h2>Абстрактные классы и члены классов</h2><div class="date">Последнее обновление: 29.12.2021</div>
+
+<div class="socialBlock">
+<div class="share socialtop">
+<ul>
+<li><a title="Поделиться в Вконтакте" rel="nofollow" class="fa fa-lg fa-vk" onclick='window.open("http://vk.com/share.php?url=https://metanit.com/sharp/tutorial/3.8.php","Поделиться в ВКОНТАКТЕ","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")'></a></li>
+<li><a title="Поделиться в Одноклассниках" rel="nofollow" class="fa fa-lg fa-odnoklassniki" onclick='window.open("https://connect.ok.ru/offer?url=https://metanit.com/sharp/tutorial/3.8.php","Поделиться в Одноклассниках","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")'></a></li>
+<li><a title="Поделиться в Твиттере" rel="nofollow" class="fa fa-lg fa-twitter" onclick='window.open("http://twitter.com/share?url=https://metanit.com/sharp/tutorial/3.8.php","Поделиться в Твиттере","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")'></a></li>
+<li><a title="Поделиться в Фейсбуке" rel="nofollow" class="fa fa-lg fa-facebook" onclick='window.open("http://www.facebook.com/sharer.php?u=https://metanit.com/sharp/tutorial/3.8.php","Поделиться в Facebook","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")'></a></li>
+</ul>
+</div>
+
+</div>
+
+<div style="margin-top:23px;margin-left:6px;"><div></div>
+<script async="" src="C%23%20%D0%B8%20.NET%20%D0%90%D0%B1%D1%81%D1%82%D1%80%D0%B0%D0%BA%D1%82%D0%BD%D1%8B%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B8%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/adsbygoogle.js" wfd-invisible="true"></script>
+<style wfd-invisible="true">
+.footer-adaptive { width: 320px; height: 100px; }
+@media(min-width: 480px) { .footer-adaptive { width: 468px; height: 60px; } }
+@media(min-width: 760px) { .footer-adaptive { width: 728px; height: 90px;  } }
+@media(min-width: 1000px) { .footer-adaptive { width: 468px; height: 60px;  } }
+@media(min-width: 1122px) { .footer-adaptive{ width: 728px; height: 90px;} }
+@media(min-width: 1400px) { .footer-adaptive { width: 970px; height: 90px;} }
+</style><style class="darkreader darkreader--sync" media="screen" wfd-invisible="true"></style>
+<!-- footer_adaptive -->
+<ins class="adsbygoogle footer-adaptive" style="display:inline-block" data-ad-client="ca-pub-3716042175333627" data-ad-slot="9659512088" wfd-invisible="true"></ins>
+<script wfd-invisible="true">
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</div>
+
+<h3>Абстрактные классы</h3>
+<p>Кроме обычных классов в C# есть <span class="b">абстрактные классы</span>.
+ Зачем они нужны? Классы обычно представляют некий план 
+определенного рода объектов или сущностей. Например, мы можем определить
+ класс Car для преставления машин или класс Person для 
+представления людей, вложив в эти классы соответствующие свойства, поля,
+ методы, которые будут описывать данные объекты. 
+Однако некоторые сущности, которые мы хотим выразить с помощью языка 
+программирования, могут не иметь конкретного воплощения. 
+Например, в реальности не существует геометрической фигуры как таковой. 
+Есть круг, прямоугольник, квадрат, но просто фигуры нет. 
+Однако же и круг, и прямоугольник имеют что-то общее и являются 
+фигурами. И для описания подобных сущностей, которые не имеют 
+конкретного 
+воплощения, предназначены абстрактные классы.</p>
+<p>Абстрактный класс похож на обычный класс. Он также может иметь переменные, методы, конструкторы, свойства. 
+Единственное, что при определении абстрактных классов используется ключевое слово <span class="b">abstract</span>. Например, 
+определим абстрактный класс, который представляет некое транспортное средство:</p>
+<div><div id="highlighter_169992" class="syntaxhighlighter  c#"><div class="toolbar" wfd-invisible="true"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="c# keyword">abstract</code> <code class="c# keyword">class</code> <code class="c# plain">Transport</code></div><div class="line number2 index1 alt1"><code class="c# plain">{</code></div><div class="line number3 index2 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">public</code> <code class="c# keyword">void</code> <code class="c# plain">Move()</code></div><div class="line number4 index3 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">{</code></div><div class="line number5 index4 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">Console.WriteLine(</code><code class="c# string">"Транспортно средство движется"</code><code class="c# plain">);</code></div><div class="line number6 index5 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">}</code></div><div class="line number7 index6 alt2"><code class="c# plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p>Транспортное средство представляет некоторую абстракцию, которая не 
+имеет конкретного воплощения. То есть есть легковые и грузовые машины, 
+смолеты, морские судна, кто-то на космическом корабле любит покататься, 
+но как такового 
+транспортного средства нет. Тем не менее все транспортные средства имеют
+ нечто общее - они могут перемещаться. И для этого в классе определен 
+метод Move, который эмулирует 
+перемещение.</p>
+<p>Но главное отличие абстрактных классов от обычных состоит в том, что мы <span class="b">НЕ можем</span> использовать конструктор абстрактного класса для создания экземпляра класса. 
+Например, следующим образом:</p>
+<div><div id="highlighter_253292" class="syntaxhighlighter  c#"><div class="toolbar" wfd-invisible="true"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="c# plain">Transport tesla = </code><code class="c# keyword">new</code> <code class="c# plain">Transport();</code></div></div></td></tr></tbody></table></div></div>
+<p>Тем не менее абстрактные классы полезны для описания некотоого общего
+ функционала, который могут наследовать и использовать производные 
+классы:</p>
+<div><div id="highlighter_839133" class="syntaxhighlighter  c#"><div class="toolbar" wfd-invisible="true"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="c# plain">Transport car = </code><code class="c# keyword">new</code> <code class="c# plain">Car();</code></div><div class="line number2 index1 alt1"><code class="c# plain">Transport ship = </code><code class="c# keyword">new</code> <code class="c# plain">Ship();</code></div><div class="line number3 index2 alt2"><code class="c# plain">Transport aircraft = </code><code class="c# keyword">new</code> <code class="c# plain">Aircraft();</code></div><div class="line number4 index3 alt1">&nbsp;</div><div class="line number5 index4 alt2"><code class="c# plain">car.Move();</code></div><div class="line number6 index5 alt1"><code class="c# plain">ship.Move();</code></div><div class="line number7 index6 alt2"><code class="c# plain">aircraft.Move();</code></div><div class="line number8 index7 alt1"><code class="c# keyword">abstract</code> <code class="c# keyword">class</code> <code class="c# plain">Transport</code></div><div class="line number9 index8 alt2"><code class="c# plain">{</code></div><div class="line number10 index9 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">public</code> <code class="c# keyword">void</code> <code class="c# plain">Move()</code></div><div class="line number11 index10 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">{</code></div><div class="line number12 index11 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">Console.WriteLine(</code><code class="c# string">"Транспортное средство движется"</code><code class="c# plain">);</code></div><div class="line number13 index12 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">}</code></div><div class="line number14 index13 alt1"><code class="c# plain">}</code></div><div class="line number15 index14 alt2"><code class="c# comments">// класс корабля</code></div><div class="line number16 index15 alt1"><code class="c# keyword">class</code> <code class="c# plain">Ship : Transport { }</code></div><div class="line number17 index16 alt2"><code class="c# comments">// класс самолета</code></div><div class="line number18 index17 alt1"><code class="c# keyword">class</code> <code class="c# plain">Aircraft : Transport { }</code></div><div class="line number19 index18 alt2"><code class="c# comments">// класс машины</code></div><div class="line number20 index19 alt1"><code class="c# keyword">class</code> <code class="c# plain">Car : Transport { }</code></div></div></td></tr></tbody></table></div></div>
+<p>В данном случае от класса Transport наследуются три класса, которые 
+представляют различные типы транспортных средств. Тем не менее они имеют
+ общую черту - они могут перемещаться с помощью метода <code>Move()</code>.</p>
+<p>Выше писалось, что мы не можем использовать конструктор абстрактного 
+класса для создания экземпляра этого класса. Тем не менее такой класс 
+также может определять конструкторы:</p>
+<div><div id="highlighter_819282" class="syntaxhighlighter  c#"><div class="toolbar" wfd-invisible="true"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div><div class="line number25 index24 alt2">25</div><div class="line number26 index25 alt1">26</div><div class="line number27 index26 alt2">27</div><div class="line number28 index27 alt1">28</div><div class="line number29 index28 alt2">29</div><div class="line number30 index29 alt1">30</div><div class="line number31 index30 alt2">31</div><div class="line number32 index31 alt1">32</div><div class="line number33 index32 alt2">33</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="c# plain">Transport car = </code><code class="c# keyword">new</code> <code class="c# plain">Car(</code><code class="c# string">"машина"</code><code class="c# plain">);</code></div><div class="line number2 index1 alt1"><code class="c# plain">Transport ship = </code><code class="c# keyword">new</code> <code class="c# plain">Ship(</code><code class="c# string">"корабль"</code><code class="c# plain">);</code></div><div class="line number3 index2 alt2"><code class="c# plain">Transport aircraft = </code><code class="c# keyword">new</code> <code class="c# plain">Aircraft(</code><code class="c# string">"самолет"</code><code class="c# plain">);</code></div><div class="line number4 index3 alt1">&nbsp;</div><div class="line number5 index4 alt2"><code class="c# plain">car.Move();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="c# comments">// машина движется</code></div><div class="line number6 index5 alt1"><code class="c# plain">ship.Move();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="c# comments">// корабль движется</code></div><div class="line number7 index6 alt2"><code class="c# plain">aircraft.Move();&nbsp;&nbsp;&nbsp; </code><code class="c# comments">// самолет движется</code></div><div class="line number8 index7 alt1"><code class="c# keyword">abstract</code> <code class="c# keyword">class</code> <code class="c# plain">Transport</code></div><div class="line number9 index8 alt2"><code class="c# plain">{</code></div><div class="line number10 index9 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">public</code> <code class="c# keyword">string</code> <code class="c# plain">Name { </code><code class="c# keyword">get</code><code class="c# plain">; }</code></div><div class="line number11 index10 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# comments">// конструктор абстрактного класса Transport</code></div><div class="line number12 index11 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">public</code> <code class="c# plain">Transport(</code><code class="c# keyword">string</code> <code class="c# plain">name)</code></div><div class="line number13 index12 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">{</code></div><div class="line number14 index13 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">Name = name;</code></div><div class="line number15 index14 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">}</code></div><div class="line number16 index15 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">public</code> <code class="c# keyword">void</code> <code class="c# plain">Move() =&gt;Console.WriteLine($</code><code class="c# string">"{Name} движется"</code><code class="c# plain">);</code></div><div class="line number17 index16 alt2"><code class="c# plain">}</code></div><div class="line number18 index17 alt1"><code class="c# comments">// класс корабля</code></div><div class="line number19 index18 alt2"><code class="c# keyword">class</code> <code class="c# plain">Ship : Transport </code></div><div class="line number20 index19 alt1"><code class="c# plain">{</code></div><div class="line number21 index20 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# comments">// вызываем конструктор базового класса</code></div><div class="line number22 index21 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">public</code> <code class="c# plain">Ship(</code><code class="c# keyword">string</code> <code class="c# plain">name) : </code><code class="c# keyword">base</code><code class="c# plain">(name) { }</code></div><div class="line number23 index22 alt2"><code class="c# plain">}</code></div><div class="line number24 index23 alt1"><code class="c# comments">// класс самолета</code></div><div class="line number25 index24 alt2"><code class="c# keyword">class</code> <code class="c# plain">Aircraft : Transport</code></div><div class="line number26 index25 alt1"><code class="c# plain">{</code></div><div class="line number27 index26 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">public</code> <code class="c# plain">Aircraft(</code><code class="c# keyword">string</code> <code class="c# plain">name) : </code><code class="c# keyword">base</code><code class="c# plain">(name) { }</code></div><div class="line number28 index27 alt1"><code class="c# plain">}</code></div><div class="line number29 index28 alt2"><code class="c# comments">// класс машины</code></div><div class="line number30 index29 alt1"><code class="c# keyword">class</code> <code class="c# plain">Car : Transport</code></div><div class="line number31 index30 alt2"><code class="c# plain">{</code></div><div class="line number32 index31 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">public</code> <code class="c# plain">Car(</code><code class="c# keyword">string</code> <code class="c# plain">name) : </code><code class="c# keyword">base</code><code class="c# plain">(name) { }</code></div><div class="line number33 index32 alt2"><code class="c# plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p>В данном случае в абстрактном классе Transport определен конструктор -
+ с помощью параметра он устанавливает значение свойства Name, которое 
+хранит название 
+транспортного средства. И в этом случае производные классы должны в 
+своих конструкторах вызвать этот конструктор.</p>
+<h3>Абстрактные члены классов</h3>
+<p>Кроме обычных свойств и методов абстрактный класс может иметь 
+абстрактные члены классов, которые определяются с помощью ключевого 
+слова <span class="b">abstract</span> и 
+не имеют никакого функционала. В частности, абстрактными могут быть:</p>
+<ul>
+<li><p>Методы</p></li>
+<li><p>Свойства</p></li>
+<li><p>Индексаторы</p></li>
+<li><p>События</p></li>
+</ul>
+<p>Абстрактные члены классов не должны иметь модификатор private. При 
+этом производный класс обязан переопределить и реализовать все 
+абстрактные методы и свойства, которые имеются в базовом абстрактном 
+классе. При переопределении в производном классе такой метод или 
+свойство также объявляются с модификатором <span class="b">override</span>
+ 
+(как и при обычном переопределении виртуальных методов и свойств). 
+Также следует учесть, что если класс имеет хотя бы одный абстрактный 
+метод (или абстрактные свойство, индексатор, событие), то этот класс 
+должен быть определен как 
+<span class="b">абстрактный</span>.</p>
+<p>Абстрактные члены также, как и виртуальные, являются частью 
+полиморфного интерфейса. Но если в случае с виртуальными методами мы 
+говорим, что класс-наследник 
+наследует реализацию, то в случае с абстрактными методами наследуется 
+интерфейс, представленный этими абстрактными методами.</p>
+<h4>Абстрактные методы</h4>
+<p>Например, выше в примере с транспортными средствами метод Move 
+описывает передвижение транспортного средства. Однако различные типы 
+транспорта 
+перемещаются по разному - едят по земле, летят по воздуху, плывут на 
+воде и т.д. В этом случае мы можем сделать метод Move абстрактным, а его
+ реализацию переложить на производные классы:</p>
+<div><div id="highlighter_592161" class="syntaxhighlighter  c#"><div class="toolbar" wfd-invisible="true"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div><div class="line number25 index24 alt2">25</div><div class="line number26 index25 alt1">26</div><div class="line number27 index26 alt2">27</div><div class="line number28 index27 alt1">28</div><div class="line number29 index28 alt2">29</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="c# keyword">abstract</code> <code class="c# keyword">class</code> <code class="c# plain">Transport</code></div><div class="line number2 index1 alt1"><code class="c# plain">{</code></div><div class="line number3 index2 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">public</code> <code class="c# keyword">abstract</code> <code class="c# keyword">void</code> <code class="c# plain">Move();</code></div><div class="line number4 index3 alt1"><code class="c# plain">}</code></div><div class="line number5 index4 alt2"><code class="c# comments">// класс корабля</code></div><div class="line number6 index5 alt1"><code class="c# keyword">class</code> <code class="c# plain">Ship : Transport </code></div><div class="line number7 index6 alt2"><code class="c# plain">{</code></div><div class="line number8 index7 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# comments">// мы должны реализовать все абстрактные методы и свойства базового класса</code></div><div class="line number9 index8 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">public</code> <code class="c# keyword">override</code> <code class="c# keyword">void</code> <code class="c# plain">Move()</code></div><div class="line number10 index9 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">{</code></div><div class="line number11 index10 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">Console.WriteLine(</code><code class="c# string">"Корабль плывет"</code><code class="c# plain">);</code></div><div class="line number12 index11 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">}</code></div><div class="line number13 index12 alt2"><code class="c# plain">}</code></div><div class="line number14 index13 alt1"><code class="c# comments">// класс самолета</code></div><div class="line number15 index14 alt2"><code class="c# keyword">class</code> <code class="c# plain">Aircraft : Transport</code></div><div class="line number16 index15 alt1"><code class="c# plain">{</code></div><div class="line number17 index16 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">public</code> <code class="c# keyword">override</code> <code class="c# keyword">void</code> <code class="c# plain">Move()</code></div><div class="line number18 index17 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">{</code></div><div class="line number19 index18 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">Console.WriteLine(</code><code class="c# string">"Самолет летит"</code><code class="c# plain">);</code></div><div class="line number20 index19 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">}</code></div><div class="line number21 index20 alt2"><code class="c# plain">}</code></div><div class="line number22 index21 alt1"><code class="c# comments">// класс машины</code></div><div class="line number23 index22 alt2"><code class="c# keyword">class</code> <code class="c# plain">Car : Transport</code></div><div class="line number24 index23 alt1"><code class="c# plain">{</code></div><div class="line number25 index24 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">public</code> <code class="c# keyword">override</code> <code class="c# keyword">void</code> <code class="c# plain">Move()</code></div><div class="line number26 index25 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">{</code></div><div class="line number27 index26 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">Console.WriteLine(</code><code class="c# string">"Машина едет"</code><code class="c# plain">);</code></div><div class="line number28 index27 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">}</code></div><div class="line number29 index28 alt2"><code class="c# plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p>Применение классов:</p>
+<div><div id="highlighter_224328" class="syntaxhighlighter  c#"><div class="toolbar" wfd-invisible="true"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="c# plain">Transport car = </code><code class="c# keyword">new</code> <code class="c# plain">Car();</code></div><div class="line number2 index1 alt1"><code class="c# plain">Transport ship = </code><code class="c# keyword">new</code> <code class="c# plain">Ship();</code></div><div class="line number3 index2 alt2"><code class="c# plain">Transport aircraft = </code><code class="c# keyword">new</code> <code class="c# plain">Aircraft();</code></div><div class="line number4 index3 alt1">&nbsp;</div><div class="line number5 index4 alt2"><code class="c# plain">car.Move();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="c# comments">// машина едет</code></div><div class="line number6 index5 alt1"><code class="c# plain">ship.Move();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="c# comments">// корабль плывет</code></div><div class="line number7 index6 alt2"><code class="c# plain">aircraft.Move();&nbsp;&nbsp;&nbsp; </code><code class="c# comments">// самолет летит</code></div></div></td></tr></tbody></table></div></div>
+<h4>Абстрактные свойства</h4>
+<p>Следует отметить использование абстрактных свойств. Их определение похоже на определение автосвойств. Например:</p>
+<div><div id="highlighter_277393" class="syntaxhighlighter  c#"><div class="toolbar" wfd-invisible="true"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="c# keyword">abstract</code> <code class="c# keyword">class</code> <code class="c# plain">Transport</code></div><div class="line number2 index1 alt1"><code class="c# plain">{</code></div><div class="line number3 index2 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# comments">// абстрактное свойство для хранения скорости</code></div><div class="line number4 index3 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">public</code> <code class="c# keyword">abstract</code> <code class="c# keyword">int</code> <code class="c# plain">Speed { </code><code class="c# keyword">get</code><code class="c# plain">; </code><code class="c# keyword">set</code><code class="c# plain">; } </code></div><div class="line number5 index4 alt2"><code class="c# plain">}</code></div><div class="line number6 index5 alt1"><code class="c# comments">// класс корабля</code></div><div class="line number7 index6 alt2"><code class="c# keyword">class</code> <code class="c# plain">Ship: Transport</code></div><div class="line number8 index7 alt1"><code class="c# plain">{</code></div><div class="line number9 index8 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">int</code> <code class="c# plain">speed;</code></div><div class="line number10 index9 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">public</code> <code class="c# keyword">override</code> <code class="c# keyword">int</code> <code class="c# plain">Speed </code></div><div class="line number11 index10 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">{ </code></div><div class="line number12 index11 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">get</code> <code class="c# plain">=&gt; speed; </code></div><div class="line number13 index12 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">set</code> <code class="c# plain">=&gt; speed = value; </code></div><div class="line number14 index13 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">}</code></div><div class="line number15 index14 alt2"><code class="c# plain">}</code></div><div class="line number16 index15 alt1">&nbsp;</div><div class="line number17 index16 alt2"><code class="c# keyword">class</code> <code class="c# plain">Aircraft : Transport</code></div><div class="line number18 index17 alt1"><code class="c# plain">{</code></div><div class="line number19 index18 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">public</code> <code class="c# keyword">override</code> <code class="c# keyword">int</code> <code class="c# plain">Speed { </code><code class="c# keyword">get</code><code class="c# plain">; </code><code class="c# keyword">set</code><code class="c# plain">; }</code></div><div class="line number20 index19 alt1"><code class="c# plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p>В классе Transport определено абстрактное свойство Speed, котоое 
+должно хранить скорость транспортного средства. Оно похоже на 
+автосвойство, но 
+это не автосвойство. Так как данное свойство не должно иметь реализацию,
+ то оно имеет только пустые блоки get и set. 
+В производных классах мы можем переопределить это свойство, сделав его 
+полноценным свойством (как в классе Ship), 
+либо же сделав его автоматическим (как в классе Aircraft).</p>
+<h4>Отказ от реализации абстрактных членов</h4>
+<p>Производный класс обязан реализовать все абстрактные члены базового 
+класса. Однако мы можем отказаться от реализации, но в этом случае 
+производный класс также должен быть определен как абстрактный:</p>
+<div><div id="highlighter_598685" class="syntaxhighlighter  c#"><div class="toolbar" wfd-invisible="true"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="c# plain">Transport tesla = </code><code class="c# keyword">new</code> <code class="c# plain">Auto();</code></div><div class="line number2 index1 alt1"><code class="c# plain">tesla.Move();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code><code class="c# comments">// легковая машина едет</code></div><div class="line number3 index2 alt2"><code class="c# keyword">abstract</code> <code class="c# keyword">class</code> <code class="c# plain">Transport</code></div><div class="line number4 index3 alt1"><code class="c# plain">{</code></div><div class="line number5 index4 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">public</code> <code class="c# keyword">abstract</code> <code class="c# keyword">void</code> <code class="c# plain">Move();</code></div><div class="line number6 index5 alt1"><code class="c# plain">}</code></div><div class="line number7 index6 alt2"><code class="c# comments">// класс машины</code></div><div class="line number8 index7 alt1"><code class="c# keyword">abstract</code> <code class="c# keyword">class</code> <code class="c# plain">Car :Transport{}</code></div><div class="line number9 index8 alt2">&nbsp;</div><div class="line number10 index9 alt1"><code class="c# keyword">class</code> <code class="c# plain">Auto: Car</code></div><div class="line number11 index10 alt2"><code class="c# plain">{</code></div><div class="line number12 index11 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">public</code> <code class="c# keyword">override</code> <code class="c# keyword">void</code> <code class="c# plain">Move()</code></div><div class="line number13 index12 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">{</code></div><div class="line number14 index13 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">Console.WriteLine(</code><code class="c# string">"легковая машина едет"</code><code class="c# plain">);</code></div><div class="line number15 index14 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">}</code></div><div class="line number16 index15 alt1"><code class="c# plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p>В данном случае класс Car не реализует абстрактный метод Move 
+базового класса Transport и поэтому также определен как абстрактный. 
+Однако любые 
+неабстрактные классы, производные от Car, все равно должны реализовать 
+все унаследованные абстрактные методы и свойства.</p>
+<h3>Пример абстрактного класса</h3>
+<p>Xрестоматийным примером является система геометрических фигур. В 
+реальности не существует геометрической фигуры как таковой. Есть круг, 
+прямоугольник, 
+квадрат, но просто фигуры нет. Однако же и круг, и прямоугольник имеют 
+что-то общее и являются фигурами:</p>
+<div><div id="highlighter_787414" class="syntaxhighlighter  c#"><div class="toolbar" wfd-invisible="true"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div><div class="line number25 index24 alt2">25</div><div class="line number26 index25 alt1">26</div><div class="line number27 index26 alt2">27</div><div class="line number28 index27 alt1">28</div><div class="line number29 index28 alt2">29</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="c# comments">// абстрактный класс фигуры</code></div><div class="line number2 index1 alt1"><code class="c# keyword">abstract</code> <code class="c# keyword">class</code> <code class="c# plain">Shape</code></div><div class="line number3 index2 alt2"><code class="c# plain">{</code></div><div class="line number4 index3 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# comments">// абстрактный метод для получения периметра</code></div><div class="line number5 index4 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">public</code> <code class="c# keyword">abstract</code> <code class="c# keyword">double</code> <code class="c# plain">GetPerimeter();</code></div><div class="line number6 index5 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# comments">// абстрактный метод для получения площади</code></div><div class="line number7 index6 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">public</code> <code class="c# keyword">abstract</code> <code class="c# keyword">double</code> <code class="c# plain">GetArea();</code></div><div class="line number8 index7 alt1"><code class="c# plain">}</code></div><div class="line number9 index8 alt2"><code class="c# comments">// производный класс прямоугольника</code></div><div class="line number10 index9 alt1"><code class="c# keyword">class</code> <code class="c# plain">Rectangle : Shape</code></div><div class="line number11 index10 alt2"><code class="c# plain">{</code></div><div class="line number12 index11 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">public</code> <code class="c# keyword">float</code> <code class="c# plain">Width { </code><code class="c# keyword">get</code><code class="c# plain">; </code><code class="c# keyword">set</code><code class="c# plain">; }</code></div><div class="line number13 index12 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">public</code> <code class="c# keyword">float</code> <code class="c# plain">Height { </code><code class="c# keyword">get</code><code class="c# plain">; </code><code class="c# keyword">set</code><code class="c# plain">; }</code></div><div class="line number14 index13 alt1">&nbsp;</div><div class="line number15 index14 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# comments">// переопределение получения периметра</code></div><div class="line number16 index15 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">public</code> <code class="c# keyword">override</code> <code class="c# keyword">double</code> <code class="c# plain">GetPerimeter() =&gt; Width * 2 + Height * 2;</code></div><div class="line number17 index16 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# comments">// переопрелеление получения площади</code></div><div class="line number18 index17 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">public</code> <code class="c# keyword">override</code> <code class="c# keyword">double</code> <code class="c# plain">GetArea() =&gt; Width * Height;</code></div><div class="line number19 index18 alt2"><code class="c# plain">}</code></div><div class="line number20 index19 alt1"><code class="c# comments">// производный класс окружности</code></div><div class="line number21 index20 alt2"><code class="c# keyword">class</code> <code class="c# plain">Circle : Shape</code></div><div class="line number22 index21 alt1"><code class="c# plain">{</code></div><div class="line number23 index22 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">public</code> <code class="c# keyword">double</code> <code class="c# plain">Radius { </code><code class="c# keyword">get</code><code class="c# plain">; </code><code class="c# keyword">set</code><code class="c# plain">; }</code></div><div class="line number24 index23 alt1">&nbsp;</div><div class="line number25 index24 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# comments">// переопределение получения периметра</code></div><div class="line number26 index25 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">public</code> <code class="c# keyword">override</code> <code class="c# keyword">double</code> <code class="c# plain">GetPerimeter() =&gt; Radius * 2 * 3.14;</code></div><div class="line number27 index26 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# comments">// переопрелеление получения площади</code></div><div class="line number28 index27 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">public</code> <code class="c# keyword">override</code> <code class="c# keyword">double</code> <code class="c# plain">GetArea() =&gt; Radius * Radius * 3.14;</code></div><div class="line number29 index28 alt2"><code class="c# plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p>Применение классов:</p>
+<div><div id="highlighter_196429" class="syntaxhighlighter  c#"><div class="toolbar" wfd-invisible="true"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="c# plain">var rectanle = </code><code class="c# keyword">new</code> <code class="c# plain">Rectangle { Width = 20, Height = 20 };</code></div><div class="line number2 index1 alt1"><code class="c# plain">var circle = </code><code class="c# keyword">new</code> <code class="c# plain">Circle { Radius = 200 };</code></div><div class="line number3 index2 alt2"><code class="c# plain">PrintShape(rectanle); </code><code class="c# comments">// Perimeter: 80&nbsp;&nbsp; Area: 400</code></div><div class="line number4 index3 alt1"><code class="c# plain">PrintShape(circle); </code><code class="c# comments">// Perimeter: 1256&nbsp; Area: 125600</code></div><div class="line number5 index4 alt2">&nbsp;</div><div class="line number6 index5 alt1"><code class="c# keyword">void</code> <code class="c# plain">PrintShape(Shape shape)</code></div><div class="line number7 index6 alt2"><code class="c# plain">{</code></div><div class="line number8 index7 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">Console.WriteLine($</code><code class="c# string">"Perimeter: {shape.GetPerimeter()}&nbsp; Area: {shape.GetArea()}"</code><code class="c# plain">);</code></div><div class="line number9 index8 alt2"><code class="c# plain">}&nbsp;&nbsp; </code></div></div></td></tr></tbody></table></div></div>
+<div style="margin-top:25px;clear:both;">
+<style wfd-invisible="true">
+.metanit-rect { width: 300px; height: 250px; }
+@media(min-width: 500px) { .metanit-rect { width: 336px; height: 280px; } }
+@media(min-width: 760px) { .metanit-rect { width: 728px; height: 90px;  } }
+@media(min-width: 1000px) { .metanit-rect { width: 336px; height: 280px;  } }
+@media(min-width: 1122px) { .metanit-rect{ width: 728px; height: 90px;} }
+@media(min-width: 1400px) { .metanit-rect{ width: 970px; height: 90px;} }
+</style><style class="darkreader darkreader--sync" media="screen" wfd-invisible="true"></style>
+<!-- metanit_rect -->
+<ins class="adsbygoogle metanit-rect" style="display:inline-block" data-ad-client="ca-pub-3716042175333627" data-ad-slot="3119477283" wfd-invisible="true"></ins>
+<script wfd-invisible="true">
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+<div class="dop socialtop"><fieldset><legend>Дополнительные материалы</legend>
+<ul>
+<li><a title="Вопросы для самопроверки" href="https://metanit.com/sharp/questions/2.12.php"><i class="fa fa-lg fa-question"></i><span class="dop-txt">Вопросы для самопроверки</span></a></li>
+</ul>
+</fieldset></div>
+<div class="nav"><p><a href="https://metanit.com/sharp/tutorial/3.42.php">Назад</a><a href="https://metanit.com/sharp/tutorial/">Содержание</a><a href="https://metanit.com/sharp/tutorial/3.10.php">Вперед</a></p></div></div>
+<div class="socialBlock">
+<div class="share socialbottom">
+<ul>
+<li><a title="Поделиться в Вконтакте" rel="nofollow" class="fa fa-lg fa-vk" onclick='window.open("http://vk.com/share.php?url=https://metanit.com/sharp/tutorial/3.8.php","Поделиться в ВКОНТАКТЕ","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")'></a></li>
+<li><a title="Поделиться в Одноклассниках" rel="nofollow" class="fa fa-lg fa-odnoklassniki" onclick='window.open("https://connect.ok.ru/offer?url=https://metanit.com/sharp/tutorial/3.8.php","Поделиться в Одноклассниках","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")'></a></li>
+<li><a title="Поделиться в Твиттере" rel="nofollow" class="fa fa-lg fa-twitter" onclick='window.open("http://twitter.com/share?url=https://metanit.com/sharp/tutorial/3.8.php","Поделиться в Твиттере","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")'></a></li>
+<li><a title="Поделиться в Фейсбуке" rel="nofollow" class="fa fa-lg fa-facebook" onclick='window.open("http://www.facebook.com/sharer.php?u=https://metanit.com/sharp/tutorial/3.8.php","Поделиться в Facebook","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")'></a></li>
+</ul>
+</div>
+</div>
+
+<style wfd-invisible="true">
+.commentABl { margin: 25px 0px 15px 0px;}
+@media(min-width: 860px) { .commentABl { margin: 35px 10px 15px 15px;  } }
+</style><style class="darkreader darkreader--sync" media="screen" wfd-invisible="true"></style>
+<div class="commentABl" style="clear:both;">
+<div id="yandex_rtb_R-A-201190-3" style="display:inline-block;width:320px;vertical-align:top; margin-right:12px;"></div>
+<div id="yandex_rtb_R-A-201190-2" style="display:inline-block;width:320px;vertical-align:top;"></div>
+</div>
+
+<div id="disqus_recommendations" style="margin-bottom: 12px;"><iframe id="dsq-app5357" name="dsq-app5357" allowtransparency="true" scrolling="no" tabindex="0" title="Disqus" style="width: 100% !important; border: medium none !important; overflow: hidden !important; height: 269px !important; display: inline !important; box-sizing: border-box !important; --darkreader-inline-border-top: currentcolor; --darkreader-inline-border-right: currentcolor; --darkreader-inline-border-bottom: currentcolor; --darkreader-inline-border-left: currentcolor;" src="C%23%20%D0%B8%20.NET%20%D0%90%D0%B1%D1%81%D1%82%D1%80%D0%B0%D0%BA%D1%82%D0%BD%D1%8B%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B8%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/a.htm" data-darkreader-inline-border-top="" data-darkreader-inline-border-right="" data-darkreader-inline-border-bottom="" data-darkreader-inline-border-left="" horizontalscrolling="no" verticalscrolling="no" width="100%" frameborder="0"></iframe></div><div id="disqus_thread" style="margin-left:8px;margin-right:8px;clear:both;"><iframe id="dsq-app4643" name="dsq-app4643" allowtransparency="true" scrolling="no" tabindex="0" title="Disqus" style="width: 1px !important; min-width: 100% !important; border: medium none !important; overflow: hidden !important; height: 7417px !important; --darkreader-inline-border-top: currentcolor; --darkreader-inline-border-right: currentcolor; --darkreader-inline-border-bottom: currentcolor; --darkreader-inline-border-left: currentcolor;" src="C%23%20%D0%B8%20.NET%20%D0%90%D0%B1%D1%81%D1%82%D1%80%D0%B0%D0%BA%D1%82%D0%BD%D1%8B%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B8%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/a_002.htm" data-darkreader-inline-border-top="" data-darkreader-inline-border-right="" data-darkreader-inline-border-bottom="" data-darkreader-inline-border-left="" horizontalscrolling="no" verticalscrolling="no" width="100%" frameborder="0"></iframe><iframe id="indicator-north" name="indicator-north" allowtransparency="true" scrolling="no" tabindex="0" title="Disqus" style="width: 898px !important; border: medium none !important; overflow: hidden !important; top: 0px !important; min-width: 898px !important; max-width: 898px !important; position: fixed !important; z-index: 2147483646 !important; height: 18px !important; min-height: 18px !important; max-height: 18px !important; display: none !important; --darkreader-inline-border-top: currentcolor; --darkreader-inline-border-right: currentcolor; --darkreader-inline-border-bottom: currentcolor; --darkreader-inline-border-left: currentcolor;" data-darkreader-inline-border-top="" data-darkreader-inline-border-right="" data-darkreader-inline-border-bottom="" data-darkreader-inline-border-left="" wfd-invisible="true" frameborder="0"></iframe><iframe id="indicator-south" name="indicator-south" allowtransparency="true" scrolling="no" tabindex="0" title="Disqus" style="width: 898px !important; border: medium none !important; overflow: hidden !important; bottom: 0px !important; min-width: 898px !important; max-width: 898px !important; position: fixed !important; z-index: 2147483646 !important; height: 18px !important; min-height: 18px !important; max-height: 18px !important; display: none !important; --darkreader-inline-border-top: currentcolor; --darkreader-inline-border-right: currentcolor; --darkreader-inline-border-bottom: currentcolor; --darkreader-inline-border-left: currentcolor;" data-darkreader-inline-border-top="" data-darkreader-inline-border-right="" data-darkreader-inline-border-bottom="" data-darkreader-inline-border-left="" wfd-invisible="true" frameborder="0"></iframe></div>
+<script type="text/javascript" wfd-invisible="true">
+var disqus_shortname = 'metanitcom';
+(function() {
+var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+</div>
+</div> 
+<div id="menR" class="menR">
+<style wfd-invisible="true">
+.meta-vert { width: 300px; height: 250px; }
+@media(min-width: 500px) { .meta-vert { width: 336px; height: 280px; } }
+@media(min-width: 1000px) { .meta-vert { width: 160px; height: 600px; } }
+</style><style class="darkreader darkreader--sync" media="screen" wfd-invisible="true"></style>
+<!-- meta_vert -->
+<ins class="adsbygoogle meta-vert" style="display:inline-block" data-ad-client="ca-pub-3716042175333627" data-ad-slot="4596210485" wfd-invisible="true"></ins>
+<script wfd-invisible="true">
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<style wfd-invisible="true">
+.dn {font-size:12.5px;margin:3px;}
+.dh{font-weight:bold;margin-left:2px;}
+</style><style class="darkreader darkreader--sync" media="screen" wfd-invisible="true"></style>
+<div class="dn">
+<div class="dh">Помощь сайту</div>
+
+<div class="dh">WebMoney</div>
+<ul>
+<li>P378451176208</li>
+<li>Z280152397659</li>
+</ul>
+<div class="dh">ЮMoney/Яндекс-Деньги</div>
+<ul>
+<li>410011174743222</li>
+</ul>
+<div class="dh">PayPal</div>
+<ul>
+<li>metanit22@mail.ru</li>
+</ul>
+<div class="dh">Перевод на карту</div>
+<ul>
+<li>Номер карты: 4048415020898850</li>
+</ul>
+</div>
+
+</div>
+</div>
+</div> 
+<div class="menT" id="menT" style="max-height: 4924px;"><ul id="browser" class="filetree treeview"> 
+	<li class="closed collapsable"><div class="hitarea closed-hitarea collapsable-hitarea"></div><span class="folder">Глава 1. Введение в C#</span>
+		<ul style="display: block;" wfd-invisible="true">
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/1.1.php" class="">Язык C# и платформа .NET</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/1.2.php" class="">Начало работы с Visual Studio. Первая программа</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/tutorial/1.3.php">Компиляция в командной строке</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 2. Основы программирования на C#</span>
+		<ul style="display: none;" wfd-invisible="true">
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/1.5.php" class="">Структура программы</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/2.25.php" class="">Переменные и константы</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/2.26.php" class="">Литералы</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/2.1.php" class="">Типы данных</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/2.15.php" class="">Консольный ввод-вывод</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/2.3.php">Арифметические операции</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/2.22.php" class="">Поразрядные операции</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/2.23.php">Операции присваивания</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/2.2.php" class="">Преобразования базовых типов данных</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/2.24.php">Условные выражения</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/2.5.php" class="">Конструкция if..else и тернарная операция</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/2.6.php">Циклы</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/2.4.php" class="">Массивы</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/2.7.php">Задачи с массивами</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/2.8.php" class="">Методы</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/2.9.php">Параметры методов</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/2.34.php">Возвращение значения и оператор return</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/2.27.php" class="">Передача параметров по ссылке и значению. Выходные параметры</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/2.10.php">Массив параметров и ключевое слово params</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/2.11.php">Рекурсивные функции</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/2.20.php">Локальные функции</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.45.php">Конструкция switch</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/tutorial/2.12.php">Перечисления enum</a></span></li>
+		</ul>
+	</li>
+	<li class="closed collapsable"><div class="hitarea closed-hitarea collapsable-hitarea"></div><span class="folder">Глава 3. Классы, структуры и пространства имен</span>
+		<ul style="display: block;" wfd-invisible="true">
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.1.php">Классы и объекты</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.35.php" class="">Конструкторы, инициализаторы и деконструкторы</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/1.4.php" class="">Класс Program и метод Main. Программы верхнего уровня</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/2.13.php" class="">Структуры</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/2.16.php" class="">Типы значений и ссылочные типы</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/2.18.php" class="">Область видимости (контекст) переменных</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.25.php" class="">Пространства имен</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.52.php" class="">Глобальные пространства имен</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.53.php" class="">Подключение пространств имен по умолчанию</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.46.php" class="">Создание библиотеки классов</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.2.php">Модификаторы доступа</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.4.php" class="">Свойства</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.5.php">Перегрузка методов</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.6.php" class="">Статические члены и модификатор static</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.3.php" class="">Поля и структуры для чтения</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.50.php">Null и ссылочные типы</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/2.17.php" class="">Null и значимые типы</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.26.php" class="">Проверка на null, операторы ?. и ??</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/tutorial/4.1.php" class="">Псевдонимы типов и статический импорт</a></span></li>
+		</ul>
+	</li>
+	<li class="closed collapsable"><div class="hitarea closed-hitarea collapsable-hitarea"></div><span class="folder aMItem">Глава 4. Объектно-ориентированное программирование</span>
+		<ul style="display: block;">		
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.7.php" class="">Наследование</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.11.php" class="">Преобразование типов</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.19.php" class="">Виртуальные методы и свойства</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.41.php" class="">Скрытие методов и свойств</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.42.php" class="">Различие переопределения и скрытия методов</a></span></li>
+			<li><span class="file aMItem"><a href="https://metanit.com/sharp/tutorial/3.8.php" class="aMItem">Абстрактные классы</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.10.php" class="">Класс System.Object и его методы</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.12.php" class="">Обобщенные типы</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.38.php" class="">Ограничения обобщений</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/tutorial/3.39.php">Наследование обобщенных типов</a></span></li>
+			</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 5. Обработка исключений</span>
+		<ul style="display: none;" wfd-invisible="true">
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/2.14.php">Конструкция try..catch..finally</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/2.28.php">Блок catch и фильтры исключений</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/2.29.php">Типы исключений. Класс Exception</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/2.31.php">Генерация исключения и оператор throw</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.17.php">Создание классов исключений</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/tutorial/2.30.php">Поиск блока catch при обработке исключений</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 6. Делегаты, события и лямбды</span>
+		<ul style="display: none;" wfd-invisible="true">
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.13.php">Делегаты</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.43.php">Применение делегатов</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.15.php">Анонимные методы</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.16.php">Лямбды</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.14.php">События</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.28.php">Ковариантность и контравариантность делегатов</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.33.php">Делегаты Action, Predicate и Func</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/tutorial/3.54.php">Замыкания</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 7. Интерфейсы</span>
+		<ul style="display: none;" wfd-invisible="true">
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.9.php">Определение интерфейсов</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.49.php">Применение интерфейсов</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.44.php">Явная реализация интерфейсов</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.47.php">Реализация интерфейсов в базовых и производных классах</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.48.php">Наследование интерфейсов</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.40.php">Интерфейсы в обобщениях</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.22.php">Копирование объектов. Интерфейс ICloneable</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.23.php">Сортировка объектов. Интерфейс IComparable</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/tutorial/3.27.php">Ковариантность и контравариантность обобщенных интерфейсов</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 8. Дополнительные возможности ООП в C#</span>
+		<ul style="display: none;" wfd-invisible="true"><li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.36.php">Перегрузка операторов</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.37.php">Перегрузка операций преобразования типов</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/4.10.php">Индексаторы</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/2.21.php">Переменные-ссылки и возвращение ссылки</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.18.php">Методы расширения</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.21.php">Частичные классы и методы</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.20.php">Анонимные типы</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/2.19.php">Кортежи</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/3.34.php">Pattern matching</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/tutorial/3.51.php">Records</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 9. Коллекции</span>
+		<ul style="display: none;" wfd-invisible="true">
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/4.5.php">Список List&lt;T&gt;</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/4.6.php">Двухсвязный список LinkedList&lt;T&gt;</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/4.7.php">Очередь Queue&lt;T&gt;</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/4.8.php">Стек Stack&lt;T&gt;</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/4.9.php">Словарь Dictionary&lt;T, V&gt;</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/4.13.php">Класс ObservableCollection</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/4.11.php">Интерфейсы IEnumerable и IEnumerator</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/tutorial/4.12.php">Итераторы и оператор yield</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 10. Работа со строками</span>
+		<ul style="display: none;" wfd-invisible="true">
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/7.1.php">Строки и класс System.String</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/7.2.php">Операции со строками</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/7.5.php">Форматирование и интерполяция строк</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/7.3.php">Класс StringBuilder</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/tutorial/7.4.php">Регулярные выражения</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 11. Работа с датами и временем</span>
+		<ul style="display: none;" wfd-invisible="true">
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/19.1.php">Структура DateTime</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/19.2.php">Форматирование дат и времени</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/tutorial/19.3.php">DateOnly и TimeOnly</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 12. Дополнительные классы и структуры .NET</span>
+		<ul style="display: none;" wfd-invisible="true">
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/20.1.php">Отложенная инициализация и тип Lazy</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/20.2.php">Математические вычисления и класс Math</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/20.4.php">Преобразование типов и класс Convert</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/20.5.php">Класс Array и массивы</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/2.33.php">Span</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/tutorial/2.32.php">Индексы и диапазоны</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 13. Многопоточность</span>
+		<ul style="display: none;" wfd-invisible="true">
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/11.1.php">Введение в многопоточность. Класс Thread</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/11.2.php">Создание потоков. Делегат ThreadStart</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/11.3.php">Потоки с параметрами и ParameterizedThreadStart</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/11.4.php">Синхронизация потоков</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/11.5.php">Мониторы</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/11.6.php">Класс AutoResetEvent</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/11.7.php">Мьютексы</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/11.8.php">Семафоры</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/tutorial/11.9.php">Таймеры</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 14. Параллельное программирование и библиотека TPL</span>
+		<ul style="display: none;" wfd-invisible="true">
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/12.1.php">Задачи и класс Task</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/12.2.php">Работа с классом Task</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/12.3.php">Задачи продолжения</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/12.4.php">Класс Parallel</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/tutorial/12.5.php">Отмена задач и параллельных операций. CancellationToken</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 15. Aсинхронное программирование</span>
+		<ul style="display: none;" wfd-invisible="true">
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/13.3.php">Асинхронные методы, async и await</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/13.7.php">Возвращение результата из асинхронного метода</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/13.5.php">Последовательный и параллельный вызов асинхронных операций</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/13.4.php">Обработка ошибок в асинхронных методах</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/13.6.php">Отмена асинхронных операций</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/tutorial/13.8.php">Асинхронные стримы</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 16. LINQ</span>
+		<ul style="display: none;" wfd-invisible="true">
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/15.1.php">Основы LINQ</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/15.2.php">Фильтрация выборки и проекция</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/15.3.php">Сортировка</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/15.4.php">Объединение, пересечение и разность коллекций</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/15.5.php">Агрегатные операции</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/15.11.php">Методы Skip и Take</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/15.6.php">Группировка</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/15.7.php">Соединение коллекций. Метод Join, GroupJoin и Zip</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/15.10.php">Методы All и Any</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/15.8.php">Отложенное и немедленное выполнение LINQ</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/tutorial/15.9.php">Делегаты и анонимные методы в запросах LINQ</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 17. Parallel LINQ</span>
+		<ul style="display: none;" wfd-invisible="true">
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/17.1.php">Введение в Parallel LINQ. Метод AsParallel</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/17.2.php">Метод AsOrdered</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/tutorial/17.3.php">Обработка ошибок и отмена параллельных операции</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 18. Рефлексия</span>
+		<ul style="display: none;" wfd-invisible="true">
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/14.1.php">Введение в рефлексию. Класс System.Type</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/14.2.php">Применение рефлексии и исследование типов</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/14.3.php">Динамическая загрузка сборок и позднее связывание</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/tutorial/14.4.php">Атрибуты в .NET</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 19. Dynamic Language Runtime</span>
+		<ul style="display: none;" wfd-invisible="true">
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/9.1.php">DLR в C#. Ключевое слово dynamic</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/9.2.php">DynamicObject и ExpandoObject</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/tutorial/9.3.php">Использование IronPython в .NET</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 20. Сборка мусора, управление памятью и указатели</span>
+		<ul style="display: none;" wfd-invisible="true">
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/8.1.php">Сборщик мусора в C#</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/8.2.php">Финализируемые объекты. Метод Dispose</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/8.5.php">Конструкция using</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/8.3.php">Указатели</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/tutorial/8.4.php">Указатели на структуры, члены классов и массивы</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 21. Работа с файловой системой</span>
+		<ul style="display: none;" wfd-invisible="true">
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/5.1.php">Работа с дисками</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/5.2.php">Работа с каталогами</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/5.3.php">Работа с файлами. Классы File и FileInfo</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/5.4.php">FileStream. Чтение и запись файла</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/5.5.php">Чтение и запись текстовых файлов. StreamReader и StreamWriter</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/5.6.php">Бинарные файлы. BinaryWriter и BinaryReader</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/6.2.php">Бинарная сериализация. BinaryFormatter</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/tutorial/5.7.php">Архивация и сжатие файлов</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 22. Работа с JSON</span>
+		<ul style="display: none;" wfd-invisible="true">
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/tutorial/6.5.php">Сериализация в JSON. JsonSerializer</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 23. Работа с XML</span>
+		<ul style="display: none;" wfd-invisible="true">
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/16.1.php">XML-Документы</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/16.2.php">Работа с XML с помощью System.Xml</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/16.3.php">Изменение XML-документа</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/16.4.php">XPath</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/16.5.php">Linq to Xml. Создание Xml-документа</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/16.6.php">Выборка элементов в LINQ to XML</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/16.7.php">Изменение документа в LINQ to XML</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/tutorial/6.4.php">Сериализация в XML. XmlSerializer</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 24. Процессы и домены приложения</span>
+		<ul style="display: none;" wfd-invisible="true">
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/18.1.php">Процессы</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/18.2.php">Домены приложений</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/tutorial/18.3.php">AssemblyLoadContext и динамическая загрузка и выгрузка сборок</a></span></li>
+		</ul>
+	</li>
+	<li class="closed expandable lastExpandable"><div class="hitarea closed-hitarea expandable-hitarea lastExpandable-hitarea"></div><span class="folder">Глава 25. Валидация модели</span>
+		<ul style="display: none;" wfd-invisible="true">
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/22.1.php">Основы валидации модели</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/22.2.php">Атрибуты валидации</a></span></li>
+			<li><span class="file"><a href="https://metanit.com/sharp/tutorial/22.3.php">Создание своих атрибутов валидации</a></span></li>
+			<li class="last"><span class="file"><a href="https://metanit.com/sharp/tutorial/22.4.php">Самовалидация модели</a></span></li>
+		</ul>
+	</li>
+</ul></div>
+<div id="footer">
+
+<div class="bootomLinks">
+<a href="https://vk.com/metanit" title="Присоединиться к группе вконтакте" rel="nofollow">
+Вконтакте</a>|
+<a href="https://twitter.com/Eugene225" title="Подписаться на твит-ленту" rel="nofollow">
+Twitter</a>|
+<a href="https://www.youtube.com/user/Eugene22584/" title="Подписаться на канал на youtube" rel="nofollow">
+Канал сайта на youtube</a>|
+<a href="https://metanit.com/donations.php" rel="nofollow">Помощь сайту</a>
+</div>
+<p>Контакты для связи: metanit22@mail.ru</p>
+<p>Copyright © metanit.com, 2012-2022. Все права защищены.</p>
+</div>
+</div>
+<script type="text/javascript" src="C%23%20%D0%B8%20.NET%20%D0%90%D0%B1%D1%81%D1%82%D1%80%D0%B0%D0%BA%D1%82%D0%BD%D1%8B%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B8%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/jquery.js" wfd-invisible="true"></script>
+<script type="text/javascript" src="C%23%20%D0%B8%20.NET%20%D0%90%D0%B1%D1%81%D1%82%D1%80%D0%B0%D0%BA%D1%82%D0%BD%D1%8B%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B8%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/jquery_002.js" wfd-invisible="true"></script>
+<script type="text/javascript" src="C%23%20%D0%B8%20.NET%20%D0%90%D0%B1%D1%81%D1%82%D1%80%D0%B0%D0%BA%D1%82%D0%BD%D1%8B%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B8%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/syntax12.js" wfd-invisible="true"></script>
+<script type="text/javascript" wfd-invisible="true">SyntaxHighlighter.all();</script>
+<script wfd-invisible="true">
+$(function() { 
+	$("#menuButton").on('click', function(){
+          $(this).toggleClass('menu-opened');
+          var mainmenu = $('.mainmenu');
+          if (mainmenu.hasClass('open')) { 
+            mainmenu.removeClass('open');
+          }
+          else {
+            mainmenu.addClass('open');
+          }
+        });
+	$('.submenu-button').on('click', function() {
+            $(this).toggleClass('submenu-opened');
+            if ($(this).siblings('ul').hasClass('open')) {
+              $(this).siblings('ul').removeClass('open');
+			  $(this).children('span').removeClass('open');
+			  $(this).children('span').addClass('close');
+            }
+            else {
+              $(this).siblings('ul').addClass('open');
+			  $(this).children('span').removeClass('close');
+			  $(this).children('span').addClass('open');
+            }
+          });
+  $("#toggle-theme").on("click", function() {
+		if(document.documentElement.hasAttribute("theme")){
+			document.documentElement.removeAttribute("theme");
+			document.cookie="theme=1;expires=Mon, 19 Feb 2001 12:00:00 UTC;path=/;";
+		}
+		else{
+			document.documentElement.setAttribute("theme", "dark");
+			var expire = new Date();
+			expire.setHours(expire.getHours() + 7);
+			document.cookie="theme=1;expires=" + expire.toUTCString() + ";path=/;";
+		}
+	});
+	$('#magnifying-glass').on('click', function() {
+            if ($('#search').hasClass('transp')) {
+              $('#search').removeClass('transp').show();
+            }
+            else {
+              $('#search').addClass('transp').hide();
+            }
+          });
+		  
+	$('#browser').treeview();$('#navigation').treeview({persist: 'location',collapsed: true, unique: true});
+	
+	$("li:contains('Глава 4.')").removeClass('expandable').addClass('collapsable').children('ul').css({"display":"block"});
+	$("li:contains('Глава 4.')").children('div').removeClass('expandable-hitarea').addClass('collapsable-hitarea');
+	$("li:contains('Глава .')").removeClass('lastExpandable').addClass('lastCollapsable').children('ul').css({"display":"block"});
+	$("li:contains('Глава .')").children('div').removeClass('lastExpandable-hitarea').addClass('lastCollapsable-hitarea');
+	
+	
+	var url = "//metanit.com" + location.pathname;
+	
+	$('.file a[href="' + url + '"]').addClass('aMItem').parent().addClass('aMItem').closest('li.collapsable').find('span.folder').addClass('aMItem');
+	
+	$(".fa-bars").on('click', function() {
+		$(".menT").toggleClass("menTOpened");
+		$("#content_right_inner").toggleClass("contentRightInnerOpened");
+	});
+
+
+
+	$(".share .fa-vk").attr('onclick','window.open("http://vk.com/share.php?url=' + window.location.href+'","Поделиться в ВКОНТАКТЕ","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")');
+	$(".share .fa-odnoklassniki").attr('onclick','window.open("https://connect.ok.ru/offer?url=' + window.location.href+'","Поделиться в Одноклассниках","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")');
+	$(".share .fa-twitter").attr('onclick','window.open("http://twitter.com/share?url=' + window.location.href+'","Поделиться в Твиттере","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")');
+	$(".share .fa-facebook").attr('onclick','window.open("http://www.facebook.com/sharer.php?u=' + window.location.href +'","Поделиться в Facebook","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")');
+});
+</script>
+<script wfd-invisible="true">
+window.onload= function(){
+	setMenC();
+};
+window.onresize= function(){
+	setMenC();
+};
+
+function setMenC(){
+	if(window.innerWidth >859){
+			
+		var h = document.getElementById("articleText").clientHeight;
+		document.getElementById("menT").style.maxHeight=h + "px";
+	}
+}
+</script>
+<script wfd-invisible="true">
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-35780297-1', 'metanit.com');
+  ga('send', 'pageview');
+
+</script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async="" src="C%23%20%D0%B8%20.NET%20%D0%90%D0%B1%D1%81%D1%82%D1%80%D0%B0%D0%BA%D1%82%D0%BD%D1%8B%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B8%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/js" wfd-invisible="true"></script>
+<script wfd-invisible="true">
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-35780297-1');
+</script>
+
+
+<script async="" defer="defer" type="text/javascript" src="C%23%20%D0%B8%20.NET%20%D0%90%D0%B1%D1%81%D1%82%D1%80%D0%B0%D0%BA%D1%82%D0%BD%D1%8B%D0%B5%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D1%8B%20%D0%B8%20%D1%87%D0%BB%D0%B5%D0%BD%D1%8B%20%D0%BA%D0%BB%D0%B0%D1%81%D1%81%D0%BE%D0%B2_files/brand" wfd-invisible="true"></script>
+<script type="text/javascript" wfd-invisible="true">
+    (function(w, d, n, s, t) {
+        w[n] = w[n] || [];
+        w[n].push(function() {
+            Ya.Context.AdvManager.render({
+                blockId: "R-A-201190-3",
+                renderTo: "yandex_rtb_R-A-201190-3",
+                horizontalAlign: false,
+                async: true
+            });
+        });
+        t = d.getElementsByTagName("script")[0];
+        s = d.createElement("script");
+        s.type = "text/javascript";
+        s.src = "//an.yandex.ru/system/context.js";
+        s.async = true;
+        t.parentNode.insertBefore(s, t);
+    })(this, this.document, "yandexContextAsyncCallbacks");
+</script>
+<script type="text/javascript" wfd-invisible="true">
+    (function(w, d, n, s, t) {
+        w[n] = w[n] || [];
+        w[n].push(function() {
+            Ya.Context.AdvManager.render({
+                blockId: "R-A-201190-2",
+                renderTo: "yandex_rtb_R-A-201190-2",
+                async: true
+            });
+        });
+        t = d.getElementsByTagName("script")[0];
+        s = d.createElement("script");
+        s.type = "text/javascript";
+        s.src = "//an.yandex.ru/system/context.js";
+        s.async = true;
+        t.parentNode.insertBefore(s, t);
+    })(this, this.document, "yandexContextAsyncCallbacks");
+</script>
+
+<iframe style="display: none;" wfd-invisible="true"></iframe><iframe style="display: none;" wfd-invisible="true"></iframe></body></html>

@@ -1,0 +1,19 @@
+﻿<Window x:Class="_004_OnlyNumbers.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="События клавиатуры. Перехват неправильного ввода."
+        Height="135"
+        Width="300">
+    
+    <StackPanel Margin="10" 
+                PreviewTextInput="pnl_PreviewTextInput" 
+                PreviewKeyDown="pnl_PreviewKeyDown">
+        
+        <TextBox Name="textBox1" Height="22" VerticalAlignment="Top" Margin="2" />
+
+        <TextBox Name="textBox2" Height="22" VerticalAlignment="Top" Margin="2" />
+        
+        <TextBox Name="textBox3" Height="22" VerticalAlignment="Top" Margin="2" />
+    
+    </StackPanel>
+</Window>

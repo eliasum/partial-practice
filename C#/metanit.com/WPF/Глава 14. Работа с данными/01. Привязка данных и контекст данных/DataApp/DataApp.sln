@@ -1,0 +1,37 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.1525
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataApp", "DataApp\DataApp.csproj", "{90CB1D22-23AB-4F1C-BEE3-FF02DF8D9E36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataApp2", "DataApp2\DataApp2.csproj", "{EF36BE8C-640F-4FBE-AD65-09D2E07751FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataApp3", "DataApp3\DataApp3.csproj", "{ADCE8C93-96D0-4EBA-AF25-CF91AB8CF022}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{90CB1D22-23AB-4F1C-BEE3-FF02DF8D9E36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90CB1D22-23AB-4F1C-BEE3-FF02DF8D9E36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90CB1D22-23AB-4F1C-BEE3-FF02DF8D9E36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90CB1D22-23AB-4F1C-BEE3-FF02DF8D9E36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF36BE8C-640F-4FBE-AD65-09D2E07751FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF36BE8C-640F-4FBE-AD65-09D2E07751FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF36BE8C-640F-4FBE-AD65-09D2E07751FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF36BE8C-640F-4FBE-AD65-09D2E07751FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ADCE8C93-96D0-4EBA-AF25-CF91AB8CF022}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ADCE8C93-96D0-4EBA-AF25-CF91AB8CF022}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ADCE8C93-96D0-4EBA-AF25-CF91AB8CF022}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ADCE8C93-96D0-4EBA-AF25-CF91AB8CF022}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9E7F1A36-C711-480E-8D50-3F19CC9E9D4E}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <title>Получить текущую дату и время</title>
+
+</head>
+
+<body>
+
+    <h1>Получить текущую дату и время</h1>
+
+   
+
+    <input type="text" id="datetimeField" readonly>
+
+    <button onclick="runScript()">Получить дату и время</button>
+
+ 
+
+    <script>
+
+        function runScript() {
+
+            const script = document.createElement('script');
+
+            script.src = 'script.js';
+
+            document.body.appendChild(script);
+
+        }
+
+    </script>
+
+</body>
+
+</html>

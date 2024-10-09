@@ -1,0 +1,69 @@
+﻿<!--2021.08.10 09:22 IMM-->
+<!--
+ I
+ События клавиатуры
+
+К событиям клавиатуры можно отнести следующие события:
+
+Событие          - Тип события   - Описание
+ 
+KeyDown          - Поднимающееся - Возникает при нажатии клавиши	
+PreviewKeyDown   - Туннельное    - Возникает при нажатии клавиши
+KeyUp            - Поднимающееся - Возникает при освобождении клавиши
+PreviewKeyUp     - Туннельное    - Возникает при освобождении клавиши
+TextInput        - Поднимающееся - Возникает при получении элементом текстового ввода 
+                                   (генерируется не только клавиатурой, но и стилусом)
+PreviewTextInput - Туннельное    - Возникает при получении элементом текстового ввода   
+    
+
+Большинство событий клавиатуры (KeyUp/PreviewKeyUp, KeyDown/PreviewKeyDown) принимает 
+    в качестве аргумента объект KeyEventArgs, у которого можно отметить следующие свойства:
+
+    - Key позволяет получить нажатую или отпущенную клавишу
+
+    - SystemKey позволяет узнать, нажата ли системная клавиша, например, Alt
+
+    - KeyboardDevice получает объект KeyboardDevice, представляющее устройство клавиатуры
+
+    - IsRepeat указывает, что клавиша удерживается в нажатом положении
+
+    - IsUp и IsDown указывает, была ли клавиша нажата или отпущена
+
+    - IsToggled указывает, была ли клавиша включена - относится только к включаемым 
+    клавишам Caps Lock, Scroll Lock, Num Lock
+
+Например, обработаем событие KeyDown для текстового поля и выведем данные о нажатой 
+    клавише в текстовый блок:
+ -->
+<Window x:Class="KeyboardEvents2.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:KeyboardEvents2"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="250" Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <DockPanel >
+            <!--при нажатии на клавишу в текстовом поле ввода TextBox вызывается 
+            обработчик события TextBox_KeyDown
+            
+            События TextInput/PreviewTextInput в качестве параметра принимают 
+            объект TextCompositionEventArgs. Из его свойств стоит отметить, 
+            пожалуй, только свойство Text, которое получает введенный текст, 
+            именно текст, а не текстовое представление клавиши. Для этого добавим
+            к текстовому полю обработчик "TextBox_TextInput":
+            -->
+            <TextBox Height="40" Width="260" 
+                     KeyDown="TextBox_KeyDown" 
+                     PreviewTextInput="TextBox_TextInput"/>
+        </DockPanel>
+        <!--текстовый блок вывода TextBlock значений клавиш, полученных в 
+        обработчике события TextBox_KeyDown-->
+        <TextBlock x:Name="textBlock1" Grid.Row="1" />
+    </Grid>
+</Window>

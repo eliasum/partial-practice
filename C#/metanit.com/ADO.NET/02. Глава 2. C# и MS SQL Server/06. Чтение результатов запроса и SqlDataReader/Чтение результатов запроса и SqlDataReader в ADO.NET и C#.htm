@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Чтение результатов запроса и SqlDataReader в ADO.NET и C#</title>
+<meta charset="utf-8">
+<meta name="description" content="Класс SqlDataReader, выборка из базы данных MS SQL Server в ADO.NET и C#">
+<meta name="viewport" content="width=device-width">
+<link href="%D0%A7%D1%82%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D0%BE%D0%B2%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%20%D0%B8%20SqlDataReader%20%D0%B2%20ADO.NET%20%D0%B8%20C%23_files/style30.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="%D0%A7%D1%82%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D0%BE%D0%B2%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%20%D0%B8%20SqlDataReader%20%D0%B2%20ADO.NET%20%D0%B8%20C%23_files/context.js" async=""></script><script type="text/javascript" src="%D0%A7%D1%82%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D0%BE%D0%B2%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%20%D0%B8%20SqlDataReader%20%D0%B2%20ADO.NET%20%D0%B8%20C%23_files/context.js" async=""></script><script async="" src="%D0%A7%D1%82%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D0%BE%D0%B2%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%20%D0%B8%20SqlDataReader%20%D0%B2%20ADO.NET%20%D0%B8%20C%23_files/analytics.js"></script><script type="text/javascript" async="" src="%D0%A7%D1%82%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D0%BE%D0%B2%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%20%D0%B8%20SqlDataReader%20%D0%B2%20ADO.NET%20%D0%B8%20C%23_files/embed.js"></script><link rel="prefetch" as="style" href="%D0%A7%D1%82%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D0%BE%D0%B2%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%20%D0%B8%20SqlDataReader%20%D0%B2%20ADO.NET%20%D0%B8%20C%23_files/a_data/lounge.css"><link rel="prefetch" as="script" href="%D0%A7%D1%82%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D0%BE%D0%B2%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%20%D0%B8%20SqlDataReader%20%D0%B2%20ADO.NET%20%D0%B8%20C%23_files/a_data/common.js"><link rel="prefetch" as="script" href="%D0%A7%D1%82%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D0%BE%D0%B2%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%20%D0%B8%20SqlDataReader%20%D0%B2%20ADO.NET%20%D0%B8%20C%23_files/a_data/lounge.js"><link rel="prefetch" as="script" href="%D0%A7%D1%82%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D0%BE%D0%B2%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%20%D0%B8%20SqlDataReader%20%D0%B2%20ADO.NET%20%D0%B8%20C%23_files/a_data/config.js"></head>
+<body>
+<div id="container">
+
+<div id="header">
+<div id="logo">
+<a class="logoTitle" href="https://metanit.com/" title="На главную">METANIT.COM</a>
+<div class="logoDefinition">Сайт о программировании</div> 
+</div>
+
+<div class="socialbtns">
+<ul>
+<li><a title="Посмотреть меню" rel="nofollow" class="fa fa-lg fa-bars"></a></li>
+<li><a href="https://metanit.com/donations.php" title="Помощь сайту" rel="nofollow" class="fa fa-lg fa-usd"></a></li>
+<li><a href="https://vk.com/metanit" title="Группа в ВКонтакте" rel="nofollow" class="fa fa-lg fa-vk"></a></li>
+<li><a href="https://twitter.com/Eugene225" title="Твиттер" rel="nofollow" class="fa fa-lg fa-twitter"></a></li>
+<li><a href="https://www.facebook.com/metanitcom" title="Страница в Facebook" rel="nofollow" class="fa fa-lg fa-facebook"></a></li>
+<li><a href="https://www.youtube.com/user/Eugene22584/" title="Канал сайта на Youtube" rel="nofollow" class="fa fa-lg fa-youtube"></a></li>
+<li><a href="https://t.me/metanit" title="Телеграмм" class="fa fa-lg fa-tel"></a></li>
+<li><i id="toggle-theme" class="fa fa-lg fa-adjust"></i></li>
+</ul>
+</div>
+
+<div id="search" class="transp">
+<form action="https://www.google.ru" id="cse-search-box">
+  <div>
+    <input type="hidden" name="cx" value="partner-pub-3716042175333627:1096498938">
+    <input type="hidden" name="ie" value="UTF-8">
+    <input type="text" name="q" style="border: 1px solid rgb(126, 157, 185); padding: 2px; background: rgb(255, 255, 255) url(&quot;https://www.google.com/cse/static/images/1x/googlelogo_lightgrey_46x16dp.png&quot;) no-repeat scroll left center; text-indent: 48px;" placeholder="Пользовательского поиска">
+    <input type="submit" name="sa" value="Найти">
+  </div>
+<input name="siteurl" type="hidden" value="metanit.com/sharp/adonet/2.6.php"><input name="ref" type="hidden"><input name="ss" type="hidden"></form>
+</div>
+<div class="icon-vk"></div>
+<div id="magnifying-glass"></div>
+
+<div class="menuButton" id="menuButton">
+	<span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+</div>
+
+<div id="menu" class="menu">
+<ul class="mainmenu">
+   <li><a href="https://metanit.com/sharp/">C#/.NET</a></li>
+   <li><a href="https://metanit.com/java/">Java</a></li>
+   <li><a href="https://metanit.com/web/">WEB</a></li>
+   <li><a href="https://metanit.com/python/">Python</a></li>
+   <li><a href="https://metanit.com/cpp/">C/C++</a></li>
+   <li><a href="https://metanit.com/sql/">SQL</a></li>
+   <li><a href="https://metanit.com/nosql/mongodb/">MongoDB</a></li>
+   <li><a href="https://metanit.com/go/">Go</a></li>
+   <li><a href="https://metanit.com/visualbasic/tutorial/">VB.NET</a></li>
+   <li><a href="https://metanit.com/swift/tutorial/">Swift</a></li>
+   <li><a href="https://metanit.com/kotlin/tutorial/">Kotlin</a></li>
+   <li><a href="https://metanit.com/dart/">Dart</a></li>
+</ul>
+</div>
+</div>
+<div id="content_right"> 
+<div id="content_right_inner"> 
+<div id="content_center"> 
+<div id="menC" class="menC">
+<div class="articleText" id="articleText">
+<h2>Чтение результатов запроса и SqlDataReader</h2><div class="date">Последнее обновление: 31.10.2015</div>
+
+<div class="socialBlock">
+<div class="share socialtop">
+<ul>
+<li><a title="Поделиться в Вконтакте" rel="nofollow" class="fa fa-lg fa-vk" onclick='window.open("http://vk.com/share.php?url=https://metanit.com/sharp/adonet/2.6.php","Поделиться в ВКОНТАКТЕ","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")'></a></li>
+<li><a title="Поделиться в Одноклассниках" rel="nofollow" class="fa fa-lg fa-odnoklassniki" onclick='window.open("https://connect.ok.ru/offer?url=https://metanit.com/sharp/adonet/2.6.php","Поделиться в Одноклассниках","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")'></a></li>
+<li><a title="Поделиться в Твиттере" rel="nofollow" class="fa fa-lg fa-twitter" onclick='window.open("http://twitter.com/share?url=https://metanit.com/sharp/adonet/2.6.php","Поделиться в Твиттере","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")'></a></li>
+<li><a title="Поделиться в Фейсбуке" rel="nofollow" class="fa fa-lg fa-facebook" onclick='window.open("http://www.facebook.com/sharer.php?u=https://metanit.com/sharp/adonet/2.6.php","Поделиться в Facebook","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")'></a></li>
+</ul>
+</div>
+
+</div>
+
+<div style="margin-top:23px;margin-left:5px;">
+<script async="" src="%D0%A7%D1%82%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D0%BE%D0%B2%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%20%D0%B8%20SqlDataReader%20%D0%B2%20ADO.NET%20%D0%B8%20C%23_files/adsbygoogle.js"></script>
+<style>
+.footer-adaptive { width: 320px; height: 100px; }
+@media(min-width: 480px) { .footer-adaptive { width: 468px; height: 60px; } }
+@media(min-width: 760px) { .footer-adaptive { width: 728px; height: 90px;  } }
+@media(min-width: 1000px) { .footer-adaptive { width: 468px; height: 60px;  } }
+@media(min-width: 1122px) { .footer-adaptive{ width: 728px; height: 90px;} }
+@media(min-width: 1400px) { .footer-adaptive { width: 970px; height: 90px;} }
+</style>
+<!-- footer_adaptive -->
+<ins class="adsbygoogle footer-adaptive" style="display:inline-block" data-ad-client="ca-pub-3716042175333627" data-ad-slot="9659512088"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+<p>В прошлой теме мы рассмотрели, как выполнять команды с помощью метода <code>ExecuteNonOuery()</code>, однако если мы хотим считывать данные, 
+которые хранятся в таблице, то нам потребуется другой метод - <code>ExecuteReader()</code>. Этот метод возвращает объект <span class="bb">SqlDataReader</span>, 
+который используется для чтения данных. Так, получим все данные из таблицы Users и выведем их на консоль:</p>
+<div><div id="highlighter_485663" class="syntaxhighlighter  c#"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div><div class="line number25 index24 alt2">25</div><div class="line number26 index25 alt1">26</div><div class="line number27 index26 alt2">27</div><div class="line number28 index27 alt1">28</div><div class="line number29 index28 alt2">29</div><div class="line number30 index29 alt1">30</div><div class="line number31 index30 alt2">31</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="c# keyword">static</code> <code class="c# keyword">void</code> <code class="c# plain">Main(</code><code class="c# keyword">string</code><code class="c# plain">[] args)</code></div><div class="line number2 index1 alt1"><code class="c# plain">{</code></div><div class="line number3 index2 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">string</code> <code class="c# plain">connectionString = </code><code class="c# string">@"Data Source=.\SQLEXPRESS;Initial Catalog=usersdb;Integrated Security=True"</code><code class="c# plain">;</code></div><div class="line number4 index3 alt1">&nbsp;</div><div class="line number5 index4 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">string</code> <code class="c# plain">sqlExpression = </code><code class="c# string">"SELECT * FROM Users"</code><code class="c# plain">;</code></div><div class="line number6 index5 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">using</code> <code class="c# plain">(SqlConnection connection = </code><code class="c# keyword">new</code> <code class="c# plain">SqlConnection(connectionString))</code></div><div class="line number7 index6 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">{</code></div><div class="line number8 index7 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">connection.Open();</code></div><div class="line number9 index8 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">SqlCommand command = </code><code class="c# keyword">new</code> <code class="c# plain">SqlCommand(sqlExpression, connection);</code></div><div class="line number10 index9 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">SqlDataReader reader = command.ExecuteReader();</code></div><div class="line number11 index10 alt2">&nbsp;</div><div class="line number12 index11 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">if</code><code class="c# plain">(reader.HasRows) </code><code class="c# comments">// если есть данные</code></div><div class="line number13 index12 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">{</code></div><div class="line number14 index13 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# comments">// выводим названия столбцов</code></div><div class="line number15 index14 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">Console.WriteLine(</code><code class="c# string">"{0}\t{1}\t{2}"</code><code class="c# plain">, reader.GetName(0), reader.GetName(1), reader.GetName(2));</code></div><div class="line number16 index15 alt1">&nbsp;</div><div class="line number17 index16 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">while</code> <code class="c# plain">(reader.Read()) </code><code class="c# comments">// построчно считываем данные</code></div><div class="line number18 index17 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">{</code></div><div class="line number19 index18 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">object</code> <code class="c# plain">id = reader.GetValue(0);</code></div><div class="line number20 index19 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">object</code> <code class="c# plain">name = reader.GetValue(1);</code></div><div class="line number21 index20 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">object</code> <code class="c# plain">age = reader.GetValue(2);</code></div><div class="line number22 index21 alt1">&nbsp;</div><div class="line number23 index22 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">Console.WriteLine(</code><code class="c# string">"{0} \t{1} \t{2}"</code><code class="c# plain">, id, name, age);</code></div><div class="line number24 index23 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">}</code></div><div class="line number25 index24 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">}</code></div><div class="line number26 index25 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number27 index26 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">reader.Close();</code></div><div class="line number28 index27 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">}</code></div><div class="line number29 index28 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number30 index29 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">Console.Read();</code></div><div class="line number31 index30 alt2"><code class="c# plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p>Консольный вывод:</p>
+<img src="%D0%A7%D1%82%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D0%BE%D0%B2%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%20%D0%B8%20SqlDataReader%20%D0%B2%20ADO.NET%20%D0%B8%20C%23_files/sqldatareader.png" alt="SqlDataReader в ADO.NET">
+<p>Для выборки данных из БД используется sql-выражение SELECT. В данном случае мы выбираем все столбцы всех строк таблицы. 
+Получив при выполнении запроса объект <code>SqlDataReader</code>, мы можем считать все полученные данные.</p>
+<p>Но вначале мы проверяем, а есть ли вообще данные с помощью свойства <code>HasRows</code>. Если данные есть, то выводим заголовки таблицы с помощью 
+методов <code>reader.GetName()</code>. Причем мы получаем столбцы в выборке именно в том порядке, в котором они определены в таблицы. 
+То есть если вторым в таблицы идет столбец "Name", то чтобы получить его столбец применяется метод <code>GetName(1)</code> (так как нумерация столбцов идет с нуля).</p>
+<p>Далее считываем сами данные. С помощью метода <code>reader.Read()</code> ридер переходит к следующей строке и возвращает булевое значение, 
+которое указывает, есть ли данные для считывания.</p>
+<p>В цикле <code>while (reader.Read())</code> в порядке следования столбов получаем данные с помощью метода <code>GetValue()</code>, 
+который возвращает данные в виде объекта типа <code>object</code>. Например, столбец Id идет первым и представляет целое число, поэтому для его получения 
+применяется метод <code>reader.GetValue(0)</code>. А столбец Name идет вторым, поэтому его значения получаем с помощью <code>reader.GetValue(1)</code>.</p>
+<p>После завершения работы с SqlDataReader надо его закрыть методом <code>Close()</code>. И пока один SqlDataReader не закрыт, другой объект 
+SqlDataReader для одного и того же подключения мы использовать не сможем.</p>
+<p>В качестве альтернативы мы могли бы обращаться к данным через название параметра:</p>
+<div><div id="highlighter_934972" class="syntaxhighlighter  c#"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="c# keyword">while</code> <code class="c# plain">(reader.Read())</code></div><div class="line number2 index1 alt1"><code class="c# plain">{</code></div><div class="line number3 index2 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">object</code> <code class="c# plain">id = reader[</code><code class="c# string">"id"</code><code class="c# plain">];</code></div><div class="line number4 index3 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">object</code> <code class="c# plain">name = reader[</code><code class="c# string">"name"</code><code class="c# plain">];</code></div><div class="line number5 index4 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">object</code> <code class="c# plain">age = reader[</code><code class="c# string">"age"</code><code class="c# plain">];</code></div><div class="line number6 index5 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">Console.WriteLine(</code><code class="c# string">"{0} \t{1} \t{2}"</code><code class="c# plain">, id, name, age);</code></div><div class="line number7 index6 alt2"><code class="c# plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p>В этом случае результат будет аналогичным.</p>
+<h3>Асинхронное чтение</h3>
+<p>Для асинхронного чтения, во-первых, применяется метод <code>ExecuteReaderAsync()</code> класса SqlCommand, и во-вторых, метод <code>ReadAsync()</code> 
+класса SqlDataReader:</p>
+<div><div id="highlighter_934468" class="syntaxhighlighter  c#"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div><div class="line number25 index24 alt2">25</div><div class="line number26 index25 alt1">26</div><div class="line number27 index26 alt2">27</div><div class="line number28 index27 alt1">28</div><div class="line number29 index28 alt2">29</div><div class="line number30 index29 alt1">30</div><div class="line number31 index30 alt2">31</div><div class="line number32 index31 alt1">32</div><div class="line number33 index32 alt2">33</div><div class="line number34 index33 alt1">34</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="c# keyword">static</code> <code class="c# keyword">void</code> <code class="c# plain">Main(</code><code class="c# keyword">string</code><code class="c# plain">[] args)</code></div><div class="line number2 index1 alt1"><code class="c# plain">{</code></div><div class="line number3 index2 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">ReadDataAsync().GetAwaiter();</code></div><div class="line number4 index3 alt1">&nbsp;</div><div class="line number5 index4 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">Console.Read();</code></div><div class="line number6 index5 alt1"><code class="c# plain">}</code></div><div class="line number7 index6 alt2">&nbsp;</div><div class="line number8 index7 alt1"><code class="c# keyword">private</code> <code class="c# keyword">static</code> <code class="c# keyword">async</code> <code class="c# plain">Task ReadDataAsync()</code></div><div class="line number9 index8 alt2"><code class="c# plain">{</code></div><div class="line number10 index9 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">string</code> <code class="c# plain">connectionString = </code><code class="c# string">@"Data Source=.\SQLEXPRESS;Initial Catalog=usersdb;Integrated Security=True"</code><code class="c# plain">;</code></div><div class="line number11 index10 alt2">&nbsp;</div><div class="line number12 index11 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">string</code> <code class="c# plain">sqlExpression = </code><code class="c# string">"SELECT * FROM Users"</code><code class="c# plain">;</code></div><div class="line number13 index12 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">using</code> <code class="c# plain">(SqlConnection connection = </code><code class="c# keyword">new</code> <code class="c# plain">SqlConnection(connectionString))</code></div><div class="line number14 index13 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">{</code></div><div class="line number15 index14 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">await</code> <code class="c# plain">connection.OpenAsync();</code></div><div class="line number16 index15 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">SqlCommand command = </code><code class="c# keyword">new</code> <code class="c# plain">SqlCommand(sqlExpression, connection);</code></div><div class="line number17 index16 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">SqlDataReader reader = </code><code class="c# keyword">await</code> <code class="c# plain">command.ExecuteReaderAsync();</code></div><div class="line number18 index17 alt1">&nbsp;</div><div class="line number19 index18 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">if</code> <code class="c# plain">(reader.HasRows)</code></div><div class="line number20 index19 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">{</code></div><div class="line number21 index20 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# comments">// выводим названия столбцов</code></div><div class="line number22 index21 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">Console.WriteLine(</code><code class="c# string">"{0}\t{1}\t{2}"</code><code class="c# plain">, reader.GetName(0), reader.GetName(1), reader.GetName(2));</code></div><div class="line number23 index22 alt2">&nbsp;</div><div class="line number24 index23 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">while</code> <code class="c# plain">(</code><code class="c# keyword">await</code> <code class="c# plain">reader.ReadAsync())</code></div><div class="line number25 index24 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">{</code></div><div class="line number26 index25 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">object</code> <code class="c# plain">id = reader.GetValue(0);</code></div><div class="line number27 index26 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">object</code> <code class="c# plain">name = reader.GetValue(1);</code></div><div class="line number28 index27 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">object</code> <code class="c# plain">age = reader.GetValue(2);</code></div><div class="line number29 index28 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">Console.WriteLine(</code><code class="c# string">"{0} \t{1} \t{2}"</code><code class="c# plain">, id, name, age);</code></div><div class="line number30 index29 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">}</code></div><div class="line number31 index30 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">}</code></div><div class="line number32 index31 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">reader.Close();</code></div><div class="line number33 index32 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">}</code></div><div class="line number34 index33 alt1"><code class="c# plain">}</code></div></div></td></tr></tbody></table></div></div>
+<div style="margin-top:25px;clear:both;">
+<style>
+.metanit-rect { width: 300px; height: 250px; }
+@media(min-width: 500px) { .metanit-rect { width: 336px; height: 280px; } }
+@media(min-width: 760px) { .metanit-rect { width: 728px; height: 90px;  } }
+@media(min-width: 1000px) { .metanit-rect { width: 336px; height: 280px;  } }
+@media(min-width: 1122px) { .metanit-rect{ width: 728px; height: 90px;} }
+@media(min-width: 1400px) { .metanit-rect{ width: 970px; height: 90px;} }
+</style>
+<!-- metanit_rect -->
+<ins class="adsbygoogle metanit-rect" style="display:inline-block" data-ad-client="ca-pub-3716042175333627" data-ad-slot="3119477283"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+
+<div class="nav"><p><a href="https://metanit.com/sharp/adonet/2.5.php">Назад</a><a href="https://metanit.com/sharp/adonet/">Содержание</a><a href="https://metanit.com/sharp/adonet/2.7.php">Вперед</a></p></div></div>
+<div class="socialBlock">
+<div class="share socialbottom">
+<ul>
+<li><a title="Поделиться в Вконтакте" rel="nofollow" class="fa fa-lg fa-vk" onclick='window.open("http://vk.com/share.php?url=https://metanit.com/sharp/adonet/2.6.php","Поделиться в ВКОНТАКТЕ","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")'></a></li>
+<li><a title="Поделиться в Одноклассниках" rel="nofollow" class="fa fa-lg fa-odnoklassniki" onclick='window.open("https://connect.ok.ru/offer?url=https://metanit.com/sharp/adonet/2.6.php","Поделиться в Одноклассниках","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")'></a></li>
+<li><a title="Поделиться в Твиттере" rel="nofollow" class="fa fa-lg fa-twitter" onclick='window.open("http://twitter.com/share?url=https://metanit.com/sharp/adonet/2.6.php","Поделиться в Твиттере","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")'></a></li>
+<li><a title="Поделиться в Фейсбуке" rel="nofollow" class="fa fa-lg fa-facebook" onclick='window.open("http://www.facebook.com/sharer.php?u=https://metanit.com/sharp/adonet/2.6.php","Поделиться в Facebook","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")'></a></li>
+</ul>
+</div>
+</div>
+
+<style>
+.commentABl { margin: 25px 0px 15px 0px;}
+@media(min-width: 860px) { .commentABl { margin: 35px 10px 15px 15px;  } }
+</style>
+<div class="commentABl" style="clear:both;">
+<div id="yandex_rtb_R-A-201190-3" style="display:inline-block;width:320px;vertical-align:top; margin-right:12px;"></div>
+<div id="yandex_rtb_R-A-201190-2" style="display:inline-block;width:320px;vertical-align:top;"></div>
+</div>
+
+<div id="disqus_thread" style="margin-left:8px;margin-right:8px;clear:both;"><iframe id="dsq-app6711" name="dsq-app6711" allowtransparency="true" scrolling="no" tabindex="0" title="Disqus" style="width: 1px !important; min-width: 100% !important; border: medium none !important; overflow: hidden !important; height: 2111px !important;" src="%D0%A7%D1%82%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D0%BE%D0%B2%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%20%D0%B8%20SqlDataReader%20%D0%B2%20ADO.NET%20%D0%B8%20C%23_files/a.htm" horizontalscrolling="no" verticalscrolling="no" width="100%" frameborder="0"></iframe></div>
+<script type="text/javascript">
+var disqus_shortname = 'metanitcom';
+(function() {
+var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+</div>
+</div> 
+<div id="menR" class="menR">
+<style>
+.meta-vert { width: 300px; height: 250px; }
+@media(min-width: 500px) { .meta-vert { width: 336px; height: 280px; } }
+@media(min-width: 1000px) { .meta-vert { width: 160px; height: 600px; } }
+</style>
+<!-- meta_vert -->
+<ins class="adsbygoogle meta-vert" style="display:inline-block" data-ad-client="ca-pub-3716042175333627" data-ad-slot="4596210485"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<style>
+.dn {font-size:12.5px;margin:3px;}
+.dh{font-weight:bold;margin-left:2px;}
+</style>
+<div class="dn">
+<div class="dh">Помощь сайту</div>
+<div class="dh">WebMoney</div>
+<ul>
+<li>P378451176208</li>
+<li>Z280152397659</li>
+</ul>
+<div class="dh">Yandex-деньги</div>
+<ul>
+<li>410011174743222</li>
+</ul>
+<div class="dh">PayPal</div>
+<ul>
+<li>metanit22@mail.ru</li>
+</ul>
+</div>
+
+</div>
+</div>
+</div> 
+<div class="menT" id="menT" style="max-height: 2540px;"><ul id="browser" class="filetree treeview"> 
+		<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 1. Введение в ADO.NET</span>
+			<ul style="display: none;">
+				<li class="last"><span class="file"><a href="https://metanit.com/sharp/adonet/1.1.php">Что такое ADO.NET?</a></span></li>
+			</ul>
+		</li>
+		<li class="closed collapsable"><div class="hitarea closed-hitarea collapsable-hitarea"></div><span class="folder aMItem">Глава 2. C# и MS SQL Server</span>
+			<ul style="display: block;">
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/2.1.php">Создание базы данных</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/2.2.php">Строка подключения</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/2.3.php">Создание подключения</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/2.4.php">Пул подключений</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/2.5.php">Выполнение команд и SqlCommand</a></span></li>
+				<li><span class="file aMItem"><a href="https://metanit.com/sharp/adonet/2.6.php" class="aMItem">Чтение результатов запроса и SqlDataReader</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/2.7.php">Типизация результатов SqlDataReader</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/2.8.php">Получение скалярных значений</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/2.9.php">Параметризация запросов</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/2.10.php">Выходные параметры запросов</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/2.11.php">Работа с хранимыми процедурами</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/2.12.php">Выходные параметры хранимых процедур</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/2.13.php">Транзакции</a></span></li>
+				<li class="last"><span class="file"><a href="https://metanit.com/sharp/adonet/2.14.php">Сохранение и извлечение файлов из базы данных</a></span></li>
+			</ul>
+		</li>
+		<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 3. Работа с SqlDataAdapter и DataSet</span>
+			<ul style="display: none;">
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/3.1.php">SqlDataAdapter и DataSet</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/3.2.php">Постраничный просмотр в SqlDataAdapter</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/3.3.php">SqlCommandBuilder и сохранение изменений DataSet в базе данных</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/3.4.php">Обновление БД из DataSet вручную</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/3.5.php">Все операции с БД в графическом приложении</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/3.6.php">DataSet и DataTable</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/3.7.php">Отношения между таблицами в DataSet</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/3.8.php">LINQ to DataSet</a></span></li>
+				<li class="last"><span class="file"><a href="https://metanit.com/sharp/adonet/3.9.php">DataSet и XML</a></span></li>
+			</ul>
+		</li>
+		<li class="closed expandable lastExpandable"><div class="hitarea closed-hitarea expandable-hitarea lastExpandable-hitarea"></div><span class="folder">Глава 4. LINQ to SQL</span>
+			<ul style="display: none;">
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/4.1.php">Определение контекста данных и моделей</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/4.2.php">Операции с данными в LINQ to SQL</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/4.3.php">Изменение объектов в LINQ to SQL</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/4.4.php">Добавление в LINQ to SQL</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/4.5.php">Удаление в LINQ to SQL</a></span></li>
+				<li class="last"><span class="file"><a href="https://metanit.com/sharp/adonet/4.6.php">Методы ExecuteCommand и ExecuteQuery. Хранимые процедуры</a></span></li>
+			</ul>
+		</li>
+	</ul></div>
+<div id="footer">
+
+<div class="bootomLinks">
+<a href="https://vk.com/metanit" title="Присоединиться к группе вконтакте" rel="nofollow">
+Вконтакте</a>|
+<a href="https://twitter.com/Eugene225" title="Подписаться на твит-ленту" rel="nofollow">
+Twitter</a>|
+<a href="https://www.youtube.com/user/Eugene22584/" title="Подписаться на канал на youtube" rel="nofollow">
+Канал сайта на youtube</a>|
+<a href="https://metanit.com/donations.php" rel="nofollow">Помощь сайту</a>
+</div>
+<p>Контакты для связи: metanit22@mail.ru</p>
+<p>Copyright © metanit.com, 2012-2020. Все права защищены.</p>
+</div>
+</div>
+<script type="text/javascript" src="%D0%A7%D1%82%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D0%BE%D0%B2%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%20%D0%B8%20SqlDataReader%20%D0%B2%20ADO.NET%20%D0%B8%20C%23_files/jquery_002.js"></script>
+<script type="text/javascript" src="%D0%A7%D1%82%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D0%BE%D0%B2%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%20%D0%B8%20SqlDataReader%20%D0%B2%20ADO.NET%20%D0%B8%20C%23_files/jquery.js"></script>
+<script type="text/javascript" src="%D0%A7%D1%82%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D0%BE%D0%B2%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%20%D0%B8%20SqlDataReader%20%D0%B2%20ADO.NET%20%D0%B8%20C%23_files/syntax9.js"></script>
+<script type="text/javascript">SyntaxHighlighter.all();</script>
+<script>
+$(function() { 
+	$("#menuButton").on('click', function(){
+          $(this).toggleClass('menu-opened');
+          var mainmenu = $('.mainmenu');
+          if (mainmenu.hasClass('open')) { 
+            mainmenu.removeClass('open');
+          }
+          else {
+            mainmenu.addClass('open');
+          }
+        });
+	$('.submenu-button').on('click', function() {
+            $(this).toggleClass('submenu-opened');
+            if ($(this).siblings('ul').hasClass('open')) {
+              $(this).siblings('ul').removeClass('open');
+			  $(this).children('span').removeClass('open');
+			  $(this).children('span').addClass('close');
+            }
+            else {
+              $(this).siblings('ul').addClass('open');
+			  $(this).children('span').removeClass('close');
+			  $(this).children('span').addClass('open');
+            }
+          });
+  $("#toggle-theme").on("click", function() {
+		if(document.documentElement.hasAttribute("theme")){
+			document.documentElement.removeAttribute("theme");
+			document.cookie="theme=1;expires=Mon, 19 Feb 2001 12:00:00 UTC;path=/;";
+		}
+		else{
+			document.documentElement.setAttribute("theme", "dark");
+			var expire = new Date();
+			expire.setHours(expire.getHours() + 7);
+			document.cookie="theme=1;expires=" + expire.toUTCString() + ";path=/;";
+		}
+	});
+	$('#magnifying-glass').on('click', function() {
+            if ($('#search').hasClass('transp')) {
+              $('#search').removeClass('transp').show();
+            }
+            else {
+              $('#search').addClass('transp').hide();
+            }
+          });
+	$('#browser').treeview();$('#navigation').treeview({persist: 'location',collapsed: true, unique: true});
+	
+	$("li:contains('Глава 2.')").removeClass('expandable').addClass('collapsable').children('ul').css({"display":"block"});
+	$("li:contains('Глава 2.')").children('div').removeClass('expandable-hitarea').addClass('collapsable-hitarea');
+	$("li:contains('Глава .')").removeClass('lastExpandable').addClass('lastCollapsable').children('ul').css({"display":"block"});
+	$("li:contains('Глава .')").children('div').removeClass('lastExpandable-hitarea').addClass('lastCollapsable-hitarea');
+	
+var url = "//metanit.com" + location.pathname;
+	$('.file a[href="' + url + '"]').addClass('aMItem').parent().addClass('aMItem').closest('li.collapsable').find('span.folder').addClass('aMItem');
+	
+
+	$(".fa-bars").on('click', function() {
+		$(".menT").toggleClass("menTOpened");
+		$("#content_right_inner").toggleClass("contentRightInnerOpened");
+	});
+	
+	$(".share .fa-vk").attr('onclick','window.open("http://vk.com/share.php?url=' + window.location.href+'","Поделиться в ВКОНТАКТЕ","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")');
+	$(".share .fa-odnoklassniki").attr('onclick','window.open("https://connect.ok.ru/offer?url=' + window.location.href+'","Поделиться в Одноклассниках","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")');
+	$(".share .fa-twitter").attr('onclick','window.open("http://twitter.com/share?url=' + window.location.href+'","Поделиться в Твиттере","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")');
+	$(".share .fa-facebook").attr('onclick','window.open("http://www.facebook.com/sharer.php?u=' + window.location.href +'","Поделиться в Facebook","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")');
+});
+</script>
+<script>
+window.onload= function(){
+	setMenC();
+};
+window.onresize= function(){
+	setMenC();
+};
+
+function setMenC(){
+	if(window.innerWidth >859){
+			
+		var h = document.getElementById("articleText").clientHeight;
+		document.getElementById("menT").style.maxHeight=h + "px";
+	}
+}
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-35780297-1', 'metanit.com');
+  ga('send', 'pageview');
+
+</script>
+
+<script async="" defer="defer" type="text/javascript" src="%D0%A7%D1%82%D0%B5%D0%BD%D0%B8%D0%B5%20%D1%80%D0%B5%D0%B7%D1%83%D0%BB%D1%8C%D1%82%D0%B0%D1%82%D0%BE%D0%B2%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%20%D0%B8%20SqlDataReader%20%D0%B2%20ADO.NET%20%D0%B8%20C%23_files/brand"></script>
+<script type="text/javascript">
+    (function(w, d, n, s, t) {
+        w[n] = w[n] || [];
+        w[n].push(function() {
+            Ya.Context.AdvManager.render({
+                blockId: "R-A-201190-3",
+                renderTo: "yandex_rtb_R-A-201190-3",
+                horizontalAlign: false,
+                async: true
+            });
+        });
+        t = d.getElementsByTagName("script")[0];
+        s = d.createElement("script");
+        s.type = "text/javascript";
+        s.src = "//an.yandex.ru/system/context.js";
+        s.async = true;
+        t.parentNode.insertBefore(s, t);
+    })(this, this.document, "yandexContextAsyncCallbacks");
+</script>
+<script type="text/javascript">
+    (function(w, d, n, s, t) {
+        w[n] = w[n] || [];
+        w[n].push(function() {
+            Ya.Context.AdvManager.render({
+                blockId: "R-A-201190-2",
+                renderTo: "yandex_rtb_R-A-201190-2",
+                async: true
+            });
+        });
+        t = d.getElementsByTagName("script")[0];
+        s = d.createElement("script");
+        s.type = "text/javascript";
+        s.src = "//an.yandex.ru/system/context.js";
+        s.async = true;
+        t.parentNode.insertBefore(s, t);
+    })(this, this.document, "yandexContextAsyncCallbacks");
+</script>
+
+<iframe style="display: none;"></iframe></body></html>

@@ -1,0 +1,6 @@
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\004 - Isolated Storage\CreateDirectory\bin\Debug\CreateDirectory.exe
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\004 - Isolated Storage\CreateDirectory\bin\Debug\CreateDirectory.pdb
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\004 - Isolated Storage\CreateDirectory\obj\x86\Debug\003_CreateDirectory.csprojAssemblyReference.cache
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\004 - Isolated Storage\CreateDirectory\obj\x86\Debug\003_CreateDirectory.csproj.CoreCompileInputs.cache
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\004 - Isolated Storage\CreateDirectory\obj\x86\Debug\CreateDirectory.exe
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\004 - Isolated Storage\CreateDirectory\obj\x86\Debug\CreateDirectory.pdb

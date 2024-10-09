@@ -1,0 +1,6 @@
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\004 - Isolated Storage\IsolatedStorageFileDemo\bin\Debug\IsolatedStorageFileDemo.exe
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\004 - Isolated Storage\IsolatedStorageFileDemo\bin\Debug\IsolatedStorageFileDemo.pdb
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\004 - Isolated Storage\IsolatedStorageFileDemo\obj\x86\Debug\001_IsoStorFile.csprojAssemblyReference.cache
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\004 - Isolated Storage\IsolatedStorageFileDemo\obj\x86\Debug\001_IsoStorFile.csproj.CoreCompileInputs.cache
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\004 - Isolated Storage\IsolatedStorageFileDemo\obj\x86\Debug\IsolatedStorageFileDemo.exe
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\004 - Isolated Storage\IsolatedStorageFileDemo\obj\x86\Debug\IsolatedStorageFileDemo.pdb

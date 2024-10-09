@@ -1,0 +1,5 @@
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 01. Пользовательские коллекции\001 - IEnumerator, IEnumerable, yield\Collection0\bin\Debug\Collection.exe
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 01. Пользовательские коллекции\001 - IEnumerator, IEnumerable, yield\Collection0\bin\Debug\Collection.pdb
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 01. Пользовательские коллекции\001 - IEnumerator, IEnumerable, yield\Collection0\obj\x86\Debug\001_Collection.csproj.CoreCompileInputs.cache
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 01. Пользовательские коллекции\001 - IEnumerator, IEnumerable, yield\Collection0\obj\x86\Debug\Collection.exe
+d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 01. Пользовательские коллекции\001 - IEnumerator, IEnumerable, yield\Collection0\obj\x86\Debug\Collection.pdb

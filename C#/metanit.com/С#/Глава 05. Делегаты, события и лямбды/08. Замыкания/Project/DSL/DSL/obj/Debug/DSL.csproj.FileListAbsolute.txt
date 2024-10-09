@@ -1,0 +1,7 @@
+d:\Rep\practice\C#\metanit.com\С#\Глава 05. Делегаты, события и лямбды\08. Замыкания\Project\DSL\DSL\bin\Debug\DSL.exe.config
+d:\Rep\practice\C#\metanit.com\С#\Глава 05. Делегаты, события и лямбды\08. Замыкания\Project\DSL\DSL\bin\Debug\DSL.exe
+d:\Rep\practice\C#\metanit.com\С#\Глава 05. Делегаты, события и лямбды\08. Замыкания\Project\DSL\DSL\bin\Debug\DSL.pdb
+d:\Rep\practice\C#\metanit.com\С#\Глава 05. Делегаты, события и лямбды\08. Замыкания\Project\DSL\DSL\obj\Debug\DSL.csprojAssemblyReference.cache
+d:\Rep\practice\C#\metanit.com\С#\Глава 05. Делегаты, события и лямбды\08. Замыкания\Project\DSL\DSL\obj\Debug\DSL.csproj.CoreCompileInputs.cache
+d:\Rep\practice\C#\metanit.com\С#\Глава 05. Делегаты, события и лямбды\08. Замыкания\Project\DSL\DSL\obj\Debug\DSL.exe
+d:\Rep\practice\C#\metanit.com\С#\Глава 05. Делегаты, события и лямбды\08. Замыкания\Project\DSL\DSL\obj\Debug\DSL.pdb
