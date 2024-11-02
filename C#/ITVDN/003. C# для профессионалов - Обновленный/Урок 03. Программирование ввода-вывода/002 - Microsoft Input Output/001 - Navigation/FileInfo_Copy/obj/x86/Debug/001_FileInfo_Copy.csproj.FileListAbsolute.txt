@@ -1,5 +1,0 @@
-d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\001 - Navigation\FileInfo_Copy\bin\Debug\FileInfo_Copy.exe
-d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\001 - Navigation\FileInfo_Copy\bin\Debug\FileInfo_Copy.pdb
-d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\001 - Navigation\FileInfo_Copy\obj\x86\Debug\001_FileInfo_Copy.csproj.CoreCompileInputs.cache
-d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\001 - Navigation\FileInfo_Copy\obj\x86\Debug\FileInfo_Copy.exe
-d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\001 - Navigation\FileInfo_Copy\obj\x86\Debug\FileInfo_Copy.pdb

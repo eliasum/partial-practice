@@ -1,6 +1,0 @@
-d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\001 - Input Output\InputOutput4\bin\Debug\InputOutput4.exe
-d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\001 - Input Output\InputOutput4\bin\Debug\InputOutput4.pdb
-d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\001 - Input Output\InputOutput4\obj\x86\Debug\004_InputOutput.csprojAssemblyReference.cache
-d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\001 - Input Output\InputOutput4\obj\x86\Debug\004_InputOutput.csproj.CoreCompileInputs.cache
-d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\001 - Input Output\InputOutput4\obj\x86\Debug\InputOutput4.exe
-d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\001 - Input Output\InputOutput4\obj\x86\Debug\InputOutput4.pdb

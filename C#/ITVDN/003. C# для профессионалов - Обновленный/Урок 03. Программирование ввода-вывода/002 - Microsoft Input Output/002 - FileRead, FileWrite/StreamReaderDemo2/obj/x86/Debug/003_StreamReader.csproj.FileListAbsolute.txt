@@ -1,6 +1,0 @@
-d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\002 - FileRead, FileWrite\StreamReaderDemo2\bin\Debug\StreamReaderDemo2.exe
-d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\002 - FileRead, FileWrite\StreamReaderDemo2\bin\Debug\StreamReaderDemo2.pdb
-d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\002 - FileRead, FileWrite\StreamReaderDemo2\obj\x86\Debug\003_StreamReader.csprojAssemblyReference.cache
-d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\002 - FileRead, FileWrite\StreamReaderDemo2\obj\x86\Debug\003_StreamReader.csproj.CoreCompileInputs.cache
-d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\002 - FileRead, FileWrite\StreamReaderDemo2\obj\x86\Debug\StreamReaderDemo2.exe
-d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\002 - FileRead, FileWrite\StreamReaderDemo2\obj\x86\Debug\StreamReaderDemo2.pdb

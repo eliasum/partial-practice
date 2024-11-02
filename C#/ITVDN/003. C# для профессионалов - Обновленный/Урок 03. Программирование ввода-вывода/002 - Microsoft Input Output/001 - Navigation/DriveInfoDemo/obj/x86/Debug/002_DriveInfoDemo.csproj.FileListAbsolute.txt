@@ -1,6 +1,0 @@
-d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\001 - Navigation\DriveInfoDemo\bin\Debug\DriveInfoDemo.exe
-d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\001 - Navigation\DriveInfoDemo\bin\Debug\DriveInfoDemo.pdb
-d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\001 - Navigation\DriveInfoDemo\obj\x86\Debug\002_DriveInfoDemo.csprojAssemblyReference.cache
-d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\001 - Navigation\DriveInfoDemo\obj\x86\Debug\002_DriveInfoDemo.csproj.CoreCompileInputs.cache
-d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\001 - Navigation\DriveInfoDemo\obj\x86\Debug\DriveInfoDemo.exe
-d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\001 - Navigation\DriveInfoDemo\obj\x86\Debug\DriveInfoDemo.pdb

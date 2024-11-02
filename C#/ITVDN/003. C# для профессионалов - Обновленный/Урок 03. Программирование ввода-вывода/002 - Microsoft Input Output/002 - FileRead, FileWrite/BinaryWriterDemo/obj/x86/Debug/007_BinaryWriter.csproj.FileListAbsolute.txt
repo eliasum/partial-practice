@@ -1,5 +1,0 @@
-d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\002 - FileRead, FileWrite\BinaryWriterDemo\bin\Debug\BinaryWriterDemo.exe
-d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\002 - FileRead, FileWrite\BinaryWriterDemo\bin\Debug\BinaryWriterDemo.pdb
-d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\002 - FileRead, FileWrite\BinaryWriterDemo\obj\x86\Debug\007_BinaryWriter.csproj.CoreCompileInputs.cache
-d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\002 - FileRead, FileWrite\BinaryWriterDemo\obj\x86\Debug\BinaryWriterDemo.exe
-d:\Rep\practice\C#\ITVDN\003. C# для профессионалов - Обновленный\Урок 03. Программирование ввода-вывода\002 - Microsoft Input Output\002 - FileRead, FileWrite\BinaryWriterDemo\obj\x86\Debug\BinaryWriterDemo.pdb
