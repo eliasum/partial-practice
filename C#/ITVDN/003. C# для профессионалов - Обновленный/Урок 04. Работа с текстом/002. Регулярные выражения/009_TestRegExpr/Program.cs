@@ -1,4 +1,6 @@
-﻿using System;
+﻿/*2024.11.19 18:04 IMM*/
+
+using System;
 using System.Text.RegularExpressions;
 
 namespace TestRegExpr

@@ -1,4 +1,6 @@
-﻿using System;
+﻿/*2024.11.19 16:14 IMM*/
+
+using System;
 using System.Text.RegularExpressions;
 
 // Регулярные выражения.
@@ -30,13 +32,14 @@ namespace RegularExpressions2
             не обрабатывается
             Шаблон - найти одну цифру и более(квантификатор +)
             */
-            string pattern = @"\d+";
+
+            string pattern = @"\d";    // + это квантификатор, найти одну цифру и более
 
             // Создаем экземпляр класса Regex и передаем в качестве аргумента 
             //конструктора шаблон.
             var regex1 = new Regex(pattern);
 
-            // Массив строк для стравнения.
+            // Массив строк для сравнения.
             string[] array = new[] { "test", "123", "test123test", "123test", "test123" };
 
             foreach (string element in array)

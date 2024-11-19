@@ -1,4 +1,6 @@
-﻿using System;
+﻿/*2024.11.19 16:52 IMM*/
+
+using System;
 using System.Text.RegularExpressions;
 
 // Регулярные выражения.
