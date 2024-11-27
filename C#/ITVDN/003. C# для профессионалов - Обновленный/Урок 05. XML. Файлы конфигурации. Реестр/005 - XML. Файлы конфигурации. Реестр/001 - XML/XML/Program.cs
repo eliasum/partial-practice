@@ -1,4 +1,6 @@
-﻿using System;
+﻿/*2024.11.20 12:07 IMM*/
+
+using System;
 using System.Xml;
 
 // Загрузка содержимого XML из файла.

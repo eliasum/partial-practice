@@ -1,51 +1,42 @@
 /*2024.03.20 16:52 IMM*/
 
-// Получаем текущую дату и время
-
+// РџРѕР»СѓС‡Р°РµРј С‚РµРєСѓС‰СѓСЋ РґР°С‚Сѓ Рё РІСЂРµРјСЏ
 const currentDateTime = new Date();
 
- 
-
-// Функция для добавления ведущего нуля, если число меньше 10
-
+// Р¤СѓРЅРєС†РёСЏ РґР»СЏ РґРѕР±Р°РІР»РµРЅРёСЏ РІРµРґСѓС‰РµРіРѕ РЅСѓР»СЏ, РµСЃР»Рё С‡РёСЃР»Рѕ РјРµРЅСЊС€Рµ 10
 function addLeadingZero(num) {
 
     return num < 10 ? `0${num}` : num;
 
 }
 
- 
+// Р¤РѕСЂРјР°С‚РёСЂСѓРµРј РјРµСЃСЏС† СЃ РґРѕР±Р°РІР»РµРЅРёРµРј РІРµРґСѓС‰РµРіРѕ РЅСѓР»СЏ
+const formattedMonth = addLeadingZero(currentDateTime.getMonth() + 1); // +1, С‚Р°Рє РєР°Рє РјРµСЃСЏС†С‹ РІ JavaScript РѕС‚СЃС‡РёС‚С‹РІР°СЋС‚СЃСЏ СЃ РЅСѓР»СЏ
 
-// Форматируем месяц с добавлением ведущего нуля
-
-const formattedMonth = addLeadingZero(currentDateTime.getMonth() + 1); // +1, так как месяцы в JavaScript отсчитываются с нуля
-
- 
-
-// Форматируем день с добавлением ведущего нуля
-
+// Р¤РѕСЂРјР°С‚РёСЂСѓРµРј РґРµРЅСЊ СЃ РґРѕР±Р°РІР»РµРЅРёРµРј РІРµРґСѓС‰РµРіРѕ РЅСѓР»СЏ
 const formattedDate = addLeadingZero(currentDateTime.getDate());
 
- 
-
-// Форматируем часы с добавлением ведущего нуля
-
+// Р¤РѕСЂРјР°С‚РёСЂСѓРµРј С‡Р°СЃС‹ СЃ РґРѕР±Р°РІР»РµРЅРёРµРј РІРµРґСѓС‰РµРіРѕ РЅСѓР»СЏ
 const formattedHours = addLeadingZero(currentDateTime.getHours());
 
- 
-
-// Форматируем минуты с добавлением ведущего нуля
-
+// Р¤РѕСЂРјР°С‚РёСЂСѓРµРј РјРёРЅСѓС‚С‹ СЃ РґРѕР±Р°РІР»РµРЅРёРµРј РІРµРґСѓС‰РµРіРѕ РЅСѓР»СЏ
 const formattedMinutes = addLeadingZero(currentDateTime.getMinutes());
 
- 
-
-// Форматируем дату и время в нужный формат
-
+// Р¤РѕСЂРјР°С‚РёСЂСѓРµРј РґР°С‚Сѓ Рё РІСЂРµРјСЏ РІ РЅСѓР¶РЅС‹Р№ С„РѕСЂРјР°С‚
 const formattedDateTime = (`${currentDateTime.getFullYear()}.`+formattedMonth+`.`+formattedDate+` `+formattedHours+`:`+formattedMinutes);
 
- 
-
-// В поле записать значение
-
+// Р’ РїРѕР»Рµ Р·Р°РїРёСЃР°С‚СЊ Р·РЅР°С‡РµРЅРёРµ
 document.getElementById('datetimeField').value = `/*${formattedDateTime} IMM*/`;
+
+/*2024.11.27 11:28 IMM*/
+// РЎРѕС…СЂР°РЅРёС‚СЊ С‚РµРєСЃС‚РѕРІРѕРµ РїРѕР»Рµ РІ РїРµСЂРµРјРµРЅРЅСѓСЋ text
+let text = document.getElementById('datetimeField');
+
+// РЎРѕС…СЂР°РЅРёС‚СЊ РєРЅРѕРїРєСѓ РІ РїРµСЂРµРјРµРЅРЅСѓСЋ btn
+let btn = document.getElementById("copyText");
+
+/* РІС‹Р·С‹РІР°РµРј С„СѓРЅРєС†РёСЋ РїСЂРё РЅР°Р¶Р°С‚РёРё РЅР° РєРЅРѕРїРєСѓ */
+btn.onclick = function() {
+  text.select();    
+  document.execCommand("copy");
+}
