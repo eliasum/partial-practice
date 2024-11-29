@@ -1,4 +1,6 @@
-﻿using System;
+﻿/*2024.11.29 17:57 IMM*/
+
+using System;
 using System.Xml.XPath;
 
 // Выборка из XML с помощью XPath. (Запросы XPath)

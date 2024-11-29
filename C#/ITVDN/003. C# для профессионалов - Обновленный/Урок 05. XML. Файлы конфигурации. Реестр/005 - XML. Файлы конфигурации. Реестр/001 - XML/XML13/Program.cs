@@ -1,4 +1,6 @@
-﻿using System;
+﻿/*2024.11.29 17:38 IMM*/
+
+using System;
 using System.Xml;
 
 // Запись в XML файл со специальным форматированием.

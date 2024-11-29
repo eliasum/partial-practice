@@ -1,4 +1,6 @@
-﻿using System;
+﻿/*2024.11.29 16:24 IMM*/
+
+using System;
 using System.Xml;
 
 // Чтение атрибутов.

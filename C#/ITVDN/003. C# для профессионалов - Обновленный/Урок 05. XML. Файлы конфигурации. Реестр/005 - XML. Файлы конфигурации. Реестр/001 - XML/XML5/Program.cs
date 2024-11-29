@@ -1,4 +1,6 @@
-﻿using System;
+﻿/*2024.11.28 15:44 IMM*/
+
+using System;
 using System.Xml;
 
 // Обход всех элементов XML файла.
