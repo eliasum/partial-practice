@@ -1,4 +1,6 @@
-﻿using System;
+﻿/*2024.12.05 15:42 IMM*/
+
+using System;
 using Microsoft.Win32;
 
 namespace RegistryBasics

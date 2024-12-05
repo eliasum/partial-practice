@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов, чтобы изменить сведения,
 // связанные со сборкой.
-[assembly: AssemblyTitle("SelfPlacingWindow")]
+[assembly: AssemblyTitle("001_Configuration")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SelfPlacingWindow")]
+[assembly: AssemblyProduct("001_Configuration")]
 [assembly: AssemblyCopyright("Copyright ©  2024")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // Следующий GUID служит для идентификации библиотеки типов, если этот проект будет видимым для COM
-[assembly: Guid("cc5e301d-9e54-402c-bd0d-19a6da3283d6")]
+[assembly: Guid("46463fa1-6d3d-4f58-8f0c-5e571aab3876")]
 
 // Сведения о версии сборки состоят из следующих четырех значений:
 //

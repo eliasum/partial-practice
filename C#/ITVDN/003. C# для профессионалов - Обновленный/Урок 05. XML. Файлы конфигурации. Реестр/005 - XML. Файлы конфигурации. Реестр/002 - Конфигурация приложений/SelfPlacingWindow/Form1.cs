@@ -1,4 +1,6 @@
-﻿using System;
+﻿/*2024.12.04 15:16 IMM*/
+
+using System;
 using System.Xml;
 using System.Drawing;
 using System.Reflection;

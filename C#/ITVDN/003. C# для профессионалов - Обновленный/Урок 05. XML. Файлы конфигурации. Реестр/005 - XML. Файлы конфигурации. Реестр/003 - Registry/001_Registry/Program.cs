@@ -1,4 +1,6 @@
-﻿using System;
+﻿/*2024.12.04 16:38 IMM*/
+
+using System;
 using Microsoft.Win32; // В этом namespace хранятся классы для работы с реестром.
 
 // Структура реестра.

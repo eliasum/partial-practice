@@ -1,4 +1,6 @@
-﻿using System;
+﻿/*2024.12.04 15:00 IMM*/
+
+using System;
 using System.Collections;
 using System.Configuration;
 using System.Collections.Specialized;

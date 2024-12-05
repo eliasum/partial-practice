@@ -1,4 +1,6 @@
-﻿using System;
+﻿/*2024.12.05 16:10 IMM*/
+
+using System;
 using System.Windows.Forms;
 using Microsoft.Win32;
 

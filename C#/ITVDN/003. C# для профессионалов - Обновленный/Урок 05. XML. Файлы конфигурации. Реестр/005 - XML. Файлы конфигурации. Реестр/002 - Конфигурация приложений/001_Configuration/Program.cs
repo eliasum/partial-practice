@@ -1,4 +1,6 @@
-﻿using System;
+﻿/*2024.12.04 14:28 IMM*/
+
+using System;
 using System.Configuration;
 using System.Collections.Specialized;
 
@@ -35,6 +37,9 @@ namespace ConfigurationBasic
             {
                 Console.WriteLine(appSettings[item]);
             }
+
+            Console.WriteLine();
+            Console.WriteLine("Version: {0}", Environment.Version.ToString());
 
             // Delay.
             Console.ReadKey();

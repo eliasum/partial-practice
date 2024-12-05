@@ -1,4 +1,6 @@
-﻿using System;
+﻿/*2024.12.04 16:46 IMM*/
+
+using System;
 using Microsoft.Win32;
 
 // Редактирование реестра.
