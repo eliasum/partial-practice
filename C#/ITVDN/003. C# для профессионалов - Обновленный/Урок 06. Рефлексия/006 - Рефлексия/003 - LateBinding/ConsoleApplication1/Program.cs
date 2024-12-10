@@ -1,4 +1,6 @@
-﻿using System;
+﻿/*2024.12.10 18:14 IMM*/
+
+using System;
 using System.IO;
 using System.Reflection;
 
@@ -18,7 +20,7 @@ namespace ConsoleApplication1
 
                 Type type = assembly.GetType("CarLibrary.MiniVan");
 
-                ICar carInstance = Activator.CreateInstance(type) as ICar;
+                ICar carInstance = Activator.CreateInstance(type) as ICar; // as - оператор безопасного приведения типа
 
                 if (carInstance != null)
                 {

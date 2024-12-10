@@ -87,6 +87,10 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\001_CarLibrary\001_CarLibrary.csproj">
+      <Project>{b9db030a-d431-46a8-ad5d-5c6c90eda07a}</Project>
+      <Name>001_CarLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ICar\000_ICar.csproj">
       <Project>{412e6d83-b369-4554-bf7e-7b6767a6d7e0}</Project>
       <Name>000_ICar</Name>

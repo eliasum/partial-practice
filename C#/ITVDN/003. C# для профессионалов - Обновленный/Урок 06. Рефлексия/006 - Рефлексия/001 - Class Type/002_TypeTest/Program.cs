@@ -3,30 +3,30 @@
 using System;
 using System.Reflection;
 
-// РЕФЛЕКСИЯ - это процесс обнаружения типов во время работы программы.
+// Р Р•Р¤Р›Р•РљРЎРРЇ - СЌС‚Рѕ РїСЂРѕС†РµСЃСЃ РѕР±РЅР°СЂСѓР¶РµРЅРёСЏ С‚РёРїРѕРІ РІРѕ РІСЂРµРјСЏ СЂР°Р±РѕС‚С‹ РїСЂРѕРіСЂР°РјРјС‹.
 
 namespace Type_test
 {
     static class Program
     {
-        // Получаем разную информацию о Class1.
+        // РџРѕР»СѓС‡Р°РµРј СЂР°Р·РЅСѓСЋ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ Class1.
         static void ListVariosStats(Class1 cl)
         {
-            Console.WriteLine(new string('_', 30) + " Информация о Class1" + "\n");
+            Console.WriteLine(new string('_', 30) + " РРЅС„РѕСЂРјР°С†РёСЏ Рѕ Class1" + "\n");
             Type t = cl.GetType();
 
-            Console.WriteLine("Полное Имя:             {0}", t.FullName);
-            Console.WriteLine("Базовый класс:          {0}", t.BaseType);
-            Console.WriteLine("Абстрактный:            {0}", t.IsAbstract);
-            Console.WriteLine("Это COM объект:         {0}", t.IsCOMObject);
-            Console.WriteLine("Запрещено наследование: {0}", t.IsSealed);
-            Console.WriteLine("Это class:              {0}", t.IsClass);
+            Console.WriteLine("РџРѕР»РЅРѕРµ РРјСЏ:             {0}", t.FullName);
+            Console.WriteLine("Р‘Р°Р·РѕРІС‹Р№ РєР»Р°СЃСЃ:          {0}", t.BaseType);
+            Console.WriteLine("РђР±СЃС‚СЂР°РєС‚РЅС‹Р№:            {0}", t.IsAbstract);
+            Console.WriteLine("Р­С‚Рѕ COM РѕР±СЉРµРєС‚:         {0}", t.IsCOMObject);
+            Console.WriteLine("Р—Р°РїСЂРµС‰РµРЅРѕ РЅР°СЃР»РµРґРѕРІР°РЅРёРµ: {0}", t.IsSealed);
+            Console.WriteLine("Р­С‚Рѕ class:              {0}", t.IsClass);
         }
 
-        // Получаем информацию об Именах всех методов Class1.
+        // РџРѕР»СѓС‡Р°РµРј РёРЅС„РѕСЂРјР°С†РёСЋ РѕР± РРјРµРЅР°С… РІСЃРµС… РјРµС‚РѕРґРѕРІ Class1.
         static void ListMethods(Class1 cl)
         {
-            Console.WriteLine(new string('_', 30) + " Методы класса Class1" + "\n");
+            Console.WriteLine(new string('_', 30) + " РњРµС‚РѕРґС‹ РєР»Р°СЃСЃР° Class1" + "\n");
 
             Type t = cl.GetType();
             MethodInfo[] mi = t.GetMethods(BindingFlags.Instance
@@ -38,10 +38,10 @@ namespace Type_test
                 Console.WriteLine("Method: {0}", m.Name);
         }
 
-        // Получаем информацию об Именах полей Class1.
+        // РџРѕР»СѓС‡Р°РµРј РёРЅС„РѕСЂРјР°С†РёСЋ РѕР± РРјРµРЅР°С… РїРѕР»РµР№ Class1.
         static void ListFields(Class1 cl)
         {
-            Console.WriteLine(new string('_', 30) + " Поля класса Class1" + "\n");
+            Console.WriteLine(new string('_', 30) + " РџРѕР»СЏ РєР»Р°СЃСЃР° Class1" + "\n");
 
             Type t = cl.GetType();
             FieldInfo[] fi =
@@ -54,35 +54,35 @@ namespace Type_test
                 Console.WriteLine("Field: {0}", f.Name);
         }
 
-        // Получаем список всех Свойств Class1.
+        // РџРѕР»СѓС‡Р°РµРј СЃРїРёСЃРѕРє РІСЃРµС… РЎРІРѕР№СЃС‚РІ Class1.
         static void ListProps(Class1 cl)
         {
-            Console.WriteLine(new string('_', 30) + " Свойства класса Class1" + "\n");
+            Console.WriteLine(new string('_', 30) + " РЎРІРѕР№СЃС‚РІР° РєР»Р°СЃСЃР° Class1" + "\n");
 
             Type t = cl.GetType();
             PropertyInfo[] pi = t.GetProperties();
 
             foreach (PropertyInfo p in pi)
-                Console.WriteLine("Свойство: {0}", p.Name);
+                Console.WriteLine("РЎРІРѕР№СЃС‚РІРѕ: {0}", p.Name);
         }
 
-        // Получаем список всех Интерфейсов, поддерживаемых Class1.
+        // РџРѕР»СѓС‡Р°РµРј СЃРїРёСЃРѕРє РІСЃРµС… РРЅС‚РµСЂС„РµР№СЃРѕРІ, РїРѕРґРґРµСЂР¶РёРІР°РµРјС‹С… Class1.
         static void ListInterfaces(Class1 cl)
         {
-            Console.WriteLine(new string('_', 30) + " Интерфейсы класса Class1" + "\n");
+            Console.WriteLine(new string('_', 30) + " РРЅС‚РµСЂС„РµР№СЃС‹ РєР»Р°СЃСЃР° Class1" + "\n");
 
             Type t = cl.GetType();
 
             Type[] it = t.GetInterfaces();
 
             foreach (Type i in it)
-                Console.WriteLine("Интерфейс: {0}", i.Name);
+                Console.WriteLine("РРЅС‚РµСЂС„РµР№СЃ: {0}", i.Name);
         }
 
-        // Получаем информацию обо всех конструкторах Class1.
+        // РџРѕР»СѓС‡Р°РµРј РёРЅС„РѕСЂРјР°С†РёСЋ РѕР±Рѕ РІСЃРµС… РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР°С… Class1.
         static void ListConstructors(Class1 cl)
         {
-            Console.WriteLine(new string('_', 30) + " Конструкторы класса Class1" + "\n");
+            Console.WriteLine(new string('_', 30) + " РљРѕРЅСЃС‚СЂСѓРєС‚РѕСЂС‹ РєР»Р°СЃСЃР° Class1" + "\n");
 
             Type t = cl.GetType();
             ConstructorInfo[] ci = t.GetConstructors();
@@ -97,30 +97,31 @@ namespace Type_test
 
             Class1 instance = new Class1();
 
-            #region Вывод информации о типе
+            #region Р’С‹РІРѕРґ РёРЅС„РѕСЂРјР°С†РёРё Рѕ С‚РёРїРµ
 
-            ListVariosStats(instance);  // Получаем разную информацию о Class1.
-            ListMethods(instance);      // Получаем информацию об Именах всех методов Class1.
-            ListFields(instance);       // Получаем информацию об Именах всех полей Class1.
-            ListProps(instance);        // Получаем список всех Свойств Class1.
-            ListInterfaces(instance);   // Получаем список всех Интерфейсов, поддерживаемых Class1.
-            ListConstructors(instance); // Получаем информацию об Именах всех конструкторов Class1.
+            ListVariosStats(instance);  // РџРѕР»СѓС‡Р°РµРј СЂР°Р·РЅСѓСЋ РёРЅС„РѕСЂРјР°С†РёСЋ Рѕ Class1.
+            ListMethods(instance);      // РџРѕР»СѓС‡Р°РµРј РёРЅС„РѕСЂРјР°С†РёСЋ РѕР± РРјРµРЅР°С… РІСЃРµС… РјРµС‚РѕРґРѕРІ Class1.
+            ListFields(instance);       // РџРѕР»СѓС‡Р°РµРј РёРЅС„РѕСЂРјР°С†РёСЋ РѕР± РРјРµРЅР°С… РІСЃРµС… РїРѕР»РµР№ Class1.
+            ListProps(instance);        // РџРѕР»СѓС‡Р°РµРј СЃРїРёСЃРѕРє РІСЃРµС… РЎРІРѕР№СЃС‚РІ Class1.
+            ListInterfaces(instance);   // РџРѕР»СѓС‡Р°РµРј СЃРїРёСЃРѕРє РІСЃРµС… РРЅС‚РµСЂС„РµР№СЃРѕРІ, РїРѕРґРґРµСЂР¶РёРІР°РµРјС‹С… Class1.
+            ListConstructors(instance); // РџРѕР»СѓС‡Р°РµРј РёРЅС„РѕСЂРјР°С†РёСЋ РѕР± РРјРµРЅР°С… РІСЃРµС… РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂРѕРІ Class1.
 
             #endregion
 
-            #region Обращение к закрытым членам.
+            #region РћР±СЂР°С‰РµРЅРёРµ Рє Р·Р°РєСЂС‹С‚С‹Рј С‡Р»РµРЅР°Рј.
 
             Console.WriteLine(new string('-', 60));
 
             Type type = instance.GetType();
 
-            // Вызов private метода
+            // Р’С‹Р·РѕРІ private РјРµС‚РѕРґР°
             MethodInfo methodC = type.GetMethod("MethodC", BindingFlags.Instance | BindingFlags.NonPublic);
             methodC.Invoke(instance, new object[] { "Hello", " world!" });
             
-            // Запись значения в private поле
+            // Р—Р°РїРёСЃСЊ Р·РЅР°С‡РµРЅРёСЏ РІ private РїРѕР»Рµ
             FieldInfo mystring = type.GetField("mystring", BindingFlags.Instance | BindingFlags.NonPublic);
-            mystring.SetValue(instance, "Привет Мир!");
+            mystring.SetValue(instance, "РџСЂРёРІРµС‚ РњРёСЂ!");
+
 
             Console.WriteLine(instance.MyString);
 

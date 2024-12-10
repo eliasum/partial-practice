@@ -1,9 +1,11 @@
+/*2024.12.10 16:53 IMM*/
+
 using System;
 
-// Используем типы из CarLibrary.
+// РёСЃРїРѕР»СЊР·СѓРµРј С‚РёРїС‹ РёР· CarLibrary.
 using CarLibrary;
 
-// Использование собственной библиотеки кода.
+// РёСЃРїРѕР»СЊР·РѕРІР°РЅРёРµ СЃРѕР±СЃС‚РІРµРЅРЅРѕР№ Р±РёР±Р»РёРѕС‚РµРєРё РєРѕРґР°.
 
 namespace CSharpCarClient
 {
@@ -11,11 +13,11 @@ namespace CSharpCarClient
     {
         public static void Main()
         {
-            // Создаем автомобиль спортивной модели.
+            // СЃРѕР·РґР°РµРј Р°РІС‚РѕРјРѕР±РёР»СЊ СЃРїРѕСЂС‚РёРІРЅРѕР№ РјРѕРґРµР»Рё.
             SportsCar sportcar = new SportsCar("Jaguar", 240, 40);
             sportcar.Acceleration();
 
-            // Создаем мини-вэн.
+            // СЃРѕР·РґР°РµРј РјРёРЅРё-РІСЌРЅ.
             MiniVan minivan = new MiniVan();
             minivan.Acceleration();
 
