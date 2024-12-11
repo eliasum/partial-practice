@@ -1,4 +1,6 @@
-﻿using System;
+﻿/*2024.12.11 18:28 IMM*/
+
+using System;
 
 // Атрибуты. 
 
