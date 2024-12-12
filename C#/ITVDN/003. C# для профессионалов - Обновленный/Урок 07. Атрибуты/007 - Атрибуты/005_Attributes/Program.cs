@@ -1,4 +1,6 @@
-﻿using System;
+﻿/*2024.12.12 14:39 IMM*/
+
+using System;
 using System.Reflection;
 
 // Атрибуты сборки - добавляются в файл AssemblyInfo.cs

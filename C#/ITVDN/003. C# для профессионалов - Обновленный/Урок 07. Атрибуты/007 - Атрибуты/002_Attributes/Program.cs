@@ -1,4 +1,6 @@
-﻿using System;
+﻿/*2024.12.12 11:25 IMM*/
+
+using System;
 using System.Reflection;
 
 // Атрибуты. 
