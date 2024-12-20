@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace XML
 {
-    // XmlRoot - Переименовывает корневой узел.
+    // XmlRoot - РџРµСЂРµРёРјРµРЅРѕРІС‹РІР°РµС‚ РєРѕСЂРЅРµРІРѕР№ СѓР·РµР».
     [XmlRoot("MyButton")]      
     public class MyClass
     {
@@ -15,15 +15,15 @@ namespace XML
         private List<string> items = new List<string>();
 
 
-        // XML атрибут переименовываем и делаем атрибутом.
+        // XML СѓР·РµР» РїРµСЂРµРёРјРµРЅРѕРІС‹РІР°РµРј Рё РґРµР»Р°РµРј Р°С‚СЂРёР±СѓС‚РѕРј.
         [XmlAttribute("SerialID")]   
         public string ID
         {
             get { return id; }
             set { id = value; }
         }
-        
-        //XML атрибут.
+
+        // XML СѓР·РµР» РїРµСЂРµРёРјРµРЅРѕРІС‹РІР°РµРј Рё РґРµР»Р°РµРј Р°С‚СЂРёР±СѓС‚РѕРј.
         [XmlAttribute("Length")]  
         public int Size
         {
@@ -31,7 +31,7 @@ namespace XML
             set { size = value; }
         }
 
-        //XML элемент.
+        // XML СѓР·РµР» РїРµСЂРµРёРјРµРЅРѕРІС‹РІР°РµРј
         [XmlElement("Pos")]    
         public Point Position
         {
@@ -39,7 +39,7 @@ namespace XML
             set { position = value; }
         }
 
-        // Исключаем свойство из процесса сериализации/десериализации.
+        // РСЃРєР»СЋС‡Р°РµРј СЃРІРѕР№СЃС‚РІРѕ РёР· РїСЂРѕС†РµСЃСЃР° СЃРµСЂРёР°Р»РёР·Р°С†РёРё/РґРµСЃРµСЂРёР°Р»РёР·Р°С†РёРё.
        [XmlIgnore] 
         public string Password
         {
@@ -47,9 +47,9 @@ namespace XML
             set { password = value; }
         }
 
-        // Характеристика массива.
+        // XML СѓР·РµР» РїРµСЂРµРёРјРµРЅРѕРІС‹РІР°РµРј
         [XmlArray("List")]
-        // Характеристика каждого элемента массива.
+        // XML СѓР·РµР» РїРµСЂРµРёРјРµРЅРѕРІС‹РІР°РµРј Рё РґРµР»Р°РµРј Р°С‚СЂРёР±СѓС‚РѕРј.
         [XmlArrayItem("Element")] 
         public List<string> Items
         {

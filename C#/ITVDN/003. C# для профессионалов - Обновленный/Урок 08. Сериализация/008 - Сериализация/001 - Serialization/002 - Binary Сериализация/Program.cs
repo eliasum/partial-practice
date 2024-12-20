@@ -1,3 +1,5 @@
+/*2024.12.20 17:35 IMM*/
+
 using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -7,7 +9,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 namespace SerializableWork
 {
     class Program
-    {
+    {  
         static void Main()
         {
             Mersedes auto = new Mersedes("CLK 500", 250, Mode.Lux);
