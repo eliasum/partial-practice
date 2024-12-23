@@ -1,3 +1,5 @@
+/*2024.12.23 10:20 IMM*/
+
 using System;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;

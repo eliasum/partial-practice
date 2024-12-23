@@ -15,29 +15,29 @@ namespace UserSerialWork
 			this.speed = speed;
 		}
 
-		// Специальный вариант конструктора. 
-		// SerializationInfo - объект в который помещаем все пары имя-значение представляющие состояние объекта.
-		// SerializationInfo - мешок со свойствами (property bag)
+		// СЃРїРµС†РёР°Р»СЊРЅС‹Р№ РІР°СЂРёР°РЅС‚ РєРѕРЅСЃС‚СЂСѓРєС‚РѕСЂР°. 
+		// SerializationInfo - РѕР±СЉРµРєС‚ РІ РєРѕС‚РѕСЂС‹Р№ РїРѕРјРµС‰Р°РµРј РІСЃРµ РїР°СЂС‹ РёРјСЏ-Р·РЅР°С‡РµРЅРёРµ РїСЂРµРґСЃС‚Р°РІР»СЏСЋС‰РёРµ СЃРѕСЃС‚РѕСЏРЅРёРµ РѕР±СЉРµРєС‚Р°.
+		// SerializationInfo - РјРµС€РѕРє СЃРѕ СЃРІРѕР№СЃС‚РІР°РјРё (property bag)
 		private Car(SerializationInfo propertyBag, StreamingContext context)
 		{
-			// Значение All перечисления StreamingContextState для свойства context.State, указывает,
-			// что данные могут быть переданы в любое место или получены из любого места.
+			// Р·РЅР°С‡РµРЅРёРµ All РїРµСЂРµС‡РёСЃР»РµРЅРёСЏ StreamingContextState РґР»СЏ СЃРІРѕР№СЃС‚РІР° context.State, СѓРєР°Р·С‹РІР°РµС‚,
+			// С‡С‚Рѕ РґР°РЅРЅС‹Рµ РјРѕРіСѓС‚ Р±С‹С‚СЊ РїРµСЂРµРґР°РЅС‹ РІ Р»СЋР±РѕРµ РјРµСЃС‚Рѕ РёР»Рё РїРѕР»СѓС‡РµРЅС‹ РёР· Р»СЋР±РѕРіРѕ РјРµСЃС‚Р°.
 			Console.WriteLine("[ctor] ContextState: {0}", context.State.ToString());
 
-			// Из мешка со свойствами извлекаем значения свойств помещеенных ранее в методе GetObjectData()
+			// РёР· РјРµС€РєР° СЃРѕ СЃРІРѕР№СЃС‚РІР°РјРё РёР·РІР»РµРєР°РµРј Р·РЅР°С‡РµРЅРёСЏ СЃРІРѕР№СЃС‚РІ, РїРѕРјРµС‰РµРЅРЅС‹С… СЂР°РЅРµРµ РІ РјРµС‚РѕРґРµ GetObjectData()
 			name = propertyBag.GetString("name");
 			speed = propertyBag.GetInt32("speed");
 		}
 
 
-		// Метод ISerializable.GetObjectData() вызывается Formatter-ом
+		// РјРµС‚РѕРґ ISerializable.GetObjectData() РІС‹Р·С‹РІР°РµС‚СЃСЏ Formatter-РѕРј
 		void ISerializable.GetObjectData(SerializationInfo propertyBag, StreamingContext context)
 		{
-			// Значение All перечисления StreamingContextState свойства context.State, указывает,
-			// что данные могут быть переданы в любое место или получены из любого места.
+			// Р·РЅР°С‡РµРЅРёРµ All РїРµСЂРµС‡РёСЃР»РµРЅРёСЏ StreamingContextState СЃРІРѕР№СЃС‚РІР° context.State, СѓРєР°Р·С‹РІР°РµС‚,
+			// С‡С‚Рѕ РґР°РЅРЅС‹Рµ РјРѕРіСѓС‚ Р±С‹С‚СЊ РїРµСЂРµРґР°РЅС‹ РІ Р»СЋР±РѕРµ РјРµСЃС‚Рѕ РёР»Рё РїРѕР»СѓС‡РµРЅС‹ РёР· Р»СЋР±РѕРіРѕ РјРµСЃС‚Р°.
 			Console.WriteLine("[GetObjectData] ContextState: {0}", context.State.ToString());
 
-			// В мешок со свойствами добавляем два свойства и соответственно значения для них.
+			// РІ РјРµС€РѕРє СЃРѕ СЃРІРѕР№СЃС‚РІР°РјРё РґРѕР±Р°РІР»СЏРµРј РґРІР° СЃРІРѕР№СЃС‚РІР° Рё СЃРѕРѕС‚РІРµС‚СЃС‚РІРµРЅРЅРѕ Р·РЅР°С‡РµРЅРёСЏ РґР»СЏ РЅРёС….
 			propertyBag.AddValue("name", name);
 			propertyBag.AddValue("speed", speed);
 		}
