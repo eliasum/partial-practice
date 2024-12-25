@@ -1,11 +1,12 @@
 ﻿/*2020.10.20 18:26 IMM*/
+/*2024.12.25 11:55 IMM*/
 
 using System;
 using System.Threading;
 
 /*
 Когда сборщик мусора вызывает деструктор, то он его выполняет
-в отдельном потоке
+в отдельном потоке Thread
 */
 
 namespace DestructorThread

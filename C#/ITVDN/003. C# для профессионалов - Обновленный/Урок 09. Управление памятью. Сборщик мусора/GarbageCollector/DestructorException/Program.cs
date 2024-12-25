@@ -1,4 +1,5 @@
 ﻿/*2020.10.20 19:22 IMM*/
+/*2024.12.25 15:06 IMM*/
 
 using System;
 
@@ -13,7 +14,7 @@ namespace DestructorException
         {
             throw new Exception();  // бросаем исключение
 
-            Console.WriteLine("Succeeded!");    // не вывидется
+            Console.WriteLine("Succeeded!");    // не выведется
         }
     }
 

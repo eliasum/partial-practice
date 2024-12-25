@@ -1,4 +1,5 @@
 ﻿/*2020.10.20 18:39 IMM*/
+/*2024.12.25 14:47 IMM*/
 
 using System;
 using System.Threading;
@@ -27,7 +28,7 @@ namespace DestructorRunTime
 
             // Принудительно запускает немедленную сборку мусора для всех поколений.
             GC.Collect();
-            //Console.ReadKey();
+            Console.ReadKey();
         }
     }
 }
