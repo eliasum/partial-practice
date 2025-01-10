@@ -12,11 +12,11 @@ namespace FinalizationPattern
             Dispose(true);
             GC.SuppressFinalize(this); // Не вызывать деструктор.
         }
-        protected virtual void Dispose(bool disposing)
+        protected virtual void Dispose(bool disposing)  //disposing=true; перегрузка метода Dispose()
         {
             if (!disposed)
             {
-                if (disposing)
+                if (disposing)  //Dispose(true);
                 {
                     Console.WriteLine("Соединение с базой данных закрыто.");
                 }

@@ -1,4 +1,6 @@
-﻿using System;
+﻿/*2025.01.10 16:02 IMM*/
+
+using System;
 using System.Diagnostics;
 using System.Runtime;
 using System.Threading;

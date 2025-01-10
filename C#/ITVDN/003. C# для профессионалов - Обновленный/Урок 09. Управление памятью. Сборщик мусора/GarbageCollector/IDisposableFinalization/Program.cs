@@ -1,4 +1,6 @@
-﻿using System;
+﻿/*2025.01.10 16:23 IMM*/
+
+using System;
 using System.Threading;
 
 // IDisposable.Dispose() - как альтернатива Деструктору.
