@@ -1,55 +1,40 @@
-/**2025.02.18 17:50 IMM*/
+/*2025.03.11 17:39 IMM*/
 'use strict';
 
-/**
- * Simple message logging
- * @type {string}
- */
-const msg = 'Hello World';
-console.log(msg);
+let targetDate;
+let countdownInterval;
 
-// Implement countdown timer functionality
-function startCountdown(duration, displayElement) {
-    let timer = duration;
-    let minutes, seconds;
+function updateCountdown() {
+    const now = new Date().getTime();
+    const timeLeft = targetDate - now;
 
-    const countdownInterval = setInterval(function () {
-        minutes = parseInt(timer / 60, 10);
-        seconds = parseInt(timer % 60, 10);
+    if (timeLeft <= 0) {
+        clearInterval(countdownInterval);
+        document.getElementById("timer").innerHTML = "Событие началось!";
+        return;
+    }
 
-        minutes = minutes < 10 ? "0" + minutes : minutes;
-        seconds = seconds < 10 ? "0" + seconds : seconds;
+    const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-        displayElement.textContent = minutes + ":" + seconds;
-
-        if (--timer < 0) {
-            clearInterval(countdownInterval);
-            displayElement.textContent = "Время истекло!";
-        }
-    }, 1000);
+    document.getElementById("days").textContent = days.toString().padStart(2, '0');
+    document.getElementById("hours").textContent = hours.toString().padStart(2, '0');
+    document.getElementById("minutes").textContent = minutes.toString().padStart(2, '0');
+    document.getElementById("seconds").textContent = seconds.toString().padStart(2, '0');
 }
 
-// Пример использования
-const timerDisplay = document.getElementById('timer');
-const durationInSeconds = 5 * 60; // 5 минут
-startCountdown(durationInSeconds, timerDisplay);
+function startCountdown() {
+    // Устанавливаем целевую дату на 5 минут от текущего времени
+    targetDate = new Date().getTime() + 5 * 60 * 1000;
 
-/*
-Этот код добавляет функцию startCountdown, которая реализует функциональность таймера обратного отсчета. Вот краткое объяснение:
-1.
-Функция startCountdown принимает два параметра: duration (продолжительность в секундах) и displayElement (элемент DOM для отображения таймера).
-2.
-Таймер обновляется каждую секунду с помощью setInterval.
-3.
-Минуты и секунды вычисляются и форматируются для отображения.
-4.
-Когда таймер достигает нуля, интервал очищается, и отображается сообщение "Время истекло!".
-Для использования этого кода вам нужно добавить элемент с id "timer" в ваш HTML файл, например:
-<div id="timer"></div>
-Apply
-Затем вы можете настроить начальную продолжительность таймера, изменив значение durationInSeconds.
-Не забудьте адаптировать этот код под ваши конкретные потребности и дизайн пользовательского интерфейса.
+    // Обновляем каждые 100 миллисекунд для более плавного отсчета
+    countdownInterval = setInterval(updateCountdown, 100);
 
-script.js
-(1-11)
-*/
+    // Сразу вызываем updateCountdown, чтобы избежать задержки в отображении
+    updateCountdown();
+}
+
+// Запускаем отсчет при загрузке страницы
+window.onload = startCountdown;
