@@ -28,7 +28,7 @@ function updateCountdown() {
 function startCountdown() {
     // Устанавливаем целевую дату на 5 минут от текущего времени
     targetDate = new Date().getTime() + 5 * 60 * 1000;
-
+    
     // Обновляем каждые 100 миллисекунд для более плавного отсчета
     countdownInterval = setInterval(updateCountdown, 100);
 
