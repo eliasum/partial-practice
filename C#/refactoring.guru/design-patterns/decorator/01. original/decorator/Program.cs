@@ -56,7 +56,7 @@ namespace RefactoringGuru.DesignPatterns.Composite.Conceptual
     */
     abstract class Decorator : Component
     {
-        protected Component _component;
+        protected Component _component;     // Ссылка на оригинальный компонент
 
         /*
         Это конструктор для Decorator. Он принимает объект Component в 
@@ -69,7 +69,7 @@ namespace RefactoringGuru.DesignPatterns.Composite.Conceptual
         */
         public Decorator(Component component)
         {
-            this._component = component;
+            this._component = component;    // Мы сохраняем переданный компонент для дальнейшего использования
         }
 
         /*
@@ -83,7 +83,7 @@ namespace RefactoringGuru.DesignPatterns.Composite.Conceptual
         */
         public void SetComponent(Component component)
         {
-            this._component = component;
+            this._component = component;    
         }
 
         // Декоратор делегирует всю работу обёрнутому компоненту.
@@ -105,7 +105,7 @@ namespace RefactoringGuru.DesignPatterns.Composite.Conceptual
         {
             if (this._component != null)
             {
-                return this._component.Operation();
+                return this._component.Operation();     // Делаем вызов метода из компонента
             }
             else
             {
@@ -114,8 +114,9 @@ namespace RefactoringGuru.DesignPatterns.Composite.Conceptual
         }
     }
 
-    // Конкретные Декораторы вызывают обёрнутый объект и изменяют его результат
-    // некоторым образом.
+    // ConcreteDecoratorA — это конкретный декоратор, который наследует 
+    // Decorator и добавляет дополнительную функциональность в любой конкретный объект comp,
+    // который наследуется от базового абстрактного класса Component
     class ConcreteDecoratorA : Decorator
     {
         public ConcreteDecoratorA(Component comp) : base(comp)
