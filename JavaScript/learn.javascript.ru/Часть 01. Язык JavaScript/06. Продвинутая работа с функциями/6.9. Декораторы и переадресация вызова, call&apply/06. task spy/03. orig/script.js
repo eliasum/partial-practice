@@ -1,16 +1,14 @@
-/*2025.04.16 18:09 IMM*/
+/*2025.04.17 17:50 IMM*/
 
+//Обертка, возвращаемая spy(f), должна хранить все аргументы, и затем использовать f.apply для переадресации вызова.
 function spy(func) {
-  // Массив для хранения всех вызовов
-  function wrapper(...args) {
-    // Сохраняем аргументы вызова в массиве calls
-    wrapper.calls.push(args);
 
-    // Вызываем оригинальную функцию
-    return func(...args);
+  function wrapper(...args) {
+    // мы используем ...args вместо arguments для хранения "реального" массива в wrapper.calls
+    wrapper.calls.push(args);
+    return func.apply(this, args);
   }
 
-  // Добавляем массив для хранения вызовов на обёртку
   wrapper.calls = [];
 
   return wrapper;
