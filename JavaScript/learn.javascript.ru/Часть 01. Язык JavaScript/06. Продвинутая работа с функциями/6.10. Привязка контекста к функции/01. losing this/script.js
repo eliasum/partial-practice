@@ -17,7 +17,7 @@
 let user = {
   firstName: "Вася",
   sayHi() {
-    alert(`Привет, ${this.firstName}!`);
+    console.log(`Привет, ${this.firstName}!`);
   }
 };
 

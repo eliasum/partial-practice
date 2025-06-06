@@ -8,7 +8,7 @@
 let user = {
   firstName: "Вася",
   sayHi() {
-    alert(`Привет, ${this.firstName}!`);
+    console.log(`Привет, ${this.firstName}!`);
   }
 };
 
@@ -29,7 +29,7 @@ setTimeout(() => user.sayHi(), 1000); // Привет, Вася!
 // let user = {
 //   firstName: "Вася",
 //   sayHi() {
-//     alert(`Привет, ${this.firstName}!`);
+//     console.log(`Привет, ${this.firstName}!`);
 //   }
 // };
 
