@@ -1,5 +1,7 @@
-test('добавление задачи', () => {
-  const model = { tasks: [], addTask(task) { this.tasks.push(task); } };
-  model.addTask('Учить Jest');
-  expect(model.tasks).toContain('Учить Jest');
+const Model = require('../src/model'); // CommonJS импорт
+
+test('Добавляет задачу', () => {
+  const model = new Model();
+  model.addTask('Купить молоко');
+  expect(model.tasks).toContain('Купить молоко');
 });
