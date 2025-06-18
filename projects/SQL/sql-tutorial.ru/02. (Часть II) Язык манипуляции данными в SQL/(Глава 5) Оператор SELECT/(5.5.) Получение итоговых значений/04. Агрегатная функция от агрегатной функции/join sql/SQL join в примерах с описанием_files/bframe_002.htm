@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="ru"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>reCAPTCHA</title>
+<style type="text/css">
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), url(//fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu72xKOzY.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), url(//fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu5mxKOzY.woff2) format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), url(//fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu7mxKOzY.woff2) format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), url(//fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4WxKOzY.woff2) format('woff2');
+  unicode-range: U+0370-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), url(//fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu7WxKOzY.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), url(//fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu7GxKOzY.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto Regular'), local('Roboto-Regular'), url(//fonts.gstatic.com/s/roboto/v18/KFOmCnqEu92Fr1Mu4mxK.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), url(//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fCRc4EsA.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), url(//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fABc4EsA.woff2) format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), url(//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fCBc4EsA.woff2) format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), url(//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fBxc4EsA.woff2) format('woff2');
+  unicode-range: U+0370-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), url(//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fCxc4EsA.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), url(//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fChc4EsA.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: local('Roboto Medium'), local('Roboto-Medium'), url(//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmEU9fBBc4.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+/* cyrillic-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Roboto Black'), local('Roboto-Black'), url(//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmYUtfCRc4EsA.woff2) format('woff2');
+  unicode-range: U+0460-052F, U+1C80-1C88, U+20B4, U+2DE0-2DFF, U+A640-A69F, U+FE2E-FE2F;
+}
+/* cyrillic */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Roboto Black'), local('Roboto-Black'), url(//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmYUtfABc4EsA.woff2) format('woff2');
+  unicode-range: U+0400-045F, U+0490-0491, U+04B0-04B1, U+2116;
+}
+/* greek-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Roboto Black'), local('Roboto-Black'), url(//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmYUtfCBc4EsA.woff2) format('woff2');
+  unicode-range: U+1F00-1FFF;
+}
+/* greek */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Roboto Black'), local('Roboto-Black'), url(//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmYUtfBxc4EsA.woff2) format('woff2');
+  unicode-range: U+0370-03FF;
+}
+/* vietnamese */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Roboto Black'), local('Roboto-Black'), url(//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmYUtfCxc4EsA.woff2) format('woff2');
+  unicode-range: U+0102-0103, U+0110-0111, U+1EA0-1EF9, U+20AB;
+}
+/* latin-ext */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Roboto Black'), local('Roboto-Black'), url(//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmYUtfChc4EsA.woff2) format('woff2');
+  unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+/* latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  src: local('Roboto Black'), local('Roboto-Black'), url(//fonts.gstatic.com/s/roboto/v18/KFOlCnqEu92Fr1MmYUtfBBc4.woff2) format('woff2');
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+</style>
+<link rel="stylesheet" type="text/css" href="bframe_data_002/styles__ltr.css">
+
+<script type="text/javascript" src="recaptcha__ru.js" nonce="zQ7hN/s/yifWWC7/loT5CQ">
+      
+    </script><script type="text/javascript" charset="UTF-8" src="bframe_data_002/FImcmxIydQ5zO5X4JWmfILYA5Uks6S5qhuxO7imXJic.js" nonce="zQ7hN/s/yifWWC7/loT5CQ"></script></head>
+<body><input type="hidden" id="recaptcha-token" value="03AOLTBLSSj3Ju4JO_jhO4P4WYH2oAN91h1t3f1V8yoZlPsnBu2Z7AjSdWReiVxElSzrphDDNrTktOrlxGOEx0zEowVAthRot5PF59-n84fdYmJ4FuhmE8Hz64GIJaDYMohf7n-FdCfWWsjpXLshtFVnK2DKntQmYAuN7XzovbSuI9tsjeDGPLwDKFFJkz6CQf6Uef8m_o1yleyxUZ5Cnsec-zT2g4Pm0ON0D-7F80Shk3G6Dlxc-E6mqS0CUqyzkuvmmIvMncpRG-I8qxLvzyE5y4GsWzoug-ysRbeT2Ip5MuJSQChfpT3s-HMEvguoQCNLeV14clLT6VahIq2cnQK0QMSgDG3TdjsHxhR6Kr_6gbGp1h3zKE8yUWp4KiomYW3TDLTGw5jX_KBleKZFzctUY-H7nG1aCEqyNfxVAEkSWmKUl8YAenMQ0rn3pW68esJS5_VU1K-SNZlBSqfjM2rSHuKZATATNwdvOzXOwZc6NXkMSiQH3xMmzTRSIA669yxKGvtpeIjC_iWqNrEp2s7K47QOukTBL4z8GuZ27kKXr5LxIhiefggmDBfZYtK8vIJnIDZlPC3UTNzH57DOQUccps6DxGLUZOe_WF0dGXiHn_ykyVC1VLZ2JDd2jahMYCeexLMJDWGmyEsrNSLgsVPHovhdD8tDSy13K2JdgO8RrogJf6i32MLWqSMRqMDPs8rEQs9y3iCIZxq6RohvK0_tWgzZ94UBOafa5bUYLVBL9JWlEw55XGqMA8zy63IYW4RHgXERZcm0k6MxCnecEctNB7UJt7fqy5YrsJBdP552UEouHk9ZtTc_Oe0OEM2Hohb3HXSHcWoqyS3rZI2KiUr2ae3_lMADs1Xf13HATzbNhXr2prwIzVwFjv-Me8HlMmgG0N6nxhUqTGxGD_fa-bVtfSLnPOVAb2OPnnrqND-nGEn781ZGPO9UMOJqPZdEOWEX_In8flq1nTlyW5UW69Qx_6-knB4sXr5B_jAqRdg05vbKV447w_oQtMxO_TZDFIW8vky9gHbod6lrB7uvTJspu1hz6FV74mDaasKQEgo5Ed8xI9Hj0-M3o5jz-Q9vkQtse2NuX1mMJzQTM6xLWqfvmdLjRG1YUkew6cZjsd5Ybm9feez5QYmH0YB3hWx-dkx7p8hqSKYfdLGbqzX8sB0MDTkuLVRkIxHlNdOeECkP-ryql7dYRvXho1tD5OBwGQOyf0TkMuYeqLEo2MwiRkTszJP75car1k8MPGCEmqyHM1dZj-TxKYVE3ONyeZO-E1bZdccih4E4LuNMnFsSeTRoGJIW6XmVxpDpf6mjbsftAVCsxokJJiqijLdZNjeIPk_vXhjq1_9FWum3HFlTq1DQtHtq5_e-Hc3JQK9mozh8WMYl7ROJVGWintNuLrvf3W8m0LtajA8zyjTIw1MZUw4cahNLT3JP6_-xQ2uJegg6u_3Cl94JH8LL1wn0SE39X4XBaABHVrwO-YjAqow0aGW1GDFxhF4N4x-k-4DUfSLEz1VpJ4zJBz3CoZLjUzRUcknTo2hvLpP41xxneWS7Rmf8PbUWvhOO1GCqiWPh9b6Qv8_sG-74WI8pcpTGRP8WyfH7Myzjxo0bxs2yt6IaArZOHjLnM_zz7qD30foCE61kpYt6SQex9AFHafAa1LhZ6F_86rDF686cX_My328gMaX82JuoaqHniVklcBAoE2QAGUmyKNqUqTs25fjYp4LcdGFK97mOiPT_jC3ZV2DuEB_u2FmTdJzbc5cpGdz6dB9l6zYTk90PCP2J4BZPMEcvbU5iDzhslILMHx6xQzISoVuK2vJzwZLbr8jvp946m8ZDJ_-PtGkDFb4oaW5vVP44l-4CwazMJ6fxW_2JczIXx9QiGMmXMxhCCgQ393eQ9zzgUNhE_9eqO3TbUBQ60_BNkKLcsZ-IN1mHoHBHqAlUAcEvxRwqvP10eewA">
+<script type="text/javascript" nonce="zQ7hN/s/yifWWC7/loT5CQ">
+      
+        recaptcha.frame.Main.init("[\x22finput\x22,null,[\x22conf\x22,null,\x226LdxKR4UAAAAANTKgRtGrHIUqHa_woW4ztr79itf\x22,0,null,[\x22JS_BR\x22]\n,0.75]\n]\n");
+      
+    </script><div style=""><div class="rc-footer"><div class="rc-separator"></div><div class="rc-controls"><div class="primary-controls"><div class="rc-buttons"><div class="button-holder reload-button-holder"><button class="rc-button goog-inline-block rc-button-reload" title="Get a new challenge" value="" id="recaptcha-reload-button" tabindex="0"></button></div><div class="button-holder audio-button-holder"><button class="rc-button goog-inline-block rc-button-audio" title="Get an audio challenge" value="" id="recaptcha-audio-button" tabindex="0"></button></div><div class="button-holder image-button-holder"><button class="rc-button goog-inline-block rc-button-image" title="Get a visual challenge" value="" style="display: none;" id="recaptcha-image-button" tabindex="0"></button></div><div class="button-holder help-button-holder"><button class="rc-button goog-inline-block rc-button-help" title="Help" value="" id="recaptcha-help-button" tabindex="0"></button></div><div class="button-holder undo-button-holder"><button class="rc-button goog-inline-block rc-button-undo" title="Undo" value="" style="display: none;" id="recaptcha-undo-button" tabindex="0"></button></div></div><div class="verify-button-holder"><button class="rc-button-default goog-inline-block" title="" value="" id="recaptcha-verify-button" tabindex="0">Подтвердить</button></div></div><div class="rc-challenge-help" style="display:none" tabindex="0"></div></div></div></div></body></html>

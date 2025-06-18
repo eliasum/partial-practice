@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="ru-RU"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>asp.net-core: ASP.NET Core 3.0 не отображается в Visual Studio 2019</title>
+    <meta name="theme-color" content="#fff">
+    <link rel="preconnect" href="https://mc.yandex.ru/">
+    <meta name="yandex-verification" content="139ca17a24f93270">
+        <meta name="description" content="Я хочу протестировать новый серверный фрейм Blazor (также известный как Razor Components).Я установил Visual Studio 2019 RC, а затем .Net Core 3.0 preview 2, следуя этому официальному руководству .После установки я вижу только ASP.NET Core 2.0 и">
+    <link rel="apple-touch-icon" sizes="180x180" href="https://issue.life/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="https://issue.life/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="https://issue.life/favicon-16x16.png">
+    <link rel="manifest" href="https://issue.life/manifest.json">
+    <link rel="stylesheet" href="asp.net-core%20ASP.NET%20Core%203.0%20%D0%BD%D0%B5%20%D0%BE%D1%82%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B0%D0%B5%D1%82%D1%81%D1%8F%20%D0%B2%20Visual%20Studio%202019_files/bootstrap.css">
+
+</head>
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
+        <a class="navbar-brand mr-auto mr-lg-0" href="http://issue.life/">Issue.Life</a>
+        <button aria-label="Основное меню" class="navbar-toggler p-0 border-0" type="button" data-toggle="offcanvas">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="https://issue.life/top">Топ обсуждений</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://issue.life/questions">Вопросы</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="https://issue.life/tags">Теги</a>
+                </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://issue.life/registration">Регистрация</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://issue.life/login">Войти</a>
+                    </li>
+            </ul>
+            <form class="form-inline my-2 my-lg-0" id="search-block-in-menu">
+                <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
+            </form>
+        </div>
+    </nav>
+    <main class="container">
+            <script type="text/javascript" async="" src="asp.net-core%20ASP.NET%20Core%203.0%20%D0%BD%D0%B5%20%D0%BE%D1%82%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B0%D0%B5%D1%82%D1%81%D1%8F%20%D0%B2%20Visual%20Studio%202019_files/watch.js"></script><script async="" src="asp.net-core%20ASP.NET%20Core%203.0%20%D0%BD%D0%B5%20%D0%BE%D1%82%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B0%D0%B5%D1%82%D1%81%D1%8F%20%D0%B2%20Visual%20Studio%202019_files/adsbygoogle.js"></script>
+            <!-- Header banner -->
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-6993856910170847" data-ad-slot="9428224969" data-ad-format="auto" data-full-width-responsive="true"></ins>
+            <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+        <!-- Body. Start. -->
+        
+<div class="container">
+    
+    <div class="row">
+        <div class="col-9" id="question-content">
+            <h3>ASP.NET Core 3.0 не отображается в Visual Studio 2019</h3>
+                <div>
+                        <a href="https://issue.life/tags/asp-dot-net-core" class="badge badge-secondary">asp.net-core</a>
+                        <a href="https://issue.life/tags/-dot-net-core" class="badge badge-secondary">.net-core</a>
+                        <a href="https://issue.life/tags/visual-studio-2019" class="badge badge-secondary">visual-studio-2019</a>
+                        <a href="https://issue.life/tags/-dot-net-core-3-dot-0" class="badge badge-secondary">.net-core-3.0</a>
+                        <a href="https://issue.life/tags/asp-dot-net-core-3-dot-0" class="badge badge-secondary">asp.net-core-3.0</a>
+                </div>
+            
+            <div class="row" id="question">
+                <div class="col-1 info-question">
+                    <div class="text-center">
+                        <p>
+                            <strong>18563</strong>
+просмотра                        </p>
+                        <p>
+                            <strong>9</strong>
+ответа                        </p>
+                        <p style="line-height: 1">
+                            <strong>2749</strong>
+                            <span style="line-height: 1">Репутация автора</span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-11 info-question-content">
+                     
+
+<p>Я хочу протестировать новый серверный фрейм Blazor (также известный как Razor Components).</p>
+
+<p>Я установил Visual Studio 2019 RC, а затем .Net Core 3.0 preview 2, следуя <a href="https://docs.microsoft.com/en-us/aspnet/core/client-side/spa/blazor/get-started?view=aspnetcore-3.0&amp;tabs=visual-studio" rel="noreferrer">этому официальному руководству</a> .</p>
+
+<p>После установки я вижу только ASP.NET Core 2.0 и 2.1 на странице 
+«Создание нового веб-приложения ASP.NET Core». 3.0 не появляется.</p>
+
+<p>Я начал возиться, пытаясь установить другие пакеты с <a href="https://dotnet.microsoft.com/download/dotnet-core/3.0" rel="noreferrer">этой страницы</a>
+ , удалил и переустановил Visual Studio 2019, обновил до .NET Core 
+Preview 3, несколько раз установил пакеты x64 и x86 в разных порядках, 
+скопировал / вставил .Net Core двоичные файлы в случайные папки и так 
+далее. Ничего не работает ASP.NET Core 3.0 не отображается.</p>
+
+<p>Вот как выглядит моя VS при создании проекта (желтое сообщение 
+появилось позже после некоторого возни с пакетами, так что это не 
+настоящая проблема):</p>
+
+<p><a href="https://static.issue.life/content/img/04-10-2019/637058071116153828.jpg" rel="noreferrer"><img src="asp.net-core%20ASP.NET%20Core%203.0%20%D0%BD%D0%B5%20%D0%BE%D1%82%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B0%D0%B5%D1%82%D1%81%D1%8F%20%D0%B2%20Visual%20Studio%202019_files/637058071116153828.jpg" alt="введите описание изображения здесь"></a></p>
+
+<p>Вот вывод <code>dotnet --list-sdks</code>команды:</p>
+
+<p><a href="https://static.issue.life/content/img/04-10-2019/637058071116788594.jpg" rel="noreferrer"><img src="asp.net-core%20ASP.NET%20Core%203.0%20%D0%BD%D0%B5%20%D0%BE%D1%82%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B0%D0%B5%D1%82%D1%81%D1%8F%20%D0%B2%20Visual%20Studio%202019_files/637058071116788594.jpg" alt="введите описание изображения здесь"></a></p>
+
+<p><strong>РЕДАКТИРОВАТЬ</strong></p>
+
+<p>По какой-то причине я установил пакет Blazor VSIX (WebAssembly - не 
+совсем то, что я хочу, но я установил его в любом случае), и теперь 
+ASP.NET Core 3.0 просто появляется. Тем не менее, только для шаблонов 
+Blazor:</p>
+
+<p><a href="https://static.issue.life/content/img/04-10-2019/637058071117032735.jpg" rel="noreferrer"><img src="asp.net-core%20ASP.NET%20Core%203.0%20%D0%BD%D0%B5%20%D0%BE%D1%82%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B0%D0%B5%D1%82%D1%81%D1%8F%20%D0%B2%20Visual%20Studio%202019_files/637058071117032735.jpg" alt="введите описание изображения здесь"></a></p>
+
+<p>Я не понимаю Есть ли что-то очевидное, что мне не хватает?</p>
+     
+                        <a href="https://stackoverflow.com/users/1596734/guilherme" class="btn btn-sm btn-outline-dark">Автор: Guilherme</a>
+                    <a href="https://stackoverflow.com/questions/55032756/asp-net-core-3-0-not-showing-on-visual-studio-2019" class="btn btn-sm btn-outline-dark">Источник</a>
+                    <span class="create_date">Размещён: 06.03.2019 09:53</span>
+                </div>
+            </div>
+
+
+
+
+            <h3>Ответы (9)</h3>
+            <hr>
+                    <div class="answer row bg-white">
+                        <div class="col-1 info-question">
+                            <div class="text-center">
+                                <p>
+                                    <strong>6</strong>
+плюса                                </p>
+                                <p style="line-height: 1">
+                                    <strong>1474</strong>
+                                    <span style="line-height: 1">Репутация автора</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-11 info-question-content">
+
+                             
+<p>У меня возникла та же проблема после перехода с Visual Studio 2019 Preview на Visual Studio 2019 RC.</p>
+
+<p>Похоже, что на этой странице вам нужен Preview, чтобы использовать .net Core 3.0, что раздражает.</p>
+
+<p><a href="https://dotnet.microsoft.com/download/dotnet-core/3.0" rel="noreferrer">https://dotnet.microsoft.com/download/dotnet-core/3.0</a></p>
+
+<p>Я посмотрел разницу между RC и Preview, и они извлекают сборки из разных каналов (стабильный и предварительный просмотр).</p>
+
+<p>Следующая вещь, которую я собираюсь попробовать, - вернуться в Preview, чтобы увидеть, станет ли .Net Core 3.0 снова видимым.</p>
+     
+                            <a href="https://stackoverflow.com/users/1141393/laurence-frost" class="btn btn-sm btn-outline-dark">Автор: Laurence Frost</a>
+                            <span class="create_date">Размещён: 06.03.2019 10:32</span>
+                        </div>
+                    </div>
+                    <div class="answer row bg-accepted">
+                        <div class="col-1 info-question">
+                            <div class="text-center">
+                                <p>
+                                    <strong>94</strong>
+плюса                                </p>
+                                <p style="line-height: 1">
+                                    <strong>21303</strong>
+                                    <span style="line-height: 1">Репутация автора</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-11 info-question-content">
+                                <strong class="h5 question-is-accepted">Решение</strong>
+
+                             
+<p>В Сервис -&gt; Параметры есть опция, которая включает предварительный
+ просмотр версий .NET Core SDK. В канале доставки VS Preview он включен 
+(по умолчанию и не устанавливается). В канале VS Release по умолчанию он
+ выключен, и вы можете включить его.</p>
+
+<p><a href="https://static.issue.life/content/img/04-10-2019/637058071117403828.png" rel="noreferrer"><img src="asp.net-core%20ASP.NET%20Core%203.0%20%D0%BD%D0%B5%20%D0%BE%D1%82%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B0%D0%B5%D1%82%D1%81%D1%8F%20%D0%B2%20Visual%20Studio%202019_files/637058071117403828.png" alt="«Использовать предварительный просмотр .NET Core SDK» в диалоговом окне «Сервис-&gt; Параметры»"></a></p>
+
+<p>(Примечание: на скриншоте это отключено, потому что у меня установлена ​​предварительная сборка.)</p>
+
+<p>Причина этого состоит в том, чтобы позволить вам настроить, будет ли 
+проект, использующий выпущенную версию .NET Core (например, 2.1, текущую
+ LTS), использовать инструменты из более нового, еще не выпущенного 
+качества SDK.</p>
+
+<p>До 16.1 эта опция находилась на странице Инструменты -&gt; Параметры -&gt; Проекты и решения -&gt; .NET Core.</p>
+     
+                            <a href="https://stackoverflow.com/users/25071/jimmy" class="btn btn-sm btn-outline-dark">Автор: Jimmy</a>
+                            <span class="create_date">Размещён: 06.03.2019 11:22</span>
+                        </div>
+                    </div>
+                    <div class="answer row bg-white">
+                        <div class="col-1 info-question">
+                            <div class="text-center">
+                                <p>
+                                    <strong>0</strong>
+плюса                                </p>
+                                <p style="line-height: 1">
+                                    <strong>435</strong>
+                                    <span style="line-height: 1">Репутация автора</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-11 info-question-content">
+
+                             
+<p>Запись! (не используйте его на своем компьютере разработчика)</p>
+
+<p>0 - убедитесь, что вы установили .net core 3 sdk. <code>dotnet --list-sdks</code></p>
+
+<p>1- убедитесь, что <code>Tools -&gt; Options that enables preview versions of the .NET Core SDK</code>включен.</p>
+
+<p>2 - удалите все x86 версии .net core sdk с вашего компьютера.</p>
+
+<p>3 - перезапустите visual studio и попробуйте создать новый проект.</p>
+
+<p><a href="https://static.issue.life/content/img/04-10-2019/637058071118048360.png" rel="nofollow noreferrer"><img src="asp.net-core%20ASP.NET%20Core%203.0%20%D0%BD%D0%B5%20%D0%BE%D1%82%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B0%D0%B5%D1%82%D1%81%D1%8F%20%D0%B2%20Visual%20Studio%202019_files/637058071118048360.png" alt="введите описание изображения здесь"></a></p>
+     
+                            <a href="https://stackoverflow.com/users/3961815/navid-golforoushan" class="btn btn-sm btn-outline-dark">Автор: Navid Golforoushan</a>
+                            <span class="create_date">Размещён: 21.06.2019 05:05</span>
+                        </div>
+                    </div>
+                    <div class="answer row bg-white">
+                        <div class="col-1 info-question">
+                            <div class="text-center">
+                                <p>
+                                    <strong>2</strong>
+плюса                                </p>
+                                <p style="line-height: 1">
+                                    <strong>11793</strong>
+                                    <span style="line-height: 1">Репутация автора</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-11 info-question-content">
+
+                             
+<p>В моем случае это потому, что я не установил Visual Studio 2019 с этой функцией. Так что просто создайте новый проект и введите <code>.net core</code>. Затем нажмите Установить дополнительные инструменты и функции:</p>
+
+<p><a href="https://static.issue.life/content/img/04-10-2019/637058071117579610.png" rel="nofollow noreferrer"><img src="asp.net-core%20ASP.NET%20Core%203.0%20%D0%BD%D0%B5%20%D0%BE%D1%82%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B0%D0%B5%D1%82%D1%81%D1%8F%20%D0%B2%20Visual%20Studio%202019_files/637058071117579610.png" alt="введите описание изображения здесь"></a></p>
+
+<p>Затем добавьте следующую функцию:</p>
+
+<p><a href="https://static.issue.life/content/img/04-10-2019/637058071117853047.png" rel="nofollow noreferrer"><img src="asp.net-core%20ASP.NET%20Core%203.0%20%D0%BD%D0%B5%20%D0%BE%D1%82%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B0%D0%B5%D1%82%D1%81%D1%8F%20%D0%B2%20Visual%20Studio%202019_files/637058071117853047.png" alt="введите описание изображения здесь"></a></p>
+     
+                            <a href="https://stackoverflow.com/users/637142/tono-nam" class="btn btn-sm btn-outline-dark">Автор: Tono Nam</a>
+                            <span class="create_date">Размещён: 24.06.2019 11:23</span>
+                        </div>
+                    </div>
+                    <div class="answer row bg-white">
+                        <div class="col-1 info-question">
+                            <div class="text-center">
+                                <p>
+                                    <strong>4</strong>
+плюса                                </p>
+                                <p style="line-height: 1">
+                                    <strong>41</strong>
+                                    <span style="line-height: 1">Репутация автора</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-11 info-question-content">
+
+                             
+<p>Попытался заставить .NET Core 3 (в моем случае превью 8) работать в 
+выпускной версии Visual Studio 2019, но ASP.NET Core 3.0 отказывался 
+отображаться в диалоговом окне «Создание нового веб-приложения ASP.NET 
+Core». </p>
+
+<p>В конечном итоге сработала установка предварительной версии Visual Studio 2019.</p>
+
+<p>Я мог бы сэкономить несколько часов и много волос, если бы взял текст
+ предупреждения «.NET Core 3.0 должен использоваться с последними превью
+ Visual Studio». ( <a href="https://dotnet.microsoft.com/download/dotnet-core/3.0" rel="nofollow noreferrer">https://dotnet.microsoft.com/download/dotnet-core/3.0</a> ) более буквально ...</p>
+     
+                            <a href="https://stackoverflow.com/users/2111566/frazze" class="btn btn-sm btn-outline-dark">Автор: Frazze</a>
+                            <span class="create_date">Размещён: 22.08.2019 12:18</span>
+                        </div>
+                    </div>
+                    <div class="answer row bg-white">
+                        <div class="col-1 info-question">
+                            <div class="text-center">
+                                <p>
+                                    <strong>-1</strong>
+плюса                                </p>
+                                <p style="line-height: 1">
+                                    <strong>1</strong>
+                                    <span style="line-height: 1">Репутация автора</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-11 info-question-content">
+
+                             
+<p>Мне не удалось заставить .netcore 3.0 preview8 работать над моей 
+Visual Studio Community Edition (версия 16.2.3). Я решил удалить 
+.netcore 3.0 preview8 и вместо этого установил <strong>.netcore 3.0 preview7</strong> . После запуска .netcore 3.0 preview7 В Visual Studio я проверил <strong>использование предварительного просмотра</strong> опции <strong>.NET Core SDK,</strong>
+ которая находится в Сервис -&gt; Параметры -&gt; Функции 
+предварительного просмотра, и перезапустил ее. Это сработало для меня, 
+но если у кого-то уже работает предварительная версия .netcore 3.0, 
+помощь будет оценена по достоинству.</p>
+     
+                            <a href="https://stackoverflow.com/users/12003890/carloss-nalda" class="btn btn-sm btn-outline-dark">Автор: carloss.nalda</a>
+                            <span class="create_date">Размещён: 31.08.2019 06:31</span>
+                        </div>
+                    </div>
+                    <div class="answer row bg-white">
+                        <div class="col-1 info-question">
+                            <div class="text-center">
+                                <p>
+                                    <strong>10</strong>
+плюса                                </p>
+                                <p style="line-height: 1">
+                                    <strong>42734</strong>
+                                    <span style="line-height: 1">Репутация автора</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-11 info-question-content">
+
+                             
+<h1>Это больше не работает ... снова!</h1>
+
+<p>SDK 3.0.100- <strong>preview8</strong> -013656 не предоставляет шаблон проекта ASP.Net Core 3.0.</p>
+
+<p>Вы должны удалить его и установить SDK 3.0.100 - <strong>preview7</strong> -012821</p>
+
+<p><a href="https://dotnet.microsoft.com/download/dotnet-core/3.0" rel="nofollow noreferrer">https://dotnet.microsoft.com/download/dotnet-core/3.0</a></p>
+     
+                            <a href="https://stackoverflow.com/users/495455/jeremy-thompson" class="btn btn-sm btn-outline-dark">Автор: Jeremy Thompson</a>
+                            <span class="create_date">Размещён: 01.09.2019 01:59</span>
+                        </div>
+                    </div>
+                    <div class="answer row bg-white">
+                        <div class="col-1 info-question">
+                            <div class="text-center">
+                                <p>
+                                    <strong>0</strong>
+плюса                                </p>
+                                <p style="line-height: 1">
+                                    <strong>3913</strong>
+                                    <span style="line-height: 1">Репутация автора</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-11 info-question-content">
+
+                             
+<p>У меня была эта проблема, и я решил ее следующим образом:</p>
+
+<p>ШАГ 1: <a href="https://dotnet.microsoft.com/download/dotnet-core/3.0" rel="nofollow noreferrer">Загрузите .NET Core 3.0</a> </p>
+
+<p>ШАГ 2. Включите возможность использования SDK предварительного просмотра по умолчанию, как показано ниже:</p>
+
+<p><a href="https://static.issue.life/content/img/04-10-2019/637058071118829610.jpg" rel="nofollow noreferrer"><img src="asp.net-core%20ASP.NET%20Core%203.0%20%D0%BD%D0%B5%20%D0%BE%D1%82%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B0%D0%B5%D1%82%D1%81%D1%8F%20%D0%B2%20Visual%20Studio%202019_files/637058071118829610.jpg" alt="введите описание изображения здесь"></a></p>
+
+<p><a href="https://static.issue.life/content/img/04-10-2019/637058071119063985.jpg" rel="nofollow noreferrer"><img src="asp.net-core%20ASP.NET%20Core%203.0%20%D0%BD%D0%B5%20%D0%BE%D1%82%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B0%D0%B5%D1%82%D1%81%D1%8F%20%D0%B2%20Visual%20Studio%202019_files/637058071119063985.jpg" alt="введите описание изображения здесь"></a></p>
+
+<p><a href="https://static.issue.life/content/img/04-10-2019/637058071119259297.png" rel="nofollow noreferrer"><img src="asp.net-core%20ASP.NET%20Core%203.0%20%D0%BD%D0%B5%20%D0%BE%D1%82%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B0%D0%B5%D1%82%D1%81%D1%8F%20%D0%B2%20Visual%20Studio%202019_files/637058071119259297.png" alt="введите описание изображения здесь"></a></p>
+     
+                            <a href="https://stackoverflow.com/users/4746570/behrouzmoslem" class="btn btn-sm btn-outline-dark">Автор: BehrouzMoslem</a>
+                            <span class="create_date">Размещён: 13.09.2019 12:24</span>
+                        </div>
+                    </div>
+                    <div class="answer row bg-white">
+                        <div class="col-1 info-question">
+                            <div class="text-center">
+                                <p>
+                                    <strong>0</strong>
+плюса                                </p>
+                                <p style="line-height: 1">
+                                    <strong>154</strong>
+                                    <span style="line-height: 1">Репутация автора</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="col-11 info-question-content">
+
+                             
+<p>Я столкнулся с той же проблемой на Mac и нашел решение этой проблемы.
+ На вкладке обновления Visual Studio (Visual Studio -&gt; проверить 
+наличие обновлений) есть возможность изменить канал на «Предварительный 
+просмотр».<a href="https://static.issue.life/content/img/04-10-2019/637058071119425313.png" rel="nofollow noreferrer"><img src="asp.net-core%20ASP.NET%20Core%203.0%20%D0%BD%D0%B5%20%D0%BE%D1%82%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B0%D0%B5%D1%82%D1%81%D1%8F%20%D0%B2%20Visual%20Studio%202019_files/637058071119425313.png" alt="Переключиться на предварительный просмотр"></a></p>
+
+<p>После этого вы можете скачать необходимые обновления и перейти на .net core 3.0</p>
+
+<p><a href="https://static.issue.life/content/img/04-10-2019/637058071119903828.png" rel="nofollow noreferrer"><img src="asp.net-core%20ASP.NET%20Core%203.0%20%D0%BD%D0%B5%20%D0%BE%D1%82%D0%BE%D0%B1%D1%80%D0%B0%D0%B6%D0%B0%D0%B5%D1%82%D1%81%D1%8F%20%D0%B2%20Visual%20Studio%202019_files/637058071119903828.png" alt="теперь есть возможность поменять SDK на 3.0"></a></p>
+     
+                            <a href="https://stackoverflow.com/users/3224078/edgaras" class="btn btn-sm btn-outline-dark">Автор: Edgaras</a>
+                            <span class="create_date">Размещён: 17.09.2019 07:10</span>
+                        </div>
+                    </div>
+        </div>
+        <div class="col-3 border-left" id="other-questions">
+            <h6>Вопросы из категории :</h6>
+            <ul class="list-unstyled">
+                <li class="hyperlink"><a href="https://issue.life/questions/18002744"><span class="badge badge-pill badge-secondary">asp.net-core</span> Как установить страницу по умолчанию asp.net</a></li>
+                <li class="hyperlink"><a href="https://issue.life/questions/18569495"><span class="badge badge-pill badge-secondary">asp.net-core</span> как узнать, в чем ошибка, когда Firefox говорит: «Изображение не может быть отображено, поскольку оно содержит ошибки»</a></li>
+                <li class="hyperlink"><a href="https://issue.life/questions/25238357"><span class="badge badge-pill badge-secondary">asp.net-core</span> Cross Domain API in vNext</a></li>
+                <li class="hyperlink"><a href="https://issue.life/questions/26916664"><span class="badge badge-pill badge-secondary">asp.net-core</span> @ Html.Action в Asp.Net Core</a></li>
+                <li class="hyperlink"><a href="https://issue.life/questions/26904239"><span class="badge badge-pill badge-secondary">.net-core</span> Каковы различия между .NET 4.5.x и .NET Core?</a></li>
+                <li class="hyperlink"><a href="https://issue.life/questions/26907857"><span class="badge badge-pill badge-secondary">.net-core</span> Можно ли запустить .NET Core на Raspberry PI?</a></li>
+                <li class="hyperlink"><a href="https://issue.life/questions/26908049"><span class="badge badge-pill badge-secondary">.net-core</span> Что такое ".NET Core"?</a></li>
+                <li class="hyperlink"><a href="https://issue.life/questions/7883966"><span class="badge badge-pill badge-secondary">visual-studio-2019</span> Отключение выделения текущей строки в редакторе Visual Studio</a></li>
+                <li class="hyperlink"><a href="https://issue.life/questions/35517892"><span class="badge badge-pill badge-secondary">visual-studio-2019</span> Сборка FFTW lib с Visual Studio 2015 [добавлено: шаги для VS 2019]</a></li>
+                <li class="hyperlink"><a href="https://issue.life/questions/43007761"><span class="badge badge-pill badge-secondary">visual-studio-2019</span> Как запустить тесты NUnit в Visual Studio 2017?</a></li>
+                <li class="hyperlink"><a href="https://issue.life/questions/48787912"><span class="badge badge-pill badge-secondary">visual-studio-2019</span> Как я могу изменить цвета подсказки Intellisense</a></li>
+                <li class="hyperlink"><a href="https://issue.life/questions/53641740"><span class="badge badge-pill badge-secondary">.net-core-3.0</span> Используйте Visual Studio 2017 с .Net Core SDK 3.0</a></li>
+                <li class="hyperlink"><a href="https://issue.life/questions/53975842"><span class="badge badge-pill badge-secondary">.net-core-3.0</span> Visual Studio Designer или другой дизайнер для .NET Core 3.0</a></li>
+                <li class="hyperlink"><a href="https://issue.life/questions/54921712"><span class="badge badge-pill badge-secondary">.net-core-3.0</span> Получить ApplicationIcon из кода в NET Core 3.0</a></li>
+                <li class="hyperlink"><a href="https://issue.life/questions/55032756"><span class="badge badge-pill badge-secondary">.net-core-3.0</span> ASP.NET Core 3.0 не отображается в Visual Studio 2019</a></li>
+                <li class="hyperlink"><a href="https://issue.life/questions/47702394"><span class="badge badge-pill badge-secondary">asp.net-core-3.0</span> Новый сайт .Net Core 2 не восстанавливает Configuration.GetConnectionString</a></li>
+                <li class="hyperlink"><a href="https://issue.life/questions/53803266"><span class="badge badge-pill badge-secondary">asp.net-core-3.0</span> Маршрутизация поддоменов в ASP.NET Core 3.0 RazorPages</a></li>
+                <li class="hyperlink"><a href="https://issue.life/questions/54779630"><span class="badge badge-pill badge-secondary">asp.net-core-3.0</span> Миграция с ASP.NET Core 2.0 на 3.0</a></li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+
+
+        <!-- Body. End. -->
+    </main>
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" preserveAspectRatio="none" style="display: none; visibility: hidden; position: absolute; top: -100%; left: -100%;"><defs><style type="text/css"></style></defs><text x="0" y="2" style="font-weight:bold;font-size:2pt;font-family:Arial, Helvetica, Open Sans, sans-serif">32x32</text></svg>
+<script>
+   document.addEventListener(
+       "DOMContentLoaded", () => {
+            const menuButton = document.querySelector('[data-toggle="offcanvas"]');
+            menuButton.addEventListener('click', event => {
+                document.querySelector('.offcanvas-collapse').classList.toggle('open');
+            });
+        }
+    );
+</script>
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter51997166 = new Ya.Metrika({
+                    id:51997166,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/51997166" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+</body></html>

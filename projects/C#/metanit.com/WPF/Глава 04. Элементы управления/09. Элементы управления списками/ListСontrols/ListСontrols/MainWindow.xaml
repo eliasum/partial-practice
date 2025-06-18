@@ -1,0 +1,61 @@
+﻿<!--
+2021.08.12 11:14 IMM
+    
+I
+    
+Элементы управления списками
+
+Эти элементы представлены в WPF довольно широко. Все они являются производными от класса ItemsControl,
+    который в свою очередь является наследником класса Control. Все они содержат коллекцию элементов. 
+    Элементы могут быть напрямую добавлены в коллекцию, возможна также привязка некоторого массива 
+    данных к коллекции.
+
+Возьмем простейший элемент-список - ListBox:    
+-->
+    
+    
+<Window x:Class="ControlsApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ControlsApp"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        mc:Ignorable="d"
+        Title="ListBox" Height="200" Width="300">
+    <Grid Background="Lavender">
+        
+    <!--
+        <ListBox Name="list">
+            <sys:String>Lumia 950</sys:String>
+            <sys:String>iPhone 6S Plus</sys:String>
+            <sys:String>Xiaomi Mi5</sys:String>
+            <sys:String>Nexus 5X</sys:String>
+        </ListBox>
+        
+    III
+        
+        Нам необязательно вручную заполнять значения элемента управления списком, так как мы можем
+        установить свойство ItemsSource, задав в качестве параметра коллекцию, из которой будет
+        формироваться элемент управления списком. Например, в коде xaml-разметки определим 
+        пустой список: 
+        
+        <ListBox Name="list" />
+        -->
+    <!--
+    V
+        
+    Теперь создадим в xaml набор объектов этого класса Phone и выведем в списке значение свойства Title этих объектов: 
+        
+        Поскольку мы используем класс, определенный в текущем проекте, то соответственно у нас обязательно должно быть
+        подключено пространство имен проекте: xmlns:local="clr-namespace:ControlsApp". В принципе по умолчанию WPF уже
+        его подключает. Кроме того, чтобы не возникало проблем с разметкой XAML, желательно сделать перестроение проекта. 
+        И в итоге окно нам выведет названия смартфонов:
+    -->
+        <ListBox Name="list" DisplayMemberPath="Title">
+            <local:Phone Title="iPhone 6S" Company="Apple" Price="54990" />
+            <local:Phone Title="Lumia 950" Company="Microsoft" Price="39990" />
+            <local:Phone Title="Nexus 5X" Company="Google" Price="29990" />
+        </ListBox>
+    </Grid>
+</Window>

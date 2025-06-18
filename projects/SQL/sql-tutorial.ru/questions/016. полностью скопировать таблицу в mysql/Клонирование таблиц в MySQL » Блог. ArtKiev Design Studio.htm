@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ru"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<meta charset="utf-8">
+	<title>Клонирование таблиц в MySQL »  Блог. ArtKiev Design Studio</title>
+	<meta name="viewport" content="width=1200">
+	<link rel="stylesheet" type="text/css" href="%D0%9A%D0%BB%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%20%D0%B2%20MySQL%20%C2%BB%20%D0%91%D0%BB%D0%BE%D0%B3.%20ArtKiev%20Design%20Studio_files/design.css" media="screen">
+	<meta name="description" content=". ArtKiev Design Studio">
+	<meta property="og:title" content="Клонирование таблиц в MySQL »  Блог. ArtKiev Design Studio">
+	<meta property="og:description" content=". ArtKiev Design Studio">
+	<meta property="og:image" content="https://artkiev.com/all/b19/mysql-clone-table_inpm3o8mbzzu.jpg">
+	<meta property="og:url" content="https://artkiev.com/blog/mysql-clone-table.htm">
+<link rel="apple-touch-icon" sizes="180x180" href="https://artkiev.com/face/icons/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://artkiev.com/face/icons/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="https://artkiev.com/face/icons/favicon-16x16.png">
+<link rel="manifest" href="https://artkiev.com/face/icons/manifest.json">
+<link rel="mask-icon" href="https://artkiev.com/face/icons/safari-pinned-tab.svg" color="#b06880">
+<meta name="msapplication-config" content="/face/icons/browserconfig.xml">
+<meta name="theme-color" content="#b06880">
+<link rel="shortcut icon" href="https://artkiev.com/favicon.ico"><script async="" src="%D0%9A%D0%BB%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%20%D0%B2%20MySQL%20%C2%BB%20%D0%91%D0%BB%D0%BE%D0%B3.%20ArtKiev%20Design%20Studio_files/analytics.js"></script><script type="text/javascript" async="" src="%D0%9A%D0%BB%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%20%D0%B2%20MySQL%20%C2%BB%20%D0%91%D0%BB%D0%BE%D0%B3.%20ArtKiev%20Design%20Studio_files/watch_ua.js"></script><script src="%D0%9A%D0%BB%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%20%D0%B2%20MySQL%20%C2%BB%20%D0%91%D0%BB%D0%BE%D0%B3.%20ArtKiev%20Design%20Studio_files/core.js"></script><script src="%D0%9A%D0%BB%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%20%D0%B2%20MySQL%20%C2%BB%20%D0%91%D0%BB%D0%BE%D0%B3.%20ArtKiev%20Design%20Studio_files/core_002.js"></script><script src="%D0%9A%D0%BB%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%20%D0%B2%20MySQL%20%C2%BB%20%D0%91%D0%BB%D0%BE%D0%B3.%20ArtKiev%20Design%20Studio_files/highlight.js"></script></head>
+<body id="body"><header>
+<div class="content">
+<input type="checkbox" id="mobile_menu">
+<a href="https://artkiev.com/" class="logo" title="ArtKiev Design Studio">ArtKiev Design Studio</a>
+
+<div class="header_zapros" id="header_zapros">
+
+<span class="zapros" onclick="artkiev_zapros()">Отправить заявку</span>
+
+</div>
+
+<nav>
+<label for="mobile_menu" class="mobile_menu"></label>
+<div id="in_menu" class="in_menu"></div>
+<ul class="top_menu_ul"><li class="top_menu_li"><a href="https://artkiev.com/about/" class="top_menu_a">О студии</a></li><li class="top_menu_li"><a href="https://artkiev.com/services-and-prices/" class="top_menu_a">Услуги и цены</a></li><li class="top_menu_li"><a href="https://artkiev.com/portfolio/" class="top_menu_a">Портфолио</a></li><li class="top_menu_li top_menu_li_a"><a href="https://artkiev.com/blog/" class="top_menu_a top_menu_a_a">Блог</a></li><li class="top_menu_li"><a href="https://artkiev.com/contacts/" class="top_menu_a">Контакты</a></li></ul>
+</nav>
+<div class="cb"></div>
+</div>
+</header><div class="page"></div>
+	<div class="content is_post">
+	<div class="blog_left">
+	<h1>Клонирование таблиц в MySQL</h1><div class="text"><p>Необходимо 
+создать копию таблицы со всеми данными или же только копию 
+структуры?Воспользуемся стандартными запросами MySQL для этих нужд.</p><p><strong>Задача:</strong>
+ нужно создать новую пользовательскую таблицу со структурой, аналогичной
+ существующей таблице. Эта обычная ситуация, когда нужно просто 
+скопировать структуру и ключи некоторой таблицы, без копирования данных.
+ Выполняем запрос:</p>
+<pre><code class="js hljs javascript">CREATE TABLE NEW_TableName
+LIKE OLD_TableName</code></pre>
+<p><strong>Задача:</strong> нужно склонировать таблицы базы данных со всеми данными<br>
+В случае, если вам нужно клонировать всю таблицу вместе с данными, то ниже приведенный метод может помочь вам.</p>
+<pre><code class="js hljs javascript">CREATE TABLE NEW_TableName
+SELECT *
+FROM OLD_TableName</code></pre>
+<p>или же:</p>
+<pre><code class="js hljs javascript">CREATE TABLE NEW_TableName
+LIKE OLD_TableName</code></pre>
+<pre><code class="js hljs javascript">INSERT INTO NEW_TableName
+SELECT *
+FROM OLD_TableName;</code></pre>
+</div>
+
+
+
+ </div><div class="blog_right">
+	
+	<div class="search"><form method="get" action="/blog/" onsubmit="return artkiev_validators(this,0,0,0)"><input type="text" name="s" data-yes="(.+){2,}$" data-no="Мало данных :(" placeholder="Поиск по блогу" class="search_inp"><button type="submit" title="Выполнить поиск по блогу"></button></form></div>	<ul class="blog_category"><li><a href="https://artkiev.com/blog/web-developer/">Веб-разработка</a></li><li><a href="https://artkiev.com/blog/design/">Дизайн</a></li><li><a href="https://artkiev.com/blog/mysql/" class="blog_category_a">MySQL</a></li><li><a href="https://artkiev.com/blog/seo/">SEO</a></li><li><a href="https://artkiev.com/blog/windows/">Windows</a></li><li><a href="https://artkiev.com/blog/freebsd/">FreeBSD, Unix, Linux</a></li><li><a href="https://artkiev.com/blog/android/">Android</a></li><li><a href="https://artkiev.com/blog/gadget/">Гаджеты и техника</a></li><li><a href="https://artkiev.com/blog/poleznoe/">Полезное</a></li><li><a href="https://artkiev.com/blog/other/">Разное</a></li><li><a href="https://artkiev.com/blog/facts/">Интересные факты</a></li></ul>
+	
+	</div><div class="cb"></div></div><div class="blogs_other"><div class="content">
+	<div class="name_2">Другие публикации</div><div class="name_small"></div>
+	
+
+	<ul><li class="blog_li">
+		<a href="https://artkiev.com/blog/mysql-dump-extract-one-table.htm" title="MySQL: Извлечение из дампа только структуры"><img src="%D0%9A%D0%BB%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%20%D0%B2%20MySQL%20%C2%BB%20%D0%91%D0%BB%D0%BE%D0%B3.%20ArtKiev%20Design%20Studio_files/mysql-dump-extract-one-table_b1uk357edb.jpg" alt="MySQL: Извлечение из дампа только структуры"></a>
+		<a href="https://artkiev.com/blog/mysql-dump-extract-one-table.htm" class="blog_name">MySQL: Извлечение из дампа только структуры</a>
+		</li><li class="blog_li">
+		<a href="https://artkiev.com/blog/mysql-import-csv.htm" title="MySQL: Импорт данных из CSV"><img src="%D0%9A%D0%BB%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%20%D0%B2%20MySQL%20%C2%BB%20%D0%91%D0%BB%D0%BE%D0%B3.%20ArtKiev%20Design%20Studio_files/mysql-import-csv_cwyzr6w8anb.jpg" alt="MySQL: Импорт данных из CSV"></a>
+		<a href="https://artkiev.com/blog/mysql-import-csv.htm" class="blog_name">MySQL: Импорт данных из CSV</a>
+		</li><li class="blog_li">
+		<a href="https://artkiev.com/blog/mysql-case-sensitivity-table-name.htm" title="MySQL: влияние регистра букв в названии таблиц и БД"><img src="%D0%9A%D0%BB%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%20%D0%B2%20MySQL%20%C2%BB%20%D0%91%D0%BB%D0%BE%D0%B3.%20ArtKiev%20Design%20Studio_files/mysql-case-sensitivity-table-name_7sszitogc6.jpg" alt="MySQL: влияние регистра букв в названии таблиц и БД"></a>
+		<a href="https://artkiev.com/blog/mysql-case-sensitivity-table-name.htm" class="blog_name">MySQL: влияние регистра букв в названии таблиц и БД</a>
+		</li><li class="blog_li">
+		<a href="https://artkiev.com/blog/mysql-full-list-commands.htm" title="MySQL: Полный список часто используемых и полезных команд"><img src="%D0%9A%D0%BB%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%20%D0%B2%20MySQL%20%C2%BB%20%D0%91%D0%BB%D0%BE%D0%B3.%20ArtKiev%20Design%20Studio_files/mysql-full-list-commands_oharh4jdju9.jpg" alt="MySQL: Полный список часто используемых и полезных команд"></a>
+		<a href="https://artkiev.com/blog/mysql-full-list-commands.htm" class="blog_name">MySQL: Полный список часто используемых и полезных команд</a>
+		</li></ul></div>
+	</div><footer>
+<div class="content_medium">
+<div class="footer_logo"></div>
+<ul class="footer_bottom_menu">
+<li class="bottom_menu_li"><a href="https://artkiev.com/">Главная</a></li><li class="bottom_menu_li"><a href="https://artkiev.com/about/">О студии</a></li><li class="bottom_menu_li"><a href="https://artkiev.com/services-and-prices/">Услуги и цены</a></li><li class="bottom_menu_li"><a href="https://artkiev.com/portfolio/">Портфолио</a></li><li class="bottom_menu_li top_menu_li_a"><a href="https://artkiev.com/blog/">Блог</a></li>
+<li><a href="https://artkiev.com/about/english/">About ArtKiev</a></li>
+</ul>
+<div class="cb"></div>
+
+
+<div class="copyright">
+Copyright © <strong>ArtKiev Design Studio</strong> 2002-2021</div><div class="partner_ads">
+<script type="text/javascript" async="" src="%D0%9A%D0%BB%D0%BE%D0%BD%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5%20%D1%82%D0%B0%D0%B1%D0%BB%D0%B8%D1%86%20%D0%B2%20MySQL%20%C2%BB%20%D0%91%D0%BB%D0%BE%D0%B3.%20ArtKiev%20Design%20Studio_files/aci.js"></script><script type="text/javascript">
+<!--
+var _acic={dataProvider:10,allowCookieMatch:false};(function(){var e=document.createElement("script");e.type="text/javascript";e.async=true;e.src="//www.acint.net/aci.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})()
+//-->
+</script> <a href="https://hover.com.ua/services/sozdaniye_saytov/" target="_blank">заказать разработку сайта</a> </div></div></footer>
+<div id="artkiev_load"></div>
+<div id="modal" class="window none"><div id="window"></div></div>
+<div id="scroll_to" class="scroll_to scroll_up"></div>
+<div id="artkiev_shadow" class="none"></div>
+<script>
+function aas(src, load){
+  var script = document.createElement("script");
+  script.src = "/face/"+src;
+  script.async = false;
+  if (load==1)
+  {
+	  script.async = true;
+	  script.src =src;
+  }
+  document.head.appendChild(script);
+}
+aas("tmp/core.js",0);
+aas("core.artkiev.js?version=2",0);
+aas("highlight.pack.js?version=2",0);
+</script>
+<script> (function (d, w, c) { (w[c] = w[c] || []).push(function() { try { w.yaCounter18096289 = new Ya.Metrika({ id:18096289, clickmap:true, trackLinks:true, accurateTrackBounce:true }); } catch(e) { } }); var n = d.getElementsByTagName("script")[0], s = d.createElement("script"), f = function () { n.parentNode.insertBefore(s, n); }; s.type = "text/javascript"; s.async = true; s.src = "https://d31j93rd8oukbv.cloudfront.net/metrika/watch_ua.js"; if (w.opera == "[object Opera]") { d.addEventListener("DOMContentLoaded", f, false); } else { f(); } })(document, window, "yandex_metrika_callbacks");
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-30280060-1', 'auto');  ga('send', 'pageview');
+</script> 
+<noscript><div><img src="https://mc.yandex.ru/watch/18096289" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+</body></html>

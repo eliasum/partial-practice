@@ -1,0 +1,263 @@
+
+@media (max-width: 1024px) {
+	.narrowcolumn {
+		width: 65%;
+	}
+	#sidebar-border {
+		width: 32%;
+		padding: 20px 10px 20px 20px;
+	}
+	select#cat {
+		width: 100%;
+	
+	}
+	body {
+		background: #fff none;
+	}
+	#page {
+		box-shadow: none;
+	}
+	.teaser-view {
+		width: 49%;
+	}
+	.collage-row {
+		max-width: 100%;
+	}
+}
+
+@media (max-width: 900px) {
+	#header {
+		height: 100px;
+	}
+	#header .description {
+		display: none;
+	}
+	#topmenu {
+		margin: 0 20px 0 0;
+		position: relative;
+		top: 10px;
+		bottom: auto;
+		left: auto;
+		right: 20px;
+		max-width: 70%;
+		float: right;
+	}
+	#topmenu li {
+		font-size: 13px;
+	}
+	#header #searchbar {
+		position: static;
+		float: right;
+		clear: right;
+		margin: 20px 20px 0 0;
+	}
+	#header #searchbar #s {
+		background: #eee;
+		border-radius: 5px;
+		font: 14px/24px Verdana;
+		height: 24px;
+		vertical-align: middle;
+		color: #000;
+	}
+	#header #searchbar #searchsubmit {
+		height: 26px;
+		vertical-align: middle;
+	}
+	#sidebar h2 {
+		font-size: 15px;
+	}
+	
+}
+
+@media (max-width: 800px) {
+	.search-toggle,
+	.menu-toggle {
+		display: inline-block;
+	}
+	#header #topmenu {
+		position: static;
+		background: #000;
+		top: 100px;
+		margin: 0;
+		height: auto;
+		display: none;
+		border-radius: 0;
+		padding: 20px 0;
+		clear: both;
+		width: 100%;
+	}
+	#topmenu li {
+		float: none;
+		display: block;
+		height: auto;
+		padding: 0;
+	}
+	#topmenu a {
+		background: none;
+		font: 20px/28px Verdana;
+		padding: 5px 15px;
+		display: block;
+	}
+	#topmenu ul a {
+		background: none;
+		font: 16px/20px Verdana;
+		padding: 5px 15px;
+		display: block;
+	}
+	ul#topmenu ul li {
+		border: 0;
+	}
+	
+	#header #topmenu a:hover {
+		color: #FFF;
+		background: #365899;
+	}
+	
+	#header #searchbar {
+		display: none;
+		background: #365899;
+		width: 100%;
+		text-align: right;
+		padding: 15px;
+		margin: 0;
+	}
+	#header #searchbar #s {
+		background: #fff;
+		border-radius: 0;
+		font: 14px/24px Verdana;
+		height: 24px;
+		vertical-align: middle;
+		color: #000;
+		width: 50%;
+	}
+	#header #searchbar #searchsubmit {
+		height: 26px;
+		vertical-align: middle;
+		border-radius: 0;
+	}	
+	
+	#header #searchbar.active {
+		display: block;
+	}
+	#header #topmenu.active {
+		display: block;
+	}
+	ul#topmenu ul li {
+		width: 100%;
+	}
+	ul#topmenu ul {
+		display: block;
+		position: static;
+		width: 100%;
+		border: 0;
+		background: inherit;
+	}
+	ul#topmenu li {
+		padding-left: 10px;
+		float: none;
+	}
+	ul#topmenu ul li a {
+		font: 14px/1.2em Helvetica;
+	}
+}
+
+@media (max-width: 720px) {
+	#content.narrowcolumn {
+		width: 100%;
+		box-sizing: border-box;
+		padding: 0 20px;
+	}
+	
+	#sidebar-border {
+		width: 100%;
+		padding: 10px 20px;
+		max-width: 100%;
+	}
+	#sidebar-border .widget_archive {
+		display: none;
+	}
+	#sidebar h2 {
+		font-size: 20px;
+	}
+	select#cat {
+		max-width: 300px;
+	}
+}
+
+@media (max-width: 600px) {
+	#content.narrowcolumn {
+		padding: 0 10px;
+	}
+	#sidebar-border {
+		padding: 10px;
+	}
+	.post .entry ul {
+		padding-left: 0px;
+		list-style-position: inside;
+	}
+	.post .entry ul li {
+		margin: 7px 0;
+	}
+	.post .entry ul ul {
+		padding-left: 20px;
+	}
+	.page > h2, .post > h2 {
+		font-weight: bold;
+	}
+	.diafilms {
+		display: none;
+	}
+}
+
+@media (max-width: 500px) {
+	.postmetadata {
+		border: 0;
+		background-color: #fff;
+		padding: 5px 0;
+	}
+	.narrowcolumn .post .dtm {
+	}
+	.narrowcolumn .post .dtm span {
+		background: #EEE;
+		display: inline-block;
+		padding: 5px 10px;
+		border-radius: 2px;
+		margin-right: -10px;
+	}
+	.teaser-view {
+		width: 100%;
+		max-width: 100%;
+		padding: 10px 0px !important;
+	}	
+	
+}
+
+@media (max-width: 400px) {
+	#header {
+		height: 90px;
+	}
+	#header .h1 {
+		width: 50%;
+	}
+	.search-toggle,
+	.menu-toggle {
+		font-size: 24px;
+		margin: 15px 10px 0 0;
+	}
+	.narrowcolumn .post.type-post {
+		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+	}
+	.narrowcolumn.multyply .post .entry {
+		display: none;
+	}
+	.narrowcolumn.multyply .postmetadata {
+		display: none;
+	}	
+	.narrowcolumn.multyply .post .dtm span {
+		display: none;
+	}	
+	.main-film .action-button {
+		font-size: 14px;
+	}
+}
+

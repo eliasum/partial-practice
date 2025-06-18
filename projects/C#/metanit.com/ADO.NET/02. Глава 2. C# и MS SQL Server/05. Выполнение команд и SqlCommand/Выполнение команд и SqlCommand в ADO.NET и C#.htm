@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<title>Выполнение команд и SqlCommand в ADO.NET и C#</title>
+<meta charset="utf-8">
+<meta name="description" content="Класс SqlCommand, добавление, удаление и изменени записей в MS SQL Server в ADO.NET и C#">
+<meta name="viewport" content="width=device-width">
+<link href="%D0%92%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%20%D0%B8%20SqlCommand%20%D0%B2%20ADO.NET%20%D0%B8%20C%23_files/style30.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="%D0%92%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%20%D0%B8%20SqlCommand%20%D0%B2%20ADO.NET%20%D0%B8%20C%23_files/context.js" async=""></script><script type="text/javascript" src="%D0%92%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%20%D0%B8%20SqlCommand%20%D0%B2%20ADO.NET%20%D0%B8%20C%23_files/context.js" async=""></script><script async="" src="%D0%92%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%20%D0%B8%20SqlCommand%20%D0%B2%20ADO.NET%20%D0%B8%20C%23_files/analytics.js"></script><script type="text/javascript" async="" src="%D0%92%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%20%D0%B8%20SqlCommand%20%D0%B2%20ADO.NET%20%D0%B8%20C%23_files/embed.js"></script><link rel="prefetch" as="style" href="%D0%92%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%20%D0%B8%20SqlCommand%20%D0%B2%20ADO.NET%20%D0%B8%20C%23_files/a_data/lounge.css"><link rel="prefetch" as="script" href="%D0%92%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%20%D0%B8%20SqlCommand%20%D0%B2%20ADO.NET%20%D0%B8%20C%23_files/a_data/common.js"><link rel="prefetch" as="script" href="%D0%92%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%20%D0%B8%20SqlCommand%20%D0%B2%20ADO.NET%20%D0%B8%20C%23_files/a_data/lounge.js"><link rel="prefetch" as="script" href="%D0%92%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%20%D0%B8%20SqlCommand%20%D0%B2%20ADO.NET%20%D0%B8%20C%23_files/a_data/config.js"></head>
+<body>
+<div id="container">
+
+<div id="header">
+<div id="logo">
+<a class="logoTitle" href="https://metanit.com/" title="На главную">METANIT.COM</a>
+<div class="logoDefinition">Сайт о программировании</div> 
+</div>
+
+<div class="socialbtns">
+<ul>
+<li><a title="Посмотреть меню" rel="nofollow" class="fa fa-lg fa-bars"></a></li>
+<li><a href="https://metanit.com/donations.php" title="Помощь сайту" rel="nofollow" class="fa fa-lg fa-usd"></a></li>
+<li><a href="https://vk.com/metanit" title="Группа в ВКонтакте" rel="nofollow" class="fa fa-lg fa-vk"></a></li>
+<li><a href="https://twitter.com/Eugene225" title="Твиттер" rel="nofollow" class="fa fa-lg fa-twitter"></a></li>
+<li><a href="https://www.facebook.com/metanitcom" title="Страница в Facebook" rel="nofollow" class="fa fa-lg fa-facebook"></a></li>
+<li><a href="https://www.youtube.com/user/Eugene22584/" title="Канал сайта на Youtube" rel="nofollow" class="fa fa-lg fa-youtube"></a></li>
+<li><a href="https://t.me/metanit" title="Телеграмм" class="fa fa-lg fa-tel"></a></li>
+<li><i id="toggle-theme" class="fa fa-lg fa-adjust"></i></li>
+</ul>
+</div>
+
+<div id="search" class="transp">
+<form action="https://www.google.ru" id="cse-search-box">
+  <div>
+    <input type="hidden" name="cx" value="partner-pub-3716042175333627:1096498938">
+    <input type="hidden" name="ie" value="UTF-8">
+    <input type="text" name="q" style="border: 1px solid rgb(126, 157, 185); padding: 2px; background: rgb(255, 255, 255) url(&quot;https://www.google.com/cse/static/images/1x/googlelogo_lightgrey_46x16dp.png&quot;) no-repeat scroll left center; text-indent: 48px;" placeholder="Пользовательского поиска">
+    <input type="submit" name="sa" value="Найти">
+  </div>
+<input name="siteurl" type="hidden" value="metanit.com/sharp/adonet/2.5.php"><input name="ref" type="hidden"><input name="ss" type="hidden"></form>
+</div>
+<div class="icon-vk"></div>
+<div id="magnifying-glass"></div>
+
+<div class="menuButton" id="menuButton">
+	<span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+    <span class="icon-bar"></span>
+</div>
+
+<div id="menu" class="menu">
+<ul class="mainmenu">
+   <li><a href="https://metanit.com/sharp/">C#/.NET</a></li>
+   <li><a href="https://metanit.com/java/">Java</a></li>
+   <li><a href="https://metanit.com/web/">WEB</a></li>
+   <li><a href="https://metanit.com/python/">Python</a></li>
+   <li><a href="https://metanit.com/cpp/">C/C++</a></li>
+   <li><a href="https://metanit.com/sql/">SQL</a></li>
+   <li><a href="https://metanit.com/nosql/mongodb/">MongoDB</a></li>
+   <li><a href="https://metanit.com/go/">Go</a></li>
+   <li><a href="https://metanit.com/visualbasic/tutorial/">VB.NET</a></li>
+   <li><a href="https://metanit.com/swift/tutorial/">Swift</a></li>
+   <li><a href="https://metanit.com/kotlin/tutorial/">Kotlin</a></li>
+   <li><a href="https://metanit.com/dart/">Dart</a></li>
+</ul>
+</div>
+</div>
+<div id="content_right"> 
+<div id="content_right_inner"> 
+<div id="content_center"> 
+<div id="menC" class="menC">
+<div class="articleText" id="articleText">
+<h2>Выполнение команд и SqlCommand</h2><div class="date">Последнее обновление: 31.10.2015</div>
+
+<div class="socialBlock">
+<div class="share socialtop">
+<ul>
+<li><a title="Поделиться в Вконтакте" rel="nofollow" class="fa fa-lg fa-vk" onclick='window.open("http://vk.com/share.php?url=https://metanit.com/sharp/adonet/2.5.php","Поделиться в ВКОНТАКТЕ","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")'></a></li>
+<li><a title="Поделиться в Одноклассниках" rel="nofollow" class="fa fa-lg fa-odnoklassniki" onclick='window.open("https://connect.ok.ru/offer?url=https://metanit.com/sharp/adonet/2.5.php","Поделиться в Одноклассниках","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")'></a></li>
+<li><a title="Поделиться в Твиттере" rel="nofollow" class="fa fa-lg fa-twitter" onclick='window.open("http://twitter.com/share?url=https://metanit.com/sharp/adonet/2.5.php","Поделиться в Твиттере","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")'></a></li>
+<li><a title="Поделиться в Фейсбуке" rel="nofollow" class="fa fa-lg fa-facebook" onclick='window.open("http://www.facebook.com/sharer.php?u=https://metanit.com/sharp/adonet/2.5.php","Поделиться в Facebook","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")'></a></li>
+</ul>
+</div>
+
+</div>
+
+<div style="margin-top:23px;margin-left:5px;">
+<script async="" src="%D0%92%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%20%D0%B8%20SqlCommand%20%D0%B2%20ADO.NET%20%D0%B8%20C%23_files/adsbygoogle.js"></script>
+<style>
+.footer-adaptive { width: 320px; height: 100px; }
+@media(min-width: 480px) { .footer-adaptive { width: 468px; height: 60px; } }
+@media(min-width: 760px) { .footer-adaptive { width: 728px; height: 90px;  } }
+@media(min-width: 1000px) { .footer-adaptive { width: 468px; height: 60px;  } }
+@media(min-width: 1122px) { .footer-adaptive{ width: 728px; height: 90px;} }
+@media(min-width: 1400px) { .footer-adaptive { width: 970px; height: 90px;} }
+</style>
+<!-- footer_adaptive -->
+<ins class="adsbygoogle footer-adaptive" style="display:inline-block" data-ad-client="ca-pub-3716042175333627" data-ad-slot="9659512088"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+<p>После установки подключения мы можем выполнить к базе данных 
+какие-либо команды, например, добавить в базу данных объект, удалить, 
+изменить его или просто извлечь. 
+Команды представлены объектом интерфейса System.Data.IDbCommand. 
+Провайдер для MS SQL предоставляет его реализацию в виде класса 
+<span class="b">SqlCommand</span>. Этот класс инкапсулирует sql-выражение, которое должно быть выполнено.</p>
+<p>Для выполнения команды нам потребуется sql-выражение и объект подключения:</p>
+<div><div id="highlighter_28341" class="syntaxhighlighter  c#"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="c# keyword">string</code> <code class="c# plain">connectionString = </code><code class="c# string">@"Data Source=.\SQLEXPRESS;Initial Catalog=usersdb;Integrated Security=True"</code><code class="c# plain">;</code></div><div class="line number2 index1 alt1"><code class="c# keyword">using</code> <code class="c# plain">(SqlConnection connection = </code><code class="c# keyword">new</code> <code class="c# plain">SqlConnection(connectionString))</code></div><div class="line number3 index2 alt2"><code class="c# plain">{</code></div><div class="line number4 index3 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">connection.Open();</code></div><div class="line number5 index4 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">SqlCommand command = </code><code class="c# keyword">new</code> <code class="c# plain">SqlCommand();</code></div><div class="line number6 index5 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">command.CommandText = </code><code class="c# string">"SELECT * FROM Users"</code><code class="c# plain">;</code></div><div class="line number7 index6 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">command.Connection = connection;</code></div><div class="line number8 index7 alt1"><code class="c# plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p>С помощью свойства <code>CommandText</code> устанавливается 
+SQL-выражение, которое будет выполняться. В данном случае это запрос на 
+получение всех объектов из таблицы Users. 
+А с помощью свойства <code>Connection</code> можно установить объект подключения SqlConnection.</p>
+<p>В качестве альтернативы можно было бы использовать одну из версий конструктора класса:</p>
+<div><div id="highlighter_780709" class="syntaxhighlighter  c#"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="c# keyword">string</code> <code class="c# plain">connectionString = </code><code class="c# string">@"Data Source=.\SQLEXPRESS;Initial Catalog=usersdb;Integrated Security=True"</code><code class="c# plain">;</code></div><div class="line number2 index1 alt1"><code class="c# keyword">string</code> <code class="c# plain">sqlExpression = </code><code class="c# string">"SELECT * FROM Users"</code><code class="c# plain">;</code></div><div class="line number3 index2 alt2"><code class="c# keyword">using</code> <code class="c# plain">(SqlConnection connection = </code><code class="c# keyword">new</code> <code class="c# plain">SqlConnection(connectionString))</code></div><div class="line number4 index3 alt1"><code class="c# plain">{</code></div><div class="line number5 index4 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">connection.Open();</code></div><div class="line number6 index5 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">SqlCommand command = </code><code class="c# keyword">new</code> <code class="c# plain">SqlCommand(sqlExpression, connection);</code></div><div class="line number7 index6 alt2"><code class="c# plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p>Чтобы выполнить команду, необходимо применить один из методов SqlCommand:</p>
+<ul>
+<li><p><span class="b">ExecuteNonQuery</span>: просто выполняет sql-выражение и возвращает количество измененных записей. Подходит для sql-выражений INSERT, UPDATE, DELETE.</p></li>
+<li><p><span class="b">ExecuteReader</span>: выполняет sql-выражение и возвращает строки из таблицы. Подходит для sql-выражения SELECT.</p></li>
+<li><p><span class="b">ExecuteScalar</span>: выполняет sql-выражение и возвращает одно скалярное значение, например, число. Подходит 
+для sql-выражения SELECT в паре с одной из встроенных функций SQL, как например, Min, Max, Sum, Count.</p></li>
+</ul>
+<h3>Добавление объектов</h3>
+<p>Выполним команду по добавлению одного объекта в таблицу Users базы данных usersdb, которая ранее была создана:</p>
+<div><div id="highlighter_169437" class="syntaxhighlighter  c#"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="c# keyword">class</code> <code class="c# plain">Program</code></div><div class="line number2 index1 alt1"><code class="c# plain">{</code></div><div class="line number3 index2 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">static</code> <code class="c# keyword">void</code> <code class="c# plain">Main(</code><code class="c# keyword">string</code><code class="c# plain">[] args)</code></div><div class="line number4 index3 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">{</code></div><div class="line number5 index4 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">string</code> <code class="c# plain">connectionString = </code><code class="c# string">@"Data Source=.\SQLEXPRESS;Initial Catalog=usersdb;Integrated Security=True"</code><code class="c# plain">;</code></div><div class="line number6 index5 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">string</code> <code class="c# plain">sqlExpression = </code><code class="c# string">"INSERT INTO Users (Name, Age) VALUES ('Tom', 18)"</code><code class="c# plain">;</code></div><div class="line number7 index6 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code>&nbsp;</div><div class="line number8 index7 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">using</code> <code class="c# plain">(SqlConnection connection = </code><code class="c# keyword">new</code> <code class="c# plain">SqlConnection(connectionString))</code></div><div class="line number9 index8 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">{</code></div><div class="line number10 index9 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">connection.Open();</code></div><div class="line number11 index10 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">SqlCommand command = </code><code class="c# keyword">new</code> <code class="c# plain">SqlCommand(sqlExpression, connection);</code></div><div class="line number12 index11 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">int</code> <code class="c# plain">number = command.ExecuteNonQuery();</code></div><div class="line number13 index12 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">Console.WriteLine(</code><code class="c# string">"Добавлено объектов: {0}"</code><code class="c# plain">, number);</code></div><div class="line number14 index13 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">}</code></div><div class="line number15 index14 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">Console.Read();</code></div><div class="line number16 index15 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">}</code></div><div class="line number17 index16 alt2"><code class="c# plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p>Для вставки объекта используется sql-выражение INSERT, которое имеет следующий синтаксис:</p>
+<div><div id="highlighter_454951" class="syntaxhighlighter  sql"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="sql keyword">INSERT</code> <code class="sql keyword">INTO</code> <code class="sql plain">название_таблицы (столбец1, столбец2, столбецN) </code><code class="sql keyword">VALUES</code> <code class="sql plain">( значение1, значение2, значениеN)</code></div></div></td></tr></tbody></table></div></div>
+<p>В данном случае мы знаем, что в базе данных у нас есть таблица Users,
+ в которой есть три столбца - Id и Age, хранящие целое число, 
+и Name, хранящий строку. Поэтому соответственно мы добавляем для столбца
+ Name значение 'Tom', а для столбца Age число 18.</p>
+<p>Здесь метод <code>ExecuteNonOuery()</code> возвращает число 
+затронутых строк (в данном случае добавленных в таблицу объектов). 
+Хотя нам необязательно возвращать результат метода, но данный результат 
+может использоваться в качестве проверки, что операция, в частности, 
+добавление, 
+прошла успешно.</p>
+<p>Чтобы убедиться, что данные добавлены, мы можем перейти к таблице Users в SQL Server Management Studio и с помощью опции 
+<code>Select Top 1000 Rows</code> вывести добавленную строку:</p>
+<img src="%D0%92%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%20%D0%B8%20SqlCommand%20%D0%B2%20ADO.NET%20%D0%B8%20C%23_files/sqlcommand.png" alt="Добавление в БД через SqlCommand">
+<h3>Обновление объектов</h3>
+<p>Обновление будет происходить аналогично, только теперь будет 
+использоваться sql-выражение UPDATE, которое имеет следующий синтаксис:</p>
+<div><div id="highlighter_984232" class="syntaxhighlighter  sql"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="sql keyword">UPDATE</code> <code class="sql plain">название_таблицы</code></div><div class="line number2 index1 alt1"><code class="sql keyword">SET</code> <code class="sql plain">столбец1=значение1, столбец2=значение2, столбецN=значениеN</code></div><div class="line number3 index2 alt2"><code class="sql keyword">WHERE</code> <code class="sql plain">некоторый_столбец=некоторое_значение</code></div></div></td></tr></tbody></table></div></div>
+<p>Применим это выражение:</p>
+<div><div id="highlighter_872604" class="syntaxhighlighter  c#"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="c# keyword">string</code> <code class="c# plain">connectionString = </code><code class="c# string">@"Data Source=.\SQLEXPRESS;Initial Catalog=usersdb;Integrated Security=True"</code><code class="c# plain">;</code></div><div class="line number2 index1 alt1">&nbsp;</div><div class="line number3 index2 alt2"><code class="c# keyword">string</code> <code class="c# plain">sqlExpression = </code><code class="c# string">"UPDATE Users SET Age=20 WHERE Name='Tom'"</code><code class="c# plain">;</code></div><div class="line number4 index3 alt1"><code class="c# keyword">using</code> <code class="c# plain">(SqlConnection connection = </code><code class="c# keyword">new</code> <code class="c# plain">SqlConnection(connectionString))</code></div><div class="line number5 index4 alt2"><code class="c# plain">{</code></div><div class="line number6 index5 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">connection.Open();</code></div><div class="line number7 index6 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">SqlCommand command = </code><code class="c# keyword">new</code> <code class="c# plain">SqlCommand(sqlExpression, connection);</code></div><div class="line number8 index7 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">int</code> <code class="c# plain">number = command.ExecuteNonQuery();</code></div><div class="line number9 index8 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">Console.WriteLine(</code><code class="c# string">"Обновлено объектов: {0}"</code><code class="c# plain">, number);</code></div><div class="line number10 index9 alt1"><code class="c# plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p>Здесь обновляется строка, в которой Name=Tom, то есть выше добавленный объект. Если в таблице будет несколько строк, у которых 
+Name=Tom, то обновятся все эти строки.</p>
+<h3>Удаление</h3>
+<p>Удаление производится с помощью sql-выражения DELETE, которое имеет следующий синтаксис:</p>
+<div><div id="highlighter_998134" class="syntaxhighlighter  sql"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="sql keyword">DELETE</code> <code class="sql keyword">FROM</code> <code class="sql plain">таблица</code></div><div class="line number2 index1 alt1"><code class="sql keyword">WHERE</code> <code class="sql plain">столбец = значение</code></div></div></td></tr></tbody></table></div></div>
+<p>Удалим, например, всех пользователей, у которых имя Tom:</p>
+<div><div id="highlighter_786274" class="syntaxhighlighter  c#"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="c# keyword">string</code> <code class="c# plain">connectionString = </code><code class="c# string">@"Data Source=.\SQLEXPRESS;Initial Catalog=usersdb;Integrated Security=True"</code><code class="c# plain">;</code></div><div class="line number2 index1 alt1"><code class="c# keyword">string</code> <code class="c# plain">sqlExpression = </code><code class="c# string">"DELETE&nbsp; FROM Users WHERE Name='Tom'"</code><code class="c# plain">;</code></div><div class="line number3 index2 alt2"><code class="c# keyword">using</code> <code class="c# plain">(SqlConnection connection = </code><code class="c# keyword">new</code> <code class="c# plain">SqlConnection(connectionString))</code></div><div class="line number4 index3 alt1"><code class="c# plain">{</code></div><div class="line number5 index4 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">connection.Open();</code></div><div class="line number6 index5 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">SqlCommand command = </code><code class="c# keyword">new</code> <code class="c# plain">SqlCommand(sqlExpression, connection);</code></div><div class="line number7 index6 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">int</code> <code class="c# plain">number = command.ExecuteNonQuery();</code></div><div class="line number8 index7 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">Console.WriteLine(</code><code class="c# string">"Удалено объектов: {0}"</code><code class="c# plain">, number);</code></div><div class="line number9 index8 alt2"><code class="c# plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p>Во всех трех случаях фактически меняется только sql-выражение, а 
+остальная логика остается неизменной. И мы также можем выполнять сразу 
+несколько операций:</p>
+<div><div id="highlighter_518402" class="syntaxhighlighter  c#"><div class="toolbar"><span><a href="#" class="toolbar_item command_help help">?</a></span></div><table cellspacing="0" cellpadding="0" border="0"><tbody><tr><td class="gutter"><div class="line number1 index0 alt2">1</div><div class="line number2 index1 alt1">2</div><div class="line number3 index2 alt2">3</div><div class="line number4 index3 alt1">4</div><div class="line number5 index4 alt2">5</div><div class="line number6 index5 alt1">6</div><div class="line number7 index6 alt2">7</div><div class="line number8 index7 alt1">8</div><div class="line number9 index8 alt2">9</div><div class="line number10 index9 alt1">10</div><div class="line number11 index10 alt2">11</div><div class="line number12 index11 alt1">12</div><div class="line number13 index12 alt2">13</div><div class="line number14 index13 alt1">14</div><div class="line number15 index14 alt2">15</div><div class="line number16 index15 alt1">16</div><div class="line number17 index16 alt2">17</div><div class="line number18 index17 alt1">18</div><div class="line number19 index18 alt2">19</div><div class="line number20 index19 alt1">20</div><div class="line number21 index20 alt2">21</div><div class="line number22 index21 alt1">22</div><div class="line number23 index22 alt2">23</div><div class="line number24 index23 alt1">24</div><div class="line number25 index24 alt2">25</div><div class="line number26 index25 alt1">26</div><div class="line number27 index26 alt2">27</div><div class="line number28 index27 alt1">28</div><div class="line number29 index28 alt2">29</div></td><td class="code"><div class="container"><div class="line number1 index0 alt2"><code class="c# keyword">static</code> <code class="c# keyword">void</code> <code class="c# plain">Main(</code><code class="c# keyword">string</code><code class="c# plain">[] args)</code></div><div class="line number2 index1 alt1"><code class="c# plain">{</code></div><div class="line number3 index2 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">string</code> <code class="c# plain">connectionString = </code><code class="c# string">@"Data Source=.\SQLEXPRESS;Initial Catalog=usersdb;Integrated Security=True"</code><code class="c# plain">;</code></div><div class="line number4 index3 alt1">&nbsp;</div><div class="line number5 index4 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">Console.WriteLine(</code><code class="c# string">"Введите имя:"</code><code class="c# plain">);</code></div><div class="line number6 index5 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">string</code> <code class="c# plain">name = Console.ReadLine();</code></div><div class="line number7 index6 alt2">&nbsp;</div><div class="line number8 index7 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">Console.WriteLine(</code><code class="c# string">"Введите возраст:"</code><code class="c# plain">);</code></div><div class="line number9 index8 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">int</code> <code class="c# plain">age = Int32.Parse(Console.ReadLine());</code></div><div class="line number10 index9 alt1">&nbsp;</div><div class="line number11 index10 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">string</code> <code class="c# plain">sqlExpression = String.Format(</code><code class="c# string">"INSERT INTO Users (Name, Age) VALUES ('{0}', {1})"</code><code class="c# plain">, name, age);</code></div><div class="line number12 index11 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">using</code> <code class="c# plain">(SqlConnection connection = </code><code class="c# keyword">new</code> <code class="c# plain">SqlConnection(connectionString))</code></div><div class="line number13 index12 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">{</code></div><div class="line number14 index13 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">connection.Open();</code></div><div class="line number15 index14 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# comments">// добавление</code></div><div class="line number16 index15 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">SqlCommand command = </code><code class="c# keyword">new</code> <code class="c# plain">SqlCommand(sqlExpression, connection);</code></div><div class="line number17 index16 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# keyword">int</code> <code class="c# plain">number = command.ExecuteNonQuery();</code></div><div class="line number18 index17 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">Console.WriteLine(</code><code class="c# string">"Добавлено объектов: {0}"</code><code class="c# plain">, number);</code></div><div class="line number19 index18 alt2">&nbsp;</div><div class="line number20 index19 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# comments">// обновление ранее добавленного объекта</code></div><div class="line number21 index20 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">Console.WriteLine(</code><code class="c# string">"Введите новое имя:"</code><code class="c# plain">);</code></div><div class="line number22 index21 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">name = Console.ReadLine();</code></div><div class="line number23 index22 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">sqlExpression = String.Format(</code><code class="c# string">"UPDATE Users SET Name='{0}' WHERE Age={1}"</code><code class="c# plain">, name, age);</code></div><div class="line number24 index23 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">command.CommandText = sqlExpression;</code></div><div class="line number25 index24 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">number = command.ExecuteNonQuery();</code></div><div class="line number26 index25 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">Console.WriteLine(</code><code class="c# string">"Обновлено объектов: {0}"</code><code class="c# plain">, number);</code></div><div class="line number27 index26 alt2"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </code></div><div class="line number28 index27 alt1"><code class="c# spaces">&nbsp;&nbsp;&nbsp;&nbsp;</code><code class="c# plain">Console.Read();</code></div><div class="line number29 index28 alt2"><code class="c# plain">}</code></div></div></td></tr></tbody></table></div></div>
+<p>Консольный вывод:</p>
+<div class="console">
+<pre class="consoletext">Введите имя:
+Tom
+Введите возраст:
+41
+Добавлено объектов: 1
+Введите новое имя:
+Alex
+Обновлено объектов: 1
+</pre>
+</div>
+<div style="margin-top:25px;clear:both;">
+<style>
+.metanit-rect { width: 300px; height: 250px; }
+@media(min-width: 500px) { .metanit-rect { width: 336px; height: 280px; } }
+@media(min-width: 760px) { .metanit-rect { width: 728px; height: 90px;  } }
+@media(min-width: 1000px) { .metanit-rect { width: 336px; height: 280px;  } }
+@media(min-width: 1122px) { .metanit-rect{ width: 728px; height: 90px;} }
+@media(min-width: 1400px) { .metanit-rect{ width: 970px; height: 90px;} }
+</style>
+<!-- metanit_rect -->
+<ins class="adsbygoogle metanit-rect" style="display:inline-block" data-ad-client="ca-pub-3716042175333627" data-ad-slot="3119477283"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+
+<div class="nav"><p><a href="https://metanit.com/sharp/adonet/2.4.php">Назад</a><a href="https://metanit.com/sharp/adonet/">Содержание</a><a href="https://metanit.com/sharp/adonet/2.6.php">Вперед</a></p></div></div>
+<div class="socialBlock">
+<div class="share socialbottom">
+<ul>
+<li><a title="Поделиться в Вконтакте" rel="nofollow" class="fa fa-lg fa-vk" onclick='window.open("http://vk.com/share.php?url=https://metanit.com/sharp/adonet/2.5.php","Поделиться в ВКОНТАКТЕ","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")'></a></li>
+<li><a title="Поделиться в Одноклассниках" rel="nofollow" class="fa fa-lg fa-odnoklassniki" onclick='window.open("https://connect.ok.ru/offer?url=https://metanit.com/sharp/adonet/2.5.php","Поделиться в Одноклассниках","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")'></a></li>
+<li><a title="Поделиться в Твиттере" rel="nofollow" class="fa fa-lg fa-twitter" onclick='window.open("http://twitter.com/share?url=https://metanit.com/sharp/adonet/2.5.php","Поделиться в Твиттере","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")'></a></li>
+<li><a title="Поделиться в Фейсбуке" rel="nofollow" class="fa fa-lg fa-facebook" onclick='window.open("http://www.facebook.com/sharer.php?u=https://metanit.com/sharp/adonet/2.5.php","Поделиться в Facebook","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")'></a></li>
+</ul>
+</div>
+</div>
+
+<style>
+.commentABl { margin: 25px 0px 15px 0px;}
+@media(min-width: 860px) { .commentABl { margin: 35px 10px 15px 15px;  } }
+</style>
+<div class="commentABl" style="clear:both;">
+<div id="yandex_rtb_R-A-201190-3" style="display:inline-block;width:320px;vertical-align:top; margin-right:12px;"></div>
+<div id="yandex_rtb_R-A-201190-2" style="display:inline-block;width:320px;vertical-align:top;"></div>
+</div>
+
+<div id="disqus_thread" style="margin-left:8px;margin-right:8px;clear:both;"><iframe id="dsq-app9364" name="dsq-app9364" allowtransparency="true" scrolling="no" tabindex="0" title="Disqus" style="width: 1px !important; min-width: 100% !important; border: medium none !important; overflow: hidden !important; height: 2323px !important;" src="%D0%92%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%20%D0%B8%20SqlCommand%20%D0%B2%20ADO.NET%20%D0%B8%20C%23_files/a.htm" horizontalscrolling="no" verticalscrolling="no" width="100%" frameborder="0"></iframe></div>
+<script type="text/javascript">
+var disqus_shortname = 'metanitcom';
+(function() {
+var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+(document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+</script>
+</div>
+</div> 
+<div id="menR" class="menR">
+<style>
+.meta-vert { width: 300px; height: 250px; }
+@media(min-width: 500px) { .meta-vert { width: 336px; height: 280px; } }
+@media(min-width: 1000px) { .meta-vert { width: 160px; height: 600px; } }
+</style>
+<!-- meta_vert -->
+<ins class="adsbygoogle meta-vert" style="display:inline-block" data-ad-client="ca-pub-3716042175333627" data-ad-slot="4596210485"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+<style>
+.dn {font-size:12.5px;margin:3px;}
+.dh{font-weight:bold;margin-left:2px;}
+</style>
+<div class="dn">
+<div class="dh">Помощь сайту</div>
+<div class="dh">WebMoney</div>
+<ul>
+<li>P378451176208</li>
+<li>Z280152397659</li>
+</ul>
+<div class="dh">Yandex-деньги</div>
+<ul>
+<li>410011174743222</li>
+</ul>
+<div class="dh">PayPal</div>
+<ul>
+<li>metanit22@mail.ru</li>
+</ul>
+</div>
+
+</div>
+</div>
+</div> 
+<div class="menT" id="menT" style="max-height: 3872px;"><ul id="browser" class="filetree treeview"> 
+		<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 1. Введение в ADO.NET</span>
+			<ul style="display: none;">
+				<li class="last"><span class="file"><a href="https://metanit.com/sharp/adonet/1.1.php">Что такое ADO.NET?</a></span></li>
+			</ul>
+		</li>
+		<li class="closed collapsable"><div class="hitarea closed-hitarea collapsable-hitarea"></div><span class="folder aMItem">Глава 2. C# и MS SQL Server</span>
+			<ul style="display: block;">
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/2.1.php">Создание базы данных</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/2.2.php">Строка подключения</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/2.3.php">Создание подключения</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/2.4.php">Пул подключений</a></span></li>
+				<li><span class="file aMItem"><a href="https://metanit.com/sharp/adonet/2.5.php" class="aMItem">Выполнение команд и SqlCommand</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/2.6.php">Чтение результатов запроса и SqlDataReader</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/2.7.php">Типизация результатов SqlDataReader</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/2.8.php">Получение скалярных значений</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/2.9.php">Параметризация запросов</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/2.10.php">Выходные параметры запросов</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/2.11.php">Работа с хранимыми процедурами</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/2.12.php">Выходные параметры хранимых процедур</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/2.13.php">Транзакции</a></span></li>
+				<li class="last"><span class="file"><a href="https://metanit.com/sharp/adonet/2.14.php">Сохранение и извлечение файлов из базы данных</a></span></li>
+			</ul>
+		</li>
+		<li class="closed expandable"><div class="hitarea closed-hitarea expandable-hitarea"></div><span class="folder">Глава 3. Работа с SqlDataAdapter и DataSet</span>
+			<ul style="display: none;">
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/3.1.php">SqlDataAdapter и DataSet</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/3.2.php">Постраничный просмотр в SqlDataAdapter</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/3.3.php">SqlCommandBuilder и сохранение изменений DataSet в базе данных</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/3.4.php">Обновление БД из DataSet вручную</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/3.5.php">Все операции с БД в графическом приложении</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/3.6.php">DataSet и DataTable</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/3.7.php">Отношения между таблицами в DataSet</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/3.8.php">LINQ to DataSet</a></span></li>
+				<li class="last"><span class="file"><a href="https://metanit.com/sharp/adonet/3.9.php">DataSet и XML</a></span></li>
+			</ul>
+		</li>
+		<li class="closed expandable lastExpandable"><div class="hitarea closed-hitarea expandable-hitarea lastExpandable-hitarea"></div><span class="folder">Глава 4. LINQ to SQL</span>
+			<ul style="display: none;">
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/4.1.php">Определение контекста данных и моделей</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/4.2.php">Операции с данными в LINQ to SQL</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/4.3.php">Изменение объектов в LINQ to SQL</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/4.4.php">Добавление в LINQ to SQL</a></span></li>
+				<li><span class="file"><a href="https://metanit.com/sharp/adonet/4.5.php">Удаление в LINQ to SQL</a></span></li>
+				<li class="last"><span class="file"><a href="https://metanit.com/sharp/adonet/4.6.php">Методы ExecuteCommand и ExecuteQuery. Хранимые процедуры</a></span></li>
+			</ul>
+		</li>
+	</ul></div>
+<div id="footer">
+
+<div class="bootomLinks">
+<a href="https://vk.com/metanit" title="Присоединиться к группе вконтакте" rel="nofollow">
+Вконтакте</a>|
+<a href="https://twitter.com/Eugene225" title="Подписаться на твит-ленту" rel="nofollow">
+Twitter</a>|
+<a href="https://www.youtube.com/user/Eugene22584/" title="Подписаться на канал на youtube" rel="nofollow">
+Канал сайта на youtube</a>|
+<a href="https://metanit.com/donations.php" rel="nofollow">Помощь сайту</a>
+</div>
+<p>Контакты для связи: metanit22@mail.ru</p>
+<p>Copyright © metanit.com, 2012-2020. Все права защищены.</p>
+</div>
+</div>
+<script type="text/javascript" src="%D0%92%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%20%D0%B8%20SqlCommand%20%D0%B2%20ADO.NET%20%D0%B8%20C%23_files/jquery_002.js"></script>
+<script type="text/javascript" src="%D0%92%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%20%D0%B8%20SqlCommand%20%D0%B2%20ADO.NET%20%D0%B8%20C%23_files/jquery.js"></script>
+<script type="text/javascript" src="%D0%92%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%20%D0%B8%20SqlCommand%20%D0%B2%20ADO.NET%20%D0%B8%20C%23_files/syntax9.js"></script>
+<script type="text/javascript">SyntaxHighlighter.all();</script>
+<script>
+$(function() { 
+	$("#menuButton").on('click', function(){
+          $(this).toggleClass('menu-opened');
+          var mainmenu = $('.mainmenu');
+          if (mainmenu.hasClass('open')) { 
+            mainmenu.removeClass('open');
+          }
+          else {
+            mainmenu.addClass('open');
+          }
+        });
+	$('.submenu-button').on('click', function() {
+            $(this).toggleClass('submenu-opened');
+            if ($(this).siblings('ul').hasClass('open')) {
+              $(this).siblings('ul').removeClass('open');
+			  $(this).children('span').removeClass('open');
+			  $(this).children('span').addClass('close');
+            }
+            else {
+              $(this).siblings('ul').addClass('open');
+			  $(this).children('span').removeClass('close');
+			  $(this).children('span').addClass('open');
+            }
+          });
+  $("#toggle-theme").on("click", function() {
+		if(document.documentElement.hasAttribute("theme")){
+			document.documentElement.removeAttribute("theme");
+			document.cookie="theme=1;expires=Mon, 19 Feb 2001 12:00:00 UTC;path=/;";
+		}
+		else{
+			document.documentElement.setAttribute("theme", "dark");
+			var expire = new Date();
+			expire.setHours(expire.getHours() + 7);
+			document.cookie="theme=1;expires=" + expire.toUTCString() + ";path=/;";
+		}
+	});
+	$('#magnifying-glass').on('click', function() {
+            if ($('#search').hasClass('transp')) {
+              $('#search').removeClass('transp').show();
+            }
+            else {
+              $('#search').addClass('transp').hide();
+            }
+          });
+	$('#browser').treeview();$('#navigation').treeview({persist: 'location',collapsed: true, unique: true});
+	
+	$("li:contains('Глава 2.')").removeClass('expandable').addClass('collapsable').children('ul').css({"display":"block"});
+	$("li:contains('Глава 2.')").children('div').removeClass('expandable-hitarea').addClass('collapsable-hitarea');
+	$("li:contains('Глава .')").removeClass('lastExpandable').addClass('lastCollapsable').children('ul').css({"display":"block"});
+	$("li:contains('Глава .')").children('div').removeClass('lastExpandable-hitarea').addClass('lastCollapsable-hitarea');
+	
+var url = "//metanit.com" + location.pathname;
+	$('.file a[href="' + url + '"]').addClass('aMItem').parent().addClass('aMItem').closest('li.collapsable').find('span.folder').addClass('aMItem');
+	
+
+	$(".fa-bars").on('click', function() {
+		$(".menT").toggleClass("menTOpened");
+		$("#content_right_inner").toggleClass("contentRightInnerOpened");
+	});
+	
+	$(".share .fa-vk").attr('onclick','window.open("http://vk.com/share.php?url=' + window.location.href+'","Поделиться в ВКОНТАКТЕ","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")');
+	$(".share .fa-odnoklassniki").attr('onclick','window.open("https://connect.ok.ru/offer?url=' + window.location.href+'","Поделиться в Одноклассниках","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")');
+	$(".share .fa-twitter").attr('onclick','window.open("http://twitter.com/share?url=' + window.location.href+'","Поделиться в Твиттере","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")');
+	$(".share .fa-facebook").attr('onclick','window.open("http://www.facebook.com/sharer.php?u=' + window.location.href +'","Поделиться в Facebook","width=420,height=230,resizable=yes,scrollbars=yes,status=yes")');
+});
+</script>
+<script>
+window.onload= function(){
+	setMenC();
+};
+window.onresize= function(){
+	setMenC();
+};
+
+function setMenC(){
+	if(window.innerWidth >859){
+			
+		var h = document.getElementById("articleText").clientHeight;
+		document.getElementById("menT").style.maxHeight=h + "px";
+	}
+}
+</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-35780297-1', 'metanit.com');
+  ga('send', 'pageview');
+
+</script>
+
+<script async="" defer="defer" type="text/javascript" src="%D0%92%D1%8B%D0%BF%D0%BE%D0%BB%D0%BD%D0%B5%D0%BD%D0%B8%D0%B5%20%D0%BA%D0%BE%D0%BC%D0%B0%D0%BD%D0%B4%20%D0%B8%20SqlCommand%20%D0%B2%20ADO.NET%20%D0%B8%20C%23_files/brand"></script>
+<script type="text/javascript">
+    (function(w, d, n, s, t) {
+        w[n] = w[n] || [];
+        w[n].push(function() {
+            Ya.Context.AdvManager.render({
+                blockId: "R-A-201190-3",
+                renderTo: "yandex_rtb_R-A-201190-3",
+                horizontalAlign: false,
+                async: true
+            });
+        });
+        t = d.getElementsByTagName("script")[0];
+        s = d.createElement("script");
+        s.type = "text/javascript";
+        s.src = "//an.yandex.ru/system/context.js";
+        s.async = true;
+        t.parentNode.insertBefore(s, t);
+    })(this, this.document, "yandexContextAsyncCallbacks");
+</script>
+<script type="text/javascript">
+    (function(w, d, n, s, t) {
+        w[n] = w[n] || [];
+        w[n].push(function() {
+            Ya.Context.AdvManager.render({
+                blockId: "R-A-201190-2",
+                renderTo: "yandex_rtb_R-A-201190-2",
+                async: true
+            });
+        });
+        t = d.getElementsByTagName("script")[0];
+        s = d.createElement("script");
+        s.type = "text/javascript";
+        s.src = "//an.yandex.ru/system/context.js";
+        s.async = true;
+        t.parentNode.insertBefore(s, t);
+    })(this, this.document, "yandexContextAsyncCallbacks");
+</script>
+
+<iframe style="display: none;"></iframe></body></html>

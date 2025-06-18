@@ -1,0 +1,509 @@
+;
+
+var bW, bH, //Nominal width/height
+	cW, cH, //Canvas width/height
+	wW, wH, //Window width/height
+	uW, uH, //Unscaled width/height
+	cR, // current ratio
+	wR, //Window Ratio
+	pRatio, //Device Pixel Ratio
+	//scale;		//innerScale
+	sRatio=1,
+	currentSizeID,
+	resParams;
+	
+
+var noScale = false, stretchingArranged = false;
+
+var maxWidth, maxHeight;
+var minWidth, minHeight;
+	
+var filename;
+var restartButtonMC, rbHitMC;
+var canvas, wrapper, stage, exportRoot,
+	isStretchHor, isStretchVert,
+	updateContents, setResizibleLayout,		
+	willStop, fullIterationsBeforeStop, iterationsPassed,		
+	t0, //Zero-time point		
+	inited, Tween,
+	objectList, //Display Objects
+		
+	advancedMouse,
+	needBorder, strongBorder,
+	cContext;
+	
+	
+	
+	
+var Ease = createjs.Ease;
+var bothScale;
+
+
+
+
+// ---------------------------------- Inital load part ---------------------------------- //
+function init() {
+	canvas = document.getElementById("canvas");
+	canvas.style.visibility = "hidden";	
+	
+	
+	var key = String(Object.keys(AdobeAn.compositions)[0]);  
+	var comp = AdobeAn.getComposition(key); 
+	window.comp = comp;
+	var lib = comp.getLibrary();
+	var props = lib.properties;
+	
+	bW = Number(props.width);
+	bH = Number(props.height);
+	
+	if(!base64){				
+		if (newManifest.length != 0){
+			props.manifest = newManifest
+		}
+		var loader = new createjs.LoadQueue(false);
+		loader.addEventListener("fileload", function(evt){handleFileLoad(evt,comp)});
+		loader.addEventListener("complete", function(evt){handleComplete(evt,comp)});
+		loader.loadManifest(props.manifest)
+		
+		
+		if (props.manifest.length == 0){
+			handleComplete({},comp);
+		}			
+	}else{
+		for (var num in newManifest){
+			newManifest[num].imageObject = document.createElement("IMG");
+			newManifest[num].imageObject.setAttribute('src', newManifest[num].src);
+			var images=comp.getImages();		
+			images[newManifest[num].id] = newManifest[num].imageObject;	
+		}
+		handleComplete({},comp);
+	}
+	
+	
+	
+}
+
+function handleFileLoad(evt, comp) {
+	var images=comp.getImages();	
+	if (evt && (evt.item.type == "image")) { images[evt.item.id] = evt.result; }	
+}
+
+function handleComplete(evt, comp) {
+	trace("Handle complete: " + filename + "()");
+	var lib=comp.getLibrary();
+	var ss=comp.getSpriteSheet();
+	var queue = evt.target;
+	var ssMetadata = lib.ssMetadata;
+	for(i=0; i<ssMetadata.length; i++) {
+		ss[ssMetadata[i].name] = new createjs.SpriteSheet( {"images": [queue.getResult(ssMetadata[i].name)], "frames": ssMetadata[i].frames} )
+	}
+	
+	
+	exportRoot = new lib[filename]();	
+	
+	
+	stage = new lib.Stage(canvas);	
+	
+	initGlobals(evt, comp); //Init basic params	
+	customInit(evt, comp); //Custom banner params
+	
+	
+	AdobeAn.compositionLoaded(lib.properties.id);//!!!!!! May be move down
+	
+	
+	stage.addChild(exportRoot);
+	stage.update();
+	//createjs.Ticker.setFPS(lib.properties.fps);//!!!!!
+	createjs.Ticker.framerate = lib.properties.fps;
+	
+	createjs.Ticker.addEventListener("tick", function(evt){firstTick(evt, comp)});
+	createjs.Ticker.addEventListener("tick", stage);
+	createjs.Ticker.addEventListener("tick", function(evt){screenParamsControl(evt, comp)})
+	window.addEventListener('resize', function(evt){resizeCanvas(evt, comp)});//Stretching and HiDPI		
+}
+
+
+
+
+
+function screenParamsControl(event, comp){
+	var doResize = false;
+	if(pRatio!= window.devicePixelRatio){	
+		trace("Device pixel ratio changed from " + pRatio + " to " + window.devicePixelRatio);
+		
+		doResize = true;		
+	}
+	
+	if(doResize){
+		updateDimensionsParams(event, comp);
+		resizeCanvas(event, comp);
+	}
+			
+	
+}
+function updateDimensionsParams(event, comp){
+	bothScale = !noScale && isStretchHor && isStretchVert;
+	
+	wW = document.documentElement.clientWidth;
+	wH = document.documentElement.clientHeight;
+	
+	
+	//CHECK
+	wH = wH > maxHeight ? maxHeight : wH;
+	wW = wW > maxWidth ? maxWidth : wW;
+	
+	wH = wH < minHeight ? minHeight : wH;
+	wW = wW < minWidth ? minWidth : wW;
+	
+	pRatio = window.devicePixelRatio || 1;
+	wR = 	wW/wH;//Window ratio	
+}
+
+
+function fullScreen(event, comp){
+	//var lib=comp.getLibrary();
+	
+	var props = comp.getLibrary().properties;
+	
+	
+	var dimArray = dimArray||root.dimArray;
+		
+	
+	var bestFitNUM, bestScaleID, ratio, scale, resizeSide = 1;
+	
+	var bestFit = [];
+	
+	if (dimArray == undefined){
+		trace("Dimensions array not found. Canvas dimensions applied");
+		dimArray=[{w: props.width, h: props.height, goto: "", minRatio: 0, maxRatio: 1000, id: "default"}]
+		bestFit.push({id: 0, ratio: dimArray[0].w/dimArray[0].h});		
+	
+	}
+	//CHECK array length, only key case
+	for(var t=0; t<dimArray.length; t++){
+		ratio = dimArray[t].ratio = dimArray[t].w/dimArray[t].h;
+		if(((wR <= dimArray[t].maxRatio)&&(wR>=dimArray[t].minRatio))||(dimArray.length == 1)){
+			bestFit.push({id: t});
+			
+		
+		}
+	}
+	
+	bestScaleID = 0;	
+	for(t=0; t<bestFit.length; t++){	
+		dimArray[bestFit[t].id].resizeSide = resizeSide = (wR <= dimArray[bestFit[t].id].ratio) ? 1 : 2;	
+		scale = bestFit[t].scale = (resizeSide == 1) ? wW/dimArray[bestFit[t].id].w : wH/dimArray[bestFit[t].id].h; 
+		
+		bestFit[t].deltaS = scale<1 ? 1/scale : scale-1;
+		bestFit[t].deltaR = Math.abs(dimArray[bestFit[t].id].ratio - 1);
+		
+		if(bestFit[t].deltaS < bestFit[bestScaleID].deltaS){
+			bestScaleID = t;
+			dimArray[bestFit[t].id].scale = scale;
+		}else if(bestFit[t].deltaS == bestFit[bestScaleID].deltaS){	
+			if([bestFit[t].deltaR <= bestFit[bestScaleID].deltaR]){
+				bestScaleID = t;
+				dimArray[bestFit[t].id].scale = scale;
+			}			
+		}
+	}
+	
+	bestFitNUM = bestFit[bestScaleID].id;
+	
+	cW = wW;
+	cH = wH;	
+	
+	resParams = dimArray[bestFitNUM];
+	
+	sRatio = resParams.scale;
+	
+	//CHECK	
+	bW = dimArray[bestFitNUM].w;
+	bH = dimArray[bestFitNUM].h;
+	
+	uW = Math.round(cW/sRatio);
+	uH = Math.round(cH/sRatio);
+	
+	stretchingArranged = true;
+	
+	if(currentSizeID != dimArray[bestFitNUM].id){
+		currentSizeID = dimArray[bestFitNUM].id;
+		dimArray[bestFitNUM].init();
+		root.updateBannerLayout = dimArray[bestFitNUM].upd;		
+		//Jump
+	}
+}
+
+function resizeCanvas(event, comp) {
+	
+	updateDimensionsParams(event, comp);
+	
+	cW = uW = isStretchHor ? wW : bW;
+	cH = wH = isStretchVert ? wH : bH;	
+		
+	var xRatio=wW/cW, yRatio=wH/cH;	
+	
+	if(bothScale) fullScreen();
+	
+	canvas.width = cW*pRatio;			
+	canvas.height = cH*pRatio;
+	canvas.style.width = cW+'px';			
+	canvas.style.height = cH+'px';
+	
+	updateSize();
+	
+	stage.scaleX = pRatio*sRatio;			
+	stage.scaleY = pRatio*sRatio;
+}
+
+function firstTick(event, comp){
+	if(root.restartButton != undefined){
+		restartButtonMC = root.restartButton;
+		restartButtonMC.visible = false;				
+	}	
+	
+	event.remove();
+	
+	
+	trace("Ad loaded (first tick): " + bW + "×" + bH + (isStretchHor ? " stretch" : " fixed size") +  "; Full loops: "
+			 + (willStop ? fullIterationsBeforeStop : "infinite") +  "; Mouse: " + (advancedMouse ? "advanced" : "simple"));
+	
+	resizeCanvas(event, comp);	
+	drawBorder(event, comp);
+	arrangeMouse(event, comp);
+	arrangeStretching(event, comp);
+	checkAgeSign(event, comp);
+	//updateSize();
+	
+	canvas.style.visibility = "visible";
+	
+}
+// ------------------------------------- /End of IL ------------------------------------- //
+
+
+
+
+function setBannerName(flnm){
+	filename = flnm.replace(/(\.fla)$/, "").replace(/\s/g, "").replace(/\./g, "").replace(/\-/g, "").replace(/\+/g, "");
+	filename = isNaN(Number(filename)) ? filename : "_"+filename;
+}
+function initGlobals(evt, comp){		
+	inited = false;
+	iterationsPassed = 0;
+	
+	getTimer();
+	
+	objectList = {}
+	Tween = createjs.Tween.get; 
+	root = exportRoot;
+	root.delayL = 0.0;	
+};
+
+
+function arrangeStretching(evt, comp){// → firstTick()
+		
+	
+	trace("Both scale: " + bothScale)
+	
+	if(minWidth || minHeight || maxWidth || maxHeight) 
+	trace("Size restrictions enabled: " + (minWidth ? "min width; " : "") + (minHeight ? "min height; " : "") + (maxWidth ? "max width; " : "") + (maxHeight ? "max height; " : ""));
+	
+	if(isStretchHor || isStretchVert){
+		
+		if(root.setResizibleLayout!=undefined){
+			root.setResizibleLayout();
+			stretchingArranged = true;
+			
+		}else{
+			trace("Error: setResizibleLayout()");			
+		}
+	}
+};
+
+
+function updateSize(evt, comp){// → resizeCanvas()		
+	trace("Size upd: " + cW + "×" + cH);
+	redrawClickArea();
+	drawBorder();
+		
+	if(isStretchHor || isStretchVert){
+		if((root.updateBannerLayout!=undefined)&& stretchingArranged){
+			root.updateBannerLayout();			
+		}else{
+			trace("Error: updateBannerLayout()");			
+		}	
+	}
+};
+
+function getTimer(){
+	t0 = t0 || 0;
+	
+	if(!t0){
+		t0 = performance.now();
+		trace("Timer set");
+	}
+	return Math.round((performance.now() - t0)*100/1000)/100;
+}
+
+function arrangeMouse(evt, comp){
+	if(advancedMouse){
+		redrawClickArea();	
+		root.clickArea.on("click", buttonClick);
+		root.clickArea.cursor = "pointer";
+		
+		//CHECK
+		if(root.cta != undefined) root.arrangeAdvancedMouse();	
+	}
+			
+	if(!willStop && (restartButtonMC != undefined)){
+		restartButtonMC.visible = false;				
+	}	
+};
+
+function buttonClick(event){
+	if(event.nativeEvent.which == 1){
+		bRelease();		
+	}	
+
+}
+function arrangeRestartButton(){
+	if(willStop){
+		addRestartButtonListeners(restartButtonMC);
+		restartButtonMC.hitArea = restartButtonMC.clickField.shape;
+		restartButtonMC.gotoAndStop(0);
+	}
+}
+
+function redrawClickArea(){
+	trace("redrawClickArea(): "+cW+"×"+cH);
+	if (!root.clickArea.hitArea) root.clickArea.hitArea  = new createjs.Shape();
+	root.clickArea.hitArea.graphics.c().beginFill("#FFF000").drawRect(0,0,cW/sRatio,cH/sRatio);
+};
+function checkStop(){
+	if(willStop){	
+		if(iterationsPassed >= fullIterationsBeforeStop){	
+			root.stop();		
+			stopIt = true;
+			trace("Stop. Time: " + getTimer() + " sec. Loops passed: " + iterationsPassed);
+			if(restartButtonMC != undefined){
+				restartButtonMC.gotoAndPlay(2);
+				//It's just fucking freack to make RB start from proper frame. I havent defined where bug was.
+				
+				if(advancedMouse && showRestartButton){//If AD interracts with mouse and RB is on
+					arrangeRestartButton();			
+					restartButtonMC.visible = true;
+				}
+				
+				//CHECK
+				if(customStop != undefined) customStop(); else trace("customStop not found");
+			}
+		}else{
+			if(restartButtonMC != undefined){restartButtonMC.visible = false;}	
+		}	
+	}
+	
+	if(!willStop && (restartButtonMC != undefined)){
+		restartButtonMC.visible = false;				
+	}
+
+	iterationsPassed++;
+
+};
+
+function checkAgeSign(){
+	if(root.age != undefined){	
+		if(showAge){
+			root.age.visible = true;				
+		}else{
+			root.age.visible = false;			
+		}			
+	}else{
+		trace("*** ATTENTION! Age sign not found! ***")
+	}
+	
+}
+
+function finishTimeline(jumpLabel, where){
+	jumpLabel = jumpLabel || "round_jump";
+	where = where || root;
+	trace("Full loops: " + iterationsPassed + "; Time passed: " + getTimer() + " sec. Jump to: " + jumpLabel + " @ " + where.name);	
+	where.gotoAndPlay(jumpLabel);
+};
+
+function ease(nm){
+	return createjs.Ease[nm];
+};
+
+function drawBorder(){
+	var thk = 1/sRatio
+	
+	if (!window.borderColor){
+		borderColor = "#000000";
+	}
+	
+	if(needBorder){
+		if(root.borderShape){
+			root.borderShape.clear();
+		}else{
+			root.borderShape = new createjs.Graphics();	
+			root.brd2.addChild(	new createjs.Shape(root.borderShape));	
+		}
+		
+		
+		root.borderShape.beginFill(borderColor).drawRect(0, 0, cW/sRatio,  thk).drawRect((cW-1)/sRatio, thk, thk,  cH/sRatio).drawRect(0, (cH-1)/sRatio, cW/sRatio,  thk).drawRect(0, thk, thk,  (cH-1)/sRatio);
+		if (!strongBorder) root.brd2.alpha = 0.3;	
+	}
+}
+
+function trace(msg){
+	if (debugMode) console.log(msg);
+};
+
+function addRestartButtonListeners(RB){	
+	RB.cursor = "pointer";	
+	RB.addEventListener("click", rbHandle);
+	RB.addEventListener("rollover", rbHandle);
+	RB.addEventListener("rollout", rbHandle);
+	RB.addEventListener("mousedown", rbHandle);
+}
+
+function removeRestartButtonListeners(RB){
+	RB.cursor = "pointer";	
+	RB.removeEventListener("click", rbHandle);
+	RB.removeEventListener("rollover", rbHandle);
+	RB.removeEventListener("rollout", rbHandle);
+	RB.removeEventListener("mousedown", rbHandle);
+}
+
+function rbHandle(evt, data) {
+	data = evt.currentTarget;
+	switch (evt.type) {
+		case "click":
+			data.gotoAndStop(0);
+			data.visible = false;
+			doRestart();
+			break;
+		case "rollover":
+			data.gotoAndStop(1);
+			break;
+		case "rollout":
+			data.gotoAndStop(0)
+			break;
+		case "mousedown":
+			data.gotoAndStop(2)
+			break;
+		default:
+			trace('Unknown restart button listener');
+	};
+}
+
+function doRestart(){
+	if(customResume != undefined) customResume(); else trace("customResume not found");
+	removeRestartButtonListeners(restartButtonMC);
+	restartButtonMC.gotoAndStop(0);
+	restartButtonMC.visible = false;
+	stopIt = false;
+	root.gotoAndPlay("continue");
+	iterationsPassed = 0;
+	trace("Restart clicked. Conitnue playing.");
+}

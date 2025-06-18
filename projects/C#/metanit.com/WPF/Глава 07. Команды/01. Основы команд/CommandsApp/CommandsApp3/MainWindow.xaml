@@ -1,0 +1,40 @@
+﻿<!--
+2021.08.30 17:26 IMM    
+
+    Пример использования команд
+
+Теперь объединим все и создадим систему для вызова команды. Для этого определим код XAML:
+-->
+<Window x:Class="CommandsApp3.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CommandsApp3"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="250" Width="300">
+    <DockPanel>
+        <Menu DockPanel.Dock="Top" MinHeight="25">
+            <MenuItem Header="File" />
+            <MenuItem Header="Edit">
+                <MenuItem Header="Copy" CommandTarget="{Binding ElementName=txtBox}" Command="Copy"/>
+                <MenuItem Header="Paste" CommandTarget="{Binding ElementName=txtBox}" Command="Paste"/>
+            </MenuItem>
+        </Menu>
+        <TextBox x:Name="txtBox" />
+    </DockPanel>
+</Window>
+<!--
+Здесь два пункта меню Copy и Paste будут вызывать соответствующие команды. Причем здесь мы не задаем
+    привязку для этих команд, так как для команд Copy, Cut, Redo, Undo и Paste уже опредлены 
+    встроенные привязки. Поэтому в данном случае нам не надо вносить в файл кода C# никаких изменений.
+
+Кроме того, здесь с помощью выражения CommandTarget="{Binding ElementName=txtBox}" мы указываем,
+    что команды будут направлены на текстовое поле, которое будет целью команд. И теперь запустим
+    проект.
+
+Если в буфере обмена ничего нет, то команда Paste будет неактивной. Также если в текстовом поле не
+    выделен текст, то пункт меню Copy также будет не активным. При выделении текста становится
+    активным пункт меню Copy, а после копирования в буфер и пункт меню Paste.    
+-->  
+    

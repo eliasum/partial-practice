@@ -1,48 +1,0 @@
-
-var ftGUID_4232430="4853EF06BEB9B4";
-var ftConfID_4232430="0";
-var ftParams_4232430="ftOBA=1&ft_domain=oracleplsql.ru&ft_ifb=1&ft_agentEnv=0&ft_referrer=https%3A%2F%2Foracleplsql.ru%2F&us_privacy=${US_PRIVACY}&cachebuster=318654.2421897461";
-var ftKeyword_4232430="";
-var ftCustom_4232430="";
-var ftSection_4232430="";
-var ftSegment_4232430="";
-var ftSegmentList_4232430=[];
-var ftRuleMatch_4232430="0";
-var ftTimestamp_4232430="1618489863";
-var ftGeoC2_4232430="ru";
-var ftGeoState_4232430="nvs";
-var ftGeoCity_4232430="novosibirsk";
-var ftISP_4232430="pjsc rostelecom";
-var ftSpeed_4232430="broadband";
-var ftDMA_4232430="643005";
-var ftLong_4232430="82.93";
-var ftLat_4232430="55.04";
-var ftPostal_4232430="630000";
-var ftTimeZone_4232430="700";
-var ftMobileCarrier_4232430="";
-var ftImp4232430 = {};
-ftImp4232430.privacy = "x";
-ftImp4232430.guidAge = "-1";
-ftImp4232430.impID = "0AE2FA15-B05E-393A-F691-A5B65B2ECB68";
-ftImp4232430.duid = "FT:4853EF06BEB9B4";
-
-ftImp4232430.ft_tpplid = "";
-ftImp4232430.ft_c = {};
-ftImp4232430.gdpr = "";
-ftImp4232430.gdpr_consent = "";
-ftImp4232430.gdpr_pd = "";
-ftImp4232430.oob_consent = "0";
-ftImp4232430.gdprStoredConsent = "";
-ftImp4232430.us_privacy = "!!US_PRIVACY!";
-
-ftImp4232430.jsAppend = "1";
-(function(){
-    var tag = document.getElementById('ft_servedby_4232430') || (function(s){
-    	return s[s.length-1];
-    }(document.getElementsByTagName('script'))),
-           js = document.createElement('script');
-    js.src = 
-"https://cdn.flashtalking.com/xre/423/4232430/3092314/js/j-4232430-3092314.js";
-    js.id = "ftscript_m4232430";
-    tag.parentNode.insertBefore(js, tag);
-}());

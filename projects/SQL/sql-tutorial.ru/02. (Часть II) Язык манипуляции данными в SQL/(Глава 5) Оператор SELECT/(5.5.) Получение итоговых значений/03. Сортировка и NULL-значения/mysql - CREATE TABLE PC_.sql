@@ -1,0 +1,8 @@
+/*2021.03.18 16:08 IMM*/
+
+CREATE TABLE NEW_TableName
+LIKE OLD_TableName;
+
+INSERT INTO NEW_TableName
+SELECT *
+FROM OLD_TableName;

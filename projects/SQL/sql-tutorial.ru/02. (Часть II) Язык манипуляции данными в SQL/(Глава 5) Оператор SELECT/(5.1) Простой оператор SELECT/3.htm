@@ -1,0 +1,350 @@
+  <script>
+function spoiler(obj){
+//alert(document.cookie);
+if (obj.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display != '')
+{ obj.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display = '';
+document.cookie = "show=0";
+obj.innerHTML = 'Скрыть|Hide';
+obj.title = 'Скрыть|Hide'; }
+else { obj.parentNode.parentNode.getElementsByTagName('div')[1].getElementsByTagName('div')[0].style.display = 'none';
+document.cookie = "show=1";
+obj.innerHTML = 'Показать|Show';
+obj.title = 'Показать|Show';}
+}
+</script>
+<!DOCTYPE html>
+<html>
+
+
+ <head>
+ <link rel="stylesheet" type="text/css" href="/templates/letter.css">
+ <link rel="stylesheet" type="text/css" href="/templates/hint.css" />
+ <meta name="viewport" content="width=device-width">
+<meta charset="utf-8">
+        <title>Упражнения на оператор SELECT: обучающий этап</title>
+        <meta name="Description" content="Дистанционное обучение языку баз данных SQL. Интерактивные упражнения и тестирование по операторам SELECT,INSERT,UPDATE,DELETE, сертификация.">
+        <meta name="Keywords" content="интерактивные упражнения, оператор select, обучение sql, тестирование, сертификация, решение задач,язык sql,построение запросов">
+        <meta name="abstract" content="Решение задач по оператору SELECT, обучение, тестирование и сертификация по языку SQL">
+        <meta name="title" content="решение задач по оператору SELECT, тестирование и сертификация по языку SQL ">        <meta name="Robots" content="INDEX, FOLLOW">
+        <meta name="Classification" content="08,education,teaching,training">
+        <link rel="stylesheet" type="text/css" href="/templates/style.css">
+        <script type="text/javascript" LANGUAGE="JavaScript" src="/js/main.js"></script>
+<script type="text/javascript" LANGUAGE="JavaScript" src="/js/hint.js"></script>
+<script type="text/javascript" src="https://vk.com/js/api/openapi.js?147"></script>
+
+</head>
+<body bgcolor="#F5F5F5">
+<!-- LM -->
+<script async="async" src="https://w.uptolike.com/widgets/v1/zp.js?pid=48720"></script>
+<!-- LM -->
+<A name="ref_beg"></a>
+<table width="100%" border="0" cellpadding="5" align="center">
+ <tr>
+  <td width="25%" bgcolor="#CCCCCC" valign="middle">
+        <a class='none' href="/"><b>Упражнения по SQL</b></a>
+
+  </td><td width="33%" bgcolor="#CCCCCC" align="center" valign="middle"><form name="frmtpl">
+Language&nbsp;<select name="lsttpl" style="background-color:#F5F5F5;" OnChange="Sel_Lang(document.frmtpl.lsttpl.selectedIndex)"><option value="0" selected> Русский <option value="1" > English </select>
+ </form>
+  </td><td width="33%" bgcolor="#CCCCCC" align="right" valign="middle">
+October 24, 17:00 MSK &nbsp; &nbsp; <b>ellijah</b>  <a href='/logout.php'><img border='0' width='17' height='18' src='/images/logout.gif' title='Выход...' alt='Выход...'></a><!-- Top100 (Kraken) Counter -->
+<script>
+    (function (w, d, c) {
+    (w[c] = w[c] || []).push(function() {
+        var options = {
+            project: 718545,
+        };
+        try {
+            w.top100Counter = new top100(options);
+        } catch(e) { }
+    });
+    var n = d.getElementsByTagName("script")[0],
+    s = d.createElement("script"),
+    f = function () { n.parentNode.insertBefore(s, n); };
+    s.type = "text/javascript";
+    s.async = true;
+    s.src =
+    (d.location.protocol == "https:" ? "https:" : "http:") +
+    "//st.top100.ru/top100/top100.js";
+
+    if (w.opera == "[object Opera]") {
+    d.addEventListener("DOMContentLoaded", f, false);
+} else { f(); }
+})(window, document, "_top100q");
+</script>
+<noscript>
+  <img src="//counter.rambler.ru/top100.cnt?pid=718545" alt="???-100" />
+</noscript>
+<!-- END Top100 (Kraken) Counter -->
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter45900456 = new Ya.Metrika({
+                    id:45900456,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/watch.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/45900456" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+
+  </td>
+</tr>
+</table>
+<noscript>
+ <table cellpadding="5" align="center"><tr><td valign="middle" bgcolor="#DD3030"><font color="white"><strong>Ресурс "Упражнения по SQL" ориентирован на приобретение практического опыта в написании запросов
+на языке манипуляции данными - <b>SQL DML</b>. На сайте имеются упражнения для начинающих, подкрепленные необходимым <a class="let" href="/help/">справочным материалом</a> по
+синтаксису языка SQL с большим числом примеров . Помимо этого, реализованы 3 рейтинговых этапа, предназначенных для <b>тестирования специалистов и
+сертификации</b>. Ресурс полностью бесплатный, а приобретение сертификатов является делом добровольным.
+<br>ВНИМАНИЕ: для корректной работы сайта браузер должен разрешать использование Cookie и JavaScript.
+<br>Поскольку страницы справки открываются в подчиненном окне, ваш Web-фильтр, если он используется, должен разрешать открытие подчиненных окон.</strong></font></td></tr></table>
+</noscript><script type="text/javascript" LANGUAGE="JavaScript" src="/js/lang.js"></script>
+<script type="text/javascript" LANGUAGE="JavaScript" src="/js/ex.js"></script>
+<script type="text/javascript" LANGUAGE="JavaScript" src="/js/script.js"></script>
+
+<table width="100%" border="0" cellpadding="5" align="center" valign="middle">
+<tr><td colspan="3" bgcolor="#9f9960" valign="middle" align="left">
+<B>Краткая информация о базе данных "Компьютерная фирма":</B><BR><BR>
+<div><div>
+<a class="let" href="###" style="text-decoration: none; font-size: 15px" title = Скрыть|Hide onclick="spoiler(this);"> Скрыть|Hide</a>
+</div><div><div style="display: '';">
+Схема БД состоит из четырех таблиц:<br />
+Product(maker, model, type)<br />
+PC(code, model, speed, ram, hd, cd, price)<br />
+Laptop(code, model, speed, ram, hd,  price, screen)<br />
+Printer(code, model, color, type, price)<br />
+Таблица Product представляет производителя (maker), номер модели (model) и тип ('PC' - ПК, 'Laptop' - ПК-блокнот или 'Printer' - принтер). Предполагается, что номера моделей в таблице Product уникальны для всех производителей и типов продуктов. В таблице PC для каждого ПК, однозначно определяемого уникальным кодом – code, указаны модель – model (внешний ключ к таблице Product), скорость - speed (процессора в мегагерцах), объем памяти - ram (в мегабайтах), размер диска - hd (в гигабайтах), скорость считывающего устройства - cd (например, '4x') и цена - price. Таблица Laptop аналогична таблице РС за исключением того, что вместо скорости CD содержит размер экрана -screen (в дюймах). В таблице Printer для каждой модели принтера указывается, является ли он цветным - color ('y', если цветной), тип принтера - type (лазерный – 'Laser', струйный – 'Jet' или матричный – 'Matrix') и цена - price.<br><br>
+<A class="let" href="javascript:openHelp('/help/select13.php#db_1')">Схема базы данных</A>
+</div></div></div>
+</td></tr>
+<tr>
+<td width="33%" rowspan="2" bgcolor="#9f9960" align="center" valign="middle">
+<form name="frmN" action="/learn_exercises.php" method="post">
+<!--форма выбора номера задания-->N <select id="LN" name="LN" style="background-color:#AAD52B;" OnChange="learnSelPickEx(3)"><option value='1'>1 (1) Ok<option value='2'>2 (1) Ok<option value='3' selected>3 (1) Ok<option value='4'>4 (1) <option value='5'>5 (1) <option value='6'>6 (2) <option value='7'>7 (2) <option value='8'>8 (2) <option value='9'>9 (1) <option value='10'>10 (1) <option value='11'>11 (1) <option value='12'>12 (1) <option value='13'>13 (1) <option value='14'>14 (1) <option value='15'>15 (1) <option value='16'>16 (2) <option value='17'>17 (2) <option value='18'>18 (2) <option value='19'>19 (1) <option value='20'>20 (1) <option value='21'>21 (1) <option value='22'>22 (1) <option value='23'>23 (1) <option value='24'>24 (2) <option value='25'>25 (2) <option value='26'>26 (2) <option value='27'>27 (2) <option value='28'>28 (1) <option value='29'>29 (2) <option value='30'>30 (2) <option value='31'>31 (1) <option value='32'>32 (3) <option value='33'>33 (1) <option value='34'>34 (2) <option value='35'>35 (2) <option value='36'>36 (1) <option value='37'>37 (2) <option value='38'>38 (1) <option value='39'>39 (2) <option value='40'>40 (2) <option value='41'>41 (2) <option value='42'>42 (1) <option value='43'>43 (2) <option value='44'>44 (1) <option value='45'>45 (1) <option value='46'>46 (2) <option value='47'>47 (4) <option value='48'>48 (1) <option value='49'>49 (1) <option value='50'>50 (1) <option value='51'>51 (2) <option value='52'>52 (2) <option value='53'>53 (1) <option value='54'>54 (2) <option value='55'>55 (1) <option value='56'>56 (2) <option value='57'>57 (2) <option value='58'>58 (2) <option value='59'>59 (2) <option value='60'>60 (2) <option value='61'>61 (1) <option value='62'>62 (1) <option value='63'>63 (2) <option value='64'>64 (2) <option value='65'>65 (3) <option value='66'>66 (2) <option value='67'>67 (2) <option value='68'>68 (2) <option value='69'>69 (3) <option value='70'>70 (2) <option value='71'>71 (2) <option value='72'>72 (2) <option value='73'>73 (2) <option value='74'>74 (2) <option value='75'>75 (2) <option value='76'>76 (2) <option value='77'>77 (2) <option value='78'>78 (2) <option value='79'>79 (2) <option value='80'>80 (1) <option value='81'>81 (2) <option value='82'>82 (2) <option value='83'>83 (2) <option value='84'>84 (2) <option value='85'>85 (2) <option value='86'>86 (2) <option value='87'>87 (2) <option value='88'>88 (2) <option value='89'>89 (2) <option value='90'>90 (2) <option value='91'>91 (2) <option value='92'>92 (2) <option value='93'>93 (2) <option value='94'>94 (2) <option value='95'>95 (2) <option value='96'>96 (2) <option value='97'>97 (3) <option value='98'>98 (3) <option value='99'>99 (4) <option value='100'>100 (2) <option value='101'>101 (2) <option value='102'>102 (2) <option value='103'>103 (2) <option value='104'>104 (2) <option value='105'>105 (2) <option value='106'>106 (3) <option value='107'>107 (2) <option value='108'>108 (2) <option value='109'>109 (2) <option value='110'>110 (2) <option value='111'>111 (2) <option value='112'>112 (3) <option value='113'>113 (2) <option value='114'>114 (2) <option value='115'>115 (2) <option value='116'>116 (2) <option value='117'>117 (2) <option value='118'>118 (2) <option value='119'>119 (2) <option value='120'>120 (2) <option value='121'>121 (3) <option value='122'>122 (2) <option value='123'>123 (2) <option value='124'>124 (3) <option value='125'>125 (3) <option value='126'>126 (2) <option value='127'>127 (3) <option value='128'>128 (2) <option value='129'>129 (2) <option value='130'>130 (2) <option value='131'>131 (3) <option value='132'>132 (4) <option value='133'>133 (2) <option value='134'>134 (3) <option value='135'>135 (2) <option value='136'>136 (2) <option value='137'>137 (2) <option value='138'>138 (4) <option value='139'>139 (3) <option value='140'>140 (2) <option value='141'>141 (3) <option value='142'>142 (2) <option value='143'>143 (3) <option value='144'>144 (2) <option value='145'>145 (3) <option value='146'>146 (2) <option value='147'>147 (3) <option value='148'>148 (3) <option value='149'>149 (4) <option value='150'>150 (2) <option value='151'>151 (4) <option value='152'>152 (2) <option value='153'>153 (3) <option value='154'>154 (2) </select>
+</form>
+<B>Задание:&nbsp;3 (<a class="let" href="/users_page.php?username=Serge I">Serge I</a>: 2002-09-30)</B><BR><!-- Задание: -->
+Найдите номер модели, объем памяти и размеры экранов ПК-блокнотов, цена которых превышает 1000 дол.
+<p><br><center></center><p align=left>
+
+<b>&nbsp;&middot;</b> Справка по теме:<br>&nbsp;&nbsp;&nbsp; <a class="let" href="http://www.sql-tutorial.ru/ru/book_simple_select_statement/page1.html" target="_blank">Простой оператор SELECT</a><br><br><b>&nbsp;&middot;</b> Обсуждение упражнения на <A class='let' href='/forum/Lforum.php?F=3&N=3'>форуме</A>.<br><b>&nbsp;&middot;</b> Анализ <a class='let' href='/perfcon.php?LN=3'>плана выполнения</a> решения.<br>
+   <script type='text/javascript'>
+		var title = 'Подcказки к задаче №3';
+		var text = 'По этой задаче еще нет подсказок.';
+</script><a class="info_not" title="Подcказки к задаче №3" onclick="hint_show();"></a></td>
+<form action="/learn_exercises.php#answer_ref" method="post" name="frmAnswer" onSubmit="this.cmdanswer.disabled=true;">
+<!--форма вывода ответа от пользователя-->
+<td width="50%" colspan="2" bgcolor="#9f9960" align="center" valign="middle">
+<B>Запрос:</B><BR>
+<!-- всплывающая подсказка -->
+<DIV style="DISPLAY: none">
+<DIV id=oToolTip>
+ <DIV id=oToolTipText
+  style="BORDER-RIGHT: #808080 1px solid; BORDER-TOP: #808080 1px solid; FONT-SIZE: 70%; BORDER-LEFT: #808080 1px solid; COLOR: #700050; BORDER-BOTTOM: #808080 1px solid; FONT-FAMILY: Monospace">
+ </DIV>
+</DIV>
+</DIV>
+ <table cellpadding=0 cellspacing=0 border=0>
+  <tr><td>
+<textarea ondblclick="ResizeTextarea(0)" name="txtsql" id="txtsql" rows="15" cols="64"
+onkeyup="if (CHB.checked) return autorep();"
+             onkeydown="return TabFuncDML(event);"
+             style="background-color:#F5F5F5;height:250px;width:600px">SELECT DISTINCT model, ram, screen
+FROM Laptop
+WHERE  price > 1000
+</textarea>
+  </td><td valign="top">
+   <input title="Очистить поле ввода" type="button" value="cls" onClick="Cls()" style="width:40"><br>
+   <input title="Развернутый вид поля ввода" type="button" value="max" onClick="ResizeTextarea(1)" style="width:40">
+ </td></tr></table>
+</td></tr>
+<tr>
+<td width="30%" bgcolor="#9f9960" align="left" valign="top">
+   <input type="hidden" name="checkMe" value="3">
+   <input type="submit" style="width:150;" name="cmdanswer" value="Выполнить (Ctrl+Enter)" onclick="return CheckSelSyntax3(frmAnswer.txtsql.value)">&nbsp;Tab&equiv;Ctrl+Shift+пробел
+   <input type="checkbox" style="color:#F5F5F5;" id="wo" name="wo" value="1" =''>
+   <label for="wo" type="text" size=20 id=wo_text style="font-weight: bold; BORDER: 0px; FONT-SIZE: 98%; FONT-FAMILY: Monospace; background: "#F5F5F5"">Без проверки</label>
+  <br>
+  <INPUT type="hidden" id="CHB" name="CHB" value="1" checked onClick="onchanged();"> <!-- type="CheckBox" -->
+  <!-- <label type=CheckBox type="text" size=55 id="help_text" name="help_text" style="font-weight: bold; BORDER: 0px; FONT-SIZE: 98%; FONT-FAMILY: Monospace; background: "#F5F5F5"">
+  <script type="text/javascript" LANGUAGE="JavaScript">
+  if(document.frmAnswer.CHB.checked)document.write(str_avto_yes); else document.write(str_avto)</script></label>-->
+  </td>
+</form>
+<td width="20%" bgcolor="#9F9960" align="left" valign="top">
+<!-- форма для вывода правильного результата -->
+   <form action="/learn_exercises.php#answer_ref" method="post" name="frmRes" onSubmit="document.frmRes.wo.value=document.frmAnswer.wo.checked; this.cmdOKres.disabled=true;">
+   <input type="submit" style="width:290;" name="cmdOKres" value="Показать правильный результат" onclick="ShowTrueRes()">
+   <input type="hidden" name="showOKres" value="3">
+   <input type="hidden" name="CHB">
+   <input type="hidden" name="txtsql">
+   <input type="hidden"  name="wo">
+   </form>
+</td></tr>
+</table>
+<div id="divRating">
+Текущий рейтинг
+<br><TABLE bgcolor="#F5F5F5" width="15%" border="0" cellpadding="0" align="left"><TR><TD ALIGN='center'><B><u><font size='0.9px'>rpos</font></u></B></TD><TD ALIGN='center'><B><u><font size='0.9px'>login</font></u></B></TD><TD ALIGN='center'><B><u><font size='0.9px'>score</font></u></B></TD></tr>
+<TR><td align='center' border-style:none><font color='#004080' size='0.7px'>315962</font></td><td align='center' border-style:none><font color='#004080' size='0.7px'>ZairaEgan</font></td><td align='center' border-style:none><font color='#004080' size='0.7px'>3</font></td></tr>
+<TR><td align='center' border-style:none><font color='#004080' size='0.7px'>315963</font></td><td align='center' border-style:none><font color='#004080' size='0.7px'>kokomasters</font></td><td align='center' border-style:none><font color='#004080' size='0.7px'>3</font></td></tr>
+<TR><td align='center' style='bgcolor:#F5F5F5;border-style:solid;border-width:thin;BORDER-COLOR:#800040;'><font color='#800040' size='0.7px'>315964</font></td><td align='center' style='bgcolor:#F5F5F5;border-style:solid;border-width:thin;BORDER-COLOR:#800040;'><font color='#800040' size='0.7px'>ellijah</font></td><td align='center' style='bgcolor:#F5F5F5;border-style:solid;border-width:thin;BORDER-COLOR:#800040;'><font color='#800040' size='0.7px'>3</font></td></tr>
+<TR><td align='center' border-style:none><font color='#004000' size='0.7px'>315965</font></td><td align='center' border-style:none><font color='#004000' size='0.7px'>Lokki_51</font></td><td align='center' border-style:none><font color='#004000' size='0.7px'>3</font></td></tr>
+<TR><td align='center' border-style:none><font color='#004000' size='0.7px'>315966</font></td><td align='center' border-style:none><font color='#004000' size='0.7px'>iTUX</font></td><td align='center' border-style:none><font color='#004000' size='0.7px'>3</font></td></tr>
+<tr><td colspan="3">
+<!-- Yandex.RTB R-A-184442-7 -->
+<div id="yandex_rtb_R-A-184442-7"></div>
+<script type="text/javascript">
+    (function(w, d, n, s, t) {
+        w[n] = w[n] || [];
+        w[n].push(function() {
+            Ya.Context.AdvManager.render({
+                blockId: "R-A-184442-7",
+                renderTo: "yandex_rtb_R-A-184442-7",
+                async: true
+            });
+        });
+        t = d.getElementsByTagName("script")[0];
+        s = d.createElement("script");
+        s.type = "text/javascript";
+        s.src = "//an.yandex.ru/system/context.js";
+        s.async = true;
+        t.parentNode.insertBefore(s, t);
+    })(this, this.document, "yandexContextAsyncCallbacks");
+</script>
+</td></tr> </table></DIV><div style='height:350px;overflow: auto;'><a name='answer_ref'></a><h3>Правильно.</h3><h4>Результат выполнения Вашего запроса:</h4><table class="st" cellpadding="5" align="center"><tr><th>model</th><th>ram</th><th>screen</th></tr>
+<tr><td class="dt1">1298</td><td class="dt1">64</td><td class="dt1">15</td></tr>
+<tr><td class="dt0">1750</td><td class="dt0">128</td><td class="dt0">14</td></tr>
+<tr><td class="dt1">1752</td><td class="dt1">128</td><td class="dt1">14</td></tr>
+</table></div><table><tr><td align="left">
+	<div id="ambn43618"></div>
+</td>
+<td align="right" width="60%">
+<!-- Yandex.RTB R-A-184442-1 -->
+<div id="yandex_rtb_R-A-184442-1"></div>
+<script type="text/javascript">
+    (function(w, d, n, s, t) {
+        w[n] = w[n] || [];
+        w[n].push(function() {
+            Ya.Context.AdvManager.render({
+                blockId: "R-A-184442-1",
+                renderTo: "yandex_rtb_R-A-184442-1",
+                horizontalAlign: false,
+                async: true
+            });
+        });
+        t = d.getElementsByTagName("script")[0];
+        s = d.createElement("script");
+        s.type = "text/javascript";
+        s.src = "//an.yandex.ru/system/context.js";
+        s.async = true;
+        t.parentNode.insertBefore(s, t);
+    })(this, this.document, "yandexContextAsyncCallbacks");
+</script>
+</td>
+</tr></table><div style="float:left">
+<table>
+<tr></tr>
+        <tr align="middle" height="20">
+                <td align="center" valign="top" width="8%" onmouseout="this.style.backgroundColor='#F5F5F5'" onmouseover="this.style.backgroundColor='#DDDDDD'"><A href=/ rel="nofollow" style="font-size: 8pt;">Начало</A><br>
+                <A href="/last-news-letter.php" style="font-size: 8pt;">Текущие новости</A>
+                </td>
+
+        <td width="10%" align="left" valign="top" onmouseout="this.style.backgroundColor='#F5F5F5'" onmouseover="this.style.backgroundColor='#E6FFFF'">
+        <div><img name="imgcertf" border="0" src="/images/blueup.gif"><a style="color:#004848;" href="javascript:changeSt('certf')" onmouseout="" onmouseover=""><b>Сертификация</b></a></div>
+        <DIV title="Сертификация" id="certf" name="certf" border="0" style="text-align:left; color:#0000FF; font-size:10px; display:none; position:relative;">
+&nbsp;&nbsp;&#8226;&nbsp; <A class="menu" href="/certification/certification.php" >О сертификатах</A><br>&nbsp;&nbsp;&#8226;&nbsp;<A class="menu" href="/users_page.php?cs=4" >Сертифицированные специалисты</A><br>
+&nbsp;&nbsp;&#8226;&nbsp;<A class="menu" href="/certificate_statistics.php" >Статистика</A>
+        </DIV></td>
+        <td width="12%" align="left" valign="top" onmouseout="this.style.backgroundColor='#F5F5F5'" onmouseover="this.style.backgroundColor='#FFFFE6'">
+        <div><img name="imgexef" border="0" src="/images/blueup.gif"><a style="color:#FF8040;" href="javascript:changeSt('exef')" onmouseout="" onmouseover=""><b>Упражнения по SQL</b></a></div>
+        <DIV title="Упражнения по SQL" id="exef" name="exef" border="0" style="text-align:left; color:#0000FF; font-size:10px; display:none;position:relative;">
+&nbsp;&nbsp;&#8226;&nbsp;<A class="menu" href="/learn_exercises.php" >SELECT&nbsp;(обучающий&nbsp;этап)</A><br>
+&nbsp;&nbsp;&#8226;&nbsp;<A class="menu" href="/exercises/index.php?act=learn" >SELECT (обуч., выбор СУБД)</A><br>
+&nbsp;&nbsp;&#8226;&nbsp;<A class="menu" href="/exercises.php" >SELECT&nbsp;(рейтинговые&nbsp;этапы)</A><br>
+&nbsp;&nbsp;&#8226;&nbsp;<A class="menu" href="/dmlexercises.php" >DML&nbsp;</A><br>
+&nbsp;&nbsp;&#8226;&nbsp;<A class="menu" href="/modquer/" >Моделирование данных</A>
+        </DIV></td>
+<td width="12%" align="left" valign="top" onmouseout="this.style.backgroundColor='#F5F5F5'" onmouseover="this.style.backgroundColor='#ECFFEC'">
+        <div><img name="imgforf" border="0" src="/images/blueup.gif"><a style="color:#008000;" href="javascript:changeSt('forf')" onmouseout="" onmouseover=""><b>Форумы</b></a></div>
+        <DIV title="Форумы" id="forf" name="forf" border="0" style="text-align:left; color:#0000FF; font-size:10px; display:none;position:relative;">
+&nbsp;&nbsp;&#8226;&nbsp;<A class="menu" href="/forum/Lforum.php" >Форум&nbsp;обучающего&nbsp;этапа</A><br>
+&nbsp;&nbsp;&#8226;&nbsp;<A class="menu" href="/forum/forum.php" >Форум&nbsp;рейтинговых&nbsp;этапов</A><br>
+&nbsp;&nbsp;&#8226;&nbsp;<A class="menu" href="/favorites/" >Избранное</A><br>
+&nbsp;&nbsp;&#8226;&nbsp;<A class="menu" href="/forum/search/" >Поиск</A>
+        </DIV></td>
+<td width="12%" align="left" valign="top" onmouseout="this.style.backgroundColor='#F5F5F5'" onmouseover="this.style.backgroundColor='#FFECEC'">
+        <div><img name="imgratf" border="0" src="/images/blueup.gif"><a style="color:#FF0000;" href="javascript:changeSt('ratf')" onmouseout="" onmouseover=""><b>Рейтинги</b></a></div>
+        <DIV title="Рейтинги" id="ratf" name="ratf" border="0" style="text-align:left; color:#0000FF; font-size:10px; display:none;position:relative;">
+&nbsp;&nbsp;&#8226;&nbsp;<A class="menu" href="/rating.php" >100 лучших результатов</A><br>
+&nbsp;&nbsp;&#8226;&nbsp;<A class="menu" href="/rating_day.php" >Статистика за сегодня</A><br>
+&nbsp;&nbsp;&#8226;&nbsp;<A class="menu" href="/leaders.php">Текущие показатели лидеров</A>
+&nbsp;&nbsp;&#8226;&nbsp;<A class="menu" href="/quest_rating_median.php">Рейтинг&nbsp;задач&nbsp;второго&nbsp;этапа (медиана)</A><br>
+        </DIV></td>
+<td width="10%" align="left" valign="top" onmouseout="this.style.backgroundColor='#F5F5F5'" onmouseover="this.style.backgroundColor='#FFECD9'">
+        <div><img name="imghelpf" border="0" src="/images/blueup.gif"><a style="color:#800000;" href="javascript:changeSt('helpf')" onmouseout="" onmouseover=""><b>Помощь</b></a></div>
+        <DIV title="Помощь" id="helpf" name="helpf" border="0" style="text-align:left; color:#0000FF; font-size:10px; display:none;position:relative;">
+&nbsp;&nbsp;&#8226;&nbsp;<A class="menu" href="/help/" onClick="openHelp();return false;">Справка&nbsp;по&nbsp;SQL(DML)</A><br>
+&nbsp;&nbsp;&#8226;&nbsp;<noindex><A class="menu" href="http://sql-tutorial.ru/content.html" target=_blank>Учебник по SQL</A></noindex><br>
+&nbsp;&nbsp;&#8226;&nbsp;<A class="menu" href="/faq.php">FAQ</A><br>
+&nbsp;&nbsp;&#8226;&nbsp;<A class="menu" href="/developers.php">Запрос&nbsp;в&nbsp;поддержку</A><br>
+&nbsp;&nbsp;&#8226;&nbsp;<noindex><A class="menu" href="http://www.sqlbooks.ru/">Книги и статьи</A></noindex>
+        </DIV></td>
+
+<td width="10%" align="left" valign="top" onmouseout="this.style.backgroundColor='#F5F5F5'" onmouseover="this.style.backgroundColor='#DAE4E0'">
+        <div><img name="imgperf" border="0" src="/images/blueup.gif"><a style="color:#004000;" href="javascript:changeSt('perff')" onmouseout="" onmouseover=""><b>Оптимизация</b></a></div>
+        <DIV title="Оптимизация" id="perff" name="helpf" border="0" style="text-align:left; color:#0000FF; font-size:10px; display:none;position:relative;">
+&nbsp;&nbsp;&#8226;&nbsp;<A class="menu" href="/perfcon.php">План запроса</A><br>
+&nbsp;&nbsp;&#8226;&nbsp;<A class="menu" href="/performance.php">Рейтинг по<br>стоимости запроса</A><br>
+&nbsp;&nbsp;&#8226;&nbsp;<A class="menu" href="/optimization/index.php">Конкурс по оптимизации</A>
+        </DIV></td>
+
+                <td align="center" valign="top" width="7%" onmouseout="this.style.backgroundColor='#F5F5F5'" onmouseover="this.style.backgroundColor='#DDDDDD'"><A href="/personal.php" style="font-size: 8pt;">Профиль</A>
+                <br><A href="/links.php" style="font-size: 8pt;">Ссылки</A></td>
+</table>
+</div>
+<noindex>
+<table width="100%" border="0" align="left">
+    <tr bgcolor="#CCCCCC" valign="middle">
+        <td align="left" width="367">
+<!--LiveInternet counter--><script language="JavaScript"><!--
+document.write('<a rel="nofollow" href="http://www.liveinternet.ru/click" '+
+'target="_blank"><img src="https://counter.yadro.ru/hit?t16.2;r'+
+escape(document.referrer)+((typeof(screen)=='undefined')?'':
+';s'+screen.width+'*'+screen.height+'*'+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+';u'+escape(document.URL)+
+';'+Math.random()+'" title="liveinternet.ru: число просмотров и посетителей за сутки и за сегодня" border="0" width="88" height="31"></a>')//--></script>
+<!--/LiveInternet-->
+
+
+</td><td align="right">
+
+<!--uptolike -->
+Copyright SQL-EX &copy; 2002-2020. All rights reserved. <br>
+<a href="mailto:support@sql-ex.ru"> contact </a>
+</td></tr>
+</table>
+</noindex>
+<!-- </DIV>  -->
+<!-- advmaker -->
+<!--noindex--><script type="text/javascript" src="//am15.net/bn.php?s=70331&f=2&d=86284" ></script><!--/noindex-->
+<!-- на упражнених -->
+<!--noindex--><script type="text/javascript" src="//am15.net/bn.php?s=70331&f=5&d=43618" ></script><!--/noindex-->
+</body></HTML>

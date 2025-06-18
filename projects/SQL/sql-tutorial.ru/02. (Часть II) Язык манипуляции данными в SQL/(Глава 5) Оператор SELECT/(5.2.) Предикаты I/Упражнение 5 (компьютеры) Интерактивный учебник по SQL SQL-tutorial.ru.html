@@ -1,0 +1,1739 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<title>Упражнение 5 (компьютеры) | Интерактивный учебник по SQL | SQL-tutorial.ru</title>
+<meta http-equiv="content-type" content="text/html; charset=windows-1251">
+<meta name="verify-v1" content="mk5yY6WhL2T5L599U8TRZiNKpaROHwGzQGQmsGHHPV0=" />
+<meta name='yandex-verification' content='53f2c2e2f3a8f3fd' />
+<meta name="Keywords" content="collation, between, varchar, сравнение строковых значений, задача 5, упражнение 5 " />
+<meta name="Description" content="Найдите номер модели, скорость и размер жесткого диска ПК, имеющих 12х или 24х CD и цену менее 600 долларов"/>
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" type="text/css" media="all" href="/view/ds/default/css/site.css" />
+<link rel="icon" href="/favicon.ico" type="image/x-icon" />
+<style type="text/css" media="screen"><!--
+#under_title{padding:0 20px 0 50px;min-width:800px}
+body{overflow-x: hidden ! important;}
+.text_advise{background-color:#EEE;padding:10px;background-image:url('/view/gimages/bg7.gif')}
+.text_advise > p{margin-left:10px;margin-right:10px;text-indent:30px;font-style:italic}
+.text_vnim{background-color:#FFE5BF;padding:10px;}
+#table_content{margin:5px 5px 5px 30px;padding:0 0 10px 0;min-width:800px}
+.fld1{border-style: solid; border-width: 1px; border-color:#ddd; padding:3px; background-color: #F0F0F0; background: url('/view/gimages/dcr/ug_rb.gif') no-repeat bottom right;}
+.lgd1{margin-left: 20px;}
+a:hover > img{opacity:1}
+ul.lefttop li{padding-bottom: 5px;}
+div.edit_block{padding:5px;margin:5px;}
+div.edit_panel{border: dotted 0px #aaa}
+img.h2img{margin-right:5px;}
+input.button{background-image: url(/view/gimages/button-bg.gif);background-repeat:repeat-x}
+input.button:hover{border:1px solid #2020ff;}
+div.selected_tag {cursor:pointer}
+div.selected_tag:hover {color:red}
+div.selected_tag:hover img.mmenu{opacity:1}
+label.nav_label{display:inline;top:30px;font-size:110%;color:#aaa}
+label.nav_label > a{color:#333}
+label.nav_label2{display:inline;top:30px;font-size:110%;color:#aaa}
+label.nav_label2  > a{color:#aaa}
+.listalka{font-size:150%;margin-left:50px;}
+.listalka > a{font-size:130%;color:#111}
+.listalka a > img{opacity:0.5}
+.listalka a:hover > img{opacity:1}
+.text_error{background-color:#FFF3E3;padding:5px;color:#E00000}
+div.resize_div{position:relative;overflow:hidden;cursor:s-resize;height:10px;margin:3px 10px;background:transparent;}
+div.resize_div:hover{background-color:#FFDE7D}
+div.resizer{background:transparent url(/view/gimages/resize.gif) no-repeat scroll center top;width:100px;height:10px;cursor:ns-resize;left:50%;position:absolute;margin:0px 0 0 -50px;}
+#profile{font-size:18px;}
+#profile div.taby{padding:15px;background-color:#FFF7BD;min-height:200px}
+input.gsearch{margin:3px 0 7px;vertical-align:middle}
+input.Search{width:170px;margin-left:1px}#search-query {position:relative;}
+#search-query label,input{font-size:125%;}
+#query {padding:0.2em 5px 0.2em 5px;width:150px;}
+#search-query label {position:absolute;top:9px;left:3px;padding:0;font-style:italic;font-family:Verdana,Tahoma;display:none;}
+#search-query #qsubmit {background:transparent url(/view/gimages/button-search.png) no-repeat scroll 0pt;border:0px none;height:38px;width:37px;cursor:pointer;margin-left:0px;}
+#search-query #qsubmit:hover {background:transparent url(/view/gimages/button-search.png) no-repeat scroll -37px 2pt;}
+.small_info_block{
+	color:#444;
+	line-height:90%;
+	padding:5px 5px 5px 32px;
+	background-color:#FDC674;
+	background-image: url('/view/gimages/domik.png');
+	background-repeat: no-repeat;
+	background-position: 4px;
+}
+table td{border-collapse:collapse}
+td > img {display:block}
+.tmenu_b{font-family:Tahoma,Verdana;text-align:center;cursor:pointer;float:left}
+.tmenu_b_l{float:left;background:url(/view/gimages/menu/left_part.gif) no-repeat;width:5px;height:57px;}
+.tmenu_b .cf{float:left;background:url(/view/gimages/menu/central_1.png) repeat-x;height:57px;color:#65470a;font-size:32px;}
+.tmenu_b_r{float:left;background:url(/view/gimages/menu/right_part.gif) no-repeat;width:5px;height:57px;}
+.tmenu_b_ct{margin:18px 10px 15px 10px;}
+.tmenu_b_ct2{margin:14px 3px 15px 3px;}
+
+div#sqlexbanner img{opacity:0.7}
+div#sqlexbanner img#sqlexrushka{opacity:0.2}
+div#sqlexbanner:hover img{opacity:1.0}
+div#sqlexbanner:hover img#sqlexrushka{opacity:1.0}
+
+--></style>
+<!-- 
+<script src="/view/js/libs/prototype.js"></script>
+<script src="/view/js/libs/scriptaculous.js"></script>
+<script src="/view/js/libs/builder.js"></script>
+<script src="/view/js/libs/controls.js"></script>
+<script src="/view/js/libs/effects.js"></script>
+<script src="/view/js/tablesort.js"></script>
+<script src="/view/js/functions.js"></script> -->
+<script src="/view/js/all_pp.js"></script>
+<!--[if lte IE 6]><script language="JavaScript" type="text/javascript" src="/view/js/ie.js"></script>
+<script src="/view/js/fixpng.js"></script><![endif]-->
+</head>
+<body id="maincontainer">
+
+    
+ <div id="backl">
+ <img src="/view/gimages/indicator2.gif" alt="loading.." />
+</div>
+<div id="container">
+ <div style="position:absolute;top:-2px;left:10px;z-index:150;padding:2px;color:#ddd">
+<small>
+<img src="/view/gimages/flags/rus.png" alt="Русский" border="0"/>
+&nbsp;&nbsp;
+<a href="/en/book_exercise_5.html"><img src="/view/gimages/flags/brit.png" alt="English" border="0" class="mmenu"/></a>
+</small>
+ <br/>
+ 11:56
+</div>
+<!--LM-->
+<script async="async" src="https://w.uptolike.com/widgets/v1/zp.js?pid=48721"></script>
+<!--LM-->
+<div id="head" class="mainhead">
+<table class="testtable" style="width:100%;" cellspacing="0" cellpadding="0">
+<tr ><td class="mh_td1"></td>
+<td class="mh_td2"></td>
+<td class="mh_td3"></td>
+<td class="mh_td4">
+
+
+<a href="/ru/content.html" class="n" style="">
+<div class="tmenu_b">
+<div class="tmenu_b_l">
+</div>
+<div class="cf">
+<div class="tmenu_b_ct">Содержание</div>
+</div>
+<div class="tmenu_b_r">
+</div>
+</div>
+</a>
+
+      </td>
+<td align="left" style="padding-right:10px;line-height:125%;font-size:75%;">
+ <a href="/ru/ya.html" class="n" style="">
+<div class="tmenu_b"><div class="tmenu_b_l"></div>
+<div class="cf"><div class="tmenu_b_ct2">
+<img class="mmenu" src="/view/gimages/profile.png" title="Настройки"/>
+</div></div><div class="tmenu_b_r"></div></div>
+</a>
+
+
+<a href="/login/ru?logout" class="n" style="">
+<div class="tmenu_b"><div class="tmenu_b_l"></div>
+<div class="cf"><div class="tmenu_b_ct2">
+<img class="mmenu" src="/view/gimages/logout.png" title="Выйти"/>
+</div></div><div class="tmenu_b_r"></div></div>
+</a>
+
+
+
+</td>
+
+<td class="td_ug" ROWSPAN="2">
+</td>
+
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+<td class="mh_td21"> </td>
+<td class="mh_td22"> </td>
+<td>
+</td>
+<td COLSPAN="2" ROWSPAN="2" style="padding-left:20px;width:330px;">
+  <!-- sql-ex.ru banner -->
+<div id="sqlexbanner" style="position:relative;height:70px;">
+<div style="position:absolute;top:10px;left:115px;z-index:1"><img id="sqlexrushka" src="/view/gimages/sql-ex.ru.rushka.png"/></div>
+  <div style="position:absolute;margin-top:10px;z-index:100">
+<noindex>
+  <a href="http://www.sql-ex.ru/" title="Решение упражнений SQL-EX.ru">
+  <img id="sqlex" src="/view/gimages/sql-ex.ru.gif" border="0" alt="Решение упражений SQL-EX.ru"/>
+  </a>
+</noindex>
+  </div>
+</div>
+
+
+</td>
+</tr>
+
+<tr>
+<td>&nbsp;</td>
+<td class="mh_td31">
+
+      </td>
+      <td COLSPAN="2">
+
+<!--
+<img src="/view/gimages/head/head6.jpg" border="0" alt="Задачи и " title=""/>
+-->
+<div id="site_name">
+<a href="/" border="0" title="SQL Задачи и решения. Первая страница.">
+<h2>SQL Задачи и решения</h2>
+<h3>Учебник. Сергей Моисеенко.</h3>
+</a>
+</div>
+
+      </td>
+</tr>
+
+</table>
+</div>
+
+
+
+<div id="central" style="float:left;">
+ <div id="chapters">
+
+<div class="citem">
+ <a href="#" onClick="show_chapters(); return false;" class="tt1">
+ 	<img src="/view/gimages/chaptersico.png" class="mmenu" align="absmiddle"/>
+ 	 <span class="desc">Содержание учебника</span>
+ </a>
+
+</div>
+
+<div class="citem">
+ <a href="/ru/console.html" class="tt1">
+	<img src="/view/gimages/console.png" class="mmenu" align="absmiddle"/>
+	 <span class="desc">Консоль для выполнения запросов</span>
+ </a>
+</div>
+</div>
+<div id="section">
+
+
+<div class="listalka">
+<a href="/ru/book_exercise_3.html" class="" ><img src="/view/gimages/c_left.png" align="absmiddle" border="0"/></a>
+<label class="nav_label"><a href="/ru/book_exercise_3.html" class="">назад</a></label>
+ <span style="color:#bababa;padding:0 10px 0 10px">листать</span>
+<label class="nav_label"><a href="/ru/book_exercise_6.html" class="">вперёд</a></label>
+<a href="/ru/book_exercise_6.html" class=""><img src="/view/gimages/c_right.png" align="absmiddle" border="0"/></a>
+
+
+</div>
+
+
+
+<div style="width: 800px;font-size:75%; margin-left: 50px; margin-top: 10px;">
+<!-- Yandex.RTB R-A-148438-3 -->
+<div id="yandex_rtb_R-A-148438-3"></div>
+<script type="text/javascript">
+    (function(w, d, n, s, t) {
+        w[n] = w[n] || [];
+        w[n].push(function() {
+            Ya.Context.AdvManager.render({
+                blockId: "R-A-148438-3",
+                renderTo: "yandex_rtb_R-A-148438-3",
+                async: true
+            });
+        });
+        t = d.getElementsByTagName("script")[0];
+        s = d.createElement("script");
+        s.type = "text/javascript";
+        s.src = "//an.yandex.ru/system/context.js";
+        s.async = true;
+        t.parentNode.insertBefore(s, t);
+    })(this, this.document, "yandexContextAsyncCallbacks");
+</script>
+</div>
+
+
+<div id="table_content" >
+<div style="width:825px;overflow:hidden">
+<TABLE style="margin-top:15px;" cellspacing="0" cellpadding="0">
+        <TR style="background-repeat: repeat-x;border-bottom:2px solid black;">
+                <TD style="width:4px;height:35px;border-bottom:1px solid #aaa;">
+
+                    </TD>
+                <TD  style="color:#E0BF9E;height:35px;border-bottom:1px solid #aaa;" align="left">
+
+<div id="parent_list" style="color:grey;">
+       <h3><a href="/ru/book_typical_mistakes_select.html" title="Характерные ошибки при решении задач на написание запросов на выборку (SELECT)">Характерные ошибки при решении задач на написание запросов на выборку (SELECT)</a></h3>
+       <h3><a href="/ru/book_computers_database.html" title="База данных «Компьютерная фирма»">База данных «Компьютерная фирма»</a></h3>
+    </div>
+
+<h1 class="cttl">
+Упражнение 5
+</h1>
+                        </TD>
+                <TD style="width:54px;height:35px;border-bottom:1px solid #aaa;vertical-align:bottom">
+
+
+                        </TD>
+        </TR>
+        <TR>
+                <TD style="width:24px;">
+                        </TD>
+                <TD valign="top" style="padding-right:15px;" colspan="2">
+
+<div id="content_text">
+
+
+ <p><p class="task">
+Найдите номер модели, скорость и размер жесткого диска ПК, имеющих 12х или 24х CD и цену менее 600 долларов.
+</p></p>
+<p>При решении этой задачи обычно совершают две типичные ошибки.</p>
+<p>Первая ошибка связана с интуитивным предположением, что скорость CD-устройства является целочисленным значением. В результате запрос</p>
+<p><div id="query_container_1" class="query_container" style="padding:5px;" >
+
+<div style="float:right"><small>
+<a href="#" onClick="showConsole(1,1,42); return false;" >
+<img src="/view/gimages/console.png" align="absmiddle"/></a>
+<a href="#" onClick="showConsole(1,1,42); return false;" class="lnk1">
+Консоль</a>
+</small>
+</div>
+
+
+<div >
+<a href="#" onClick="showQueryRes(1,1,42); return false;">
+<img src="/view/gimages/execute.png" align="absmiddle"/></a>
+<small><span style="color:#EEC9A4">
+<a class="lnk1" href="#" onClick="showQueryRes(1,1,42); return false;">Выполнить</a></span></small>
+
+<div class="ctrlc">
+<a href="#" onClick=" return false;" id="ctrlc_1">
+<img src="/view/gimages/copy_to_clipboard.png" align="absmiddle" alt="Скопировать" title="Скопировать"/>
+<small id="ctrlc_1_text" >Ctrl-C</small>
+</a>
+</div>
+</div>
+
+<div style="clear:both"></div>
+
+<pre class="sql"><ol><li class="li1"><div class="de1"><span class="kw1">SELECT</span> PC.model, PC.speed, PC.hd </div></li><li class="li1"><div class="de1"><span class="kw1">FROM</span> PC </div></li><li class="li1"><div class="de1"><span class="kw1">WHERE</span> PC.cd <span class="kw1">IN</span> <span class="br0">(</span><span class="nu0">12</span>, <span class="nu0">24</span><span class="br0">)</span> <span class="kw3">AND</span> </div></li><li class="li1"><div class="de1">price < <span class="nu0">600</span>;</div></li></ol></pre>
+
+<div id="_sql1" style="padding:5px;border:dotted #B08080; border-width: 0 1px 1px 1px;background-color:white;background-image:url('/view/gimages/bg5.bmp');display:none;text-align:center;margin-bottom:0;padding-bottom:0;">
+</div>
+
+<div id="_console1" class="console_resizable" style="padding:5px;border:dotted #B08080; border-width: 0 1px 1px 1px;background-color:white;background-image:url('/view/gimages/bg5.bmp');display:none;text-align:left;margin-bottom:0;padding-bottom:0;">
+
+<div class="iframe_container" style="height:120px;">
+<textarea id="ta_1" class="sql" style="width:700px;height:110px;" wrap="off" disabled="">
+SELECT PC.model, PC.speed, PC.hd 
+FROM PC 
+WHERE PC.cd IN (12, 24) AND 
+price < 600;
+</textarea>
+</div>
+<div style="clear:both"></div>
+<div class="resize_div" id="resize_div_1" title="Изменить размер">
+	<div class="resizer"></div>
+</div>
+<input type="Button" value="Выполнить" class="button" onClick = "runConsoleSql('ta_1','1')"/>
+  &nbsp 
+
+ <a href="#" onClick="showScheme('_scheme1'); return false;" style=" font-size: 16px; font-weight:bold; padding: 8px 8px 8px 24px; background: url(/view/gimages/view_s.png) no-repeat">
+ Схема </a>
+
+
+<div style="clear:both"></div>
+
+<div id="_scheme1" style="display:none">
+ 		<img src="/view/gimages/book/computers.gif"/>
+ 
+</div>
+
+<div id="_consolesql1" style="padding:5px;border:dotted #B08080; border-width: 0 1px 1px 1px;background-color:white;background-image:url('/view/gimages/bg5.bmp');display:none;text-align:center;margin-bottom:0;padding-bottom:0;">
+</div>
+
+</div>
+</div>
+<br></p>
+<p>выдаст ошибку приведения несовместимых типов данных:</p>
+<p><div class="text_error">
+<p><i>Conversion failed when converting the varchar value '12x' to data type int.</i></p>
+</div></p>
+<p>(«Ошибка при преобразовании значения '12x' типа varchar к типу данных int»)</p>
+<p>Внимательное чтение <a style="font-weight: bold;" title="схема данных" href="book_computers_database.html" target="" фирма="" Компьютерная="">схемы данных</a> скажет, что столбец cd имеет тип varchar. Поэтому, чтобы получить правильное решение достаточно переписать запрос в виде:</p>
+<p><div id="query_container_2" class="query_container" style="padding:5px;" >
+
+<div style="float:right"><small>
+<a href="#" onClick="showConsole(2,1,42); return false;" >
+<img src="/view/gimages/console.png" align="absmiddle"/></a>
+<a href="#" onClick="showConsole(2,1,42); return false;" class="lnk1">
+Консоль</a>
+</small>
+</div>
+
+
+<div >
+<a href="#" onClick="showQueryRes(2,1,42); return false;">
+<img src="/view/gimages/execute.png" align="absmiddle"/></a>
+<small><span style="color:#EEC9A4">
+<a class="lnk1" href="#" onClick="showQueryRes(2,1,42); return false;">Выполнить</a></span></small>
+
+<div class="ctrlc">
+<a href="#" onClick=" return false;" id="ctrlc_2">
+<img src="/view/gimages/copy_to_clipboard.png" align="absmiddle" alt="Скопировать" title="Скопировать"/>
+<small id="ctrlc_2_text" >Ctrl-C</small>
+</a>
+</div>
+</div>
+
+<div style="clear:both"></div>
+
+<pre class="sql"><ol><li class="li1"><div class="de1"><span class="kw1">SELECT</span> PC.model, PC.speed, PC.hd </div></li><li class="li1"><div class="de1"><span class="kw1">FROM</span> PC </div></li><li class="li1"><div class="de1"><span class="kw1">WHERE</span> PC.cd <span class="kw1">IN</span> <span class="br0">(</span><span class="st0">'12x'</span>, <span class="st0">'24x'</span><span class="br0">)</span> <span class="kw3">AND</span> </div></li><li class="li1"><div class="de1">price < <span class="nu0">600</span>;</div></li></ol></pre>
+
+<div id="_sql2" style="padding:5px;border:dotted #B08080; border-width: 0 1px 1px 1px;background-color:white;background-image:url('/view/gimages/bg5.bmp');display:none;text-align:center;margin-bottom:0;padding-bottom:0;">
+</div>
+
+<div id="_console2" class="console_resizable" style="padding:5px;border:dotted #B08080; border-width: 0 1px 1px 1px;background-color:white;background-image:url('/view/gimages/bg5.bmp');display:none;text-align:left;margin-bottom:0;padding-bottom:0;">
+
+<div class="iframe_container" style="height:120px;">
+<textarea id="ta_2" class="sql" style="width:700px;height:110px;" wrap="off" disabled="">
+SELECT PC.model, PC.speed, PC.hd 
+FROM PC 
+WHERE PC.cd IN ('12x', '24x') AND 
+price < 600;
+</textarea>
+</div>
+<div style="clear:both"></div>
+<div class="resize_div" id="resize_div_2" title="Изменить размер">
+	<div class="resizer"></div>
+</div>
+<input type="Button" value="Выполнить" class="button" onClick = "runConsoleSql('ta_2','2')"/>
+  &nbsp 
+
+ <a href="#" onClick="showScheme('_scheme2'); return false;" style=" font-size: 16px; font-weight:bold; padding: 8px 8px 8px 24px; background: url(/view/gimages/view_s.png) no-repeat">
+ Схема </a>
+
+
+<div style="clear:both"></div>
+
+<div id="_scheme2" style="display:none">
+ 		<img src="/view/gimages/book/computers.gif"/>
+ 
+</div>
+
+<div id="_consolesql2" style="padding:5px;border:dotted #B08080; border-width: 0 1px 1px 1px;background-color:white;background-image:url('/view/gimages/bg5.bmp');display:none;text-align:center;margin-bottom:0;padding-bottom:0;">
+</div>
+
+</div>
+</div>
+<br></p>
+<p>Вторая ошибка логическая и заключается в неправомерном использовании предиката BETWEEN. Вот это решение:</p>
+<p><div id="query_container_3" class="query_container" style="padding:5px;" >
+
+<div style="float:right"><small>
+<a href="#" onClick="showConsole(3,1,42); return false;" >
+<img src="/view/gimages/console.png" align="absmiddle"/></a>
+<a href="#" onClick="showConsole(3,1,42); return false;" class="lnk1">
+Консоль</a>
+</small>
+</div>
+
+
+<div >
+<a href="#" onClick="showQueryRes(3,1,42); return false;">
+<img src="/view/gimages/execute.png" align="absmiddle"/></a>
+<small><span style="color:#EEC9A4">
+<a class="lnk1" href="#" onClick="showQueryRes(3,1,42); return false;">Выполнить</a></span></small>
+
+<div class="ctrlc">
+<a href="#" onClick=" return false;" id="ctrlc_3">
+<img src="/view/gimages/copy_to_clipboard.png" align="absmiddle" alt="Скопировать" title="Скопировать"/>
+<small id="ctrlc_3_text" >Ctrl-C</small>
+</a>
+</div>
+</div>
+
+<div style="clear:both"></div>
+
+<pre class="sql"><ol><li class="li1"><div class="de1"><span class="kw1">SELECT</span> model, speed, hd</div></li><li class="li1"><div class="de1"><span class="kw1">FROM</span> PC</div></li><li class="li1"><div class="de1"><span class="kw1">WHERE</span> price < <span class="nu0">600</span> <span class="kw3">AND</span> </div></li><li class="li1"><div class="de1">cd <span class="kw1">BETWEEN</span> <span class="st0">'12x'</span> <span class="kw3">AND</span> <span class="st0">'24x'</span>;</div></li></ol></pre>
+
+<div id="_sql3" style="padding:5px;border:dotted #B08080; border-width: 0 1px 1px 1px;background-color:white;background-image:url('/view/gimages/bg5.bmp');display:none;text-align:center;margin-bottom:0;padding-bottom:0;">
+</div>
+
+<div id="_console3" class="console_resizable" style="padding:5px;border:dotted #B08080; border-width: 0 1px 1px 1px;background-color:white;background-image:url('/view/gimages/bg5.bmp');display:none;text-align:left;margin-bottom:0;padding-bottom:0;">
+
+<div class="iframe_container" style="height:120px;">
+<textarea id="ta_3" class="sql" style="width:700px;height:110px;" wrap="off" disabled="">
+SELECT model, speed, hd
+FROM PC
+WHERE price < 600 AND 
+cd BETWEEN '12x' AND '24x';
+</textarea>
+</div>
+<div style="clear:both"></div>
+<div class="resize_div" id="resize_div_3" title="Изменить размер">
+	<div class="resizer"></div>
+</div>
+<input type="Button" value="Выполнить" class="button" onClick = "runConsoleSql('ta_3','3')"/>
+  &nbsp 
+
+ <a href="#" onClick="showScheme('_scheme3'); return false;" style=" font-size: 16px; font-weight:bold; padding: 8px 8px 8px 24px; background: url(/view/gimages/view_s.png) no-repeat">
+ Схема </a>
+
+
+<div style="clear:both"></div>
+
+<div id="_scheme3" style="display:none">
+ 		<img src="/view/gimages/book/computers.gif"/>
+ 
+</div>
+
+<div id="_consolesql3" style="padding:5px;border:dotted #B08080; border-width: 0 1px 1px 1px;background-color:white;background-image:url('/view/gimages/bg5.bmp');display:none;text-align:center;margin-bottom:0;padding-bottom:0;">
+</div>
+
+</div>
+</div>
+<br></p>
+<p>Даже если предположить, что между моделями 12х и 24х-скоростных CD-приводов нет других моделей (скажем, 20х), решение не будет верным в силу правила сравнения строковых значений. Это правило гласит, что строки сравниваются посимвольно до первого отличающегося символа. Далее вывод о сравнении строк целиком делается на основании результата сравнения отличающихся символов. Например, справедливо 'abcz' &lt; 'abd', так как первый отличающийся символ в первой строке ('c') меньше соответствующего символа второй строки ('d'). Если одна строка является префиксом второй (например, 'упражнения' и 'упражнениями'), то истинным будет сравнение 'упражнения' &lt; 'упражнениями'.</p>
+<p>Здесь уместно заметить, что сравнение (и соответственно порядок сортировки) зависит от параметра <a style="font-weight: bold;" title="Database journal - collation" href="/ru/book_bibliography.html" target="">COLLATION [3]</a>. Повсюду, если не оговорено противное, мы будем предполагать, что все текстовые поля имеют одинаковую установку этого параметра, обеспечивающего сравнение, независящее от регистра.</p>
+<p>Предикат BETWEEN эквивалентен одновременному выполнению двух простых операторов сравнения:</p>
+<p style="color: rgb(0, 0, 0);">cd &gt;= ‘12x' AND cd &lt;= '24x'</p>
+<p>Исходя из вышесказанного, этому предикату будут удовлетворять, помимо требуемых задачей, например, следующие значения:</p>
+<p style="color: rgb(0, 0, 0);">‘130x’, 145’, ‘150000000000y’ и т. д.</p>
+<p>Еще одним вариантом решения этой несложной задачи будет использование двух предикатов простого сравнения:</p>
+<p><div id="query_container_4" class="query_container" style="padding:5px;" >
+
+<div style="float:right"><small>
+<a href="#" onClick="showConsole(4,1,42); return false;" >
+<img src="/view/gimages/console.png" align="absmiddle"/></a>
+<a href="#" onClick="showConsole(4,1,42); return false;" class="lnk1">
+Консоль</a>
+</small>
+</div>
+
+
+<div >
+<a href="#" onClick="showQueryRes(4,1,42); return false;">
+<img src="/view/gimages/execute.png" align="absmiddle"/></a>
+<small><span style="color:#EEC9A4">
+<a class="lnk1" href="#" onClick="showQueryRes(4,1,42); return false;">Выполнить</a></span></small>
+
+<div class="ctrlc">
+<a href="#" onClick=" return false;" id="ctrlc_4">
+<img src="/view/gimages/copy_to_clipboard.png" align="absmiddle" alt="Скопировать" title="Скопировать"/>
+<small id="ctrlc_4_text" >Ctrl-C</small>
+</a>
+</div>
+</div>
+
+<div style="clear:both"></div>
+
+<pre class="sql"><ol><li class="li1"><div class="de1"><span class="kw1">SELECT</span> PC.model, PC.speed, PC.hd </div></li><li class="li1"><div class="de1"><span class="kw1">FROM</span> PC </div></li><li class="li1"><div class="de1"><span class="kw1">WHERE</span> <span class="br0">(</span>PC.cd = <span class="st0">'12x'</span> <span class="kw3">OR</span> </div></li><li class="li1"><div class="de1">PC.cd = <span class="st0">'24x'</span><span class="br0">)</span> <span class="kw3">AND</span> </div></li><li class="li1"><div class="de1">price < <span class="nu0">600</span>;</div></li></ol></pre>
+
+<div id="_sql4" style="padding:5px;border:dotted #B08080; border-width: 0 1px 1px 1px;background-color:white;background-image:url('/view/gimages/bg5.bmp');display:none;text-align:center;margin-bottom:0;padding-bottom:0;">
+</div>
+
+<div id="_console4" class="console_resizable" style="padding:5px;border:dotted #B08080; border-width: 0 1px 1px 1px;background-color:white;background-image:url('/view/gimages/bg5.bmp');display:none;text-align:left;margin-bottom:0;padding-bottom:0;">
+
+<div class="iframe_container" style="height:120px;">
+<textarea id="ta_4" class="sql" style="width:700px;height:110px;" wrap="off" disabled="">
+SELECT PC.model, PC.speed, PC.hd 
+FROM PC 
+WHERE (PC.cd = '12x' OR 
+PC.cd = '24x') AND 
+price < 600;
+</textarea>
+</div>
+<div style="clear:both"></div>
+<div class="resize_div" id="resize_div_4" title="Изменить размер">
+	<div class="resizer"></div>
+</div>
+<input type="Button" value="Выполнить" class="button" onClick = "runConsoleSql('ta_4','4')"/>
+  &nbsp 
+
+ <a href="#" onClick="showScheme('_scheme4'); return false;" style=" font-size: 16px; font-weight:bold; padding: 8px 8px 8px 24px; background: url(/view/gimages/view_s.png) no-repeat">
+ Схема </a>
+
+
+<div style="clear:both"></div>
+
+<div id="_scheme4" style="display:none">
+ 		<img src="/view/gimages/book/computers.gif"/>
+ 
+</div>
+
+<div id="_consolesql4" style="padding:5px;border:dotted #B08080; border-width: 0 1px 1px 1px;background-color:white;background-image:url('/view/gimages/bg5.bmp');display:none;text-align:center;margin-bottom:0;padding-bottom:0;">
+</div>
+
+</div>
+</div>
+</p>
+<noindex>
+<p><a title="Упражнение #5 на SQL-EX.RU  (обучающий этап)" href="http://www.sql-ex.ru/learn_exercises.php?LN=5" target="_blank"><span style="font-weight: bold;">Решить задачу на SQL-EX.RU</span></a></p></noindex>
+
+<noindex>
+<div style="margin: 5px 5px 5px 15px;clear:both">
+<!-- AddThis Button BEGIN -->
+<a class="addthis_button" rel="nofollow" href="http://www.addthis.com/bookmark.php?v=250&amp;username=xa-4bd5f25a2f771da2"><img src="http://s7.addthis.com/static/btn/v2/lg-share-en.gif" width="125" height="16" alt="Bookmark and Share" style="border:0"/></a><script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=xa-4bd5f25a2f771da2"></script>
+<!-- AddThis Button END -->
+</div>
+<div style="clear: both"></div>
+</noindex>
+
+
+
+
+
+ 
+ <div style="margin:5px;padding-left:25px;background:url(/view/gimages/tagcloud.gif) no-repeat">
+ <a style="margin:4px;font-size:120%;color:grey" href="/ru/tag/between.html">between</a><a style="margin:4px;font-size:120%;color:grey" href="/ru/tag/varchar.html">varchar</a><a style="margin:4px;font-size:120%;color:grey" href="/ru/tag/collation.html">collation</a><a style="margin:4px;font-size:120%;color:grey" href="/ru/tag/%F3%EF%F0%E0%E6%ED%E5%ED%E8%E5%205.html">упражнение 5</a><a style="margin:4px;font-size:120%;color:grey" href="/ru/tag/%F1%F0%E0%E2%ED%E5%ED%E8%E5%20%F1%F2%F0%EE%EA%EE%E2%FB%F5%20%E7%ED%E0%F7%E5%ED%E8%E9.html">сравнение строковых значений</a> </div>
+
+</div>
+                                        </TD>
+
+        </TR>
+
+
+</TABLE>
+
+
+<div style="margin:5px 0 5px 20px">
+
+</div>
+
+<div style="clear:left"></div>
+
+<!-- предыдущая следующая -->
+
+<div style="margin: 10px 0 0 10px">
+<table width="100%"><TR><TD width="50%" align=left>
+<a href="/ru/book_exercise_3.html" class="lnk2"><img class="lnk" src="/view/gimages/c_left.png" align="absmiddle" /></a>
+<label class="nav_label2"><a href="/ru/book_exercise_3.html" >Предыдущая</a></label>
+  <a href="/ru/book_exercise_3.html" class="lnk2">[Упражнение 3]</a>
+</td>
+<TD width="50%" align=right>
+
+<a href="/ru/book_exercise_6.html" class="lnk2">[Упражнение 6]</a>
+<label class="nav_label2"><a href="/ru/book_exercise_6.html" >Следующая</a></label>
+<a href="/ru/book_exercise_6.html" class="lnk2"><img class="lnk" src="/view/gimages/c_right.png" align="absmiddle"/></a>
+</td></tr>
+</table>
+</div>
+
+<!-- end -->
+
+
+</div>
+</div>
+</div>
+
+
+
+
+
+<script src="/view/js/codepress/codepress.js" type="text/javascript"></script>
+
+
+
+<script type="text/javascript">
+//<![CDATA[
+var current_chapter = 'exercise_5';
+
+
+
+var checkObj = new Object();
+var responseCache = new Array();
+
+function showQueryRes(num,page,cid){
+        var id = '_sql'+num;
+       // if(eval('checkObj.queryResponse'+id+' == 1')==true) return;
+
+        if(!checkCache(id)){
+            eval('checkObj.queryResponse'+id+' = 1;');
+            var _dt = new Date();
+            eval('checkObj.query'+id+'start = _dt.getTime();');
+            closetext = '<div style="float:right"><a href="javascript:closeQueryRes(\'_sql'+ num +'\');"><img class="close2" src="/view/gimages/close.png"/></a></div>';
+            $(id).innerHTML = closetext + '<img src="/view/gimages/indicator2.gif"/><div style="clear:both"></div><br/> ';
+            $(id).style.display = 'block';
+            $(id).style.width = "auto";
+            new Ajax.Request('/sqlbook/get_query/'+cid+'/'+page+'/'+num,{onComplete: query_callback});
+        }
+  else  new Effect.SlideDown($(id));
+}
+
+function checkCache(id){
+  if(typeof(responseCache[id]) == 'string'){
+     //$(id).innerHTML = responseCache[id];
+     //$(id).style.width = '100%';
+     return true;
+  }else return false;
+}
+
+function query_callback(res){
+      var obj = eval(res.responseText);
+      if(typeof(obj) == 'undefined') return;
+
+      curid = '_sql'+obj.num;
+//closetext
+      closetext = '<div style="float:right"><a href="javascript:closeQueryRes(\'_sql'+ obj.num +'\')"><img class="close2" src="/view/gimages/close.png"/></a></div>';
+
+      str = '<table width="100%" style="margin:2px;"><tr>';
+
+if(typeof(obj.error) == 'undefined'){
+
+    //  if(typeof(obj)=='undefined'){$(curid).innerHTML = "<h3 style='color:grey'>Попробуйте ещё раз</h3>"; return;}
+      res = obj.resultset;
+
+      var head = new Array(res[0].length);
+
+      i = 0;
+
+      //время и количество
+      var _dt = new Date();
+      var common_time = eval('_dt.getTime() - checkObj.query'+curid+'start');
+
+      common_time = common_time / 1000; //sec
+
+    //нужен ли оферфлоу
+    column_qty = 0;
+    for(prop in res[0]){
+             column_qty++;
+      }
+    overflow_property = '';
+    if(column_qty > 7){
+      overflow_property = 'overflow-x:scroll;';
+    }
+
+      str += '<td align="center" style="padding-left:20px;"><div style="'+overflow_property+';display:block;width:650px;"><table class="sort sortable-onload-1 rowstyle-alt no-arrow"><thead><tr>';
+
+      for(prop in res[0]){
+              head[i] = prop; str += '<th class="sortable">' + prop + '</th>';
+              i++;
+      }
+
+      str += "</tr></thead>";
+
+      i = 0;
+      while(i<res.length){
+              a=0; str += '<tr>';
+              while(a<head.length){
+                      str += '<td>' + res[i][head[a]] + '</td>';
+                      a++;
+              }
+              str += '</tr>';
+              i++;
+      }
+
+
+  }else{
+
+    str += '<td align="center" style="padding-left:20px;"><table><tr><td>'+obj.error+'</td></tr>';
+
+    }
+
+      $(curid).innerHTML = str + '</table></td></div><td width="25px" valign="top">'+closetext+'</td></tr></table>';
+      //
+      $(curid).style.height="100%";
+      //!important
+      responseCache[curid] = $(curid).innerHTML;
+      eval('checkObj.queryResponse_sql'+obj.num+' = 0;');
+
+  //new Effect.SlideDown($(curid));
+}
+
+function closeQueryRes(id){
+        new Effect.Fade($(id));
+}
+
+/*---Console---*/
+
+var consoleCache = new Array();
+var consoleQueue = new Array();
+function showConsole(num,page,cid){
+  var id = '_console'+num;
+
+  if(!$(id+'c')){
+    closetext = '<div id="'+id+'c" style="float:right;text-align:right"><a href="javascript:closeConsoleRes(\'_console'+ num +'\');"><img class="close2" src="/view/gimages/close.png"/></a></div><div style="clear:both"></div>';
+    $(id).innerHTML = closetext+$(id).innerHTML;
+  }
+  //new Effect.SlideDown($(id));
+
+  $(id).setStyle({display:'block',opacity:'0'});
+  new Effect.Appear($(id));
+
+  //$(id).show(); return;
+  if(consoleCache[id] != 1) consoleCache[id] = 1;
+    else return false;
+    tid = 'ta_'+num;
+  //$(tid).addClassName('codepress');
+  CodePress.run(tid);
+  //setTimeout('init_console_resizable()',1000);
+  init_console_resizable();
+}
+
+function closeConsoleRes(id){
+  //$(id).innerHTML = '';
+  new Effect.Fade($(id));
+}
+
+
+function runConsoleSql(id,cmd_id){
+  var code,bd;
+  eval('code = '+id+'.getCode()');
+
+    code = code.replace(/\n/gm,"%0D");
+    code = code.replace(/\r/gm,"%0A");
+
+    code = code.replace(/&nbsp;/g,' ');
+    code = code.replace(/\s+/g,' ');
+
+  $('_consolesql'+cmd_id).setStyle({'display':'block'});
+  $('_consolesql'+cmd_id).innerHTML = '<img src="/view/gimages/indicator2.gif" alt="loading.."/>';
+
+  //get BD
+   // bd = $('bd_'+cmd_id).value;
+
+
+  if(consoleQueue[cmd_id] != 1)
+    new Ajax.Request('/sqlbook/get_query/all',
+      {method:'POST',parameters:'cmd_id='+cmd_id+'&sql='+code,onComplete: console_callback});
+}
+
+
+function console_callback(res){
+      var obj = eval(res.responseText);
+      if(typeof(obj) == 'undefined') return;
+
+      curid = '_consolesql'+obj.num;
+
+//closetext
+      closetext = '<div style="float:right"><a href="javascript:closeConsoleRes(\'_consolesql'+ obj.num +'\')"><img class="close2" src="/view/gimages/close.png"/></a></div>';
+      str = '<table width="100%" style="margin:2px;"><tr>';
+
+//если лимит
+if(obj.limit == 1){
+
+  //make pseudo cache
+  if(consoleQueue[obj.num]  != 1){
+    consoleQueue[obj.num] = 1;
+    if(typeof(obj.remain) == 'undefined') obj.remain = 5;
+    setTimeout('consoleQueue['+obj.num+'] = 0; runConsoleSql(\'ta_'+obj.num+'\','+obj.num+');',obj.remain*1000);
+  }
+  //setTimeout('closeConsoleRes(\'' + curid + '\'); ',2000);
+  return;
+}
+
+if(typeof(obj.error) == 'undefined'){
+
+      res = obj.resultset;
+      var head = new Array(res[0].length);
+      i = 0;
+
+      //время и количество
+  var _dt = new Date();
+  var common_time = eval('_dt.getTime() - checkObj.query'+curid+'start');
+
+
+    //нужен ли оферфлоу
+    column_qty = 0;
+    for(prop in res[0]){
+           column_qty++;
+    }
+    overflow_property = '';
+    if(column_qty > 7){
+      overflow_property = 'overflow-x:scroll;';
+    }
+
+  common_time = common_time / 1000; //sec
+  str += '<td align="center" style="padding-left:20px;"><div style="'+overflow_property+'display:block;width:650px;"><table class="sort sortable-onload-1 rowstyle-alt no-arrow"><thead><tr>';
+
+      for(prop in res[0]){
+              head[i] = prop; str += '<th class="sortable">' + prop + '</th>';
+              i++;
+      }
+
+      str += "</tr></thead>";
+
+      i = 0;
+      while(i<res.length){
+              a=0; str += '<tr>';
+              while(a<head.length){
+                      str += '<td>' + res[i][head[a]] + '</td>';
+                      a++;
+              }
+              str += '</tr>';
+              i++;
+      }
+
+
+  }else{
+
+    str += '<td align="center" style="padding-left:20px;"><table><tr><td>'+obj.error+'</td></tr>';
+
+    }
+
+      $(curid).innerHTML = str + '</table></div></td><td width="25px" valign="top">'+closetext+'</td></tr></table>';
+      //
+      $(curid).style.height="100%";
+
+}
+
+function showScheme(id){
+
+  if($(id).getStyle('display') != 'block')
+    new Effect.Appear($(id));
+  else  new Effect.Fade($(id));
+}
+
+
+/*---Console end---*/
+
+
+//preload
+var _i2 = new Image();_i2.src="/view/gimages/bg_header_sortable.gif";
+var _i3 = new Image();_i3.src="/view/gimages/close2.gif";
+var _i4 = new Image();_i4.src="/view/gimages/indicator2.gif";
+//]]>
+</script>
+
+<script src="/view/js/ZeroClipboard.js"></script><div style="margin: 5px 20px 5px 20px;text-align:center">
+<script type="text/javascript"><!--
+google_ad_client = "pub-7619086738530461";
+/* 728x90, создано 20.09.08 */
+google_ad_slot = "4439850492";
+google_ad_width = 728;
+google_ad_height = 90;
+//-->
+</script>
+<script type="text/javascript"
+src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
+</script>
+</div>
+ </div>
+
+<div style="float:right;width:240px;overflow:hidden;margin:20px 5px 10px 1px;">
+<div class="profile_info">
+    <div class="profile_info_image"><a href="/ru/ya.html"><img src="http://www.gravatar.com/avatar/d41d8cd98f00b204e9800998ecf8427e?r=R&d=identicon&s=70"/></a></div>
+    <div class="profile_info_text"><b>elijah</b><br/><br/><small><a href="/login/ru?logout">Выйти</a></small></div>
+</div>
+<div class="clearboth"></div>
+<div style="margin:5px 0;">
+
+<!--form action="http://www.sql-tutorial.ru/ru/search.html" id="cse-search-box">
+  <div>
+    <input type="hidden" name="cx" value="partner-pub-7619086738530461:vadi8khfo0y" />
+    <input type="hidden" name="cof" value="FORID:10" />
+    <input type="hidden" name="ie" value="windows-1251" />
+    <input type="text" class="Search" name="q" size="15" />
+    <input type="image" class="gsearch" name="sa" src="/view/gimages/find.png" />
+  </div>
+</form-->
+
+<!--<script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=cse-search-box&lang=ru"></script>
+-->
+
+</div>
+
+<div style="margin:5px 0;">
+<script>
+  (function() {
+      var cx = 'partner-pub-7619086738530461:vadi8khfo0y';
+      var gcse = document.createElement('script');
+      gcse.type = 'text/javascript';
+      gcse.async = true;
+      gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+         '//cse.google.com/cse.js?cx=' + cx;
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(gcse, s);
+    })();
+</script>
+<gcse:searchbox-only resultsUrl="http://www.sql-tutorial.ru/ru/search.html"></gcse:searchbox-only>
+</div>
+
+<!--\\
+<div style="margin:5px 0;">
+    <a href="/ru/questions.html" class="right_service_href ru"
+        title="Вопросы и ответы по SQL, MSSQL, MySQL.">
+    Вопросы и ответы по SQL, MSSQL, MySQL.    </a>
+</div>
+-->
+
+<!-- 240*400 Advertur.ru start -->
+<div id="advertur_3286"></div><script type="text/javascript">
+    (function(w, d, n) {
+        w[n] = w[n] || [];
+        w[n].push({
+            section_id: 3286,
+            place: "advertur_3286",
+            width: 240,
+            height: 400
+        });
+    })(window, document, "advertur_sections");
+</script>
+<script type="text/javascript" src="//ddnk.advertur.ru/v1/s/loader.js" async></script>
+<!-- 240*400 Advertur.ru end -->
+
+<!-- Yandex.RTB R-A-148438-4 -->
+<div id="yandex_rtb_R-A-148438-4"></div>
+<script type="text/javascript">
+    (function(w, d, n, s, t) {
+        w[n] = w[n] || [];
+        w[n].push(function() {
+            Ya.Context.AdvManager.render({
+                blockId: "R-A-148438-4",
+                renderTo: "yandex_rtb_R-A-148438-4",
+                async: true
+            });
+        });
+        t = d.getElementsByTagName("script")[0];
+        s = d.createElement("script");
+        s.type = "text/javascript";
+        s.src = "//an.yandex.ru/system/context.js";
+        s.async = true;
+        t.parentNode.insertBefore(s, t);
+    })(this, this.document, "yandexContextAsyncCallbacks");
+</script>    
+
+    
+    
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter51149408 = new Ya.Metrika2({
+                    id:51149408,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/tag.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks2");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/51149408" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
+ 
+
+
+<div id="top10added"
+  style="margin: 1px; background-color: #FFF7BD; margin-bottom: 10px; background-position: top left; background-repeat: no-repeat">
+<div class="divcontent" style="padding: 10px;"><b>Последние изменения:</b>
+<ul class="lastedited">
+    <li><a
+    href="/ru/book_unicode_nchar_functions.html"
+    rel="nofollow">Функции UNICODE и NCHAR </a></li>
+    <li><a
+    href="/ru/book_cross_apply/page4.html"
+    rel="nofollow">CROSS APPLY / OUTER APPLY   стр. 4</a></li>
+    <li><a
+    href="/ru/book_optimizing.html"
+    rel="nofollow">Вопросы оптимизации </a></li>
+    <li><a
+    href="/ru/book_exercise_28.html"
+    rel="nofollow">Упражнение 28 </a></li>
+    <li><a
+    href="/ru/book_sql_server_query_plan_explanation.html"
+    rel="nofollow">Основные операции плана выполнения SQL Server </a></li>
+    <li><a
+    href="/ru/book_sql_tips_and_solutions_7.html"
+    rel="nofollow">Упражнение 7 (подсказки и решения) </a></li>
+    <li><a
+    href="/ru/book_exercise_1.html"
+    rel="nofollow">Упражнение 1 </a></li>
+    <li><a
+    href="/ru/book_exercise_2.html"
+    rel="nofollow">Упражнение 2 </a></li>
+    <li><a
+    href="/ru/book_exercise_3.html"
+    rel="nofollow">Упражнение 3 </a></li>
+    <li><a
+    href="/ru/book_exercise_7/page2.html"
+    rel="nofollow">Упражнение 7   стр. 2</a></li>
+  </ul>
+</div>
+  
+</div>
+<div class="divcontent" style="padding:5px 0px 10px 0px;">
+<a href="/ru/donate.html" title="donate"><img class="donate" src="/view/gimages/donate.jpg" alt="donate"/></a>
+</div>
+
+<script type="text/javascript">
+//<![CDATA[
+$$('img.donate').invoke('observe','mouseover',function(){this.oldsrc=this.src;this.src = '/view/gimages/donate.hv.jpg'; });
+$$('img.donate').invoke('observe','mouseout',function(){this.src = this.oldsrc; });
+var dhv_image = new Image();dhv_image.src="/view/gimages/donate.hv.jpg";
+//]]>
+</script>
+
+
+
+
+
+
+<div id="tagclound" style="margin:1px 1px 5px 1px;background-color:#ffde7d;
+	background-image:url('/view/gimages/toplist_head1.png');background-position: top left;background-repeat: no-repeat">
+<div class="divcontent" style="padding:10px;background:url('/view/gimages/cloud.png') no-repeat bottom left">
+<b><a href="/ru/tags/all.html">Тэги:</a></b>
+<br/>
+<form action="/ru/tagsearch.html" method="GET">
+<div id="search-query">
+	<label for="query">поиск по тэгам</label>
+ 	<input type="text" value="" name="query" id="query"/>
+	<input type="submit" id="qsubmit" value = " "/>
+</div>
+</form>
+<div style="padding:5px;line-height:135%;color:#555;text-align:center;">
+ <a href="/ru/tag/ALL.html" style="font-size:101.830985915%">ALL</a>
+    
+    
+ <a href="/ru/tag/AND.html" style="font-size:95.0704225352%">AND</a>
+    
+    
+ <a href="/ru/tag/AUTO_INCREMENT.html" style="font-size:93.3802816901%">AUTO_INCREMENT</a>
+    
+    
+ <a href="/ru/tag/AVG.html" style="font-size:110.281690141%">AVG</a>
+    
+    
+ <a href="/ru/tag/battles.html" style="font-size:96.7605633803%">battles</a>
+    
+    
+ <a href="/ru/tag/CASE.html" style="font-size:110.281690141%">CASE</a>
+    
+    
+ <a href="/ru/tag/CAST.html" style="font-size:100.14084507%">CAST</a>
+    
+    
+ <a href="/ru/tag/CHAR.html" style="font-size:96.7605633803%">CHAR</a>
+    
+    
+ <a href="/ru/tag/CHARINDEX.html" style="font-size:95.0704225352%">CHARINDEX</a>
+    
+    
+ <a href="/ru/tag/CHECK.html" style="font-size:98.4507042254%">CHECK</a>
+    
+    
+ <a href="/ru/tag/classes.html" style="font-size:100.14084507%">classes</a>
+    
+    
+ <a href="/ru/tag/COALESCE.html" style="font-size:96.7605633803%">COALESCE</a>
+    
+    
+ <a href="/ru/tag/CONSTRAINT.html" style="font-size:96.7605633803%">CONSTRAINT</a>
+    
+    
+ <a href="/ru/tag/Convert.html" style="font-size:96.7605633803%">Convert</a>
+    
+    
+ <a href="/ru/tag/COUNT.html" style="font-size:101.830985915%">COUNT</a>
+    
+    
+ <a href="/ru/tag/CROSS%20APPLY.html" style="font-size:98.4507042254%">CROSS APPLY</a>
+    
+    
+ <a href="/ru/tag/CTE.html" style="font-size:98.4507042254%">CTE</a>
+    
+    
+ <a href="/ru/tag/DATEADD.html" style="font-size:95.0704225352%">DATEADD</a>
+    
+    
+ <a href="/ru/tag/DATEDIFF.html" style="font-size:93.3802816901%">DATEDIFF</a>
+    
+    
+ <a href="/ru/tag/DATENAME.html" style="font-size:95.0704225352%">DATENAME</a>
+    
+    
+ <a href="/ru/tag/DATEPART.html" style="font-size:98.4507042254%">DATEPART</a>
+    
+    
+ <a href="/ru/tag/DATETIME.html" style="font-size:96.7605633803%">DATETIME</a>
+    
+    
+ <a href="/ru/tag/DDL.html" style="font-size:95.0704225352%">DDL</a>
+    
+    
+ <a href="/ru/tag/DEFAULT.html" style="font-size:96.7605633803%">DEFAULT</a>
+    
+    
+ <a href="/ru/tag/DELETE.html" style="font-size:101.830985915%">DELETE</a>
+    
+    
+ <a href="/ru/tag/DISTINCT.html" style="font-size:103.521126761%">DISTINCT</a>
+    
+    
+ <a href="/ru/tag/DML.html" style="font-size:95.0704225352%">DML</a>
+    
+    
+ <a href="/ru/tag/EXCEPT.html" style="font-size:101.830985915%">EXCEPT</a>
+    
+    
+ <a href="/ru/tag/EXISTS.html" style="font-size:100.14084507%">EXISTS</a>
+    
+    
+ <a href="/ru/tag/EXTRACT.html" style="font-size:93.3802816901%">EXTRACT</a>
+    
+    
+ <a href="/ru/tag/FOREIGN%20KEY.html" style="font-size:93.3802816901%">FOREIGN KEY</a>
+    
+    
+ <a href="/ru/tag/FROM.html" style="font-size:98.4507042254%">FROM</a>
+    
+    
+ <a href="/ru/tag/FULL%20JOIN.html" style="font-size:103.521126761%">FULL JOIN</a>
+    
+    
+ <a href="/ru/tag/GROUP%20BY.html" style="font-size:108.591549296%">GROUP BY</a>
+    
+    
+ <a href="/ru/tag/Guadalcanal.html" style="font-size:93.3802816901%">Guadalcanal</a>
+    
+    
+ <a href="/ru/tag/HAVING.html" style="font-size:108.591549296%">HAVING</a>
+    
+    
+ <a href="/ru/tag/IDENTITY.html" style="font-size:96.7605633803%">IDENTITY</a>
+    
+    
+ <a href="/ru/tag/IN.html" style="font-size:100.14084507%">IN</a>
+    
+    
+ <a href="/ru/tag/INFORMATION_SCHEMA.html" style="font-size:93.3802816901%">INFORMATION_SCHEMA</a>
+    
+    
+ <a href="/ru/tag/INNER%20JOIN.html" style="font-size:98.4507042254%">INNER JOIN</a>
+    
+    
+ <a href="/ru/tag/insert.html" style="font-size:101.830985915%">insert</a>
+    
+    
+ <a href="/ru/tag/INTERSECT.html" style="font-size:98.4507042254%">INTERSECT</a>
+    
+    
+ <a href="/ru/tag/IS%20NOT%20NULL.html" style="font-size:93.3802816901%">IS NOT NULL</a>
+    
+    
+ <a href="/ru/tag/IS%20NULL.html" style="font-size:95.0704225352%">IS NULL</a>
+    
+    
+ <a href="/ru/tag/ISNULL.html" style="font-size:93.3802816901%">ISNULL</a>
+    
+    
+ <a href="/ru/tag/laptop.html" style="font-size:100.14084507%">laptop</a>
+    
+    
+ <a href="/ru/tag/LEFT.html" style="font-size:93.3802816901%">LEFT</a>
+    
+    
+ <a href="/ru/tag/LEFT%20OUTER%20JOIN.html" style="font-size:108.591549296%">LEFT OUTER JOIN</a>
+    
+    
+ <a href="/ru/tag/LEN.html" style="font-size:98.4507042254%">LEN</a>
+    
+    
+ <a href="/ru/tag/maker.html" style="font-size:93.3802816901%">maker</a>
+  <a class="e" id="es4e_tagov" href="#" onclick="$('es4e_tagov').hide();$('tags_es4e').show();return false;" style="font-size: 16px; margin: 10px;display:block">Больше тэгов</a><div id="tags_es4e" style="display:none">  
+    
+ <a href="/ru/tag/MAX.html" style="font-size:108.591549296%">MAX</a>
+    
+    
+ <a href="/ru/tag/MIN.html" style="font-size:98.4507042254%">MIN</a>
+    
+    
+ <a href="/ru/tag/MONEY.html" style="font-size:93.3802816901%">MONEY</a>
+    
+    
+ <a href="/ru/tag/MONTH.html" style="font-size:93.3802816901%">MONTH</a>
+    
+    
+ <a href="/ru/tag/MySQL.html" style="font-size:128.873239437%">MySQL</a>
+    
+    
+ <a href="/ru/tag/NATURAL%20JOIN.html" style="font-size:93.3802816901%">NATURAL JOIN</a>
+    
+    
+ <a href="/ru/tag/NOT.html" style="font-size:93.3802816901%">NOT</a>
+    
+    
+ <a href="/ru/tag/NOT%20IN.html" style="font-size:100.14084507%">NOT IN</a>
+    
+    
+ <a href="/ru/tag/NULL.html" style="font-size:132.253521127%">NULL</a>
+    
+    
+ <a href="/ru/tag/NULLIF.html" style="font-size:95.0704225352%">NULLIF</a>
+    
+    
+ <a href="/ru/tag/OR.html" style="font-size:96.7605633803%">OR</a>
+    
+    
+ <a href="/ru/tag/Oracle.html" style="font-size:103.521126761%">Oracle</a>
+    
+    
+ <a href="/ru/tag/ORDER%20BY.html" style="font-size:103.521126761%">ORDER BY</a>
+    
+    
+ <a href="/ru/tag/Outcome.html" style="font-size:95.0704225352%">Outcome</a>
+    
+    
+ <a href="/ru/tag/outcomes.html" style="font-size:118.732394366%">outcomes</a>
+    
+    
+ <a href="/ru/tag/outcome_o.html" style="font-size:93.3802816901%">outcome_o</a>
+    
+    
+ <a href="/ru/tag/OVER.html" style="font-size:106.901408451%">OVER</a>
+    
+    
+ <a href="/ru/tag/PARTITION%20BY.html" style="font-size:101.830985915%">PARTITION BY</a>
+    
+    
+ <a href="/ru/tag/Pass_in_trip.html" style="font-size:96.7605633803%">Pass_in_trip</a>
+    
+    
+ <a href="/ru/tag/pc.html" style="font-size:108.591549296%">pc</a>
+    
+    
+ <a href="/ru/tag/PIVOT.html" style="font-size:96.7605633803%">PIVOT</a>
+    
+    
+ <a href="/ru/tag/PostgreSQL.html" style="font-size:125.492957746%">PostgreSQL</a>
+    
+    
+ <a href="/ru/tag/PRIMARY%20KEY.html" style="font-size:95.0704225352%">PRIMARY KEY</a>
+    
+    
+ <a href="/ru/tag/printer.html" style="font-size:100.14084507%">printer</a>
+    
+    
+ <a href="/ru/tag/Product.html" style="font-size:101.830985915%">Product</a>
+    
+    
+ <a href="/ru/tag/RIGHT.html" style="font-size:93.3802816901%">RIGHT</a>
+    
+    
+ <a href="/ru/tag/RIGHT%20JOIN.html" style="font-size:98.4507042254%">RIGHT JOIN</a>
+    
+    
+ <a href="/ru/tag/ROUND.html" style="font-size:95.0704225352%">ROUND</a>
+    
+    
+ <a href="/ru/tag/ROW_NUMBER.html" style="font-size:100.14084507%">ROW_NUMBER</a>
+    
+    
+ <a href="/ru/tag/select.html" style="font-size:95.0704225352%">select</a>
+    
+    
+ <a href="/ru/tag/ships.html" style="font-size:123.802816901%">ships</a>
+    
+    
+ <a href="/ru/tag/sql.html" style="font-size:95.0704225352%">sql</a>
+    
+    
+ <a href="/ru/tag/SQL%20Server.html" style="font-size:110.281690141%">SQL Server</a>
+    
+    
+ <a href="/ru/tag/SQL%20Server%202012.html" style="font-size:93.3802816901%">SQL Server 2012</a>
+    
+    
+ <a href="/ru/tag/SQL-92.html" style="font-size:96.7605633803%">SQL-92</a>
+    
+    
+ <a href="/ru/tag/sql-ex.ru.html" style="font-size:96.7605633803%">sql-ex.ru</a>
+    
+    
+ <a href="/ru/tag/SUBSTRING.html" style="font-size:93.3802816901%">SUBSTRING</a>
+    
+    
+ <a href="/ru/tag/SUM.html" style="font-size:96.7605633803%">SUM</a>
+    
+    
+ <a href="/ru/tag/TO_CHAR.html" style="font-size:93.3802816901%">TO_CHAR</a>
+    
+    
+ <a href="/ru/tag/Trip.html" style="font-size:98.4507042254%">Trip</a>
+    
+    
+ <a href="/ru/tag/TRUNCATE%20TABLE.html" style="font-size:93.3802816901%">TRUNCATE TABLE</a>
+    
+    
+ <a href="/ru/tag/UNION.html" style="font-size:133.943661972%">UNION</a>
+    
+    
+ <a href="/ru/tag/UNION%20ALL.html" style="font-size:108.591549296%">UNION ALL</a>
+    
+    
+ <a href="/ru/tag/UNKNOWN.html" style="font-size:95.0704225352%">UNKNOWN</a>
+    
+    
+ <a href="/ru/tag/UNPIVOT.html" style="font-size:93.3802816901%">UNPIVOT</a>
+    
+    
+ <a href="/ru/tag/UPDATE.html" style="font-size:98.4507042254%">UPDATE</a>
+    
+    
+ <a href="/ru/tag/varchar.html" style="font-size:100.14084507%">varchar</a>
+    
+    
+ <a href="/ru/tag/WHERE.html" style="font-size:101.830985915%">WHERE</a>
+    
+    
+ <a href="/ru/tag/WITH.html" style="font-size:93.3802816901%">WITH</a>
+    
+    
+ <a href="/ru/tag/XML.html" style="font-size:98.4507042254%">XML</a>
+    
+    
+ <a href="/ru/tag/xPath.html" style="font-size:98.4507042254%">xPath</a>
+    
+    
+ <a href="/ru/tag/xQuery.html" style="font-size:98.4507042254%">xQuery</a>
+    
+    
+ <a href="/ru/tag/%E0%E2%F2%EE%E8%ED%EA%F0%E5%EC%E5%ED%F2.html" style="font-size:95.0704225352%">автоинкремент</a>
+    
+    
+ <a href="/ru/tag/%E0%E3%F0%E5%E3%E0%F2%ED%FB%E5%20%F4%F3%ED%EA%F6%E8%E8.html" style="font-size:101.830985915%">агрегатные функции</a>
+    
+    
+ <a href="/ru/tag/%E0%FD%F0%EE%EF%EE%F0%F2.html" style="font-size:98.4507042254%">аэропорт</a>
+    
+    
+ <a href="/ru/tag/%C1%E5%E6%E0%E5%E2.html" style="font-size:96.7605633803%">Бежаев</a>
+    
+    
+ <a href="/ru/tag/%C1%E8%F1%EC%E0%F0%EA.html" style="font-size:95.0704225352%">Бисмарк</a>
+    
+    
+ <a href="/ru/tag/%E2%ED%E5%F8%ED%E8%E5%20%F1%EE%E5%E4%E8%ED%E5%ED%E8%FF.html" style="font-size:100.14084507%">внешние соединения</a>
+    
+    
+ <a href="/ru/tag/%E2%ED%F3%F2%F0%E5%ED%ED%E5%E5%20%F1%EE%E5%E4%E8%ED%E5%ED%E8%E5.html" style="font-size:93.3802816901%">внутреннее соединение</a>
+    
+    
+ <a href="/ru/tag/%E2%FB%F7%E8%F1%EB%FF%E5%EC%FB%E5%20%F1%F2%EE%EB%E1%F6%FB.html" style="font-size:93.3802816901%">вычисляемые столбцы</a>
+    
+    
+ <a href="/ru/tag/%E3%E5%ED%E5%F0%E0%F6%E8%FF%20%F7%E8%F1%EB%EE%E2%EE%E9%20%EF%EE%F1%EB%E5%E4%EE%E2%E0%F2%E5%EB%FC%ED%EE%F1%F2%E8.html" style="font-size:96.7605633803%">генерация числовой последовательности</a>
+    
+    
+ <a href="/ru/tag/%E3%EE%EB%EE%E2%ED%EE%E9%20%EA%EE%F0%E0%E1%EB%FC.html" style="font-size:93.3802816901%">головной корабль</a>
+    
+    
+ <a href="/ru/tag/%E3%F0%F3%EF%EF%E8%F0%EE%E2%EA%E0.html" style="font-size:98.4507042254%">группировка</a>
+    
+    
+ <a href="/ru/tag/%E4%E5%EA%E0%F0%F2%EE%E2%EE%20%EF%F0%EE%E8%E7%E2%E5%E4%E5%ED%E8%E5.html" style="font-size:100.14084507%">декартово произведение</a>
+    
+    
+ <a href="/ru/tag/%E4%F3%E1%EB%E8%EA%E0%F2%FB.html" style="font-size:103.521126761%">дубликаты</a>
+    
+    
+ <a href="/ru/tag/%E5%F1%F2%E5%F1%F2%E2%E5%ED%ED%EE%E5%20%F1%EE%E5%E4%E8%ED%E5%ED%E8%E5.html" style="font-size:93.3802816901%">естественное соединение</a>
+    
+    
+ <a href="/ru/tag/%E7%E0%E4%E0%F7%E0.html" style="font-size:93.3802816901%">задача</a>
+    
+    
+ <a href="/ru/tag/%E7%E0%E4%E0%F7%E8.html" style="font-size:95.0704225352%">задачи</a>
+    
+    
+ <a href="/ru/tag/%E7%E0%EF%F0%EE%F1.html" style="font-size:93.3802816901%">запрос</a>
+    
+    
+ <a href="/ru/tag/%E8%E7%F3%F7%E0%E9%F2%E5%20%F1%F5%E5%EC%F3%20%E4%E0%ED%ED%FB%F5.html" style="font-size:96.7605633803%">изучайте схему данных</a>
+    
+    
+ <a href="/ru/tag/%EA%EE%EC%EF%FC%FE%F2%E5%F0%ED%E0%FF%20%F4%E8%F0%EC%E0.html" style="font-size:101.830985915%">компьютерная фирма</a>
+    
+    
+ <a href="/ru/tag/%EA%EE%ED%EA%E0%F2%E5%ED%E0%F6%E8%FF.html" style="font-size:93.3802816901%">конкатенация</a>
+    
+    
+ <a href="/ru/tag/%EA%EE%ED%F1%F2%F0%F3%EA%F2%EE%F0%20%F2%E0%E1%EB%E8%F6%FB.html" style="font-size:93.3802816901%">конструктор таблицы</a>
+    
+    
+ <a href="/ru/tag/%EA%EE%F0%E0%E1%EB%E8.html" style="font-size:122.112676056%">корабли</a>
+    
+    
+ <a href="/ru/tag/%EA%EE%F0%F0%E5%EB%E8%F0%F3%FE%F9%E8%E5%20%EF%EE%E4%E7%E0%EF%F0%EE%F1%FB.html" style="font-size:108.591549296%">коррелирующие подзапросы</a>
+    
+    
+ <a href="/ru/tag/%ED%F3%EC%E5%F0%E0%F6%E8%FF%20%F1%F2%F0%EE%EA.html" style="font-size:96.7605633803%">нумерация строк</a>
+    
+    
+ <a href="/ru/tag/%EE%E1%F9%E8%E5%20%F2%E0%E1%EB%E8%F7%ED%FB%E5%20%E2%FB%F0%E0%E6%E5%ED%E8%FF.html" style="font-size:96.7605633803%">общие табличные выражения</a>
+    
+    
+ <a href="/ru/tag/%EE%EA%EE%ED%ED%FB%E5%20%F4%F3%ED%EA%F6%E8%E8.html" style="font-size:103.521126761%">оконные функции</a>
+    
+    
+ <a href="/ru/tag/%CE%EA%F0%E0%F1%EA%E0.html" style="font-size:96.7605633803%">Окраска</a>
+    
+    
+ <a href="/ru/tag/%EE%F8%E8%E1%EA%E8.html" style="font-size:208.309859155%">ошибки</a>
+    
+    
+ <a href="/ru/tag/%EF%E5%E9%E4%E6%E8%ED%E3.html" style="font-size:95.0704225352%">пейджинг</a>
+    
+    
+ <a href="/ru/tag/%EF%E5%F0%E5%E8%EC%E5%ED%EE%E2%E0%ED%E8%E5%20%F1%F2%EE%EB%E1%F6%EE%E2.html" style="font-size:93.3802816901%">переименование столбцов</a>
+    
+    
+ <a href="/ru/tag/%EF%E5%F0%E5%F1%E5%F7%E5%ED%E8%E5.html" style="font-size:93.3802816901%">пересечение</a>
+    
+    
+ <a href="/ru/tag/%EF%EB%E0%ED%20%E2%FB%EF%EE%EB%ED%E5%ED%E8%FF%20%E7%E0%EF%F0%EE%F1%E0.html" style="font-size:96.7605633803%">план выполнения запроса</a>
+    
+    
+ <a href="/ru/tag/%EF%EE%E4%E7%E0%EF%F0%EE%F1.html" style="font-size:113.661971831%">подзапрос</a>
+    
+    
+ <a href="/ru/tag/%EF%EE%E4%F1%EA%E0%E7%EA%E8.html" style="font-size:137.323943662%">подсказки</a>
+    
+    
+ <a href="/ru/tag/%EF%EE%F1%F2%F0%E0%ED%E8%F7%ED%E0%FF%20%F0%E0%E7%E1%E8%E2%EA%E0%20%E7%E0%EF%E8%F1%E5%E9.html" style="font-size:95.0704225352%">постраничная разбивка записей</a>
+    
+    
+ <a href="/ru/tag/%EF%F0%E5%E4%E8%EA%E0%F2%20LIKE.html" style="font-size:93.3802816901%">предикат LIKE</a>
+    
+    
+ <a href="/ru/tag/%EF%F0%E5%E4%E8%EA%E0%F2%FB.html" style="font-size:100.14084507%">предикаты</a>
+    
+    
+ <a href="/ru/tag/%EF%F0%E5%E4%E8%EA%E0%F2%FB%20%F1%F0%E0%E2%ED%E5%ED%E8%FF.html" style="font-size:95.0704225352%">предикаты сравнения</a>
+    
+    
+ <a href="/ru/tag/%EF%F0%E5%E4%EB%EE%E6%E5%ED%E8%E5%20AS.html" style="font-size:93.3802816901%">предложение AS</a>
+    
+    
+ <a href="/ru/tag/%EF%F0%E5%EE%E1%F0%E0%E7%EE%E2%E0%ED%E8%E5%20%F2%E8%EF%EE%E2.html" style="font-size:111.971830986%">преобразование типов</a>
+    
+    
+ <a href="/ru/tag/%EF%F0%EE%E8%E7%E2%EE%E4%E8%F2%E5%EB%FC%ED%EE%F1%F2%FC.html" style="font-size:93.3802816901%">производительность</a>
+    
+    
+ <a href="/ru/tag/%F0%E0%E7%ED%EE%F1%F2%FC.html" style="font-size:95.0704225352%">разность</a>
+    
+    
+ <a href="/ru/tag/%F0%E0%ED%E6%E8%F0%F3%FE%F9%E8%E5%20%F4%F3%ED%EA%F6%E8%E8.html" style="font-size:96.7605633803%">ранжирующие функции</a>
+    
+    
+ <a href="/ru/tag/%F0%E5%E1%F0%EE.html" style="font-size:93.3802816901%">ребро</a>
+    
+    
+ <a href="/ru/tag/%F0%E5%EA%F3%F0%F1%E8%E2%ED%FB%E5%20CTE.html" style="font-size:105.211267606%">рекурсивные CTE</a>
+    
+    
+ <a href="/ru/tag/%F1%E0%EC%EE%F1%EE%E5%E4%E8%ED%E5%ED%E8%E5.html" style="font-size:93.3802816901%">самосоединение</a>
+    
+    
+ <a href="/ru/tag/%F1%EE%E5%E4%E8%ED%E5%ED%E8%E5%20%F2%E0%E1%EB%E8%F6.html" style="font-size:103.521126761%">соединение таблиц</a>
+    
+    
+ <a href="/ru/tag/%F1%EE%F0%F2%E8%F0%EE%E2%EA%E0.html" style="font-size:96.7605633803%">сортировка</a>
+    
+    
+ <a href="/ru/tag/%F1%F0%E5%E4%ED%E5%E5%20%E7%ED%E0%F7%E5%ED%E8%E5.html" style="font-size:93.3802816901%">среднее значение</a>
+    
+    
+ <a href="/ru/tag/%F1%F2%F0%EE%EA%EE%E2%FB%E5%20%F4%F3%ED%EA%F6%E8%E8.html" style="font-size:113.661971831%">строковые функции</a>
+    
+    
+ <a href="/ru/tag/%F2%E8%EF%FB%20%E4%E0%ED%ED%FB%F5.html" style="font-size:95.0704225352%">типы данных</a>
+    
+    
+ <a href="/ru/tag/%D2%EE%F0%F3%F1.html" style="font-size:93.3802816901%">Торус</a>
+    
+    
+ <a href="/ru/tag/%F3%E7%E5%EB.html" style="font-size:93.3802816901%">узел</a>
+    
+    
+ <a href="/ru/tag/%F3%EF%F0%E0%E6%ED%E5%ED%E8%E5%20%28-2%29.html" style="font-size:96.7605633803%">упражнение (-2)</a>
+    
+    
+ <a href="/ru/tag/%F3%EF%F0%E0%E6%ED%E5%ED%E8%E5%2032.html" style="font-size:95.0704225352%">упражнение 32</a>
+    
+    
+ <a href="/ru/tag/%F3%EF%F0%E0%E6%ED%E5%ED%E8%E5%2037.html" style="font-size:96.7605633803%">упражнение 37</a>
+    
+    
+ <a href="/ru/tag/%F3%EF%F0%E0%E6%ED%E5%ED%E8%E5%2039.html" style="font-size:96.7605633803%">упражнение 39</a>
+    
+    
+ <a href="/ru/tag/%F3%EF%F0%E0%E6%ED%E5%ED%E8%E5%2046.html" style="font-size:95.0704225352%">упражнение 46</a>
+    
+    
+ <a href="/ru/tag/%F3%EF%F0%E0%E6%ED%E5%ED%E8%E5%2054.html" style="font-size:93.3802816901%">упражнение 54</a>
+    
+    
+ <a href="/ru/tag/%F3%EF%F0%E0%E6%ED%E5%ED%E8%E5%2055.html" style="font-size:95.0704225352%">упражнение 55</a>
+    
+    
+ <a href="/ru/tag/%D3%EF%F0%E0%E6%ED%E5%ED%E8%E5%2056.html" style="font-size:98.4507042254%">Упражнение 56</a>
+    
+    
+ <a href="/ru/tag/%F3%EF%F0%E0%E6%ED%E5%ED%E8%E5%2057.html" style="font-size:93.3802816901%">упражнение 57</a>
+    
+    
+ <a href="/ru/tag/%F3%EF%F0%E0%E6%ED%E5%ED%E8%E5%2070.html" style="font-size:95.0704225352%">упражнение 70</a>
+    
+    
+ <a href="/ru/tag/%F3%EF%F0%E0%E6%ED%E5%ED%E8%E5%208.html" style="font-size:93.3802816901%">упражнение 8</a>
+    
+    
+ <a href="/ru/tag/%F3%EF%F0%E0%E6%ED%E5%ED%E8%FF.html" style="font-size:93.3802816901%">упражнения</a>
+    
+    
+ <a href="/ru/tag/%F3%F7%E5%E1%ED%E8%EA.html" style="font-size:95.0704225352%">учебник</a>
+    
+    
+ <a href="/ru/tag/%F4%F3%ED%EA%F6%E8%E8%20%E4%E0%F2%FB_%E2%F0%E5%EC%E5%ED%E8.html" style="font-size:96.7605633803%">функции даты_времени</a>
+    
+    
+ <a href="/ru/tag/%F4%F3%ED%EA%F6%E8%FF.html" style="font-size:95.0704225352%">функция</a>
+    
+    
+ <a href="/ru/tag/%D7%E5%E1%FB%EA%E8%ED.html" style="font-size:98.4507042254%">Чебыкин</a>
+    
+    
+ <a href="/ru/tag/%FD%EA%E2%E8%F1%EE%E5%E4%E8%ED%E5%ED%E8%E5.html" style="font-size:96.7605633803%">эквисоединение</a>
+    
+  </div>  
+ </div>
+</div>
+</div><div class="small_info_block">
+Учебник обновлялся<br/><i>месяц назад</i>
+</div>
+
+<script type="text/javascript">
+<!--
+var _acic={dataProvider:10};(function(){var e=document.createElement("script");e.type="text/javascript";e.async=true;e.src="//www.acint.net/aci.js";var t=document.getElementsByTagName("script")[0];t.parentNode.insertBefore(e,t)})()
+//-->
+</script> <a href="https://exchangesumo.com/obmen/AKBBRUB-QIWIRUB/" target="_blank">https://exchangesumo.com/obmen/AKBBRUB-QIWIRUB/</a> 
+<!-- Yandex.RTB R-A-148438-1 -->
+<div id="yandex_rtb_R-A-148438-1"></div>
+<script type="text/javascript">
+    (function(w, d, n, s, t) {
+        w[n] = w[n] || [];
+        w[n].push(function() {
+            Ya.Context.AdvManager.render({
+                blockId: "R-A-148438-1",
+                renderTo: "yandex_rtb_R-A-148438-1",
+                async: true
+            });
+        });
+        t = d.getElementsByTagName("script")[0];
+        s = d.createElement("script");
+        s.type = "text/javascript";
+        s.src = "//an.yandex.ru/system/context.js";
+        s.async = true;
+        t.parentNode.insertBefore(s, t);
+    })(this, this.document, "yandexContextAsyncCallbacks");
+</script>
+
+</div>
+
+<div style="clear:both"></div>
+<div id="bottom">
+ 
+<!--LiveInternet counter--><script type="text/javascript"><!--
+document.write("<img src='http://counter.yadro.ru/hit?r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";"+Math.random()+
+"' width=1 height=1 alt=''>")//--></script><!--/LiveInternet-->
+
+<div id="footerdiv">
+
+ <span class="grey">&copy;SQL-EX,2008</span> <a href="/ru/help.html" rel="nofollow">[Развитие]</a>
+ <a href="/ru/contacts.html" rel="nofollow">[Связь]</a>
+ <a href="/ru/about.html" style="word-spacing:0px;" rel="nofollow">[О проекте]</a>
+<a href="/ru/links.html">[Ссылки]</a>
+<a href="/ru/developers.html">[Team]</a>
+  <br/>
+<small style="word-spacing:1px;">
+Перепечатка материалов сайта возможна только с разрешения автора.
+
+</small>
+
+<noindex>
+
+<div style="position:absolute;top:5px;left:5px;">
+
+<!--LiveInternet logo--><a rel="nofollow" href="http://www.liveinternet.ru/click"
+target=_blank><img src="http://counter.yadro.ru/logo?14.6"
+title="LiveInternet: показано число просмотров за 24 часа, посетителей за 24 часа и за сегодня"
+alt="" border=0 width=88 height=31></a><!--/LiveInternet-->
+
+<!-- Top100 (Kraken) Widget -->
+<span id="top100_widget"></span>
+<!-- END Top100 (Kraken) Widget -->
+  
+<!-- Top100 (Kraken) Counter -->
+<script>
+    (function (w, d, c) {
+    (w[c] = w[c] || []).push(function() {
+        var options = {
+            project: 1509238,
+            element: 'top100_widget',
+        };
+        try {
+            w.top100Counter = new top100(options);
+        } catch(e) { }
+    });
+    var n = d.getElementsByTagName("script")[0],
+    s = d.createElement("script"),
+    f = function () { n.parentNode.insertBefore(s, n); };
+    s.type = "text/javascript";
+    s.async = true;
+    s.src =
+    (d.location.protocol == "https:" ? "https:" : "http:") +
+    "//st.top100.ru/top100/top100.js";
+
+    if (w.opera == "[object Opera]") {
+    d.addEventListener("DOMContentLoaded", f, false);
+} else { f(); }
+})(window, document, "_top100q");
+</script>
+<noscript>
+  <img src="//counter.rambler.ru/top100.cnt?pid=1509238" alt="Топ-100" />
+</noscript>
+<!-- END Top100 (Kraken) Counter -->
+
+
+
+</div>
+<div id="eyes"><img src="/view/gimages/2.png" align="absmiddle"/></div>
+
+</noindex>
+
+</div>
+
+
+  <!--noindex--><script type="text/javascript" src="//am15.net/bn.php?s=70359&f=2&d=98790" ></script><!--/noindex-->  
+ 
+
+  </div>
+
+ </div>
+
+</body>
+</html>

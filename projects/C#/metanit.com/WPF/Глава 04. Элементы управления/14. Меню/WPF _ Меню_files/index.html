@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<!-- saved from url=(0066)https://s0.2mdn.net/sadbundle/16012541598988004736/_DCM/index.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<!-- Google -->
+<script type="text/javascript">var clickTag = "http://www.google.com";</script>
+
+
+<!-- Banner settings -->
+<meta name="ad.size" content="width=160,height=600">
+
+<script type="text/javascript">
+	var bannerName = "terminal 1.fla"; //Insert banner name here. With or without .fla
+	var debugMode = false;
+	
+	var customFPS = 25;
+	
+	function customInit(evt, comp){//Custom banner params
+		willStop = true;
+		fullIterationsBeforeStop = 3;
+		
+		isStretchHor = false;
+		isStretchVert = false;
+		noScale = true;
+		
+		showAge = true;
+		
+		needBorder = true;
+		strongBorder = false;
+		//borderColor = "#dadada";
+		
+		//maxWidth = 1080;
+		//maxHeight = 328;
+		//minWidth = 0;
+		//minHeight = 0;
+		
+		advancedMouse = true;  //Different full and CTA buttons control
+		showRestartButton = true;
+		stage.enableMouseOver(20);
+	}
+	
+	function bRelease() { //Exit
+		window.open(window.clickTag); //DCM, Google
+	}
+</script>
+
+<meta name="author" content="Aleksey Bugaev: bugaev.aleksey@gmail.com">
+
+<title>Banner page</title>
+<style> html, body { background-color:#FFFFFF; width: 100%; height: 100%; margin: 0; padding: 0; overflow:  hidden; }</style>
+<script type="text/javascript">
+    
+  (function() {
+    var MAX_URL_PARAM_LENGTH = 34;
+    var CLICK_X_URL_KEY = 'nx';
+    var CLICK_Y_URL_KEY = 'ny';
+    var CREATIVE_DIMENSIONS_KEY = 'dim';
+    var AD_URL_PARAM = '&adurl=';
+
+    var relegateNavigation = '';
+    var urlParamMap = {};
+
+    urlParamMap[CLICK_X_URL_KEY] = null;
+    urlParamMap[CLICK_Y_URL_KEY] = null;
+    urlParamMap[CREATIVE_DIMENSIONS_KEY] = null;
+
+    var handleClickTagMessage = function(e) {
+      try {
+        var eventData = JSON.parse(e.data);
+      } catch (err) {
+        return;
+      }
+      if (eventData.isInitClickTag) {
+        if (eventData.clickTags) {
+          for (var i = 0; i < eventData.clickTags.length; i++) {
+            var clkTag = eventData.clickTags[i];
+            window[clkTag.name] = clkTag.url;
+          }
+        } else if (eventData.clickTag) {
+          window.clickTag = eventData.clickTag;
+        }
+        relegateNavigation = eventData.relegateNavigation;
+      }
+    };
+
+    var storeClickCoordinates = function(e) {
+      urlParamMap[CLICK_X_URL_KEY] = Math.round(e.clientX);
+      urlParamMap[CLICK_Y_URL_KEY] = Math.round(e.clientY);
+    };
+
+    var getCreativeDimensions = function() {
+      return window.innerWidth + 'x' + window.innerHeight;
+    }
+
+    var getExitClickParams = function(e) {
+      urlParamMap[CREATIVE_DIMENSIONS_KEY] = getCreativeDimensions();
+
+      var exitParams = '';
+      for (var key in urlParamMap) {
+        exitParams += '&' + key + '=';
+        if (urlParamMap[key] !== null) {
+          exitParams += urlParamMap[key];
+        }
+      }
+      return exitParams;
+    }
+
+    var appendExitClickParams = function(url) {
+      var adUrlIndex = url.toLowerCase().indexOf(AD_URL_PARAM);
+      var paramsToBeAdded = getExitClickParams();
+      if (adUrlIndex > -1 && paramsToBeAdded.length <= MAX_URL_PARAM_LENGTH) {
+        url = url.substr(0, adUrlIndex) + paramsToBeAdded +
+          url.substr(adUrlIndex);
+      };
+      return url;
+    };
+
+    if (open.call) {
+      window.open = function(open) {
+        return function(url, name, features) {
+          url = appendExitClickParams(url);
+          if (relegateNavigation === 'parent') {
+            var message = {'clickTag': url, 'isPostClickTag': true};
+            parent.postMessage(JSON.stringify(message), '*');
+          } else {
+            var args = [url, name];
+            if (features) {
+              args.push(features);
+            }
+            open.apply(window, args);
+          }
+        };
+      }(window.open);
+    }
+
+    if (window.addEventListener) {
+      window.addEventListener(
+          'message', handleClickTagMessage, false);
+      window.addEventListener('mousedown', storeClickCoordinates, true);
+    } else {
+      window.attachEvent('onmessage', handleClickTagMessage);
+    }
+  })();
+    
+  </script></head>
+
+
+<body>
+	<!-- Cсылка прописана в функции bRelease() ниже ↓, раздельно обрабатывыются CTA-кнопка (реагирует на наведение) и клик по площади -->
+	<canvas id="canvas" width="320" height="1200" style="visibility: visible; width: 160px; height: 600px; cursor: pointer;"></canvas>
+
+<!-- ------------------------------------------------------- LIBRARIES ------------------------------------------------------- -->
+
+<!-- CreateJS -->
+<!--script src="https://code.createjs.com/createjs-2015.11.26.min.js">/* CreatJS CDN */</script-->
+<!--script src="https://s0.2mdn.net/ads/studio/cached_libs/createjs_2015.11.26_54e1c3722102182bb133912ad4442e19_min.js">/* Google */</script-->
+<script src="./createjs.mod.2021-07-27-19-49.js.Без названия"></script>
+
+<!-- Wrap -->
+<script src="./ego-2021-07-26-01.js.Без названия">
+	
+</script>
+
+<!-- FX -->
+<script src="./ego_fx-2021-08-01.js.Без названия">
+	
+</script>
+
+<!-- ------------------------------------------------------------------------------------------------------------------------- -->
+
+
+
+<!-- ----------------- BANNER ----------------- -->
+<script src="./banner.js.Без названия"></script>
+<!-- ------------------- // ------------------- -->
+
+<script>
+	setBannerName(bannerName);
+	
+	
+	var base64 = false;	
+	var newManifest = [
+		
+	];
+	
+	window.onload = init();
+
+</script><div id="preloadjs-container" style="visibility: hidden; position: absolute; height: 10px; width: 10px; overflow: hidden; transform: translate(-10px, -10px);"></div>
+
+
+
+</body></html>

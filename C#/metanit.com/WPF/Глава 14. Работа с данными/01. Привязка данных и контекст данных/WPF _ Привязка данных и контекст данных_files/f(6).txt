@@ -1,1 +1,0 @@
-_gfp_s_({"_cookies_":[{"_value_":"ID=aa37ef95009068be-22d337e1bdc80074:T=1629960651:RT=1629960651:S=ALNI_MYFQAd0IXwjqz6dCtT4Nw9SjVqQ5Q","_expires_":1663656651,"_path_":"/","_domain_":"metanit.com","_gpid_":"00000000-0000-0000-0000-000000000000"}]});

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ru-RU"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<div class="fit-vids-style">­<style>               .fluid-width-video-wrapper {                 width: 100%;                              position: relative;                       padding: 0;                            }                                                                                   .fluid-width-video-wrapper iframe,        .fluid-width-video-wrapper object,        .fluid-width-video-wrapper embed {           position: absolute;                       top: 0;                                   left: 0;                                  width: 100%;                              height: 100%;                          }                                       </style></div><script src="COALESCE%20%D0%A4%D0%A3%D0%9D%D0%9A%D0%A6%D0%98%D0%AF%20%E2%80%94%20Oracle%20PL_SQL%20%E2%80%A2MySQL%20%E2%80%A2MariaDB%20%E2%80%A2SQL%20Server%20%E2%80%A2SQLite_files/reactive_library_fy2019.js"></script><script src="COALESCE%20%D0%A4%D0%A3%D0%9D%D0%9A%D0%A6%D0%98%D0%AF%20%E2%80%94%20Oracle%20PL_SQL%20%E2%80%A2MySQL%20%E2%80%A2MariaDB%20%E2%80%A2SQL%20Server%20%E2%80%A2SQLite_files/osd.js"></script><script src="COALESCE%20%D0%A4%D0%A3%D0%9D%D0%9A%D0%A6%D0%98%D0%AF%20%E2%80%94%20Oracle%20PL_SQL%20%E2%80%A2MySQL%20%E2%80%A2MariaDB%20%E2%80%A2SQL%20Server%20%E2%80%A2SQLite_files/cookie.js"></script><script src="COALESCE%20%D0%A4%D0%A3%D0%9D%D0%9A%D0%A6%D0%98%D0%AF%20%E2%80%94%20Oracle%20PL_SQL%20%E2%80%A2MySQL%20%E2%80%A2MariaDB%20%E2%80%A2SQL%20Server%20%E2%80%A2SQLite_files/show_ads_impl_fy2019.js" id="google_shimpl"></script><script type="text/javascript" async="" src="COALESCE%20%D0%A4%D0%A3%D0%9D%D0%9A%D0%A6%D0%98%D0%AF%20%E2%80%94%20Oracle%20PL_SQL%20%E2%80%A2MySQL%20%E2%80%A2MariaDB%20%E2%80%A2SQL%20Server%20%E2%80%A2SQLite_files/analytics.js"></script><script async="" src="COALESCE%20%D0%A4%D0%A3%D0%9D%D0%9A%D0%A6%D0%98%D0%AF%20%E2%80%94%20Oracle%20PL_SQL%20%E2%80%A2MySQL%20%E2%80%A2MariaDB%20%E2%80%A2SQL%20Server%20%E2%80%A2SQLite_files/async-ads.js"></script><script async="" src="COALESCE%20%D0%A4%D0%A3%D0%9D%D0%9A%D0%A6%D0%98%D0%AF%20%E2%80%94%20Oracle%20PL_SQL%20%E2%80%A2MySQL%20%E2%80%A2MariaDB%20%E2%80%A2SQL%20Server%20%E2%80%A2SQLite_files/tag.js"></script><script async="" src="COALESCE%20%D0%A4%D0%A3%D0%9D%D0%9A%D0%A6%D0%98%D0%AF%20%E2%80%94%20Oracle%20PL_SQL%20%E2%80%A2MySQL%20%E2%80%A2MariaDB%20%E2%80%A2SQL%20Server%20%E2%80%A2SQLite_files/js"></script>
+<script src="data:text/javascript;base64,CiAgd2luZG93LmRhdGFMYXllciA9IHdpbmRvdy5kYXRhTGF5ZXIgfHwgW107CiAgZnVuY3Rpb24gZ3RhZygpe2RhdGFMYXllci5wdXNoKGFyZ3VtZW50cyk7fQogIGd0YWcoJ2pzJywgbmV3IERhdGUoKSk7CgogIGd0YWcoJ2NvbmZpZycsICdVQS0xMzkyNDg2MTItMScpOwo="></script>	
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width">
+<link rel="profile" href="http://gmpg.org/xfn/11">
+<link rel="pingback" href="https://oracleplsql.ru/xmlrpc.php">
+<!--[if lt IE 9]>
+<script src="https://oracleplsql.ru/wp-content/themes/f2/js/html5.js" type="text/javascript"></script>
+<![endif]-->
+
+<script async="" src="COALESCE%20%D0%A4%D0%A3%D0%9D%D0%9A%D0%A6%D0%98%D0%AF%20%E2%80%94%20Oracle%20PL_SQL%20%E2%80%A2MySQL%20%E2%80%A2MariaDB%20%E2%80%A2SQL%20Server%20%E2%80%A2SQLite_files/adsbygoogle.js"></script>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({
+          google_ad_client: "ca-pub-8777261894857145",
+          enable_page_level_ads: true
+     });
+</script>
+
+<title>COALESCE ФУНКЦИЯ — Oracle PL/SQL •MySQL •MariaDB •SQL Server •SQLite</title><link rel="stylesheet" href="COALESCE%20%D0%A4%D0%A3%D0%9D%D0%9A%D0%A6%D0%98%D0%AF%20%E2%80%94%20Oracle%20PL_SQL%20%E2%80%A2MySQL%20%E2%80%A2MariaDB%20%E2%80%A2SQL%20Server%20%E2%80%A2SQLite_files/css.css"><link rel="stylesheet" href="COALESCE%20%D0%A4%D0%A3%D0%9D%D0%9A%D0%A6%D0%98%D0%AF%20%E2%80%94%20Oracle%20PL_SQL%20%E2%80%A2MySQL%20%E2%80%A2MariaDB%20%E2%80%A2SQL%20Server%20%E2%80%A2SQLite_files/55f7a3882487c2b55251d00dca039073.css" media="all" data-minify="1">
+<meta name="robots" content="max-image-preview:large">
+<link rel="dns-prefetch" href="https://fonts.googleapis.com/">
+<link href="https://fonts.gstatic.com/" crossorigin="" rel="preconnect">
+<link rel="alternate" type="application/rss+xml" title="Oracle PL/SQL •MySQL •MariaDB •SQL Server •SQLite » Лента" href="https://oracleplsql.ru/feed">
+<link rel="alternate" type="application/rss+xml" title="Oracle PL/SQL •MySQL •MariaDB •SQL Server •SQLite » Лента комментариев" href="https://oracleplsql.ru/comments/feed">
+<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	
+
+
+
+
+
+<link rel="stylesheet" id="print-css" href="COALESCE%20%D0%A4%D0%A3%D0%9D%D0%9A%D0%A6%D0%98%D0%AF%20%E2%80%94%20Oracle%20PL_SQL%20%E2%80%A2MySQL%20%E2%80%A2MariaDB%20%E2%80%A2SQL%20Server%20%E2%80%A2SQLite_files/print.css" type="text/css" media="print">
+<!--[if lt IE 9]>
+<link rel='stylesheet' id='ie-style-css'  href='https://oracleplsql.ru/wp-content/themes/f2/ie.css?ver=2.2.3' type='text/css' media='screen, projection' />
+<![endif]-->
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='ie7-style-css'  href='https://oracleplsql.ru/wp-content/themes/f2/ie7.css?ver=2.2.3' type='text/css' media='screen, projection' />
+<![endif]-->
+<script type="text/javascript" src="COALESCE%20%D0%A4%D0%A3%D0%9D%D0%9A%D0%A6%D0%98%D0%AF%20%E2%80%94%20Oracle%20PL_SQL%20%E2%80%A2MySQL%20%E2%80%A2MariaDB%20%E2%80%A2SQL%20Server%20%E2%80%A2SQLite_files/jquery.js" id="jquery-core-js" defer="defer"></script>
+
+
+
+<link rel="https://api.w.org/" href="https://oracleplsql.ru/wp-json/"><link rel="alternate" type="application/json" href="https://oracleplsql.ru/wp-json/wp/v2/posts/476"><link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://oracleplsql.ru/xmlrpc.php?rsd">
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://oracleplsql.ru/wp-includes/wlwmanifest.xml"> 
+<meta name="generator" content="WordPress 5.7">
+<link rel="canonical" href="https://oracleplsql.ru/coalesce-function.html">
+<link rel="shortlink" href="https://oracleplsql.ru/?p=476">
+<!-- Customized F2 styles -->
+<style type="text/css">
+/*div frontpage*/ 
+
+/*div{display:box}*/
+.row{margin-right:-10px;margin-left:-10px;}
+
+.col-md-4, .col-xs-6, .col-sm-4{
+	float: left;
+    min-height:1px;  
+    position:relative;}
+
+.list-grp {
+ border:0;
+  border-radius:0;
+  box-shadow:0 0 0;
+  margin:0;}
+.list-grp {
+  margin-bottom:20px;
+  padding-left:0;
+}
+
+.list-grp a {
+  border-radius:0;
+}
+
+.list-grp-itm {
+  background-color:#FFFFFF;
+  border:1px solid #DDDDDD;
+  display:block;
+  margin-bottom:-1px;
+  padding:5px 20px;
+  position:relative;
+} 
+.list-grp-itm:first-child {
+  border-top-left-radius:4px;
+  border-top-right-radius:4px;
+}
+/*END div frontpage*/ 
+.sintax{
+  background:#EEEEEE;
+  border:1px solid #E6E6E6;
+  border-radius:5px;
+  box-shadow:#6D97B7 1px 1px 1px;
+  border-collapse:collapse;
+  border-spacing:0;
+  font-family:Consolas, 'Courier New', Courier, monospace;
+  font-size:1em;
+  margin:0 0 20px;
+  padding:5px;
+  white-space:pre-wrap;  
+  word-wrap:break-word;
+}
+.arg{
+  background:#EEEEEE;
+  border:1px solid #E6E6E6;
+  border-radius:4px;
+  box-shadow:#6D97B7 1px 1px 1px;
+  padding-right:1px;
+  padding-left:1px;
+}
+
+.crayon-syntax{border-radius:4px;box-shadow:#6D97B7 1px 1px 1px;}
+
+/*.tbfunc td{width:33%;}*/
+
+
+li.list{background:none;}
+
+.rel_1, .rel_2  {float:left;position:relative;width:45.3%;background-color:#fff;}
+/*.rel_2 {float:left;position:relative;width:45.3%;background-color:#fff;}*/
+
+.gt_ct{margin-top:10px;display:block;}
+
+#text-2{margin-left:6.6rem;display:block;} 
+
+/*.entry-content p {font-family: 'PT Serif Caption', serif;}*/
+.list-grp-itm, .menu-item, .entry-content p {font-family: 'PT Serif', serif;}
+/*google search*/
+
+input.gsc-input, .gsc-input-box, .gsc-input-box-hover, .gsc-input-box-focus {
+  height:3.2rem;
+}
+
+table.gsc-search-box,
+.gsc-search-box td,
+.gsc-search-box tr,
+.gsc-input-box tr,
+.gsc-input-box td{
+border-style: none;
+box-shadow: none;
+-moz-box-shadow: none;
+-webkit-box-shadow: none;
+}</style>
+<link rel="icon" href="https://oracleplsql.ru/wp-content/uploads/2020/07/favicon.ico" sizes="32x32">
+<link rel="icon" href="https://oracleplsql.ru/wp-content/uploads/2020/07/favicon.ico" sizes="192x192">
+<link rel="apple-touch-icon" href="https://oracleplsql.ru/wp-content/uploads/2020/07/favicon.ico">
+<meta name="msapplication-TileImage" content="https://oracleplsql.ru/wp-content/uploads/2020/07/favicon.ico">
+<noscript><style id="rocket-lazyload-nojs-css">.rll-youtube-player, [data-lazy-src]{display:none !important;}</style></noscript><script src="COALESCE%20%D0%A4%D0%A3%D0%9D%D0%9A%D0%A6%D0%98%D0%AF%20%E2%80%94%20Oracle%20PL_SQL%20%E2%80%A2MySQL%20%E2%80%A2MariaDB%20%E2%80%A2SQL%20Server%20%E2%80%A2SQLite_files/cse_element__ru.js" type="text/javascript"></script><link type="text/css" rel="stylesheet" href="COALESCE%20%D0%A4%D0%A3%D0%9D%D0%9A%D0%A6%D0%98%D0%AF%20%E2%80%94%20Oracle%20PL_SQL%20%E2%80%A2MySQL%20%E2%80%A2MariaDB%20%E2%80%A2SQL%20Server%20%E2%80%A2SQLite_files/defaultru.css"><link type="text/css" rel="stylesheet" href="COALESCE%20%D0%A4%D0%A3%D0%9D%D0%9A%D0%A6%D0%98%D0%AF%20%E2%80%94%20Oracle%20PL_SQL%20%E2%80%A2MySQL%20%E2%80%A2MariaDB%20%E2%80%A2SQL%20Server%20%E2%80%A2SQLite_files/default.css"><style type="text/css">.gsc-control-cse{font-family:arial, sans-serif}.gsc-control-cse .gsc-table-result{font-family:arial, sans-serif}.gsc-refinementsGradient{background:linear-gradient(to left,rgba(255,255,255,1),rgba(255,255,255,0))}.gsc-control-cse{border-color:#FFFFFF;background-color:#FFFFFF}input.gsc-input,.gsc-input-box,.gsc-input-box-hover,.gsc-input-box-focus{border-color:#EEEEEE}.gsc-search-button-v2,.gsc-search-button-v2:hover,.gsc-search-button-v2:focus{border-color:#EEEEEE;background-color:#6FA8DC;background-image:none;filter:none}.gsc-search-button-v2 svg{fill:#FFFFFF}.gsc-tabHeader.gsc-tabhActive,.gsc-refinementHeader.gsc-refinementhActive{color:#1A73E8;border-color:#1A73E8;background-color:#FFFFFF}.gsc-tabHeader.gsc-tabhInactive,.gsc-refinementHeader.gsc-refinementhInactive{color:#666666;border-color:#666666;background-color:#FFFFFF}.gsc-webResult.gsc-result,.gsc-results .gsc-imageResult{border-color:#EEEEEE;background-color:#EEEEEE}.gsc-webResult.gsc-result:hover{border-color:#FFFFFF;background-color:#FFFFFF}.gs-webResult.gs-result a.gs-title:link,.gs-webResult.gs-result a.gs-title:link b,.gs-imageResult a.gs-title:link,.gs-imageResult a.gs-title:link b{color:#1155CC}.gs-webResult.gs-result a.gs-title:visited,.gs-webResult.gs-result a.gs-title:visited b,.gs-imageResult a.gs-title:visited,.gs-imageResult a.gs-title:visited b{color:#1155CC}.gs-webResult.gs-result a.gs-title:hover,.gs-webResult.gs-result a.gs-title:hover b,.gs-imageResult a.gs-title:hover,.gs-imageResult a.gs-title:hover b{color:#1155CC}.gs-webResult.gs-result a.gs-title:active,.gs-webResult.gs-result a.gs-title:active b,.gs-imageResult a.gs-title:active,.gs-imageResult a.gs-title:active b{color:#1155CC}.gsc-cursor-page{color:#1155CC}a.gsc-trailing-more-results:link{color:#1155CC}.gs-webResult:not(.gs-no-results-result):not(.gs-error-result) .gs-snippet,.gs-fileFormatType{color:#000000}.gs-webResult div.gs-visibleUrl{color:#009933}.gs-webResult div.gs-visibleUrl-short{color:#009933}.gs-webResult div.gs-visibleUrl-short{display:block}.gs-webResult div.gs-visibleUrl-long{display:none}.gs-webResult div.gs-visibleUrl-breadcrumb{display:none}.gs-promotion div.gs-visibleUrl-short{display:block}.gs-promotion div.gs-visibleUrl-long{display:none}.gs-promotion div.gs-visibleUrl-breadcrumb{display:none}.gsc-cursor-box{border-color:#EEEEEE}.gsc-results .gsc-cursor-box .gsc-cursor-page{border-color:#666666;background-color:#FFFFFF;color:#666666}.gsc-results .gsc-cursor-box .gsc-cursor-current-page{border-color:#1A73E8;background-color:#FFFFFF;color:#1A73E8}.gsc-webResult.gsc-result.gsc-promotion{border-color:#FFFFFF;background-color:#F6F6F6}.gsc-completion-title{color:#1155CC}.gsc-completion-snippet{color:#000000}.gs-promotion a.gs-title:link,.gs-promotion a.gs-title:link *,.gs-promotion .gs-snippet a:link{color:#1155CC}.gs-promotion a.gs-title:visited,.gs-promotion a.gs-title:visited *,.gs-promotion .gs-snippet a:visited{color:#1155CC}.gs-promotion a.gs-title:hover,.gs-promotion a.gs-title:hover *,.gs-promotion .gs-snippet a:hover{color:#1155CC}.gs-promotion a.gs-title:active,.gs-promotion a.gs-title:active *,.gs-promotion .gs-snippet a:active{color:#1155CC}.gs-promotion .gs-snippet,.gs-promotion .gs-title .gs-promotion-title-right,.gs-promotion .gs-title .gs-promotion-title-right *{color:#000000}.gs-promotion .gs-visibleUrl,.gs-promotion .gs-visibleUrl-short{color:#009933}.gcsc-find-more-on-google{color:#1155CC}.gcsc-find-more-on-google-magnifier{fill:#1155CC}</style><style type="text/css">.gscb_a{display:inline-block;font:27px/13px arial,sans-serif}.gsst_a .gscb_a{color:#a1b9ed;cursor:pointer}.gsst_a:hover .gscb_a,.gsst_a:focus .gscb_a{color:#36c}.gsst_a{display:inline-block}.gsst_a{cursor:pointer;padding:0 4px}.gsst_a:hover{text-decoration:none!important}.gsst_b{font-size:16px;padding:0 2px;position:relative;user-select:none;-moz-user-select:none;white-space:nowrap}.gsst_e{vertical-align:middle;opacity:0.55;}.gsst_a:hover .gsst_e,.gsst_a:focus .gsst_e{opacity:0.72;}.gsst_a:active .gsst_e{opacity:1;}.gsst_f{background:white;text-align:left}.gsst_g{background-color:white;border:1px solid #ccc;border-top-color:#d9d9d9;box-shadow:0 2px 4px rgba(0,0,0,0.2);-moz-box-shadow:0 2px 4px rgba(0,0,0,0.2);margin:-1px -3px;padding:0 6px}.gsst_h{background-color:white;height:1px;margin-bottom:-1px;position:relative;top:-1px}.gsib_a{width:100%;padding:4px 6px 0}.gsib_a,.gsib_b{vertical-align:top}.gssb_c{border:0;position:absolute;z-index:989}.gssb_e{border:1px solid #ccc;border-top-color:#d9d9d9;box-shadow:0 2px 4px rgba(0,0,0,0.2);-moz-box-shadow:0 2px 4px rgba(0,0,0,0.2);cursor:default}.gssb_f{visibility:hidden;white-space:nowrap}.gssb_k{border:0;display:block;position:absolute;top:0;z-index:988}.gsdd_a{border:none!important}.gsq_a{padding:0}.gssb_a{padding:0 7px}.gssb_a,.gssb_a td{white-space:nowrap;overflow:hidden;line-height:22px}#gssb_b{font-size:11px;color:#36c;text-decoration:none}#gssb_b:hover{font-size:11px;color:#36c;text-decoration:underline}.gssb_g{text-align:center;padding:8px 0 7px;position:relative}.gssb_h{font-size:15px;height:28px;margin:0.2em}.gssb_i{background:#eee}.gss_ifl{visibility:hidden;padding-left:5px}.gssb_i .gss_ifl{visibility:visible}a.gssb_j{font-size:13px;color:#36c;text-decoration:none;line-height:100%}a.gssb_j:hover{text-decoration:underline}.gssb_l{height:1px;background-color:#e5e5e5}.gssb_m{color:#000;background:#fff}.gssb_a{padding:0 9px}.gsib_a{padding:5px 9px 4px 9px}.gscb_a{line-height:27px}.gssb_e{border:0}.gssb_l{margin:5px 0}input.gsc-input::-webkit-input-placeholder{font-size:14px}input.gsc-input:-moz-placeholder{font-size:14px}input.gsc-input::-moz-placeholder{font-size:14px}input.gsc-input:-ms-input-placeholder{font-size:14px}input.gsc-input:focus::-webkit-input-placeholder{color:transparent}input.gsc-input:focus:-moz-placeholder{color:transparent}input.gsc-input:focus::-moz-placeholder{color:transparent}input.gsc-input:focus:-ms-input-placeholder{color:transparent}.gssb_c .gsc-completion-container{position:static}.gssb_c{z-index:5000}.gsc-completion-container table{background:transparent;font-size:inherit;font-family:inherit}.gssb_c > tbody > tr,.gssb_c > tbody > tr > td,.gssb_d,.gssb_d > tbody > tr,.gssb_d > tbody > tr > td,.gssb_e,.gssb_e > tbody > tr,.gssb_e > tbody > tr > td{padding:0;margin:0;border:0}.gssb_a table,.gssb_a table tr,.gssb_a table tr td{padding:0;margin:0;border:0}</style><meta http-equiv="origin-trial" content="A+b/H0b8RPXNaJgaNFpO0YOFuGK6myDQXlwnJB3SwzvNMfcndat4DZYMrP4ClJIzYWo3/yP2S+8FTZ/lpqbPAAEAAABueyJvcmlnaW4iOiJodHRwczovL2ltYXNkay5nb29nbGVhcGlzLmNvbTo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzVGhpcmRQYXJ0eSI6dHJ1ZX0="><meta http-equiv="origin-trial" content="A9ZgbRtm4pU3oZiuNzOsKcC8ppFSZdcjP2qYcdQrFKVzkmiWH1kdYY1Mi9x7G8+PS8HV9Ha9Cz0gaMdKsiVZIgMAAAB7eyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="AxL6oBxcpn5rQDPKSAs+d0oxNyJYq2/4esBUh3Yx5z8QfcLu+AU8iFCXYRcr/CEEfDnkxxLTsvXPJFQBxHfvkgMAAACBeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXRhZ3NlcnZpY2VzLmNvbTo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A9KPtG5kl3oLTk21xqynDPGQ5t18bSOpwt0w6kGa6dEWbuwjpffmdUpR3W+faZDubGT+KIk2do0BX2ca16x8qAcAAACBeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A3HucHUo1oW9s+9kIKz8mLkbcmdaj5lxt3eiIMp1Nh49dkkBlg1Fhg4Fd/r0vL69mRRA36YutI9P/lJUfL8csQoAAACFeyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="A0OysezhLoCRYomumeYlubLurZTCmsjTb087OvtCy95jNM65cfEsbajrJnhaGwiTxhz38ZZbm+UhUwQuXfVPTg0AAACLeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="AxoOxdZQmIoA1WeAPDixRAeWDdgs7ZtVFfH2y19ziTgD1iaHE5ZGz2UdSjubkWvob9C5PrjUfkWi4ZSLgWk3Xg8AAACLeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXRhZ3NlcnZpY2VzLmNvbTo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="A7+rMYR5onPnACrz+niKSeFdH3xw1IyHo2AZSHmxrofRk9w4HcQPMYcpBUKu6OQ6zsdxf4m/vqa6tG6Na4OLpAQAAAB4eyJvcmlnaW4iOiJodHRwczovL2ltYXNkay5nb29nbGVhcGlzLmNvbTo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A+b/H0b8RPXNaJgaNFpO0YOFuGK6myDQXlwnJB3SwzvNMfcndat4DZYMrP4ClJIzYWo3/yP2S+8FTZ/lpqbPAAEAAABueyJvcmlnaW4iOiJodHRwczovL2ltYXNkay5nb29nbGVhcGlzLmNvbTo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzVGhpcmRQYXJ0eSI6dHJ1ZX0="><meta http-equiv="origin-trial" content="A9ZgbRtm4pU3oZiuNzOsKcC8ppFSZdcjP2qYcdQrFKVzkmiWH1kdYY1Mi9x7G8+PS8HV9Ha9Cz0gaMdKsiVZIgMAAAB7eyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="AxL6oBxcpn5rQDPKSAs+d0oxNyJYq2/4esBUh3Yx5z8QfcLu+AU8iFCXYRcr/CEEfDnkxxLTsvXPJFQBxHfvkgMAAACBeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXRhZ3NlcnZpY2VzLmNvbTo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A9KPtG5kl3oLTk21xqynDPGQ5t18bSOpwt0w6kGa6dEWbuwjpffmdUpR3W+faZDubGT+KIk2do0BX2ca16x8qAcAAACBeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A3HucHUo1oW9s+9kIKz8mLkbcmdaj5lxt3eiIMp1Nh49dkkBlg1Fhg4Fd/r0vL69mRRA36YutI9P/lJUfL8csQoAAACFeyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="A0OysezhLoCRYomumeYlubLurZTCmsjTb087OvtCy95jNM65cfEsbajrJnhaGwiTxhz38ZZbm+UhUwQuXfVPTg0AAACLeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="AxoOxdZQmIoA1WeAPDixRAeWDdgs7ZtVFfH2y19ziTgD1iaHE5ZGz2UdSjubkWvob9C5PrjUfkWi4ZSLgWk3Xg8AAACLeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXRhZ3NlcnZpY2VzLmNvbTo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="A7+rMYR5onPnACrz+niKSeFdH3xw1IyHo2AZSHmxrofRk9w4HcQPMYcpBUKu6OQ6zsdxf4m/vqa6tG6Na4OLpAQAAAB4eyJvcmlnaW4iOiJodHRwczovL2ltYXNkay5nb29nbGVhcGlzLmNvbTo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A+b/H0b8RPXNaJgaNFpO0YOFuGK6myDQXlwnJB3SwzvNMfcndat4DZYMrP4ClJIzYWo3/yP2S+8FTZ/lpqbPAAEAAABueyJvcmlnaW4iOiJodHRwczovL2ltYXNkay5nb29nbGVhcGlzLmNvbTo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzVGhpcmRQYXJ0eSI6dHJ1ZX0="><meta http-equiv="origin-trial" content="A9ZgbRtm4pU3oZiuNzOsKcC8ppFSZdcjP2qYcdQrFKVzkmiWH1kdYY1Mi9x7G8+PS8HV9Ha9Cz0gaMdKsiVZIgMAAAB7eyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="AxL6oBxcpn5rQDPKSAs+d0oxNyJYq2/4esBUh3Yx5z8QfcLu+AU8iFCXYRcr/CEEfDnkxxLTsvXPJFQBxHfvkgMAAACBeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXRhZ3NlcnZpY2VzLmNvbTo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A9KPtG5kl3oLTk21xqynDPGQ5t18bSOpwt0w6kGa6dEWbuwjpffmdUpR3W+faZDubGT+KIk2do0BX2ca16x8qAcAAACBeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A3HucHUo1oW9s+9kIKz8mLkbcmdaj5lxt3eiIMp1Nh49dkkBlg1Fhg4Fd/r0vL69mRRA36YutI9P/lJUfL8csQoAAACFeyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="A0OysezhLoCRYomumeYlubLurZTCmsjTb087OvtCy95jNM65cfEsbajrJnhaGwiTxhz38ZZbm+UhUwQuXfVPTg0AAACLeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="AxoOxdZQmIoA1WeAPDixRAeWDdgs7ZtVFfH2y19ziTgD1iaHE5ZGz2UdSjubkWvob9C5PrjUfkWi4ZSLgWk3Xg8AAACLeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXRhZ3NlcnZpY2VzLmNvbTo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="A7+rMYR5onPnACrz+niKSeFdH3xw1IyHo2AZSHmxrofRk9w4HcQPMYcpBUKu6OQ6zsdxf4m/vqa6tG6Na4OLpAQAAAB4eyJvcmlnaW4iOiJodHRwczovL2ltYXNkay5nb29nbGVhcGlzLmNvbTo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A+b/H0b8RPXNaJgaNFpO0YOFuGK6myDQXlwnJB3SwzvNMfcndat4DZYMrP4ClJIzYWo3/yP2S+8FTZ/lpqbPAAEAAABueyJvcmlnaW4iOiJodHRwczovL2ltYXNkay5nb29nbGVhcGlzLmNvbTo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzVGhpcmRQYXJ0eSI6dHJ1ZX0="><meta http-equiv="origin-trial" content="A9ZgbRtm4pU3oZiuNzOsKcC8ppFSZdcjP2qYcdQrFKVzkmiWH1kdYY1Mi9x7G8+PS8HV9Ha9Cz0gaMdKsiVZIgMAAAB7eyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="AxL6oBxcpn5rQDPKSAs+d0oxNyJYq2/4esBUh3Yx5z8QfcLu+AU8iFCXYRcr/CEEfDnkxxLTsvXPJFQBxHfvkgMAAACBeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXRhZ3NlcnZpY2VzLmNvbTo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A9KPtG5kl3oLTk21xqynDPGQ5t18bSOpwt0w6kGa6dEWbuwjpffmdUpR3W+faZDubGT+KIk2do0BX2ca16x8qAcAAACBeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A3HucHUo1oW9s+9kIKz8mLkbcmdaj5lxt3eiIMp1Nh49dkkBlg1Fhg4Fd/r0vL69mRRA36YutI9P/lJUfL8csQoAAACFeyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="A0OysezhLoCRYomumeYlubLurZTCmsjTb087OvtCy95jNM65cfEsbajrJnhaGwiTxhz38ZZbm+UhUwQuXfVPTg0AAACLeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="AxoOxdZQmIoA1WeAPDixRAeWDdgs7ZtVFfH2y19ziTgD1iaHE5ZGz2UdSjubkWvob9C5PrjUfkWi4ZSLgWk3Xg8AAACLeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXRhZ3NlcnZpY2VzLmNvbTo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="A7+rMYR5onPnACrz+niKSeFdH3xw1IyHo2AZSHmxrofRk9w4HcQPMYcpBUKu6OQ6zsdxf4m/vqa6tG6Na4OLpAQAAAB4eyJvcmlnaW4iOiJodHRwczovL2ltYXNkay5nb29nbGVhcGlzLmNvbTo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A+b/H0b8RPXNaJgaNFpO0YOFuGK6myDQXlwnJB3SwzvNMfcndat4DZYMrP4ClJIzYWo3/yP2S+8FTZ/lpqbPAAEAAABueyJvcmlnaW4iOiJodHRwczovL2ltYXNkay5nb29nbGVhcGlzLmNvbTo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzVGhpcmRQYXJ0eSI6dHJ1ZX0="><meta http-equiv="origin-trial" content="A9ZgbRtm4pU3oZiuNzOsKcC8ppFSZdcjP2qYcdQrFKVzkmiWH1kdYY1Mi9x7G8+PS8HV9Ha9Cz0gaMdKsiVZIgMAAAB7eyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="AxL6oBxcpn5rQDPKSAs+d0oxNyJYq2/4esBUh3Yx5z8QfcLu+AU8iFCXYRcr/CEEfDnkxxLTsvXPJFQBxHfvkgMAAACBeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXRhZ3NlcnZpY2VzLmNvbTo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A9KPtG5kl3oLTk21xqynDPGQ5t18bSOpwt0w6kGa6dEWbuwjpffmdUpR3W+faZDubGT+KIk2do0BX2ca16x8qAcAAACBeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A3HucHUo1oW9s+9kIKz8mLkbcmdaj5lxt3eiIMp1Nh49dkkBlg1Fhg4Fd/r0vL69mRRA36YutI9P/lJUfL8csQoAAACFeyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="A0OysezhLoCRYomumeYlubLurZTCmsjTb087OvtCy95jNM65cfEsbajrJnhaGwiTxhz38ZZbm+UhUwQuXfVPTg0AAACLeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="AxoOxdZQmIoA1WeAPDixRAeWDdgs7ZtVFfH2y19ziTgD1iaHE5ZGz2UdSjubkWvob9C5PrjUfkWi4ZSLgWk3Xg8AAACLeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXRhZ3NlcnZpY2VzLmNvbTo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="A7+rMYR5onPnACrz+niKSeFdH3xw1IyHo2AZSHmxrofRk9w4HcQPMYcpBUKu6OQ6zsdxf4m/vqa6tG6Na4OLpAQAAAB4eyJvcmlnaW4iOiJodHRwczovL2ltYXNkay5nb29nbGVhcGlzLmNvbTo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1RoaXJkUGFydHkiOnRydWV9"><link rel="preload" href="COALESCE%20%D0%A4%D0%A3%D0%9D%D0%9A%D0%A6%D0%98%D0%AF%20%E2%80%94%20Oracle%20PL_SQL%20%E2%80%A2MySQL%20%E2%80%A2MariaDB%20%E2%80%A2SQL%20Server%20%E2%80%A2SQLite_files/integrator.js" as="script"><script type="text/javascript" src="COALESCE%20%D0%A4%D0%A3%D0%9D%D0%9A%D0%A6%D0%98%D0%AF%20%E2%80%94%20Oracle%20PL_SQL%20%E2%80%A2MySQL%20%E2%80%A2MariaDB%20%E2%80%A2SQL%20Server%20%E2%80%A2SQLite_files/integrator.js"></script><link rel="preload" href="COALESCE%20%D0%A4%D0%A3%D0%9D%D0%9A%D0%A6%D0%98%D0%AF%20%E2%80%94%20Oracle%20PL_SQL%20%E2%80%A2MySQL%20%E2%80%A2MariaDB%20%E2%80%A2SQL%20Server%20%E2%80%A2SQLite_files/integrator_002.js" as="script"><script type="text/javascript" src="COALESCE%20%D0%A4%D0%A3%D0%9D%D0%9A%D0%A6%D0%98%D0%AF%20%E2%80%94%20Oracle%20PL_SQL%20%E2%80%A2MySQL%20%E2%80%A2MariaDB%20%E2%80%A2SQL%20Server%20%E2%80%A2SQLite_files/integrator_002.js"></script></head>
+
+<body class="post-template-default single single-post postid-476 single-format-standard one-sidebar-left medium-sidebar large-font-sidebar large-font-content" aria-hidden="false">
+  <amp-auto-ads type="adsense" data-ad-client="ca-pub-8777261894857145">
+</amp-auto-ads>
+<div style="display:table;margin: 0 auto;">
+<!-- orclplsql_adapt_mobile_top -->
+<style type="text/css">
+.mob_top { width: 320px; height: 100px; }
+@media (min-width:500px) { .mob_top { width: 468px; height: 60px; } }
+@media (min-width:800px) { .mob_top { width: 728px; height: 90px; } }
+</style>
+<ins class="adsbygoogle mob_top" style="display: inline-block; width: 728px; height: 90px;" data-full-width-responsive="true" data-ad-client="ca-pub-8777261894857145" data-ad-slot="8026856126" data-adsbygoogle-status="done"><ins id="aswift_1_expand" style="display:inline-table;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;" tabindex="0" title="Advertisement" aria-label="Advertisement"><ins id="aswift_1_anchor" style="display:block;border:none;height:90px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;"><iframe id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;border:0;width:728px;height:90px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" src="COALESCE%20%D0%A4%D0%A3%D0%9D%D0%9A%D0%A6%D0%98%D0%AF%20%E2%80%94%20Oracle%20PL_SQL%20%E2%80%A2MySQL%20%E2%80%A2MariaDB%20%E2%80%A2SQL%20Server%20%E2%80%A2SQLite_files/ads_003.htm" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!2" data-google-query-id="COyZ5cmggPACFWlewgodshQB0A" data-load-complete="true" width="728" height="90" frameborder="0"></iframe></ins></ins></ins>
+<script async="" src="COALESCE%20%D0%A4%D0%A3%D0%9D%D0%9A%D0%A6%D0%98%D0%AF%20%E2%80%94%20Oracle%20PL_SQL%20%E2%80%A2MySQL%20%E2%80%A2MariaDB%20%E2%80%A2SQL%20Server%20%E2%80%A2SQLite_files/adsbygoogle.js"></script>	 
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>	
+<div id="page" class="hfeed site" style="height: auto !important;">
+		<header id="masthead" class="site-header" role="banner">
+		<div class="site-branding">
+			<h1 class="site-title"><a href="https://oracleplsql.ru/" title="Oracle PL/SQL •MySQL •MariaDB •SQL Server •SQLite" rel="home">Oracle PL/SQL •MySQL •MariaDB •SQL Server •SQLite</a></h1>
+			<h2 class="site-description">Базы данных</h2>
+					</div><!-- .site-branding -->
+
+				<nav role="navigation" class="site-navigation main-navigation">
+			<h1 class="assistive-text">Menu</h1>
+			<div class="assistive-text skip-link"><a href="#content" title="Skip to content">Skip to content</a></div>
+
+			<div class="menu-sql-container"><ul id="menu-sql" class="menu"><li id="menu-item-2533" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2533"><a href="https://oracleplsql.ru/sql-language.html">SQL</a></li>
+<li id="menu-item-7341" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7341"><a href="https://oracleplsql.ru/contents-oracle-plsql.html">Oracle PL/SQL</a></li>
+<li id="menu-item-3192" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-3192"><a href="https://oracleplsql.ru/mysql-manual.html">MySQL</a></li>
+<li id="menu-item-7342" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7342"><a href="https://oracleplsql.ru/contents-sql-server.html">SQL Server</a></li>
+<li id="menu-item-7343" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7343"><a href="https://oracleplsql.ru/sqlite-manual.html">SQLite</a></li>
+<li id="menu-item-6422" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-6422"><a href="https://oracleplsql.ru/postgresql-manual.html">PostgreSQL</a></li>
+<li id="menu-item-7201" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7201"><a href="https://oracleplsql.ru/mariadb-manual.html">MariaDB</a></li>
+</ul></div>		</nav><!-- .site-navigation .main-navigation -->
+			
+		
+	</header><!-- #masthead .site-header -->
+
+	<div id="main" class="site-main" style="height: auto !important;">
+		<div id="primary" class="content-area" style="height: auto !important;">
+			<div id="content" class="site-content" role="main" style="height: auto !important;">
+
+			
+				
+<article id="post-476" class="post-476 post type-post status-publish format-standard hentry category-advanced-function-oracle-plsql" style="height: auto !important;">
+	<header class="entry-header">
+		<h1 class="entry-title">COALESCE ФУНКЦИЯ</h1>
+		<div class="entry-meta">
+		<!--	-->
+		</div><!-- .entry-meta -->		
+	</header><!-- .entry-header -->
+
+	<div class="entry-content">
+				<p>В этом учебном пособии вы узнаете, как использовать Oracle/PLSQL <strong>функцию COALESCE</strong> с синтаксисом и примерами.<br>
+<span id="more-476"></span></p>
+<h2>Описание</h2>
+<p>Oracle/PLSQL функция COALESCE возвращает первое ненулевое выражение 
+из списка. Если все выражения определены как Null, то функция COALESCE 
+вернет Null.</p>
+<h2>Синтаксис</h2>
+<p>Синтаксис Oracle/PLSQL функции COALESCE:</p>
+<div class="sintax">COALESCE( expr1, expr2, ... expr_n )</div>
+<h3>Параметры или аргументы</h3>
+<p><span class="arg">expr1</span> , <span class="arg">expr2</span> .. <span class="arg">expr_n</span> выражения для проверки на значение Not Null.</p>
+<h3>Примечание</h3>
+<ul>
+<li>Функция COALESCE возвращает любой тип данных, такой как строка, 
+число, дата и т.д. (но все выражения должны иметь одинаковый тип данных в
+ функции COALESCE.)</li>
+<li>Если все выражения не совпадают с типом данных, будет возвращена ошибка <a href="https://oracleplsql.ru/ora-00932.html">ORA-00932</a>.</li>
+</ul>
+<h3>Применение</h3>
+<p><strong>Функцию COALESCE</strong> можно использовать в следующих версиях Oracle/PLSQL: </p>
+<ul>
+<li>Oracle 12c, Oracle 11g, Oracle 10g, Oracle 9i</li>
+</ul>
+<h2>Пример</h2>
+<p>Рассмотрим пример использования функции COALESCE в Oracle/PLSQL.</p>
+<p>Например:</p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-6077d7df05105664132834" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code" style=""><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">Oracle PL/SQL</span></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea class="crayon-plain print-no" data-settings="dblclick" readonly="readonly" style="-moz-tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;" wrap="soft">SELECT COALESCE( address1, address2, address3 )
+  FROM suppliers;</textarea></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -18px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-6077d7df05105664132834-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-6077d7df05105664132834-2">2</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-6077d7df05105664132834-1"><span class="crayon-r">SELECT</span><span class="crayon-h"> </span><span class="crayon-r">COALESCE</span>(<span class="crayon-h"> </span>address1,<span class="crayon-h"> </span>address2,<span class="crayon-h"> </span>address3<span class="crayon-h"> </span>)</div><div class="crayon-line crayon-striped-line" id="crayon-6077d7df05105664132834-2"><span class="crayon-h">&nbsp;&nbsp;</span><span class="crayon-r">FROM</span><span class="crayon-h"> </span>suppliers;</div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0033 seconds] -->
+<p></p>
+<p>Вышеуказанная функция COALESCE эквивалентно условному оператору IF-THEN-ELSE:</p>
+<p></p><!-- Crayon Syntax Highlighter v_2.7.2_beta -->
+
+		<div id="crayon-6077d7df0510e270543157" class="crayon-syntax crayon-theme-classic crayon-font-monaco crayon-os-pc print-yes notranslate" data-settings=" minimize scroll-mouseover" style="margin-top: 12px; margin-bottom: 12px; font-size: 12px !important; line-height: 15px !important; height: auto;">
+		
+			<div class="crayon-toolbar" data-settings=" show" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><span class="crayon-title"></span>
+			<div class="crayon-tools" style="font-size: 12px !important;height: 18px !important; line-height: 18px !important;"><div class="crayon-button crayon-nums-button" title="Toggle Line Numbers"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-plain-button" title="Toggle Plain Code"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-wrap-button" title="Toggle Line Wrap"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-expand-button" title="Expand Code" style=""><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-copy-button" title="Copy"><div class="crayon-button-icon"></div></div><div class="crayon-button crayon-popup-button" title="Open Code In New Window"><div class="crayon-button-icon"></div></div><span class="crayon-language">Oracle PL/SQL</span></div></div>
+			<div class="crayon-info" style="min-height: 16.8px !important; line-height: 16.8px !important;"></div>
+			<div class="crayon-plain-wrap"><textarea class="crayon-plain print-no" data-settings="dblclick" readonly="readonly" style="-moz-tab-size: 4; font-size: 12px !important; line-height: 15px !important; z-index: 0; opacity: 0; overflow: hidden;" wrap="soft">IF address1 is not null THEN
+   result := address1;
+ 
+ELSIF address2 is not null THEN
+   result := address2;
+
+ELSIF address3 is not null THEN
+   result := address3;
+
+ELSE
+   result := null;
+
+END IF;</textarea></div>
+			<div class="crayon-main" style="position: relative; z-index: 1; overflow: hidden;">
+				<table class="crayon-table" style="margin-left: -25px;">
+					<tbody><tr class="crayon-row">
+				<td class="crayon-nums " data-settings="hide">
+					<div class="crayon-nums-content" style="font-size: 12px !important; line-height: 15px !important;"><div class="crayon-num" data-line="crayon-6077d7df0510e270543157-1">1</div><div class="crayon-num crayon-striped-num" data-line="crayon-6077d7df0510e270543157-2">2</div><div class="crayon-num" data-line="crayon-6077d7df0510e270543157-3">3</div><div class="crayon-num crayon-striped-num" data-line="crayon-6077d7df0510e270543157-4">4</div><div class="crayon-num" data-line="crayon-6077d7df0510e270543157-5">5</div><div class="crayon-num crayon-striped-num" data-line="crayon-6077d7df0510e270543157-6">6</div><div class="crayon-num" data-line="crayon-6077d7df0510e270543157-7">7</div><div class="crayon-num crayon-striped-num" data-line="crayon-6077d7df0510e270543157-8">8</div><div class="crayon-num" data-line="crayon-6077d7df0510e270543157-9">9</div><div class="crayon-num crayon-striped-num" data-line="crayon-6077d7df0510e270543157-10">10</div><div class="crayon-num" data-line="crayon-6077d7df0510e270543157-11">11</div><div class="crayon-num crayon-striped-num" data-line="crayon-6077d7df0510e270543157-12">12</div><div class="crayon-num" data-line="crayon-6077d7df0510e270543157-13">13</div></div>
+				</td>
+						<td class="crayon-code"><div class="crayon-pre" style="font-size: 12px !important; line-height: 15px !important; -moz-tab-size:4; -o-tab-size:4; -webkit-tab-size:4; tab-size:4;"><div class="crayon-line" id="crayon-6077d7df0510e270543157-1"><span class="crayon-r">IF</span><span class="crayon-h"> </span>address1<span class="crayon-h"> </span><span class="crayon-r">is</span><span class="crayon-h"> </span><span class="crayon-r">not</span><span class="crayon-h"> </span><span class="crayon-r">null</span><span class="crayon-h"> </span><span class="crayon-r">THEN</span></div><div class="crayon-line crayon-striped-line" id="crayon-6077d7df0510e270543157-2"><span class="crayon-h">&nbsp;&nbsp; </span>result<span class="crayon-h"> </span>:=<span class="crayon-h"> </span>address1;</div><div class="crayon-line" id="crayon-6077d7df0510e270543157-3"><span class="crayon-h"> </span></div><div class="crayon-line crayon-striped-line" id="crayon-6077d7df0510e270543157-4">ELSIF<span class="crayon-h"> </span>address2<span class="crayon-h"> </span><span class="crayon-r">is</span><span class="crayon-h"> </span><span class="crayon-r">not</span><span class="crayon-h"> </span><span class="crayon-r">null</span><span class="crayon-h"> </span><span class="crayon-r">THEN</span></div><div class="crayon-line" id="crayon-6077d7df0510e270543157-5"><span class="crayon-h">&nbsp;&nbsp; </span>result<span class="crayon-h"> </span>:=<span class="crayon-h"> </span>address2;</div><div class="crayon-line crayon-striped-line" id="crayon-6077d7df0510e270543157-6">&nbsp;</div><div class="crayon-line" id="crayon-6077d7df0510e270543157-7">ELSIF<span class="crayon-h"> </span>address3<span class="crayon-h"> </span><span class="crayon-r">is</span><span class="crayon-h"> </span><span class="crayon-r">not</span><span class="crayon-h"> </span><span class="crayon-r">null</span><span class="crayon-h"> </span><span class="crayon-r">THEN</span></div><div class="crayon-line crayon-striped-line" id="crayon-6077d7df0510e270543157-8"><span class="crayon-h">&nbsp;&nbsp; </span>result<span class="crayon-h"> </span>:=<span class="crayon-h"> </span>address3;</div><div class="crayon-line" id="crayon-6077d7df0510e270543157-9">&nbsp;</div><div class="crayon-line crayon-striped-line" id="crayon-6077d7df0510e270543157-10"><span class="crayon-r">ELSE</span></div><div class="crayon-line" id="crayon-6077d7df0510e270543157-11"><span class="crayon-h">&nbsp;&nbsp; </span>result<span class="crayon-h"> </span>:=<span class="crayon-h"> </span><span class="crayon-r">null</span>;</div><div class="crayon-line crayon-striped-line" id="crayon-6077d7df0510e270543157-12">&nbsp;</div><div class="crayon-line" id="crayon-6077d7df0510e270543157-13"><span class="crayon-r">END</span><span class="crayon-h"> </span><span class="crayon-r">IF</span>;</div></div></td>
+					</tr>
+				</tbody></table>
+			</div>
+		</div>
+<!-- [Format Time: 0.0004 seconds] -->
+<p>Функция COALESCE будет сравнить каждое значение, одно за другим.</p>
+			</div><!-- .entry-content -->
+
+	<footer class="entry-meta">
+								<span class="cat-links">
+				Рубрика:&nbsp;<a href="https://oracleplsql.ru/category/advanced-function-oracle-plsql" rel="category tag">Вспомогательные функции Oracle / PLSQL</a>			</span>
+			
+					
+				<span class="sep"> | </span>
+		<span class="permalink"><a href="https://oracleplsql.ru/coalesce-function.html" rel="bookmark" title="Прямая ссылка на COALESCE ФУНКЦИЯ">Permalink</a></span>
+			</footer><!-- .entry-meta -->
+<div class="gt_ct">
+<script async="" src="COALESCE%20%D0%A4%D0%A3%D0%9D%D0%9A%D0%A6%D0%98%D0%AF%20%E2%80%94%20Oracle%20PL_SQL%20%E2%80%A2MySQL%20%E2%80%A2MariaDB%20%E2%80%A2SQL%20Server%20%E2%80%A2SQLite_files/adsbygoogle.js"></script>
+<!-- Oracleplsql.ru (низ статья) 728 x 90 -->
+<style>
+.orclplsql_adapt_mobile_bottom { width: 320px; height: 100px; }
+@media(min-width: 500px) { .orclplsql_adapt_mobile_bottom { width: 468px; height: 60px; } }
+@media(min-width: 800px) { .orclplsql_adapt_mobile_bottom { width: 728px; height: 90px; } }
+</style> 
+<ins class="adsbygoogle orclplsql_adapt_mobile_bottom" style="display: block; height: 280px;" data-ad-client="ca-pub-8777261894857145" data-ad-slot="6588458128" data-ad-format="auto" data-full-width-responsive="true" data-adsbygoogle-status="done"><ins id="aswift_2_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:728px;background-color:transparent;" tabindex="0" title="Advertisement" aria-label="Advertisement"><ins id="aswift_2_anchor" style="display: block; border: medium none; height: 280px; margin: 0px; padding: 0px; position: relative; visibility: visible; width: 728px; background-color: transparent; overflow: visible;"><iframe id="aswift_2" name="aswift_2" style="left:0;position:absolute;top:0;border:0;width:728px;height:280px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" src="COALESCE%20%D0%A4%D0%A3%D0%9D%D0%9A%D0%A6%D0%98%D0%AF%20%E2%80%94%20Oracle%20PL_SQL%20%E2%80%A2MySQL%20%E2%80%A2MariaDB%20%E2%80%A2SQL%20Server%20%E2%80%A2SQLite_files/ads.htm" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!3" data-google-query-id="CPHT5cmggPACFQl0GQodUPAM2Q" data-load-complete="true" width="728" height="280" frameborder="0"></iframe></ins></ins></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>	
+</div>
+<!--<input type="button" onclick="history.back();" value="Назад"/>-->
+<script async="" src="COALESCE%20%D0%A4%D0%A3%D0%9D%D0%9A%D0%A6%D0%98%D0%AF%20%E2%80%94%20Oracle%20PL_SQL%20%E2%80%A2MySQL%20%E2%80%A2MariaDB%20%E2%80%A2SQL%20Server%20%E2%80%A2SQLite_files/adsbygoogle.js"></script>
+<ins class="adsbygoogle" style="display: block; height: 438px;" data-ad-format="autorelaxed" data-ad-client="ca-pub-8777261894857145" data-ad-slot="6043257265" data-adsbygoogle-status="done"><ins id="aswift_3_expand" style="display:inline-table;border:none;height:438px;margin:0;padding:0;position:relative;visibility:visible;width:730px;background-color:transparent;" tabindex="0" title="Advertisement" aria-label="Advertisement"><ins id="aswift_3_anchor" style="display:block;border:none;height:438px;margin:0;padding:0;position:relative;visibility:visible;width:730px;background-color:transparent;"><iframe id="aswift_3" name="aswift_3" style="left:0;position:absolute;top:0;border:0;width:730px;height:438px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" src="COALESCE%20%D0%A4%D0%A3%D0%9D%D0%9A%D0%A6%D0%98%D0%AF%20%E2%80%94%20Oracle%20PL_SQL%20%E2%80%A2MySQL%20%E2%80%A2MariaDB%20%E2%80%A2SQL%20Server%20%E2%80%A2SQLite_files/ads_003.htm" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!4" data-google-query-id="CJX35cmggPACFZZUwgod6HgPzw" data-load-complete="true" width="730" height="438" frameborder="0"></iframe></ins></ins></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+</article><!-- #post-476 -->
+
+
+				
+					<nav role="navigation" id="nav-below" class="site-navigation post-navigation">
+		<h1 class="assistive-text">Post navigation</h1>
+
+	
+		<div class="nav-previous"><a href="https://oracleplsql.ru/userenv-function.html" rel="prev"><span class="meta-nav">«</span> USERENV ФУНКЦИЯ</a></div>		<div class="nav-next"><a href="https://oracleplsql.ru/ora-00000.html" rel="next">ORA-00000 <span class="meta-nav">»</span></a></div>
+	
+	</nav><!-- #nav-below -->
+	
+
+			
+			</div><!-- #content .site-content -->
+		</div><!-- #primary .content-area -->
+
+	<div id="secondary" class="widget-area" style="height: auto !important;">
+					<div id="sidebar-1" class="sidebar" role="complementary" style="height: auto !important;">
+								<aside id="custom_html-13" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><script async="" src="COALESCE%20%D0%A4%D0%A3%D0%9D%D0%9A%D0%A6%D0%98%D0%AF%20%E2%80%94%20Oracle%20PL_SQL%20%E2%80%A2MySQL%20%E2%80%A2MariaDB%20%E2%80%A2SQL%20Server%20%E2%80%A2SQLite_files/cse.js"></script>
+<div id="___gcse_0"><div class="gsc-control-searchbox-only gsc-control-searchbox-only-ru" dir="ltr"><form class="gsc-search-box gsc-search-box-tools" accept-charset="utf-8"><table class="gsc-search-box" cellspacing="0" cellpadding="0"><tbody><tr><td class="gsc-input"><div class="gsc-input-box" id="gsc-iw-id1"><table style="width: 100%; padding: 0px;" id="gs_id50" class="gstl_50 gsc-input" cellspacing="0" cellpadding="0"><tbody><tr><td id="gs_tti50" class="gsib_a"><input autocomplete="off" type="text" size="10" class="gsc-input" name="search" title="поиск" style="width: 100%; padding: 0px; border: medium none; margin: 0px; height: auto; outline: currentcolor none medium;" id="gsc-i-id1" dir="ltr" spellcheck="false"></td><td class="gsib_b"><div class="gsst_b" id="gs_st50" dir="ltr"><a class="gsst_a" href="javascript:void(0)" style="display: none;" title="Очистить окно поиска" role="button"><span class="gscb_a" id="gs_cb50" aria-hidden="true">×</span></a></div></td></tr></tbody></table></div></td><td class="gsc-search-button"><button class="gsc-search-button gsc-search-button-v2"><svg width="13" height="13" viewBox="0 0 13 13"><title>поиск</title><path d="m4.8495 7.8226c0.82666 0 1.5262-0.29146 2.0985-0.87438 0.57232-0.58292 0.86378-1.2877 0.87438-2.1144 0.010599-0.82666-0.28086-1.5262-0.87438-2.0985-0.59352-0.57232-1.293-0.86378-2.0985-0.87438-0.8055-0.010599-1.5103 0.28086-2.1144 0.87438-0.60414 0.59352-0.8956 1.293-0.87438 2.0985 0.021197 0.8055 0.31266 1.5103 0.87438 2.1144 0.56172 0.60414 1.2665 0.8956 2.1144 0.87438zm4.4695 0.2115 3.681 3.6819-1.259 1.284-3.6817-3.7 0.0019784-0.69479-0.090043-0.098846c-0.87973 0.76087-1.92 1.1413-3.1207 1.1413-1.3553 0-2.5025-0.46363-3.4417-1.3909s-1.4088-2.0686-1.4088-3.4239c0-1.3553 0.4696-2.4966 1.4088-3.4239 0.9392-0.92727 2.0864-1.3969 3.4417-1.4088 1.3553-0.011889 2.4906 0.45771 3.406 1.4088 0.9154 0.95107 1.379 2.0924 1.3909 3.4239 0 1.2126-0.38043 2.2588-1.1413 3.1385l0.098834 0.090049z"></path></svg></button></td><td class="gsc-clear-button"><div class="gsc-clear-button" title="удалить результаты">&nbsp;</div></td></tr></tbody></table></form></div></div>
+</div></aside><aside id="nav_menu-4" class="widget widget_nav_menu"><h1 class="widget-title">ORACLE PL/SQL</h1><div class="menu-programmirovanie-oracle-plsql-container"><ul id="menu-programmirovanie-oracle-plsql" class="menu"><li id="menu-item-2217" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2217"><a href="https://oracleplsql.ru/procedures.html">Процедуры</a></li>
+<li id="menu-item-2218" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2218"><a href="https://oracleplsql.ru/functions.html">Функции</a></li>
+<li id="menu-item-2216" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2216"><a href="https://oracleplsql.ru/triggers.html">Триггеры</a></li>
+<li id="menu-item-7466" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7466"><a href="https://oracleplsql.ru/collections-and-records-oracle-plsql.html">Коллекции и записи</a></li>
+<li id="menu-item-2246" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2246"><a href="https://oracleplsql.ru/cursors.html">Курсоры</a></li>
+<li id="menu-item-7709" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7709"><a href="https://oracleplsql.ru/packages-oracle-plsql.html">Пакеты</a></li>
+<li id="menu-item-8217" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8217"><a href="https://oracleplsql.ru/dynamic-sql.html">Динамический SQL</a></li>
+<li id="menu-item-2353" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2353"><a href="https://oracleplsql.ru/sequences.html">Последовательности</a></li>
+<li id="menu-item-2540" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2540"><a href="https://oracleplsql.ru/tables-and-views.html">Таблицы и представления</a></li>
+<li id="menu-item-2677" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2677"><a href="https://oracleplsql.ru/datatypes.html">Типы данных</a></li>
+<li id="menu-item-2449" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2449"><a href="https://oracleplsql.ru/transactions.html">Транзакции</a></li>
+<li id="menu-item-2316" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2316"><a href="https://oracleplsql.ru/conditional-statements.html">Условные операторы</a></li>
+<li id="menu-item-2340" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-2340"><a href="https://oracleplsql.ru/loops.html">Циклы</a></li>
+<li id="menu-item-8302" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-8302"><a href="https://oracleplsql.ru/anonymous-block-plsql.html">Блоки PL/SQL</a></li>
+</ul></div></aside><aside id="nav_menu-2" class="widget widget_nav_menu"><h1 class="widget-title">ФУНКЦИИ ORACLE/PLSQL</h1><div class="menu-funkczii-oracle-pl-sql-container"><ul id="menu-funkczii-oracle-pl-sql" class="menu"><li id="menu-item-4" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-home menu-item-4"><a title="function category" href="https://oracleplsql.ru/">По категориям</a></li>
+<li id="menu-item-7402" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7402"><a href="https://oracleplsql.ru/analytic.html">Аналитические</a></li>
+<li id="menu-item-7405" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7405"><a href="https://oracleplsql.ru/string-character.html">Символьные / строковые</a></li>
+<li id="menu-item-7406" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7406"><a href="https://oracleplsql.ru/numeric-mathematical.html">Числовые / математические</a></li>
+<li id="menu-item-7403" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7403"><a href="https://oracleplsql.ru/date-time.html">Дата / время</a></li>
+<li id="menu-item-7407" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7407"><a href="https://oracleplsql.ru/conversion.html">Преобразование</a></li>
+<li id="menu-item-7404" class="menu-item menu-item-type-custom menu-item-object-custom menu-item-7404"><a href="https://oracleplsql.ru/advanced-function.html">Вспомогательные</a></li>
+</ul></div></aside><aside id="custom_html-14" class="widget_text widget widget_custom_html"><div class="textwidget custom-html-widget"><script async="" src="COALESCE%20%D0%A4%D0%A3%D0%9D%D0%9A%D0%A6%D0%98%D0%AF%20%E2%80%94%20Oracle%20PL_SQL%20%E2%80%A2MySQL%20%E2%80%A2MariaDB%20%E2%80%A2SQL%20Server%20%E2%80%A2SQLite_files/adsbygoogle.js"></script>
+<!-- Oracleplsql.ru боковой 300х600 -->
+<ins class="adsbygoogle" style="display: block; height: 600px;" data-ad-client="ca-pub-8777261894857145" data-ad-slot="1425058522" data-ad-format="auto" data-adsbygoogle-status="done"><ins id="aswift_4_expand" style="display:inline-table;border:none;height:600px;margin:0;padding:0;position:relative;visibility:visible;width:260px;background-color:transparent;" tabindex="0" title="Advertisement" aria-label="Advertisement"><ins id="aswift_4_anchor" style="display: block; border: medium none; height: 600px; margin: 0px; padding: 0px; position: relative; visibility: visible; width: 260px; background-color: transparent; overflow: visible;"><iframe id="aswift_4" name="aswift_4" style="left:0;position:absolute;top:0;border:0;width:260px;height:600px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" src="COALESCE%20%D0%A4%D0%A3%D0%9D%D0%9A%D0%A6%D0%98%D0%AF%20%E2%80%94%20Oracle%20PL_SQL%20%E2%80%A2MySQL%20%E2%80%A2MariaDB%20%E2%80%A2SQL%20Server%20%E2%80%A2SQLite_files/ads.htm" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!5" data-google-query-id="CIaq5smggPACFR15GQodP_8CfA" data-load-complete="true" width="260" height="600" frameborder="0"></iframe></ins></ins></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+
+<!-- hit.ua -->
+<a href="http://hit.ua/?x=128731" target="_blank" rel="noopener">
+<script language="javascript" type="text/javascript"><!--
+Cd=document;Cr="&"+Math.random();Cp="&s=1";
+Cd.cookie="b=b";if(Cd.cookie)Cp+="&c=1";
+Cp+="&t="+(new Date()).getTimezoneOffset();
+if(self!=top)Cp+="&f=1";
+//--></script>
+<script language="javascript1.1" type="text/javascript"><!--
+if(navigator.javaEnabled())Cp+="&j=1";
+//--></script>
+<script language="javascript1.2" type="text/javascript"><!--
+if(typeof(screen)!='undefined')Cp+="&w="+screen.width+"&h="+
+screen.height+"&d="+(screen.colorDepth?screen.colorDepth:screen.pixelDepth);
+//--></script>
+<script language="javascript" type="text/javascript"><!--
+Cd.write("<sc"+"ript src='//c.hit.ua/hit?i=128731&g=0&x=3"+Cp+Cr+
+"&r="+escape(Cd.referrer)+"&u="+escape(window.location.href)+"'></sc"+"ript>");
+//--></script><script src="COALESCE%20%D0%A4%D0%A3%D0%9D%D0%9A%D0%A6%D0%98%D0%AF%20%E2%80%94%20Oracle%20PL_SQL%20%E2%80%A2MySQL%20%E2%80%A2MariaDB%20%E2%80%A2SQL%20Server%20%E2%80%A2SQLite_files/hit.js"></script></a>
+<!-- / hit.ua -->
+
+<!-- Yandex.Metrika counter -->
+
+<noscript><div><img src="https://mc.yandex.ru/watch/26721072" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+</div></aside>			</div><!-- #sidebar-right -->
+		
+			</div>
+
+	</div><!-- #main .site-main -->
+
+	<footer id="colophon" class="site-footer" role="contentinfo">
+		<div class="site-info">
+			<div>© 2014-2021 Oracle PL/SQL</div>		</div>
+			</footer><!-- #colophon .site-footer -->
+</div><!-- #page .hfeed .site -->
+
+<script type="text/javascript" id="rocket-browser-checker-js-after">
+"use strict";var _createClass=function(){function defineProperties(target,props){for(var i=0;i<props.length;i++){var descriptor=props[i];descriptor.enumerable=descriptor.enumerable||!1,descriptor.configurable=!0,"value"in descriptor&&(descriptor.writable=!0),Object.defineProperty(target,descriptor.key,descriptor)}}return function(Constructor,protoProps,staticProps){return protoProps&&defineProperties(Constructor.prototype,protoProps),staticProps&&defineProperties(Constructor,staticProps),Constructor}}();function _classCallCheck(instance,Constructor){if(!(instance instanceof Constructor))throw new TypeError("Cannot call a class as a function")}var RocketBrowserCompatibilityChecker=function(){function RocketBrowserCompatibilityChecker(options){_classCallCheck(this,RocketBrowserCompatibilityChecker),this.passiveSupported=!1,this._checkPassiveOption(this),this.options=!!this.passiveSupported&&options}return _createClass(RocketBrowserCompatibilityChecker,[{key:"_checkPassiveOption",value:function(self){try{var options={get passive(){return!(self.passiveSupported=!0)}};window.addEventListener("test",null,options),window.removeEventListener("test",null,options)}catch(err){self.passiveSupported=!1}}},{key:"initRequestIdleCallback",value:function(){!1 in window&&(window.requestIdleCallback=function(cb){var start=Date.now();return setTimeout(function(){cb({didTimeout:!1,timeRemaining:function(){return Math.max(0,50-(Date.now()-start))}})},1)}),!1 in window&&(window.cancelIdleCallback=function(id){return clearTimeout(id)})}},{key:"isDataSaverModeOn",value:function(){return"connection"in navigator&&!0===navigator.connection.saveData}},{key:"supportsLinkPrefetch",value:function(){var elem=document.createElement("link");return elem.relList&&elem.relList.supports&&elem.relList.supports("prefetch")&&window.IntersectionObserver&&"isIntersecting"in IntersectionObserverEntry.prototype}},{key:"isSlowConnection",value:function(){return"connection"in navigator&&"effectiveType"in navigator.connection&&("2g"===navigator.connection.effectiveType||"slow-2g"===navigator.connection.effectiveType)}}]),RocketBrowserCompatibilityChecker}();
+</script>
+<script type="text/javascript" id="rocket-delay-js-js-after">
+(function() {
+"use strict";var e=function(){function n(e,t){for(var r=0;r<t.length;r++){var n=t[r];n.enumerable=n.enumerable||!1,n.configurable=!0,"value"in n&&(n.writable=!0),Object.defineProperty(e,n.key,n)}}return function(e,t,r){return t&&n(e.prototype,t),r&&n(e,r),e}}();function n(e,t){if(!(e instanceof t))throw new TypeError("Cannot call a class as a function")}var t=function(){function r(e,t){n(this,r),this.attrName="data-rocketlazyloadscript",this.browser=t,this.options=this.browser.options,this.triggerEvents=e,this.userEventListener=this.triggerListener.bind(this)}return e(r,[{key:"init",value:function(){this._addEventListener(this)}},{key:"reset",value:function(){this._removeEventListener(this)}},{key:"_addEventListener",value:function(t){this.triggerEvents.forEach(function(e){return window.addEventListener(e,t.userEventListener,t.options)})}},{key:"_removeEventListener",value:function(t){this.triggerEvents.forEach(function(e){return window.removeEventListener(e,t.userEventListener,t.options)})}},{key:"_loadScriptSrc",value:function(){var r=this,e=document.querySelectorAll("script["+this.attrName+"]");0!==e.length&&Array.prototype.slice.call(e).forEach(function(e){var t=e.getAttribute(r.attrName);e.setAttribute("src",t),e.removeAttribute(r.attrName)}),this.reset()}},{key:"triggerListener",value:function(){this._loadScriptSrc(),this._removeEventListener(this)}}],[{key:"run",value:function(){RocketBrowserCompatibilityChecker&&new r(["keydown","mouseover","touchmove","touchstart"],new RocketBrowserCompatibilityChecker({passive:!0})).init()}}]),r}();t.run();
+}());
+</script>
+
+
+<script>window.lazyLoadOptions={elements_selector:"img[data-lazy-src],.rocket-lazyload",data_src:"lazy-src",data_srcset:"lazy-srcset",data_sizes:"lazy-sizes",class_loading:"lazyloading",class_loaded:"lazyloaded",threshold:300,callback_loaded:function(element){if(element.tagName==="IFRAME"&&element.dataset.rocketLazyload=="fitvidscompatible"){if(element.classList.contains("lazyloaded")){if(typeof window.jQuery!="undefined"){if(jQuery.fn.fitVids){jQuery(element).parent().fitVids()}}}}}};window.addEventListener('LazyLoad::Initialized',function(e){var lazyLoadInstance=e.detail.instance;if(window.MutationObserver){var observer=new MutationObserver(function(mutations){var image_count=0;var iframe_count=0;var rocketlazy_count=0;mutations.forEach(function(mutation){for(i=0;i<mutation.addedNodes.length;i++){if(typeof mutation.addedNodes[i].getElementsByTagName!=='function'){continue}
+if(typeof mutation.addedNodes[i].getElementsByClassName!=='function'){continue}
+images=mutation.addedNodes[i].getElementsByTagName('img');is_image=mutation.addedNodes[i].tagName=="IMG";iframes=mutation.addedNodes[i].getElementsByTagName('iframe');is_iframe=mutation.addedNodes[i].tagName=="IFRAME";rocket_lazy=mutation.addedNodes[i].getElementsByClassName('rocket-lazyload');image_count+=images.length;iframe_count+=iframes.length;rocketlazy_count+=rocket_lazy.length;if(is_image){image_count+=1}
+if(is_iframe){iframe_count+=1}}});if(image_count>0||iframe_count>0||rocketlazy_count>0){lazyLoadInstance.update()}});var b=document.getElementsByTagName("body")[0];var config={childList:!0,subtree:!0};observer.observe(b,config)}},!1)</script><script data-no-minify="1" async="" src="COALESCE%20%D0%A4%D0%A3%D0%9D%D0%9A%D0%A6%D0%98%D0%AF%20%E2%80%94%20Oracle%20PL_SQL%20%E2%80%A2MySQL%20%E2%80%A2MariaDB%20%E2%80%A2SQL%20Server%20%E2%80%A2SQLite_files/lazyload.js"></script>
+<script src="COALESCE%20%D0%A4%D0%A3%D0%9D%D0%9A%D0%A6%D0%98%D0%AF%20%E2%80%94%20Oracle%20PL_SQL%20%E2%80%A2MySQL%20%E2%80%A2MariaDB%20%E2%80%A2SQL%20Server%20%E2%80%A2SQLite_files/bb5cf835d6a8c088c977c8e6e08450d6.js" data-minify="1" defer="defer"></script>
+
+<table style="width: 124px; display: none; top: 299px; left: 126px; position: absolute;" class="gstl_50 gssb_c" cellspacing="0" cellpadding="0"><tbody><tr><td class="gssb_f"></td><td class="gssb_e" style="width: 100%;"></td></tr></tbody></table><ins class="adsbygoogle adsbygoogle-noablate" style="display: none !important;" data-adsbygoogle-status="done"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;" tabindex="0" title="Advertisement" aria-label="Advertisement"><ins id="aswift_0_anchor" style="display:block;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;"><iframe id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;border:0;width:undefinedpx;height:undefinedpx;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" src="COALESCE%20%D0%A4%D0%A3%D0%9D%D0%9A%D0%A6%D0%98%D0%AF%20%E2%80%94%20Oracle%20PL_SQL%20%E2%80%A2MySQL%20%E2%80%A2MariaDB%20%E2%80%A2SQL%20Server%20%E2%80%A2SQLite_files/ads_005.htm" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!1" data-load-complete="true" frameborder="0"></iframe></ins></ins></ins><iframe id="google_osd_static_frame_3973058852486" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;"></iframe></body><iframe id="google_esf" name="google_esf" src="COALESCE%20%D0%A4%D0%A3%D0%9D%D0%9A%D0%A6%D0%98%D0%AF%20%E2%80%94%20Oracle%20PL_SQL%20%E2%80%A2MySQL%20%E2%80%A2MariaDB%20%E2%80%A2SQL%20Server%20%E2%80%A2SQLite_files/zrt_lookup.htm" style="display: none;" data-ad-client=""></iframe><ins class="adsbygoogle adsbygoogle-noablate" style="display: none !important; width: 100vw !important; height: 100vh !important; inset: 0px auto auto 0px !important; clear: none !important; float: none !important; margin: 0px !important; max-height: none !important; max-width: none !important; opacity: 1 !important; overflow: visible !important; padding: 0px !important; position: fixed !important; vertical-align: baseline !important; visibility: visible !important; z-index: 2147483647 !important; background-color: transparent;" data-adsbygoogle-status="done" aria-hidden="true" data-vignette-loaded="true"><ins id="aswift_5_expand" style="display: inline-table !important; border: medium none !important; height: 100vh !important; margin: 0px !important; padding: 0px !important; position: relative !important; visibility: visible !important; width: 100vw !important; background-color: transparent !important; inset: auto !important; clear: none !important; float: none !important; max-height: none !important; max-width: none !important; opacity: 1 !important; overflow: visible !important; vertical-align: baseline !important; z-index: auto !important;" tabindex="0" title="Advertisement" aria-label="Advertisement"><ins id="aswift_5_anchor" style="display: block !important; border: medium none !important; height: 100vh !important; margin: 0px !important; padding: 0px !important; position: relative !important; visibility: visible !important; width: 100vw !important; background-color: transparent !important; inset: auto !important; clear: none !important; float: none !important; max-height: none !important; max-width: none !important; opacity: 1 !important; overflow: visible !important; vertical-align: baseline !important; z-index: auto !important;"><iframe id="aswift_5" name="" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" src="COALESCE%20%D0%A4%D0%A3%D0%9D%D0%9A%D0%A6%D0%98%D0%AF%20%E2%80%94%20Oracle%20PL_SQL%20%E2%80%A2MySQL%20%E2%80%A2MariaDB%20%E2%80%A2SQL%20Server%20%E2%80%A2SQLite_files/zrt_lookup_002.htm" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" style="width: 100vw !important; height: 100vh !important; inset: 0px auto auto 0px !important; position: absolute !important; clear: none !important; display: inline !important; float: none !important; margin: 0px !important; max-height: none !important; max-width: none !important; opacity: 1 !important; overflow: visible !important; padding: 0px !important; vertical-align: baseline !important; visibility: visible !important; z-index: auto !important;" data-google-container-id="a!6" data-google-query-id="CJbm5MmggPACFdNQwgodXTgJwQ" data-load-complete="true" width="" height="" frameborder="0"></iframe></ins></ins></ins></html>
+<!-- This website is like a Rocket, isn't it? Performance optimized by WP Rocket. Learn more: https://wp-rocket.me - Debug: cached@1618466783 -->

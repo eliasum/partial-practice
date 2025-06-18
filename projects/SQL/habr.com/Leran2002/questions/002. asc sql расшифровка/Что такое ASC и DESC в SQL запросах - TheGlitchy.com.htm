@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="ru"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+      <!-- Yandex.Metrika counter -->
+  <script src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/osd.js"></script><script src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/cookie.js"></script><script src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/show_ads_impl_fy2019.js" id="google_shimpl"></script><script async="" src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/60309b76598a980011b2322b.js"></script><script type="text/javascript" async="" src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/analytics.js"></script><script async="" src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/tag.js"></script><script async="" type="text/javascript">
+     (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+     m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+     (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+     ym(65182696, "init", {
+          clickmap:true,
+          trackLinks:true,
+          accurateTrackBounce:true,
+          webvisor:true
+     });
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/65182696" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+  <!-- /Yandex.Metrika counter -->
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async="" src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/js"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-146766811-1');
+  </script>
+  <script data-ad-client="ca-pub-4446448946463445" async="" src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/adsbygoogle.js" data-checked-head="true"></script>
+
+        <title>Что такое ASC и DESC в SQL запросах? - TheGlitchy.com</title>
+
+  <meta name="description" content="Часто встречаемые сокращения ASC и DESC определяют направление сортировки в SQL запросах.">
+
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://theglitchy.com/n/chto-takoe-asc-i-desc-v-sql-zaprosah">
+  <meta property="og:title" content="Что такое ASC и DESC в SQL запросах? - TheGlitchy.com">
+  <meta property="og:description" content="Часто встречаемые сокращения ASC и DESC определяют направление сортировки в SQL запросах.">
+  <meta property="og:site_name" content="TheGlitchy.com">
+  <link rel="canonical" href="https://theglitchy.com/n/chto-takoe-asc-i-desc-v-sql-zaprosah">
+
+
+
+    <link rel="shortcut icon" type="image/x-icon" href="https://theglitchy.com/favicon.png">
+    <meta name="csrf-param" content="authenticity_token">
+<meta name="csrf-token" content="9CxVHzTXpAiutIV+CWlH+YZytmgvgRBQTK1RYuRHtWZ/BOOkflnEgDvoaZddsAsTpTolPga7h8kWyfQljOlYtg==">
+    
+
+    <link rel="stylesheet" media="all" href="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/application-99a5b77d5615003f2a6c56a5c9e2e40f4f0c964ca3c71249.css">
+    <script src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/application-b799e43461f46752faca.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script type="text/javascript" src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/sharethis.js" async="async"></script>
+  <meta http-equiv="origin-trial" content="A+b/H0b8RPXNaJgaNFpO0YOFuGK6myDQXlwnJB3SwzvNMfcndat4DZYMrP4ClJIzYWo3/yP2S+8FTZ/lpqbPAAEAAABueyJvcmlnaW4iOiJodHRwczovL2ltYXNkay5nb29nbGVhcGlzLmNvbTo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzVGhpcmRQYXJ0eSI6dHJ1ZX0="><meta http-equiv="origin-trial" content="A9ZgbRtm4pU3oZiuNzOsKcC8ppFSZdcjP2qYcdQrFKVzkmiWH1kdYY1Mi9x7G8+PS8HV9Ha9Cz0gaMdKsiVZIgMAAAB7eyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="AxL6oBxcpn5rQDPKSAs+d0oxNyJYq2/4esBUh3Yx5z8QfcLu+AU8iFCXYRcr/CEEfDnkxxLTsvXPJFQBxHfvkgMAAACBeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXRhZ3NlcnZpY2VzLmNvbTo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A9KPtG5kl3oLTk21xqynDPGQ5t18bSOpwt0w6kGa6dEWbuwjpffmdUpR3W+faZDubGT+KIk2do0BX2ca16x8qAcAAACBeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiVHJ1c3RUb2tlbnMiLCJleHBpcnkiOjE2MjYyMjA3OTksImlzU3ViZG9tYWluIjp0cnVlLCJpc1RoaXJkUGFydHkiOnRydWV9"><meta http-equiv="origin-trial" content="A3HucHUo1oW9s+9kIKz8mLkbcmdaj5lxt3eiIMp1Nh49dkkBlg1Fhg4Fd/r0vL69mRRA36YutI9P/lJUfL8csQoAAACFeyJvcmlnaW4iOiJodHRwczovL2RvdWJsZWNsaWNrLm5ldDo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="A0OysezhLoCRYomumeYlubLurZTCmsjTb087OvtCy95jNM65cfEsbajrJnhaGwiTxhz38ZZbm+UhUwQuXfVPTg0AAACLeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXN5bmRpY2F0aW9uLmNvbTo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="AxoOxdZQmIoA1WeAPDixRAeWDdgs7ZtVFfH2y19ziTgD1iaHE5ZGz2UdSjubkWvob9C5PrjUfkWi4ZSLgWk3Xg8AAACLeyJvcmlnaW4iOiJodHRwczovL2dvb2dsZXRhZ3NlcnZpY2VzLmNvbTo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><meta http-equiv="origin-trial" content="A7+rMYR5onPnACrz+niKSeFdH3xw1IyHo2AZSHmxrofRk9w4HcQPMYcpBUKu6OQ6zsdxf4m/vqa6tG6Na4OLpAQAAAB4eyJvcmlnaW4iOiJodHRwczovL2ltYXNkay5nb29nbGVhcGlzLmNvbTo0NDMiLCJmZWF0dXJlIjoiQ29udmVyc2lvbk1lYXN1cmVtZW50IiwiZXhwaXJ5IjoxNjI2MjIwNzk5LCJpc1RoaXJkUGFydHkiOnRydWV9"><link rel="preload" href="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/integrator.js" as="script"><script type="text/javascript" src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/integrator.js"></script><link rel="preload" href="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/integrator_002.js" as="script"><script type="text/javascript" src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/integrator_002.js"></script><style type="text/css">#st-el-1 {
+  font-family: "Helvetica Neue", Verdana, Helvetica, Arial, sans-serif;;
+  direction: ltr;
+  display: block;
+  opacity: 1;
+  text-align: center;
+  z-index: 94034;
+}
+#st-el-1.st-animated {
+  -moz-transition: o 0.2s ease-in, p 0.2s ease-in, a 0.2s ease-in, c 0.2s ease-in, i 0.2s ease-in, t 0.2s ease-in, y 0.2s ease-in; -ms-transition: o 0.2s ease-in, p 0.2s ease-in, a 0.2s ease-in, c 0.2s ease-in, i 0.2s ease-in, t 0.2s ease-in, y 0.2s ease-in; -o-transition: o 0.2s ease-in, p 0.2s ease-in, a 0.2s ease-in, c 0.2s ease-in, i 0.2s ease-in, t 0.2s ease-in, y 0.2s ease-in; -webkit-transition: o 0.2s ease-in, p 0.2s ease-in, a 0.2s ease-in, c 0.2s ease-in, i 0.2s ease-in, t 0.2s ease-in, y 0.2s ease-in; transition: o 0.2s ease-in, p 0.2s ease-in, a 0.2s ease-in, c 0.2s ease-in, i 0.2s ease-in, t 0.2s ease-in, y 0.2s ease-in;
+}
+#st-el-1.st-hidden {
+  opacity: 0;
+}
+#st-el-1.st-hide {
+  display: none;
+}
+#st-el-1 .st-btn {
+  -moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+box-sizing: border-box;
+  -moz-transition: opacity 0.2s ease-in, top 0.2s ease-in; -ms-transition: opacity 0.2s ease-in, top 0.2s ease-in; -o-transition: opacity 0.2s ease-in, top 0.2s ease-in; -webkit-transition: opacity 0.2s ease-in, top 0.2s ease-in; transition: opacity 0.2s ease-in, top 0.2s ease-in;
+  -moz-border-radius: 4px;
+-webkit-border-radius: 4px;
+border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 12px;
+  height: 32px;
+  line-height: 32px;
+  margin-right: 8px;
+  padding: 0 10px;
+  position: relative;
+  text-align: center;
+  top: 0;
+  vertical-align: top;
+  white-space: nowrap;
+}
+#st-el-1 .st-btn:last-child {
+  margin-right: 0;
+}
+#st-el-1 .st-btn > svg {
+  height: 16px;
+  width: 16px;
+  position: relative;
+  top: 8px;
+  vertical-align: top;
+}
+#st-el-1 .st-btn > img {
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+  position: relative;
+  top: 8px;
+  vertical-align: top;
+}
+#st-el-1 .st-btn > span {
+  -moz-transition: all 0.2s ease-in; -ms-transition: all 0.2s ease-in; -o-transition: all 0.2s ease-in; -webkit-transition: all 0.2s ease-in; transition: all 0.2s ease-in;
+  color: #fff;
+  display: inline-block;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  min-width: 60px;
+  opacity: 1;
+  padding: 0 6px;
+  position: relative;
+  vertical-align: top;
+}
+#st-el-1.st-has-labels .st-btn {
+  min-width: 120px;
+}
+#st-el-1.st-has-labels .st-btn.st-remove-label {
+  min-width: 50px;
+}
+#st-el-1.st-has-labels .st-btn.st-remove-label > span {
+  display: none;
+}
+#st-el-1.st-has-labels .st-btn.st-hide-label > span {
+  display: none;
+}
+#st-el-1 .st-total {
+  color: #555;
+  display: inline-block;
+  font-weight: 500;
+  line-height: 12px;
+  margin-right: 0;
+  max-width: 80px;
+  padding: 4px 8px;
+  text-align: center;
+}
+#st-el-1 .st-total.st-hidden {
+  display: none;
+}
+#st-el-1 .st-total > span {
+  font-size: 16px;
+  line-height: 17px;
+  display: block;
+  padding: 0;
+}
+#st-el-1 .st-total > span.st-shares {
+  font-size: 9px;
+  line-height: 9px;
+}
+#st-el-1.st-justified {
+  display: flex;
+  text-align: center;
+}
+#st-el-1.st-justified .st-btn {
+  -moz-flex: 1;
+-ms-flex: 1;
+-webkit-flex: 1;
+flex: 1;
+}#st-el-1 .st-btn:hover {
+  opacity: .8;
+  top: -4px;
+}#st-el-1 .st-btn[data-network='facebook'] {
+  background-color: #4267B2;
+}
+#st-el-1 .st-btn[data-network='facebook'] svg {
+  fill: #fff;
+}
+#st-el-1 .st-btn[data-network='facebook'] > span {
+  color: #fff;
+}
+#st-el-1 .st-btn[data-network='twitter'] {
+  background-color: #55acee;
+}
+#st-el-1 .st-btn[data-network='twitter'] svg {
+  fill: #fff;
+}
+#st-el-1 .st-btn[data-network='twitter'] > span {
+  color: #fff;
+}
+#st-el-1 .st-btn[data-network='pinterest'] {
+  background-color: #CB2027;
+}
+#st-el-1 .st-btn[data-network='pinterest'] svg {
+  fill: #fff;
+}
+#st-el-1 .st-btn[data-network='pinterest'] > span {
+  color: #fff;
+}
+#st-el-1 .st-btn[data-network='messenger'] {
+  background-color: #448AFF;
+}
+#st-el-1 .st-btn[data-network='messenger'] svg {
+  fill: #fff;
+}
+#st-el-1 .st-btn[data-network='messenger'] > span {
+  color: #fff;
+}
+#st-el-1 .st-btn[data-network='vk'] {
+  background-color: #4c6c91;
+}
+#st-el-1 .st-btn[data-network='vk'] svg {
+  fill: #fff;
+}
+#st-el-1 .st-btn[data-network='vk'] > span {
+  color: #fff;
+}
+#st-el-1 .st-btn[data-network='whatsapp'] {
+  background-color: #25d366;
+}
+#st-el-1 .st-btn[data-network='whatsapp'] svg {
+  fill: #fff;
+}
+#st-el-1 .st-btn[data-network='whatsapp'] > span {
+  color: #fff;
+}
+#st-el-1 .st-btn[data-network='telegram'] {
+  background-color: #0088cc;
+}
+#st-el-1 .st-btn[data-network='telegram'] svg {
+  fill: #fff;
+}
+#st-el-1 .st-btn[data-network='telegram'] > span {
+  color: #fff;
+}
+#st-el-1 .st-btn[data-network='odnoklassniki'] {
+  background-color: #d7772d;
+}
+#st-el-1 .st-btn[data-network='odnoklassniki'] svg {
+  fill: #fff;
+}
+#st-el-1 .st-btn[data-network='odnoklassniki'] > span {
+  color: #fff;
+}
+#st-el-1 .st-btn[data-network='email'] {
+  background-color: #7d7d7d;
+}
+#st-el-1 .st-btn[data-network='email'] svg {
+  fill: #fff;
+}
+#st-el-1 .st-btn[data-network='email'] > span {
+  color: #fff;
+}</style><style type="text/css">#st-3 {
+  font-family: "Helvetica Neue", Verdana, Helvetica, Arial, sans-serif;;
+  -moz-transition: all 0.2s ease-in; -ms-transition: all 0.2s ease-in; -o-transition: all 0.2s ease-in; -webkit-transition: all 0.2s ease-in; transition: all 0.2s ease-in;
+  backface-visibility: hidden;
+  display: block;
+  position: fixed;
+  opacity: 1;
+  text-align: left;
+  top: 100px;
+  z-index: 94034;
+}
+#st-3.st-left {
+  left: 0px;
+}
+#st-3.st-hidden.st-left {
+  left: -32px;
+}
+#st-3.st-hidden {
+  width: 64px;
+}
+#st-3 > div {
+  clear: left;
+  float: left;
+}
+#st-3 .st-btn {
+  -moz-box-sizing: border-box;
+-webkit-box-sizing: border-box;
+box-sizing: border-box;
+  -moz-transition: all 0.2s ease-in; -ms-transition: all 0.2s ease-in; -o-transition: all 0.2s ease-in; -webkit-transition: all 0.2s ease-in; transition: all 0.2s ease-in;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 11px;
+  height: 32px;
+  line-height: 16px;
+  margin-bottom: 0;
+  opacity: 1;
+  overflow: hidden;
+  padding: 8px;
+  position: relative;
+  text-align: left;
+  top: 0;
+  vertical-align: top;
+  white-space: nowrap;
+  width: 32px;
+}
+#st-3 .st-btn.st-first {
+  border-top: none;
+  border-top-right-radius: 16px;
+}
+#st-3 .st-btn.st-last {
+  border-bottom: none;
+  border-bottom-right-radius: 16px;
+}
+#st-3 .st-btn > svg {
+  -moz-transition: all 0.2s ease-in; -ms-transition: all 0.2s ease-in; -o-transition: all 0.2s ease-in; -webkit-transition: all 0.2s ease-in; transition: all 0.2s ease-in;
+  height: 16px;
+  margin-left: 0;
+  vertical-align: top;
+  width: 16px;
+}
+#st-3 .st-btn > img {
+  -moz-transition: all 0.2s ease-in; -ms-transition: all 0.2s ease-in; -o-transition: all 0.2s ease-in; -webkit-transition: all 0.2s ease-in; transition: all 0.2s ease-in;
+  height: 16px;
+  margin-left: 0;
+  vertical-align: top;
+  width: 16px;
+}
+#st-3 .st-btn > span {
+  -moz-transition: all 0.2s ease-in; -ms-transition: all 0.2s ease-in; -o-transition: all 0.2s ease-in; -webkit-transition: all 0.2s ease-in; transition: all 0.2s ease-in;
+  color: #fff;
+  display: inline-block;
+  font-weight: 500;
+  left: -35px;
+  letter-spacing: 0.5px;
+  opacity: 0;
+  padding: 0 6px;
+  position: relative;
+  vertical-align: top;
+  filter: alpha(opacity=0);
+}
+#st-3 .st-btn.st-hide-label > span {
+  display: none !important;
+}
+#st-3 .st-total {
+  -moz-transition: all 0.2s ease-in; -ms-transition: all 0.2s ease-in; -o-transition: all 0.2s ease-in; -webkit-transition: all 0.2s ease-in; transition: all 0.2s ease-in;
+  background: #fff;
+  color: #555;
+  display: inline-block;
+  font-weight: 500;
+  line-height: 12px;
+  margin-right: 0;
+  min-height: 34px;
+  max-width: 80px;
+  opacity: 1;
+  padding: 4px 0;
+  text-align: center;
+  width: 32px;
+}
+#st-3 .st-total.st-hidden {
+  display: none;
+}
+#st-3 .st-total > span {
+  display: block;
+  font-size: 12px;
+  line-height: 14px;
+  padding: 0;
+}
+#st-3 .st-total > span.st-shares {
+  font-size: 7px;
+  line-height: 7px;
+}
+#st-3 .st-toggle {
+  left: -32px;
+  -moz-transition: all 0.2s ease-in; -ms-transition: all 0.2s ease-in; -o-transition: all 0.2s ease-in; -webkit-transition: all 0.2s ease-in; transition: all 0.2s ease-in;
+  background: #ccc;
+  border-bottom-right-radius: 16px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  line-height: 16px;
+  position: relative;
+  text-align: center;
+  width: 32px;
+}
+#st-3.st-hidden .st-toggle {
+  border-top-right-radius: 16px;
+}
+#st-3.st-left .st-toggle .st-left {
+  display: inline-block;
+}
+#st-3.st-left.st-hidden .st-toggle .st-left {
+  display: none;
+}
+#st-3.st-left .st-toggle .st-right {
+  display: none;
+}
+#st-3.st-left.st-hidden .st-toggle .st-right {
+  display: inline-block;
+}#st-3:hover .st-toggle {
+  left: 0;
+}
+#st-3.st-hidden:hover .st-toggle {
+  left: 32px;
+}
+#st-3.st-toggleable:hover .st-btn.st-last {
+  border-bottom-right-radius: 0;
+}
+#st-3.st-toggleable:hover .st-btn.st-last:hover {
+  border-bottom-right-radius: 16px;
+}
+#st-3 .st-btn:hover {
+  border-bottom-right-radius: 16px;
+  border-top-right-radius: 16px;
+}
+#st-3.st-has-labels .st-btn:hover {
+  width: 120px;
+}
+#st-3:not(.st-has-labels) .st-btn:hover {
+  width: 41px;
+}
+#st-3 .st-btn.st-hide-label:hover {
+  width: 41px;
+}
+#st-3 .st-btn:hover > svg {
+  margin-left: 5px;
+}
+#st-3 .st-btn:hover > img {
+  margin-left: 5px;
+}
+#st-3 .st-btn:hover > span {
+  opacity: 1;
+  display: inline-block;
+  left: 0;
+  filter: alpha(opacity=100);
+}
+@media (max-width: 1024) {
+  #st-3 .st-btn:hover > svg {
+    margin-left: 0;
+  }
+  #st-3 .st-btn:hover > span {
+    display: none;
+  }
+}@media (max-width: 1024) {
+  #st-3 {
+  bottom: 0;
+  display: flex;
+  left: 0;
+  right: 0;
+  top: auto;
+  width: 100%;
+}
+#st-3.st-hidden {
+  bottom: -32px;
+  width: 100%;
+}
+#st-3.st-hidden.st-left {
+  left: 0;
+}
+#st-3.st-hidden.st-right {
+  right: 0;
+}
+#st-3 > div {
+  -moz-flex: 1;
+  -ms-flex: 1;
+  -webkit-flex: 1;
+  clear: none;
+  flex: 1;
+  float: none;
+}
+#st-3 .st-total {
+  background: #fff;
+  padding: 6px 8px;
+}
+#st-3 .st-btn {
+  -moz-border-radius: 0 !important;
+-webkit-border-radius: 0 !important;
+border-radius: 0 !important;
+  text-align: center;
+  width: auto;
+}
+#st-3 .st-btn > span {
+  display: none;
+}
+#st-3 .st-toggle {
+  display: none;
+}body { padding-bottom: 48px; }
+}#st-3 .st-btn[data-network='facebook'] {
+  background-color: #4267B2;
+}
+#st-3 .st-btn[data-network='facebook'] svg {
+  fill: #fff;
+}
+#st-3 .st-btn[data-network='facebook'] > span {
+  color: #fff;
+}
+#st-3 .st-btn[data-network='twitter'] {
+  background-color: #55acee;
+}
+#st-3 .st-btn[data-network='twitter'] svg {
+  fill: #fff;
+}
+#st-3 .st-btn[data-network='twitter'] > span {
+  color: #fff;
+}
+#st-3 .st-btn[data-network='pinterest'] {
+  background-color: #CB2027;
+}
+#st-3 .st-btn[data-network='pinterest'] svg {
+  fill: #fff;
+}
+#st-3 .st-btn[data-network='pinterest'] > span {
+  color: #fff;
+}
+#st-3 .st-btn[data-network='messenger'] {
+  background-color: #448AFF;
+}
+#st-3 .st-btn[data-network='messenger'] svg {
+  fill: #fff;
+}
+#st-3 .st-btn[data-network='messenger'] > span {
+  color: #fff;
+}
+#st-3 .st-btn[data-network='reddit'] {
+  background-color: #ff4500;
+}
+#st-3 .st-btn[data-network='reddit'] svg {
+  fill: #fff;
+}
+#st-3 .st-btn[data-network='reddit'] > span {
+  color: #fff;
+}
+#st-3 .st-btn[data-network='whatsapp'] {
+  background-color: #25d366;
+}
+#st-3 .st-btn[data-network='whatsapp'] svg {
+  fill: #fff;
+}
+#st-3 .st-btn[data-network='whatsapp'] > span {
+  color: #fff;
+}
+#st-3 .st-btn[data-network='vk'] {
+  background-color: #4c6c91;
+}
+#st-3 .st-btn[data-network='vk'] svg {
+  fill: #fff;
+}
+#st-3 .st-btn[data-network='vk'] > span {
+  color: #fff;
+}
+#st-3 .st-btn[data-network='odnoklassniki'] {
+  background-color: #d7772d;
+}
+#st-3 .st-btn[data-network='odnoklassniki'] svg {
+  fill: #fff;
+}
+#st-3 .st-btn[data-network='odnoklassniki'] > span {
+  color: #fff;
+}
+#st-3 .st-btn[data-network='telegram'] {
+  background-color: #0088cc;
+}
+#st-3 .st-btn[data-network='telegram'] svg {
+  fill: #fff;
+}
+#st-3 .st-btn[data-network='telegram'] > span {
+  color: #fff;
+}
+#st-3 .st-btn[data-network='sharethis'] {
+  background-color: #95D03A;
+}
+#st-3 .st-btn[data-network='sharethis'] svg {
+  fill: #fff;
+}
+#st-3 .st-btn[data-network='sharethis'] > span {
+  color: #fff;
+}
+#st-3 .st-btn[data-network='email'] {
+  background-color: #7d7d7d;
+}
+#st-3 .st-btn[data-network='email'] svg {
+  fill: #fff;
+}
+#st-3 .st-btn[data-network='email'] > span {
+  color: #fff;
+}</style></head>
+
+  <body>
+    <div class="navbar">
+  <a class="site-name" href="https://theglitchy.com/">TheGlitchy.com</a>
+  <ul>
+    <li>
+      <a href="https://theglitchy.com/sandbox/what-age-tool">Расчет возраста</a>
+    </li>
+    <li>
+      <a href="https://theglitchy.com/sandbox/kaomoji">Каомодзи</a>
+    </li>
+    <li>
+      <a href="https://theglitchy.com/n">Блог</a>
+    </li>
+  </ul>
+</div>
+    <div class="alert-and-notice">
+  <p class="alert">
+    
+  </p>
+  <p class="notice">
+    
+  </p>
+</div>
+
+
+    <div class="flex-container" style="height: auto !important;">
+      <div class="page-wrapper" style="height: auto !important;">
+        <!-- top_of_page_content -->
+        <ins class="adsbygoogle" style="display: block; height: 280px;" data-ad-client="ca-pub-4446448946463445" data-ad-slot="8957678296" data-ad-format="auto" data-full-width-responsive="true" data-adsbygoogle-status="done"><ins id="aswift_1_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:684px;background-color:transparent;" tabindex="0" title="Advertisement" aria-label="Advertisement"><ins id="aswift_1_anchor" style="display: block; border: medium none; height: 280px; margin: 0px; padding: 0px; position: relative; visibility: visible; width: 684px; background-color: transparent; overflow: visible;"><iframe id="aswift_1" name="aswift_1" style="left:0;position:absolute;top:0;border:0;width:684px;height:280px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/ads.htm" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!2" data-google-query-id="CLDT-u_Q-O8CFUvLsgodQMUL2A" data-load-complete="true" width="684" height="280" frameborder="0"></iframe></ins></ins></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        
+
+
+
+
+<article class="content">
+  <h1 class="title">Что такое ASC и DESC в SQL запросах?</h1>
+    <div class="trix-content">
+  <div>Записи в базе данных имеют свою структуру и используя значения ASC и DESC можно указать желаемый порядок.<br><br>По умолчанию используется значение <strong>ASC </strong>(ASCENDING - дословно "по возрастанию"). Противоположность ему - <strong>DESC </strong>(DESCENDING - дословно "по убыванию".)<br><br>Запомнить эти сокращения из языка SQL довольно легко. В качестве примера рассмотрим сортировку по ID (ORDER BY <strong>XXX</strong> DESC - вместо <strong>XXX</strong> будем использовать <strong>ID</strong>) .<br><br>
+</div><pre>SELECT * FROM notes ORDER BY id ASC</pre><div>
+<br>Результат:<br><br>
+</div><pre> id | note
+ ---+------------------
+ 1  | first_blog_note 
+ 2  | another_cool_note</pre><div>
+<br>Для того, чтобы изменить порядок изменим ACS на DESC:<br><br>
+</div><pre><pre>SELECT * FROM notes ORDER BY id DESC</pre></pre><div><br></div><div>И в итоге получим обратный порядок наших ID:<br><br>
+</div><pre> id | note
+ ---+------------------
+ 2  | another_cool_note
+ 1  | first_blog_note</pre>
+</div>
+
+  <div class="tags-and-published-time">
+    <div class="tags">
+        <a href="https://theglitchy.com/c/programmirovanie">Программирование</a>
+        <a href="https://theglitchy.com/c/sql">SQL</a>
+    </div>
+    <div class="user-info">
+      <img class="avatar" alt="brnnkt" src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/avatar.png">
+      <div class="info">
+        <a href="https://theglitchy.com/p/brnnkt">brnnkt</a>
+        <span>FullStack Developer</span>
+        <time datetime="2019-11-25">Опубликовано 1 год, 4 месяца, 2 недели, 4 дня, 22 часа и 31 минута назад</time>
+      </div>
+    </div>
+  </div>
+</article>
+        <!-- bottom_of_page_content -->
+        <ins class="adsbygoogle" style="display: block; height: 280px;" data-ad-client="ca-pub-4446448946463445" data-ad-slot="4605523836" data-ad-format="auto" data-full-width-responsive="true" data-adsbygoogle-status="done"><ins id="aswift_2_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:684px;background-color:transparent;" tabindex="0" title="Advertisement" aria-label="Advertisement"><ins id="aswift_2_anchor" style="display: block; border: medium none; height: 280px; margin: 0px; padding: 0px; position: relative; visibility: visible; width: 684px; background-color: transparent; overflow: visible;"><iframe id="aswift_2" name="aswift_2" style="left:0;position:absolute;top:0;border:0;width:684px;height:280px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/ads.htm" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!3" data-google-query-id="CPWR--_Q-O8CFQbgsgodPfIHCQ" data-load-complete="true" width="684" height="280" frameborder="0"></iframe></ins></ins></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>
+      <div class="sidebar" style="height: auto !important;">
+      <!-- sidebar_vertical_1 -->
+        <ins class="adsbygoogle" style="display: block; height: 280px;" data-ad-client="ca-pub-4446448946463445" data-ad-slot="2717727090" data-ad-format="auto" data-full-width-responsive="true" data-adsbygoogle-status="done"><ins id="aswift_3_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:362px;background-color:transparent;" tabindex="0" title="Advertisement" aria-label="Advertisement"><ins id="aswift_3_anchor" style="display: block; border: medium none; height: 280px; margin: 0px; padding: 0px; position: relative; visibility: visible; width: 362px; background-color: transparent; overflow: visible;"><iframe id="aswift_3" name="aswift_3" style="left:0;position:absolute;top:0;border:0;width:362px;height:280px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/ads.htm" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!4" data-google-query-id="CIO---_Q-O8CFVXxsgodu_EAFQ" data-load-complete="true" width="362" height="280" frameborder="0"></iframe></ins></ins></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+          <div class="blogposts">
+                  <!-- No Content Here -->
+
+          </div>
+        <div class="random">
+                <strong>Может быть интересным:</strong>
+    <ul>
+    <li>
+      <a href="https://theglitchy.com/n/kak-ispolzovat-switch-v-ruby">Как использовать switch в Ruby?</a>
+    </li>
+    <li>
+      <a href="https://theglitchy.com/n/kak-poluchit-znachenie-env-v-ruby-on-rails-prilozhenii-s-vuejs">Как получить значение ENV в Ruby on Rails приложении с VUE.js?</a>
+    </li>
+    <li>
+      <a href="https://theglitchy.com/n/kak-udalit-turbolinks-iz-ruby-on-rails-6">Как удалить Turbolinks из Ruby on Rails 6?</a>
+    </li>
+    <li>
+      <a href="https://theglitchy.com/n/fiksim-error-matplotlib-131-requires-nose-which-is-not-installed">Фиксим ERROR: matplotlib 1.3.1 requires nose, which is not installed.</a>
+    </li>
+    <li>
+      <a href="https://theglitchy.com/n/kak-ubit-protsess-v-macos-rabotauschii-na-opredelennom-porte">Как убить процесс в macOS работающий на определенном порте?</a>
+    </li>
+    <li>
+      <a href="https://theglitchy.com/n/kak-dobavit-kartinku-iz-lokalnoi-papki-v-activestorage-ror">Как добавить картинку из локальной папки в ActiveStorage (RoR)?</a>
+    </li>
+    <li>
+      <a href="https://theglitchy.com/n/kak-udalit-ds_store-iz-git-repozitoriya-na-macos">Как удалить .DS_Store из Git-репозитория на macOS?</a>
+    </li>
+    <li>
+      <a href="https://theglitchy.com/n/ispolzuem-vstroennyi-sintezator-rechi-macos-v-ruby-skriptah">Используем встроенный синтезатор речи MacOS в Ruby скриптах</a>
+    </li>
+    <li>
+      <a href="https://theglitchy.com/n/kak-ustanovit-js-cookie-na-rails-6-yarn-webpack">Как установить js-cookie на Rails 6 (yarn, webpack)?</a>
+    </li>
+    <li>
+      <a href="https://theglitchy.com/n/primer-prostoi-i-krasivoi-stranitsy-404-422-500-oshibki-na-html-i-css">Пример простой и красивой страницы 404/422/500 ошибки на HTML и CSS</a>
+    </li>
+</ul>
+
+
+        </div>
+        <div class="random">
+            <strong>Полезные штуки:</strong>
+            <ul>
+              <li><a href="https://theglitchy.com/sandbox/russian_color_names">Каталог названий цветов на русском языке</a></li>
+              <li><a href="https://theglitchy.com/tools/color-names">Каталог именованных HTML-цветов</a></li>
+              <li><a href="https://theglitchy.com/tools/color-names/list">Названия цветов</a></li>
+            </ul>
+        </div>
+        <div class="sticky">
+          <!-- default_sticky -->
+          <ins class="adsbygoogle" style="display: block; height: 280px;" data-ad-client="ca-pub-4446448946463445" data-ad-slot="4224226368" data-ad-format="auto" data-full-width-responsive="true" data-adsbygoogle-status="done"><ins id="aswift_4_expand" style="display:inline-table;border:none;height:280px;margin:0;padding:0;position:relative;visibility:visible;width:345px;background-color:transparent;" tabindex="0" title="Advertisement" aria-label="Advertisement"><ins id="aswift_4_anchor" style="display: block; border: medium none; height: 280px; margin: 0px; padding: 0px; position: relative; visibility: visible; width: 345px; background-color: transparent; overflow: visible;"><iframe id="aswift_4" name="aswift_4" style="left:0;position:absolute;top:0;border:0;width:345px;height:280px;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/ads.htm" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!5" data-google-query-id="CIL3--_Q-O8CFfBGkQUdP1wCHA" data-load-complete="true" width="345" height="280" frameborder="0"></iframe></ins></ins></ins>
+          <script>
+              (adsbygoogle = window.adsbygoogle || []).push({});
+          </script>
+            <!-- No Content Here -->
+        </div>
+      </div>
+    </div>
+    <div class="footer">
+  <a href="https://theglitchy.com/sandbox/what-age-tool">Расчет возраста</a>
+  <a href="https://theglitchy.com/sandbox/kaomoji">Каомодзи</a>
+    <a href="https://theglitchy.com/n">Блог</a>
+  <hr>
+  <span><a href="https://theglitchy.com/en">English</a> / <a href="https://theglitchy.com/ru">Русский</a></span>
+</div>
+    <div class="" id="cookies-consent">
+  <p>🍪 Мы используем файлы cookie.
+  <br><a class="more-info" target="_blank" href="https://theglitchy.com/cookies-consent">🤔 Что это?</a></p>
+  <a class="ok" onclick="setAgreeCookie();">X</a>
+</div>
+
+<script type="text/javascript">
+  function setAgreeCookie() {
+    Cookies.set('agree_cookies', 'true', { expires: 365 });
+    document.getElementById("cookies-consent").classList.add("hide");
+  }
+</script>
+    <a onclick="window.scrollTo({ top: 0, behavior: 'smooth' });" id="to-top" style="visibility: hidden;">Наверх</a>
+  
+
+<iframe src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/portal-v2.htm" id="st_gdpr_iframe" title="GDPR Consent Management" style="width: 0px; height: 0px; position: absolute; left: -5000px;"></iframe><ins class="adsbygoogle adsbygoogle-noablate" style="display: none !important;" data-adsbygoogle-status="done"><ins id="aswift_0_expand" style="display:inline-table;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;" tabindex="0" title="Advertisement" aria-label="Advertisement"><ins id="aswift_0_anchor" style="display:block;border:none;height:0px;margin:0;padding:0;position:relative;visibility:visible;width:0px;background-color:transparent;"><iframe id="aswift_0" name="aswift_0" style="left:0;position:absolute;top:0;border:0;width:undefinedpx;height:undefinedpx;" sandbox="allow-forms allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts allow-top-navigation-by-user-activation" src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/ads_005.htm" marginwidth="0" marginheight="0" vspace="0" hspace="0" allowtransparency="true" scrolling="no" allowfullscreen="true" data-google-container-id="a!1" data-load-complete="true" frameborder="0"></iframe></ins></ins></ins><div id="st-el-1" class=" st-image-share-buttons st-center  st-inline-share-buttons st-animated st-hidden" style="position: absolute;"><div class="st-btn st-first st-remove-label" data-network="facebook" style="display: inline-block;">
+  <img alt="facebook sharing button" src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/facebook.svg">
+  
+</div><div class="st-btn st-remove-label" data-network="twitter" style="display: inline-block;">
+  <img alt="twitter sharing button" src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/twitter.svg">
+  
+</div><div class="st-btn st-remove-label" data-network="pinterest" style="display: inline-block;">
+  <img alt="pinterest sharing button" src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/pinterest.svg">
+  
+</div><div class="st-btn st-remove-label" data-network="messenger" style="display: inline-block;">
+  <img alt="messenger sharing button" src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/messenger.svg">
+  
+</div><div class="st-btn st-remove-label" data-network="vk" style="display: inline-block;">
+  <img alt="vk sharing button" src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/vk.svg">
+  
+</div><div class="st-btn st-remove-label" data-network="whatsapp" style="display: inline-block;">
+  <img alt="whatsapp sharing button" src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/whatsapp.svg">
+  
+</div><div class="st-btn st-remove-label" data-network="telegram" style="display: inline-block;">
+  <img alt="telegram sharing button" src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/telegram.svg">
+  
+</div><div class="st-btn st-remove-label" data-network="odnoklassniki" style="display: inline-block;">
+  <img alt="odnoklassniki sharing button" src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/odnoklassniki.svg">
+  
+</div><div class="st-btn st-last st-remove-label" data-network="email" style="display: none;">
+  <img alt="email sharing button" src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/email.svg">
+  
+</div></div><div id="st-3" class=" st-sticky-share-buttons st-left st-toggleable "><div class="st-btn st-first" data-network="facebook" style="display: inline-block;">
+  <img alt="facebook sharing button" src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/facebook.svg">
+  
+</div><div class="st-btn" data-network="twitter" style="display: inline-block;">
+  <img alt="twitter sharing button" src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/twitter.svg">
+  
+</div><div class="st-btn" data-network="pinterest" style="display: inline-block;">
+  <img alt="pinterest sharing button" src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/pinterest.svg">
+  
+</div><div class="st-btn" data-network="messenger" style="display: inline-block;">
+  <img alt="messenger sharing button" src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/messenger.svg">
+  
+</div><div class="st-btn" data-network="reddit" style="display: inline-block;">
+  <img alt="reddit sharing button" src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/reddit.svg">
+  
+</div><div class="st-btn" data-network="whatsapp" style="display: inline-block;">
+  <img alt="whatsapp sharing button" src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/whatsapp.svg">
+  
+</div><div class="st-btn" data-network="vk" style="display: inline-block;">
+  <img alt="vk sharing button" src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/vk.svg">
+  
+</div><div class="st-btn" data-network="odnoklassniki" style="display: inline-block;">
+  <img alt="odnoklassniki sharing button" src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/odnoklassniki.svg">
+  
+</div><div class="st-btn" data-network="telegram" style="display: inline-block;">
+  <img alt="telegram sharing button" src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/telegram.svg">
+  
+</div><div class="st-btn" data-network="sharethis" style="display: inline-block;">
+  <img alt="sharethis sharing button" src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/sharethis.svg">
+  
+</div><div class="st-btn st-last" data-network="email" style="display: inline-block;">
+  <img alt="email sharing button" src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/email.svg">
+  
+</div><div class="st-toggle">
+  <div class="st-left">
+    <img alt="arrow_left sharing button" src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/arrow_left.svg">
+  </div>
+  <div class="st-right">
+    <img alt="arrow_right sharing button" src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/arrow_right.svg">
+  </div>
+</div></div><iframe id="google_osd_static_frame_4230979497264" name="google_osd_static_frame" style="display: none; width: 0px; height: 0px;"></iframe></body><iframe id="google_esf" name="google_esf" src="%D0%A7%D1%82%D0%BE%20%D1%82%D0%B0%D0%BA%D0%BE%D0%B5%20ASC%20%D0%B8%20DESC%20%D0%B2%20SQL%20%D0%B7%D0%B0%D0%BF%D1%80%D0%BE%D1%81%D0%B0%D1%85%20-%20TheGlitchy.com_files/zrt_lookup.htm" style="display: none;" data-ad-client="ca-pub-4446448946463445"></iframe></html>
