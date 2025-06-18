@@ -1,23 +1,20 @@
-export class View {
+class View {
   constructor() {
     this.app = document.getElementById('app');
-    this.form = document.createElement('form');
-    this.input = document.createElement('input');
-    this.button = document.createElement('button');
-    
-    this.input.type = 'text';
-    this.button.textContent = 'Добавить';
-    
-    this.form.append(this.input, this.button);
-    this.app.append(this.form);
+    this.createUI();
   }
 
-  render(tasks) {
-    const tasksList = document.createElement('ul');
-    tasksList.innerHTML = tasks.map(task => 
-      `<li>${task}</li>`
-    ).join('');
+  createUI() {
+    const form = document.createElement('form');
+    const input = document.createElement('input');
+    const button = document.createElement('button');
     
-    this.app.append(tasksList);
+    input.type = 'text';
+    button.textContent = 'Добавить';
+    
+    form.append(input, button);
+    this.app.append(form);
   }
 }
+
+module.exports = View;
