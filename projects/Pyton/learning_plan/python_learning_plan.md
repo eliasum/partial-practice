@@ -1,0 +1,17 @@
+| Дата | Тема | Ссылка | Пройдено | Заметки |
+|------|------|--------|----------|---------|
+| 2025-07-01 | Введение в Python, переменные, типы данных | [Введение в Python, переменные, типы данных](https://docs.python.org/3/tutorial/introduction.html) |  |  |
+| 2025-07-02 | Условия, циклы, функции | [Условия, циклы, функции](https://docs.python.org/3/tutorial/controlflow.html) |  |  |
+| 2025-07-03 | Работа со строками и списками | [Работа со строками и списками](https://docs.python.org/3/tutorial/introduction.html#strings) |  |  |
+| 2025-07-04 | Множества, словари, кортежи | [Множества, словари, кортежи](https://docs.python.org/3/tutorial/datastructures.html) |  |  |
+| 2025-07-05 | ООП в Python (классы, наследование) | [ООП в Python (классы, наследование)](https://docs.python.org/3/tutorial/classes.html) |  |  |
+| 2025-07-06 | Модули, работа с файлами | [Модули, работа с файлами](https://docs.python.org/3/tutorial/modules.html) |  |  |
+| 2025-07-07 | Исключения, контекстные менеджеры | [Исключения, контекстные менеджеры](https://docs.python.org/3/tutorial/errors.html) |  |  |
+| 2025-07-08 | Виртуальное окружение, pip | [Виртуальное окружение, pip](https://docs.python.org/3/tutorial/venv.html) |  |  |
+| 2025-07-09 | Введение в Django (модели, ORM) | [Введение в Django (модели, ORM)](https://docs.djangoproject.com/en/4.2/intro/tutorial01/) |  |  |
+| 2025-07-10 | Шаблоны, формы, валидация | [Шаблоны, формы, валидация](https://docs.djangoproject.com/en/4.2/topics/forms/) |  |  |
+| 2025-07-11 | Django Admin и аутентификация | [Django Admin и аутентификация](https://docs.djangoproject.com/en/4.2/ref/contrib/admin/) |  |  |
+| 2025-07-12 | Введение в FastAPI | [Введение в FastAPI](https://fastapi.tiangolo.com/tutorial/) |  |  |
+| 2025-07-13 | Маршруты, запросы и ответы в FastAPI | [Маршруты, запросы и ответы в FastAPI](https://fastapi.tiangolo.com/tutorial/path-params/) |  |  |
+| 2025-07-14 | Работа с базами данных через SQLModel | [Работа с базами данных через SQLModel](https://sqlmodel.tiangolo.com/tutorial/create-db-and-table/) |  |  |
+| 2025-07-15 | Повторение и закрепление | [Повторение и закрепление](https://realpython.com/tutorials/web-dev/) |  |  |

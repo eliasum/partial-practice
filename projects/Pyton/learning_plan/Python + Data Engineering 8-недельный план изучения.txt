@@ -1,0 +1,55 @@
+Python + Data Engineering: 8-Week Daily Plan
+===========================================
+
+| Дата       | Тема                                                                 | Ссылка                                                                 | Пройдено | Заметки |
+|------------|----------------------------------------------------------------------|-----------------------------------------------------------------------|----------|---------|
+| 2025-07-01 | Базовый Python: установка, переменные, типы данных                  | https://docs.python.org/3/tutorial/                                   |          |         |
+| 2025-07-02 | Условные операторы и циклы                                          | https://www.learnpython.org/                                          |          |         |
+| 2025-07-03 | Функции и работа с файлами (csv, json)                              | https://realpython.com/read-write-files-python/                       |          |         |
+| 2025-07-04 | Библиотеки для работы с API (requests)                              | https://requests.readthedocs.io/en/latest/                            |          |         |
+| 2025-07-05 | SQL: сложные запросы (JOIN, GROUP BY)                               | https://sql-academy.org/ru                                            |          |         |
+| 2025-07-06 | SQL: оконные функции                                                | https://www.postgresqltutorial.com/postgresql-window-function/        |          |         |
+| 2025-07-07 | Практика: ETL скрипт (CSV → PostgreSQL)                             |                                                                       |          |         |
+| 2025-07-08 | Pandas: основы (DataFrame, чтение/запись)                           | https://pandas.pydata.org/docs/user_guide/10min.html                  |          |         |
+| 2025-07-09 | Pandas: группировка и агрегация                                     | https://realpython.com/pandas-groupby/                                |          |         |
+| 2025-07-10 | Визуализация данных (Matplotlib/Seaborn)                            | https://matplotlib.org/stable/tutorials/index.html                    |          |         |
+| 2025-07-11 | ETL процесс: API → Pandas → PostgreSQL                              | https://www.dataquest.io/blog/python-api-tutorial/                    |          |         |
+| 2025-07-12 | Оптимизация кода Pandas                                             | https://pandas.pydata.org/docs/user_guide/enhancingperf.html          |          |         |
+| 2025-07-13 | Установка Docker и основы                                           | https://docs.docker.com/get-started/                                  |          |         |
+| 2025-07-14 | Airflow: первый DAG                                                 | https://airflow.apache.org/docs/apache-airflow/stable/tutorial.html   |          |         |
+| 2025-07-15 | Создание ETL DAG в Airflow                                          | https://github.com/apache/airflow/tree/main/airflow/example_dags      |          |         |
+| 2025-07-16 | Мониторинг и логирование в Airflow                                  | https://airflow.apache.org/docs/apache-airflow/stable/logging-monitoring/logging-tasks.html |          |         |
+| 2025-07-17 | Расписания в Airflow                                                | https://airflow.apache.org/docs/apache-airflow/stable/dag-run.html    |          |         |
+| 2025-07-18 | Развертывание Airflow в Docker                                      | https://airflow.apache.org/docs/apache-airflow/stable/howto/docker-compose/index.html |          |         |
+| 2025-07-19 | Основы Apache Kafka                                                 | https://kafka.apache.org/quickstart                                   |          |         |
+| 2025-07-20 | Python + Kafka (confluent-kafka)                                    | https://github.com/confluentinc/confluent-kafka-python                |          |         |
+| 2025-07-21 | Пайплайн API → Kafka → PostgreSQL                                   |                                                                       |          |         |
+| 2025-07-22 | Создание MVP проекта (анализ данных)                                | https://github.com/ashishpatel26/500-AI-Machine-learning-Deep-learning-Computer-vision-NLP-Projects-with-code |          |         |
+| 2025-07-23 | Оформление GitHub проекта                                           | https://www.makeareadme.com/                                          |          |         |
+| 2025-07-24 | Подготовка резюме                                                   | https://www.overleaf.com/latex/templates/jake-resume/syzfjbzwjncs     |          |         |
+| 2025-07-25 | Подготовка к собеседованиям                                         | https://github.com/DopplerHQ/awesome-interview-questions              |          |         |
+| 2025-07-26 | Отклик на вакансии                                                  | https://hh.ru                                                         |          |         |
+| 2025-07-27 | Повторение SQL                                                      | https://leetcode.com/problemset/database/                             |          |         |
+| 2025-07-28 | Повторение Python                                                   | https://www.w3schools.com/python/python_exercises.asp                 |          |         |
+| 2025-07-29 | Основы Git и GitHub                                                 | https://guides.github.com/activities/hello-world/                     |          |         |
+| 2025-07-30 | Работа с виртуальными окружениями                                   | https://docs.python.org/3/tutorial/venv.html                          |          |         |
+| 2025-07-31 | Основы Linux для инженера данных                                    | https://ubuntu.com/tutorials/command-line-for-beginners               |          |         |
+| 2025-08-01 | Основы облачных технологий (AWS/GCP)                                | https://aws.amazon.com/getting-started/                               |          |         |
+| 2025-08-02 | Основы PySpark                                                      | https://spark.apache.org/docs/latest/api/python/getting_started/index.html |          |         |
+| 2025-08-03 | Основы работы с NoSQL (MongoDB)                                     | https://www.mongodb.com/docs/manual/tutorial/getting-started/         |          |         |
+| 2025-08-04 | Основы CI/CD (GitHub Actions)                                       | https://docs.github.com/en/actions/guides/about-continuous-integration |          |         |
+| 2025-08-05 | Итоговый проект: полный ETL пайплайн                                |                                                                       |          |         |
+| 2025-08-06 | Оптимизация итогового проекта                                       |                                                                       |          |         |
+| 2025-08-07 | Подготовка портфолио                                                |                                                                       |          |         |
+| 2025-08-08 | Финальное повторение всех тем                                       |                                                                       |          |         |
+
+Рекомендации по использованию:
+1. Отмечайте выполнение в столбце "Пройдено" (✅/❌)
+2. Записывайте ключевые моменты в "Заметки"
+3. Оптимальное время изучения: 2-3 часа в день
+4. Выходные используйте для повторения сложных тем
+
+Дополнительные ресурсы:
+- Сообщество Python: https://www.python.org/community/
+- Форум Data Engineering: https://www.reddit.com/r/dataengineering/
+- База вопросов на собеседованиях: https://www.teamblind.com/

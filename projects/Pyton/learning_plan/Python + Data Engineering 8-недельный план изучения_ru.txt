@@ -1,0 +1,76 @@
+Python + Data Engineering: 8-недельный план (56 дней)
+===================================================
+
+| Дата       | Тема                         | Ресурсы | Язык | Пройдено | Заметки |
+|------------|------------------------------|---------|------|----------|---------|
+| 2025-07-01 | Базовый Python: установка    			| https://stepik.org/course/67/promo | RU |          |         |
+| 2025-07-02 | Условные операторы и циклы   			| https://pythonru.com/osnovy/cikl-for-i-funkcija-range-v-python | RU |          |         |
+| 2025-07-03 | Функции                      			| https://pythontutor.ru/lessons/functions/ | RU |          |         |
+| 2025-07-04 | Работа с файлами             			| https://pythonru.com/osnovy/rabota-s-fajlami-v-python | RU |          |         |
+| 2025-07-05 | Библиотека requests          			| https://requests.readthedocs.io/ru/latest/ | RU |          |         |
+| 2025-07-06 | Основы SQL                   			| https://sql-academy.org/ru | RU |          |         |
+| 2025-07-07 | Оконные функции SQL          			| https://postgrespro.ru/docs/postgresql/15/tutorial-window | RU |          |         |
+| 2025-07-08 | Практика ETL                 			| https://habr.com/ru/articles/485148/ | RU |          |         |
+| 2025-07-09 | Pandas: основы               			| https://pandas.pydata.org/docs/user_guide/10min.html | EN |          |         |
+| 2025-07-10 | Pandas: группировка          			| https://pythonru.com/biblioteki/pandas-dlya-nachinayushhih | RU |          |         |
+| 2025-07-11 | Визуализация данных          			| https://habr.com/ru/companies/otus/articles/527934/ | RU |          |         |
+| 2025-07-12 | ETL процессы                 			| https://stepik.org/course/121246/syllabus | RU |          |         |
+| 2025-07-13 | Docker основы                			| https://docker-docs.ru/ | RU |          |         |
+| 2025-07-14 | Airflow: первый DAG          			| https://habr.com/ru/companies/selectel/articles/588724/ | RU |          |         |
+| 2025-07-15 | Создание ETL DAG             			| https://github.com/apache/airflow/tree/main/airflow/example_dags | EN |          |         |
+| 2025-07-16 | Мониторинг в Airflow         			| https://habr.com/ru/articles/346628/ | RU |          |         |
+| 2025-07-17 | Расписания в Airflow         			| https://airflow.apache.org/docs/apache-airflow/stable/dag-run.html | EN |          |         |
+| 2025-07-18 | Развертывание Airflow        			| https://habr.com/ru/articles/346628/ | RU |          |         |
+| 2025-07-19 | Основы Kafka                 			| https://kafka.apache.org/ru/documentation/ | RU |          |         |
+| 2025-07-20 | Python + Kafka               			| https://habr.com/ru/companies/itsumma/articles/528604/ | RU |          |         |
+| 2025-07-21 | Пайплайн API → Kafka         			| https://github.com/confluentinc/confluent-kafka-python | EN |          |         |
+| 2025-07-22 | Создание MVP проекта         			| https://habr.com/ru/companies/skillfactory/articles/553420/ | RU |          |         |
+| 2025-07-23 | Оформление GitHub            			| https://habr.com/ru/articles/431432/ | RU |          |         |
+| 2025-07-24 | Подготовка резюме            			| https://hh.ru/article/resume | RU |          |         |
+| 2025-07-25 | Подготовка к собеседованиям  			| https://tproger.ru/articles/interview-questions-python/ | RU |          |         |
+| 2025-07-26 | Отклик на вакансии           			| https://hh.ru | RU |          |         |
+| 2025-07-27 | Повторение SQL               			| https://sql-academy.org/ru | RU |          |         |
+| 2025-07-28 | Повторение Python            			| https://pythontutor.ru/problems/ | RU |          |         |
+| 2025-07-29 | Основы Git и GitHub                      | https://guides.github.com/activities/hello-world/                     |          |         |
+| 2025-07-30 | Работа с виртуальными окружениями        | https://docs.python.org/3/tutorial/venv.html                          |          |         |
+| 2025-07-31 | Основы Linux для инженера данных         | https://ubuntu.com/tutorials/command-line-for-beginners               |          |         |
+| 2025-08-01 | Основы облачных технологий (AWS/GCP)     | https://aws.amazon.com/getting-started/                               |          |         |
+| 2025-08-02 | Основы PySpark                           | https://spark.apache.org/docs/latest/api/python/getting_started/index.html |          |         |
+| 2025-08-03 | Основы работы с NoSQL (MongoDB)          | https://www.mongodb.com/docs/manual/tutorial/getting-started/         |          |         |
+| 2025-08-04 | Основы CI/CD (GitHub Actions)            | https://docs.github.com/en/actions/guides/about-continuous-integration |          |         |
+| 2025-08-05 | Итоговый проект: полный ETL пайплайн     |                                                                       |          |         |
+| 2025-08-06 | Оптимизация итогового проекта            |                                                                       |          |         |
+| 2025-08-07 | Подготовка портфолио                     |                                                                       |          |         |
+| 2025-08-08 | Финальное повторение всех тем            |   
+
+Глоссарий терминов (ENG->RU):
+=============================
+ETL -> Извлечение-Трансформация-Загрузка (ЕТЛ)
+DAG -> Направленный ациклический граф (ДАГ)
+Pipeline -> Конвейер обработки данных
+Data Lake -> Хранилище данных
+Orchestration -> Оркестрация задач
+
+Шаблоны для перевода документации:
+=================================
+1. "This function returns..." -> "Данная функция возвращает..."
+2. "To install the package..." -> "Для установки пакета..."
+3. "The following example shows..." -> "Следующий пример демонстрирует..."
+
+Рекомендации:
+1. Для англоязычных ресурсов используйте Google Translate
+2. Для сложных тем сочетайте русские и английские материалы
+3. Ежедневно практикуйте перевод 5 технических терминов
+4. Применяйте шаблоны для чтения документации
+
+Дополнительные русскоязычные ресурсы:
+=====================================
+1. Каналы:
+   - Python: https://www.youtube.com/c/PythonToday
+   - Data Engineering: https://www.youtube.com/c/DataScienceTeam
+2. Сообщества:
+   - https://t.me/pythonlounge
+   - https://t.me/dataengineers
+3. Блоги:
+   - https://habr.com/ru/hub/python/
+   - https://vc.ru/dev
