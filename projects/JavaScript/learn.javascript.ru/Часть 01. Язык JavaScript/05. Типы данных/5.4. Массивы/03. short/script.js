@@ -18,7 +18,7 @@ let fruits = ["Apple", "Orange", "Plum"];
    Свойство length возвращает количество элементов.
 */
 console.log(`🔹 1.2.1 - Первый элемент: ${fruits[0]}`); // "Apple"
-console.log(`🔹 1.2.2 - Последний элемент: ${fruits[fruits.length - 1]}`); // "Plum"
+console.log(`🔹 1.2.2 - Последний элемент: ${fruits[fruits.length-1]}`); // "Plum"
 
 // 🔥 1.3 - Добавление и удаление элементов
 fruits[3] = "Lemon"; // Добавление по индексу
@@ -51,7 +51,7 @@ console.log(`🔹 2.1.3 - После pop: ${stack}`); // [1, 2]
    shift() - удаляет первый элемент и возвращает его.
    unshift() - добавляет элемент в начало массива.
 */
-let queue = ["a", "b"];
+let queue = ["a","b"];
 queue.unshift("c");
 console.log(`🔹 2.2.1 - unshift: ${queue}`); // ["c", "a", "b"]
 console.log(`🔹 2.2.2 - shift: ${queue.shift()}`); // "c"
@@ -61,7 +61,7 @@ console.log(`🔹 2.2.3 - После shift: ${queue}`); // ["a", "b"]
 // Существует несколько способов перебора элементов массива.
 
 // 🔥 3.1 - Цикл for...of
-for (let fruit of fruits) {
+for (let fruit of fruits){
    console.log(fruit); // "Apple", "Orange"
 }
 
