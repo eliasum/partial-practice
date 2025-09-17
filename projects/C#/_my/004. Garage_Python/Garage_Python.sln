@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.35319.79
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Garage_Python", "Garage_Python\Garage_Python.csproj", "{0B890FC7-514F-4E3C-A89E-90660B694CBD}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0B890FC7-514F-4E3C-A89E-90660B694CBD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B890FC7-514F-4E3C-A89E-90660B694CBD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B890FC7-514F-4E3C-A89E-90660B694CBD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B890FC7-514F-4E3C-A89E-90660B694CBD}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {DBCCFE7D-6425-4F4E-A994-979C6F61149A}
+	EndGlobalSection
+EndGlobal
