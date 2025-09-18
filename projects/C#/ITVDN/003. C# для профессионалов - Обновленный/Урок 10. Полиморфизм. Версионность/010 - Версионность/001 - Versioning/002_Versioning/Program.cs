@@ -1,4 +1,6 @@
-﻿using System;
+﻿/*2025.09.18 15:39 IMM*/
+
+using System;
 
 // NVI - (Non-Virtual Interface) Невиртуальный Интерфейс
 
