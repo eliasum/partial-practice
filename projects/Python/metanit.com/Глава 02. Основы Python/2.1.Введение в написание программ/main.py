@@ -1,5 +1,12 @@
 # 2025.09.16 16:17 IMM
 
+import io
+import sys
+
+sys.stdin = io.TextIOWrapper(sys.stdin.buffer, encoding="utf-8")
+sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding="utf-8")
+sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding="utf-8")
+
 # Основы Python
 
 # Введение в написание программ
