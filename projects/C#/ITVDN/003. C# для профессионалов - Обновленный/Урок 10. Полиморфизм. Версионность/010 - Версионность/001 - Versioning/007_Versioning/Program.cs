@@ -1,4 +1,6 @@
-﻿using System;
+﻿/*2025.09.24 14:35 IMM*/
+
+using System;
 
 namespace ConsoleApplication1
 {
@@ -18,6 +20,8 @@ namespace ConsoleApplication1
     {
         static void Main()
         {
+            // нет апкаста (приведения к базовому типу), поэтому сработают методы
+            // производного класса независимо от их полиморфности
             DerivedClass instance = new DerivedClass();
 
             instance.SomeMetod1();  // 3
