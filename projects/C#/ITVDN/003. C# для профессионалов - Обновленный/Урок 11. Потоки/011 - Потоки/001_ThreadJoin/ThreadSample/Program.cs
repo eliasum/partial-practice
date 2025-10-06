@@ -1,4 +1,6 @@
-﻿using System;
+﻿/*2025.10.03 17:49 IMM*/
+
+using System;
 using System.Threading;
 
 namespace ThreadSample
