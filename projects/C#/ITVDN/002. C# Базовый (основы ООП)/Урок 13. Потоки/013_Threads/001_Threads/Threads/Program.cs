@@ -1,4 +1,5 @@
 ﻿/*2022.10.04 11:20 IMM*/
+/*2025.10.08 11:10 IMM*/
 using System;
 using System.Threading;
 
@@ -32,6 +33,7 @@ namespace Threads
             ThreadStart writeSecond = new ThreadStart(WriteSecond);
 
             // новый экземпляр класса Thread
+            // ООП представление потока
             Thread thread = new Thread(writeSecond);
 
             thread.Start();

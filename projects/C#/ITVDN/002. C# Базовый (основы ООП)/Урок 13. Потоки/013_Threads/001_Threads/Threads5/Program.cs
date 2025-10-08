@@ -1,4 +1,5 @@
 ﻿/*2022.10.05 11:48 IMM*/
+/*2025.10.08 18:31 IMM*/
 using System;
 using System.Threading;
 
@@ -15,7 +16,6 @@ namespace Threads
         static void Main()
         {
             int counter = 0;
-
             /*
             новый экземпляр класса Thread, ему в качестве аргумента передается 
             анонимный метод.
@@ -28,11 +28,25 @@ namespace Threads
             {
                 // инструкции
             }
+
+            Обращение из тела лямбда-метода к локальной переменной counter внешнего метода, в который 
+            вложен лямбда-метод в качестве примера называется замыканим (closure) - это первая
+            парадигма функционального программирования. Замыкание работает с ОРИГИНАЛЬНОЙ переменной
+
+            Что происходит:
+            ++counter - ПРЕ-инкремент: сначала увеличивает, потом использует
+            counter становится 1
+            Выводится: "1. counter = 1"
             */
             // ThreadStart
             Thread thread = new Thread(delegate(){ Console.WriteLine("1. counter = {0}", ++counter); });
             thread.Start();
 
+            /*
+            Главный поток "засыпает" на 100ms
+            За это время первый поток УСПЕВАЕТ завершиться
+            counter остаётся равным 1
+            */
             Thread.Sleep(100);
             Console.WriteLine("2. counter = {0}", counter);
 
@@ -42,7 +56,11 @@ namespace Threads
             */
             // ParameterizedThreadStart
             thread = new Thread((object argument) => { Console.WriteLine("3. counter = {0}", (int)argument); });
-            thread.Start(counter);
+            /*
+            Передаётся ТЕКУЩЕЕ значение counter = 1, counter передаётся по ЗНАЧЕНИЮ, а не по ссылке!
+            Передаётся КОПИЯ значения, эквивалентно: int argument = counter;
+            */
+            thread.Start(counter);      
 
             // Delay.
             Console.ReadKey();
