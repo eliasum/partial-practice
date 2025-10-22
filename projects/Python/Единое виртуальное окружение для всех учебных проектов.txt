@@ -1,0 +1,83 @@
+Перейти в общую папку для обучения "partial-practice\projects\Python\"
+
+# Создайте ОДНО виртуальное окружение
+python -m venv venv
+
+# Активируйте его
+venv\Scripts\activate  # Windows
+
+# Установите пакеты ОДИН РАЗ
+pip install offline_packages/pydantic-2.11.9-py3-none-any.whl
+pip install offline_packages/starlette-0.48.0-py3-none-any.whl
+pip install offline_packages/fastapi_offline-1.7.4-py3-none-any.whl
+pip install offline_packages/uvicorn-0.35.0-py3-none-any.whl
+
+Правильная структура:
+text
+
+Python/
+├── venv/                    # ОДНО виртуальное окружение для всех проектов
+├── metanit.com/
+│   ├── fastapi/
+│   │   ├── Chapter 01/
+│   │   ├── Chapter 02/
+│   │   └── ...
+│   └── django/              # другие курсы
+└── my_projects/
+    ├── project1/
+    └── project2/
+
+Как активировать общее venv из любой папки:
+
+Из любой папки внутри Python/:
+bash
+
+# Активируем общее окружение
+..\venv\Scripts\activate      # Windows
+../venv/bin/activate          # Linux/Mac
+
+Из глубоких вложенных папок:
+bash
+
+# Например из: Python\metanit.com\fastapi\Chapter 01\...
+....\....\venv\Scripts\activate
+
+Создайте удобные скрипты:
+
+activate_venv.bat в корне Python/:
+batch
+
+@echo off
+venv\Scripts\activate
+cmd /k
+
+Теперь просто:
+
+    Откройте папку Python в VS Code
+
+    Запустите activate_venv.bat
+
+    Переходите в любую подпапку - окружение останется активным!
+
+Проверка что работает:
+bash
+
+# После активации проверьте:
+pip list
+# Должны видеть fastapi, uvicorn и т.д.
+
+# Запускайте любой пример из любой папки:
+uvicorn main:app --reload
+
+Глобальное решение для ВСЕХ проектов
+Вариант 1: Глобальные настройки VS Code
+
+    Нажмите Ctrl + , (открыть настройки)
+
+    В поиске напишите python default interpreter
+
+    Вставьте путь:
+
+C:\eUser\Reps\partial-practice\projects\Python\venv\Scripts\python.exe
+
+Теперь ВСЕ новые проекты будут автоматически использовать ваш общий venv!
