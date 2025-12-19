@@ -1,17 +1,33 @@
-﻿import os
+﻿# 2025.12.19 17:31 IMM
+
+import os
 from datetime import datetime
 
 # Папка, которую нужно просканировать
-root_dir = "d:/Rep/partial-practice/JavaScript"  # <-- Заменить на нужный путь
+root_dir = "c:/dev-projects/garage_api/"  # <-- Заменить на нужный путь
 
 # Расширения файлов, которые нас интересуют
 code_extensions = (
-    ".js", ".ts", ".py", ".cs", ".java", ".cpp", ".c", ".h", ".hpp",
-    ".html", ".css", ".json", ".yaml", ".yml", ".xml", ".md"
+    ".js",
+    ".ts",
+    ".py",
+    ".cs",
+    ".java",
+    ".cpp",
+    ".c",
+    ".h",
+    ".hpp",
+    ".html",
+    ".css",
+    ".json",
+    ".yaml",
+    ".yml",
+    ".xml",
+    ".md",
 )
 
 # Папки для исключения из обхода
-excluded_dirs = {".git", "node_modules"}
+excluded_dirs = {".git", "node_modules", "venv", ".venv", "env"}
 
 # Название выходного файла с датой
 date_str = datetime.now().strftime("%Y-%m-%d")
@@ -31,6 +47,8 @@ with open(output_file, "w", encoding="utf-8") as outfile:
                         outfile.write(infile.read())
                         outfile.write(f"\n--- Конец файла: {file_path} ---\n\n")
                 except Exception as e:
-                    outfile.write(f"\n--- Ошибка при чтении: {file_path}. Пропущен. Ошибка: {e} ---\n")
+                    outfile.write(
+                        f"\n--- Ошибка при чтении: {file_path}. Пропущен. Ошибка: {e} ---\n"
+                    )
 
 print(f"Готово! Все кодовые файлы собраны в '{output_file}'")
