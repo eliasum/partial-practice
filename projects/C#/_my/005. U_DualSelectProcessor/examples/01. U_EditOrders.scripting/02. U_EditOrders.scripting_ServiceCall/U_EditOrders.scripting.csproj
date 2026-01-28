@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{579E7ECC-EAB1-4505-B8E7-B9363DE29BF1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>U_EditOrders.scripting</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <ApplicationVersion>1.0.0.0</ApplicationVersion>
+    <FileAlignment>512</FileAlignment>
+    <RootNamespace>mpdv.plugins.ApplicationScripts</RootNamespace>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\..\..\..\..\..\Program Files %28x86%29\MPDV\HYDRA 8\MOC\local\conf\MOC\Apps\U_EditOrders\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet />
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet />
+    <LangVersion>8</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Utils.v19.1">
+      <HintPath>..\..\..\..\..\dll\DevExpress.Utils.v19.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v20.2">
+      <HintPath>..\..\..\..\..\dll\devexpress.utils.v20.2.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="DevExpress.XtraBars.v20.2">
+      <HintPath>..\..\..\..\..\dll\DevExpress.XtraBars.v20.2.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="mpdv.Common.Data">
+      <HintPath>..\..\..\..\..\dll\mpdv.Common.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="mpdv.Common.GUI.ApplicationFramework">
+      <HintPath>..\..\..\..\..\dll\mpdv.Common.GUI.ApplicationFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="mpdv.Common.GUI.BasicControls">
+      <HintPath>..\..\..\..\..\dll\mpdv.Common.GUI.BasicControls.dll</HintPath>
+    </Reference>
+    <Reference Include="mpdv.Common.GUI.Controls">
+      <HintPath>..\..\..\..\..\dll\mpdv.Common.GUI.Controls.dll</HintPath>
+    </Reference>
+    <Reference Include="mpdv.Common.GUI.UserControls">
+      <HintPath>..\..\..\..\..\dll\mpdv.Common.GUI.UserControls.dll</HintPath>
+    </Reference>
+    <Reference Include="mpdv.Common.mpdvSystem">
+      <HintPath>..\..\..\..\..\dll\mpdv.Common.mpdvSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="mpdv.Common.mpdvSystem.CodeManagement">
+      <HintPath>..\..\..\..\..\dll\mpdv.Common.mpdvSystem.CodeManagement.dll</HintPath>
+    </Reference>
+    <Reference Include="mpdv.Common.mpdvSystem.CommandFramework">
+      <HintPath>..\..\..\..\..\dll\mpdv.Common.mpdvSystem.CommandFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="mpdv.Common.Util">
+      <HintPath>..\..\..\..\..\dll\mpdv.Common.Util.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Forms" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="U_EditOrders.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="README.md" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
