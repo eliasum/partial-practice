@@ -4,7 +4,7 @@ import os
 from datetime import datetime
 
 # Папка, которую нужно просканировать
-root_dir = "c:/dev-projects/garage_api/"  # <-- Заменить на нужный путь
+root_dir = "d:/Rep/garage_api/"  # <-- Заменить на нужный путь
 
 # Расширения файлов, которые нас интересуют
 code_extensions = (
