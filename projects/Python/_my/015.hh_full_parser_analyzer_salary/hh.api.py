@@ -1,6 +1,7 @@
 ﻿import random
 import re
 import time
+from datetime import datetime
 
 import matplotlib
 import matplotlib.pyplot as plt
@@ -62,28 +63,28 @@ def print_header(text):
 
 def print_success(text):
     if COLOR_ENABLED:
-        print(Fore.GREEN + Style.BRIGHT + "✅ " + text)
+        print(Fore.GREEN + Style.BRIGHT + "? " + text)
     else:
         print("[OK] " + text)
 
 
 def print_error(text):
     if COLOR_ENABLED:
-        print(Fore.RED + Style.BRIGHT + "❌ " + text)
+        print(Fore.RED + Style.BRIGHT + "? " + text)
     else:
         print("[ERR] " + text)
 
 
 def print_info(text):
     if COLOR_ENABLED:
-        print(Fore.YELLOW + "ℹ️  " + text)
+        print(Fore.YELLOW + "??  " + text)
     else:
         print("[INFO] " + text)
 
 
 def print_warning(text):
     if COLOR_ENABLED:
-        print(Fore.LIGHTMAGENTA_EX + "⚠️  " + text)
+        print(Fore.LIGHTMAGENTA_EX + "??  " + text)
     else:
         print("[WARN] " + text)
 
@@ -91,7 +92,7 @@ def print_warning(text):
 def print_progress(iteration, total, prefix="", suffix="", length=30):
     percent = 100 * iteration / total
     filled = int(length * iteration // total)
-    bar = "█" * filled + "-" * (length - filled)
+    bar = "-" * filled + "-" * (length - filled)
     if COLOR_ENABLED:
         print(
             f"\r{Fore.YELLOW}{prefix} |{Fore.GREEN}{bar}{Fore.YELLOW}| {Fore.LIGHTCYAN_EX}{percent:.1f}% {suffix}",
@@ -107,56 +108,86 @@ def print_progress(iteration, total, prefix="", suffix="", length=30):
 
 
 def extract_salary_from_text(text):
+    """
+    Извлекает зарплату из текста с улучшенной валидацией.
+    Возвращает (salary_min, salary_max, salary_avg) или (None, None, None).
+    """
     if not text:
         return None, None, None
-    text = text.lower().strip()
-    text = re.sub(r"(\d)\s+(\d)", r"\1\2", text)
-    patterns = [
-        r"(?:от|с)\s*([\d]+)\s*(?:до|–|—|-)\s*([\d]+)\s*(?:руб|₽|р\.|рублей|тыс\.|k)",
-        r"([\d]+)\s*(?:–|—|-)\s*([\d]+)\s*(?:руб|₽|р\.|рублей|тыс\.|k)",
-        r"(?:от|с)\s*([\d]+)\s*(?:руб|₽|р\.|рублей|тыс\.|k)",
-        r"(?:до)\s*([\d]+)\s*(?:руб|₽|р\.|рублей|тыс\.|k)",
-        r"([\d]+)\s*(?:руб|₽|р\.|рублей|тыс\.|k)",
+
+    text_lower = text.lower()
+    
+    # Ищем контекст зарплаты (ключевые слова)
+    salary_context_keywords = [
+        'зарплата', 'з/п', 'оклад', 'доход', 'компенсация', 
+        'вилка', 'от', 'до', 'рублей', '?', 'тыс'
     ]
+    
+    # Проверяем, есть ли контекст зарплаты
+    has_salary_context = any(keyword in text_lower for keyword in salary_context_keywords)
+    
+    # Если нет контекста зарплаты, не пытаемся извлекать
+    if not has_salary_context:
+        return None, None, None
+
+    # Убираем пробелы между цифрами для корректного парсинга
+    text_clean = re.sub(r"(\d)\s+(\d)", r"\1\2", text)
+
+    # Строгие паттерны (только с явным указанием зарплаты)
+    patterns = [
+        # "от X до Y рублей" или "от X-Y рублей"
+        r"(?:от|с)\s*([\d\s]+)\s*(?:до|–|—|-)\s*([\d\s]+)\s*(?:руб|?|р\.|рублей|тыс\.|k)",
+        # "X – Y рублей" (диапазон)
+        r"([\d\s]{5,})\s*(?:–|—|-)\s*([\d\s]{5,})\s*(?:руб|?|р\.|рублей|тыс\.|k)",
+        # "от X рублей"
+        r"(?:от|с)\s*([\d\s]{5,})\s*(?:руб|?|р\.|рублей|тыс\.|k)",
+        # "до X рублей"
+        r"(?:до)\s*([\d\s]{5,})\s*(?:руб|?|р\.|рублей|тыс\.|k)",
+        # "X рублей" (одиночное число с валютой)
+        r"([\d\s]{5,})\s*(?:руб|?|р\.|рублей|тыс\.|k)",
+    ]
+
     salary_min = salary_max = None
-    found = False
+
     for pattern in patterns:
-        matches = re.findall(pattern, text, re.IGNORECASE)
+        matches = re.findall(pattern, text_clean, re.IGNORECASE)
         for match in matches:
-            if isinstance(match, tuple) and len(match) >= 2:
-                try:
-                    num1 = int(match[0])
-                    num2 = int(match[1])
-                    if "тыс" in text or "k" in text:
+            try:
+                if isinstance(match, tuple) and len(match) >= 2:
+                    num1 = int(re.sub(r"\s", "", match[0]))
+                    num2 = int(re.sub(r"\s", "", match[1]))
+                    
+                    # Учитываем тысячи
+                    if "тыс" in text_clean or "k" in text_clean:
                         num1 *= 1000
                         num2 *= 1000
-                    if 30000 <= num1 <= 2000000 and 30000 <= num2 <= 2000000:
-                        salary_min, salary_max = num1, num2
-                        found = True
+                    
+                    # ЖЁСТКАЯ ВАЛИДАЦИЯ: зарплата от 30k до 800k ?
+                    if 30_000 <= num1 <= 800_000 and 30_000 <= num2 <= 800_000:
+                        salary_min, salary_max = min(num1, num2), max(num1, num2)
                         break
-                except:
-                    pass
-            elif isinstance(match, str) or (
-                isinstance(match, tuple) and len(match) == 1
-            ):
-                try:
-                    num_str = match if isinstance(match, str) else match[0]
-                    num = int(num_str)
-                    if "тыс" in text or "k" in text:
+                elif isinstance(match, str):
+                    num = int(re.sub(r"\s", "", match))
+                    
+                    # Учитываем тысячи
+                    if "тыс" in text_clean or "k" in text_clean:
                         num *= 1000
-                    if 30000 <= num <= 2000000:
+                    
+                    if 30_000 <= num <= 800_000:
                         salary_min = salary_max = num
-                        found = True
                         break
-                except:
-                    pass
-        if found:
+            except:
+                continue
+        
+        if salary_min is not None:
             break
+
     salary_avg = None
     if salary_min is not None and salary_max is not None:
         salary_avg = (salary_min + salary_max) // 2
     elif salary_min is not None:
         salary_avg = salary_min
+
     return salary_min, salary_max, salary_avg
 
 
@@ -216,10 +247,12 @@ def parse_vacancy_details(url, salary_text_from_card=None, retries=3):
                 if main_content:
                     description = main_content.text.strip()
             salary_min = salary_max = salary_avg = None
+            # 1. Сначала из карточки
             if salary_text_from_card and salary_text_from_card != "Не указана":
                 salary_min, salary_max, salary_avg = extract_salary_from_text(
                     salary_text_from_card
                 )
+            # 2. Если не нашлось, ищем в полном тексте
             if salary_min is None:
                 full_text = (
                     description
@@ -231,6 +264,11 @@ def parse_vacancy_details(url, salary_text_from_card=None, retries=3):
                     + skills
                 )
                 salary_min, salary_max, salary_avg = extract_salary_from_text(full_text)
+            
+            # Логирование найденных зарплат
+            if salary_min is not None:
+                print_info(f"Найдена зарплата: {salary_min}-{salary_max} ?")
+            
             return (
                 description,
                 requirements,
@@ -406,105 +444,120 @@ def parse_hh_vacancies_full(query, num_pages=3, area=113, max_vacancies=None):
 # ==================== АНАЛИЗ ====================
 
 
-def analyze_vacancies(df):
+def analyze_vacancies(df, base_filename):
     if df.empty:
         print_error("Нет данных для анализа.")
         return
-    print_header("📊 АНАЛИЗ СОБРАННЫХ ДАННЫХ")
+    
+    print_header("?? АНАЛИЗ СОБРАННЫХ ДАННЫХ")
     print_success(f"Всего вакансий: {len(df)}")
     print_info(f"Уникальных компаний: {df['Компания'].nunique()}")
     print_info(f"Уникальных городов: {df['Локация'].nunique()}")
+    
+    # ОТЛАДКА: проверяем данные
+    print("\n?? ПРОВЕРКА ДАННЫХ:")
+    print(f"  Описаний: {df['Описание'].notna().sum()}/{len(df)}")
+    print(f"  Требований: {df['Требования'].notna().sum()}/{len(df)}")
+    print(f"  Обязанностей: {df['Обязанности'].notna().sum()}/{len(df)}")
+    
+    # Статистика по зарплатам
     salaries = df["Зарплата_средняя"].dropna()
     if not salaries.empty:
-        print("\n" + "💰 СТАТИСТИКА ПО ЗАРПЛАТАМ (в рублях):")
-        print(f"  Минимальная: {int(salaries.min()):,}".replace(",", " "))
-        print(f"  Максимальная: {int(salaries.max()):,}".replace(",", " "))
-        print(f"  Средняя: {int(salaries.mean()):,}".replace(",", " "))
-        print(f"  Медиана: {int(salaries.median()):,}".replace(",", " "))
-        print(
-            f"  Количество вакансий с указанной зарплатой: {len(salaries)} из {len(df)}"
-        )
+        # Фильтрация выбросов
+        Q1 = salaries.quantile(0.25)
+        Q3 = salaries.quantile(0.75)
+        IQR = Q3 - Q1
+        lower_bound = Q1 - 1.5 * IQR
+        upper_bound = Q3 + 1.5 * IQR
+        
+        df_filtered = df[
+            (df["Зарплата_средняя"] >= lower_bound) & 
+            (df["Зарплата_средняя"] <= upper_bound)
+        ]
+        
+        salaries_filtered = df_filtered["Зарплата_средняя"].dropna()
+        
+        print("\n" + "?? СТАТИСТИКА ПО ЗАРПЛАТАМ (в рублях, после фильтрации):")
+        print(f"  Минимальная: {int(salaries_filtered.min()):,}".replace(",", " "))
+        print(f"  Максимальная: {int(salaries_filtered.max()):,}".replace(",", " "))
+        print(f"  Средняя: {int(salaries_filtered.mean()):,}".replace(",", " "))
+        print(f"  Медиана: {int(salaries_filtered.median()):,}".replace(",", " "))
+        print(f"  Количество вакансий с указанной зарплатой: {len(salaries_filtered)} из {len(df)}")
+        
+        df = df_filtered
+        salaries = salaries_filtered
     else:
-        print("\n" + "⚠️ Зарплаты не найдены в тексте вакансий.")
-    if not salaries.empty:
-        city_salary = df[["Локация", "Зарплата_средняя"]].dropna()
-        if not city_salary.empty:
-            city_avg = (
-                city_salary.groupby("Локация")["Зарплата_средняя"]
-                .mean()
-                .sort_values(ascending=False)
-                .head(10)
-            )
-            print("\n" + "🏙️ Топ-10 городов по средней зарплате:")
-            for i, (city, avg) in enumerate(city_avg.items(), 1):
-                print(f"  {i:2}. {city:30} – {int(avg):,} ₽".replace(",", " "))
-    print("\n" + "🏙️ Топ-10 городов по количеству вакансий:")
+        print("\n" + "?? Зарплаты не найдены.")
+    
+    # Города
+    print("\n" + "??? Топ-10 городов по количеству вакансий:")
     city_counts = df["Локация"].value_counts().head(10)
     for i, (city, cnt) in enumerate(city_counts.items(), 1):
         print(f"  {i:2}. {city:30} – {cnt}")
-    print("\n" + "🏢 Топ-10 компаний:")
+    
+    # Компании
+    print("\n" + "?? Топ-10 компаний:")
     company_counts = df["Компания"].value_counts().head(10)
     for i, (comp, cnt) in enumerate(company_counts.items(), 1):
         print(f"  {i:2}. {comp:30} – {cnt}")
-    all_text = " ".join(
-        df["Описание"].fillna("")
-        + " "
-        + df["Требования"].fillna("")
-        + " "
-        + df["Обязанности"].fillna("")
-    ).lower()
+    
+    # ТЕХНОЛОГИИ - ИСПРАВЛЕННАЯ ЛОГИКА
+    print("\n" + "?? АНАЛИЗ ТЕХНОЛОГИЙ:")
+    
+    # Объединяем ВСЕ текстовые поля
+    all_text_parts = []
+    
+    # Описание
+    for desc in df['Описание'].fillna(''):
+        if desc:
+            all_text_parts.append(str(desc).lower())
+    
+    # Требования
+    for req in df['Требования'].fillna(''):
+        if req:
+            all_text_parts.append(str(req).lower())
+    
+    # Обязанности
+    for resp in df['Обязанности'].fillna(''):
+        if resp:
+            all_text_parts.append(str(resp).lower())
+    
+    # Навыки (если есть)
+    for skill in df['Навыки'].fillna(''):
+        if skill:
+            all_text_parts.append(str(skill).lower())
+    
+    # Объединяем весь текст
+    all_text = ' '.join(all_text_parts)
+    
+    print(f"  Общая длина текста: {len(all_text)} символов")
+    print(f"  Количество частей: {len(all_text_parts)}")
+    
+    # Ключевые технологии
     tech_keywords = [
-        ".net core",
-        ".net 8",
-        ".net 9",
-        "asp.net core",
-        "c#",
-        "postgresql",
-        "docker",
-        "kubernetes",
-        "k8s",
-        "rabbitmq",
-        "kafka",
-        "redis",
-        "mongodb",
-        "entity framework",
-        "ef core",
-        "dapper",
-        "rest api",
-        "web api",
-        "grpc",
-        "ci/cd",
-        "jenkins",
-        "gitlab ci",
-        "github actions",
-        "gitflow",
-        "microservices",
-        "микросервисы",
-        "async",
-        "асинхронный",
-        "xunit",
-        "nunit",
-        "moq",
-        "unit-тесты",
-        "prometheus",
-        "grafana",
-        "opensearch",
-        "elasticsearch",
-        "linux",
-        "bash",
-        "helm",
-        "terraform",
+        ".net core", ".net 8", ".net 9", "asp.net core", "c#",
+        "postgresql", "docker", "kubernetes", "k8s", "rabbitmq", "kafka",
+        "redis", "mongodb", "entity framework", "ef core", "dapper",
+        "rest api", "web api", "grpc", "ci/cd", "jenkins", "gitlab ci",
+        "github actions", "microservices", "микросервисы",
+        "async", "асинхронный", "xunit", "nunit", "moq", "unit-тесты",
+        "prometheus", "grafana", "opensearch", "elasticsearch",
+        "linux", "bash", "helm", "terraform", "blazor", "angular", "react"
     ]
+    
     tech_counts = {}
     for tech in tech_keywords:
         count = all_text.count(tech)
         if count > 0:
             tech_counts[tech] = count
+    
     if tech_counts:
         sorted_tech = sorted(tech_counts.items(), key=lambda x: x[1], reverse=True)
-        print("\n" + "💻 Топ-20 технологий по частоте упоминания:")
+        print("\n" + "?? Топ-20 технологий по частоте упоминания:")
         for i, (tech, cnt) in enumerate(sorted_tech[:20], 1):
             print(f"  {i:2}. {tech:20} – {cnt} раз")
+        
+        # График
         try:
             top = sorted_tech[:15]
             names = [t[0] for t in top]
@@ -514,19 +567,27 @@ def analyze_vacancies(df):
             plt.xlabel("Частота упоминаний")
             plt.title("Топ-15 технологий в вакансиях")
             plt.tight_layout()
-            plt.savefig("tech_frequency.png")
-            print_success("График сохранён как tech_frequency.png")
+            png_filename = f"tech_frequency_{base_filename}.png"
+            plt.savefig(png_filename)
+            print_success(f"График сохранён как {png_filename}")
         except Exception as e:
             print_error(f"Не удалось построить график: {e}")
     else:
         print_warning("Технологии не найдены в тексте.")
+        print("\n?? ОТЛАДКА: проверяем содержимое описаний...")
+        # Показываем первые 500 символов из первого описания
+        if len(all_text_parts) > 0:
+            print(f"  Пример текста (первые 500 символов):")
+            print(f"  {all_text_parts[0][:500]}...")
 
 
 # ==================== ЗАПУСК ====================
 
 
 def main():
-    print_header("🚀 ПАРСЕР HH.RU С ПОЛНЫМИ ТРЕБОВАНИЯМИ И АНАЛИЗОМ (включая зарплаты)")
+    # Генерируем временную метку для уникальности
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+    print_header("?? ПАРСЕР HH.RU С ПОЛНЫМИ ТРЕБОВАНИЯМИ И АНАЛИЗОМ (включая зарплаты)")
 
     query = input("Введите профессию (например, C# разработчик): ").strip()
     if not query:
@@ -566,12 +627,14 @@ def main():
         print_error("Вакансии не найдены.")
         return
 
+    # Безопасное имя для запроса
     safe_query = re.sub(r"[^\w\-\.]", "_", query)
-    filename = f"vacancies_full_{safe_query}.csv"
-    df.to_csv(filename, index=False, encoding="utf-8-sig")
-    print_success(f"Сохранено {len(df)} вакансий в {filename}")
+    base_filename = f"{safe_query}_{timestamp}"
+    csv_filename = f"vacancies_full_{base_filename}.csv"
+    df.to_csv(csv_filename, index=False, encoding="utf-8-sig")
+    print_success(f"Сохранено {len(df)} вакансий в {csv_filename}")
 
-    analyze_vacancies(df)
+    analyze_vacancies(df, base_filename)
 
     elapsed = time.time() - start_time
     print_info(f"Время выполнения: {elapsed:.1f} секунд")
