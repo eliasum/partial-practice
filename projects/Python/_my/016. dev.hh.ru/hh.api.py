@@ -9,15 +9,14 @@ import requests
 matplotlib.use("Agg")
 
 # ==================== КОНФИГУРАЦИЯ ====================
-CLIENT_ID = "QV549CV685OFA0RKD0S83NDR3KS3LJ40G7BGVRQFGKU1E80QNQPBS8JS8NIFS1SV"
-CLIENT_SECRET = "RKPBP5L5A5D58TMF0QG0TIEQ5G4MSDMGMG1VA3M8TB1O8U64LVSPUU3HQ6PAVR6C"
+CLIENT_ID = "QV549CV685OFA0RKD0S83NDR3KS3LJ40G7BGVRQFGKU1E80QNQPBS8JS8NIFS1SV"  # Замените на реальный
+CLIENT_SECRET = "RKPBP5L5A5D58TMF0QG0TIEQ5G4MSDMGMG1VA3M8TB1O8U64LVSPUU3HQ6PAVR6C"  # Замените на реальный
 BASE_URL = "https://api.hh.ru"
 
 # ==================== АВТОРИЗАЦИЯ ====================
 
 
 def get_oauth_token():
-    """Получает access token через client_credentials."""
     auth_url = "https://hh.ru/oauth/token"
     data = {
         "grant_type": "client_credentials",
@@ -34,7 +33,6 @@ def get_oauth_token():
 
 
 def search_vacancies(token, text, area, page=0, per_page=100):
-    """Выполняет поиск вакансий через API."""
     url = f"{BASE_URL}/vacancies"
     params = {
         "text": text,
@@ -52,7 +50,6 @@ def search_vacancies(token, text, area, page=0, per_page=100):
 
 
 def get_vacancy_details(token, vacancy_id):
-    """Получает детальную информацию о вакансии."""
     url = f"{BASE_URL}/vacancies/{vacancy_id}"
     headers = {"Authorization": f"Bearer {token}"}
     resp = requests.get(url, headers=headers)
@@ -62,11 +59,10 @@ def get_vacancy_details(token, vacancy_id):
     return resp.json()
 
 
-# ==================== ИЗВЛЕЧЕНИЕ ЗАРПЛАТЫ ИЗ ТЕКСТА (запасной вариант) ====================
+# ==================== ИЗВЛЕЧЕНИЕ ЗАРПЛАТЫ ИЗ ТЕКСТА ====================
 
 
 def extract_salary_from_text(text):
-    """Извлекает зарплату из текста, если в API нет структурированного поля."""
     if not text:
         return None, None, None
     text = text.lower().strip()
@@ -124,7 +120,6 @@ def extract_salary_from_text(text):
 
 
 def collect_vacancies(query, area, max_pages):
-    """Собирает вакансии через API."""
     token = get_oauth_token()
     print("✅ Токен получен")
     all_vacancies = []
@@ -146,17 +141,17 @@ def collect_vacancies(query, area, max_pages):
         if not items:
             break
 
-        # Обрабатываем каждую вакансию
         for idx, item in enumerate(items, 1):
             print(f"  Обработка {idx}/{len(items)}: {item.get('name', '')[:50]}...")
             vacancy_id = item["id"]
-
-            # Детальные данные
             details = get_vacancy_details(token, vacancy_id)
             if not details:
                 continue
 
-            # Извлекаем зарплату из структуры
+            # Получаем описание (всегда)
+            description = details.get("description", "")
+
+            # Зарплата из структуры
             salary_obj = details.get("salary")
             salary_min = salary_max = salary_avg = None
             if salary_obj and salary_obj.get("currency") in ["RUR", "RUB"]:
@@ -172,15 +167,12 @@ def collect_vacancies(query, area, max_pages):
                     salary_min = salary_max = to_val
                     salary_avg = to_val
 
-            # Если зарплата не найдена, пробуем извлечь из текста (описание)
-            if salary_avg is None:
-                description = details.get("description", "")
-                if description:
-                    salary_min, salary_max, salary_avg = extract_salary_from_text(
-                        description
-                    )
+            # Если зарплата не найдена, пробуем извлечь из текста
+            if salary_avg is None and description:
+                salary_min, salary_max, salary_avg = extract_salary_from_text(
+                    description
+                )
 
-            # Собираем данные
             all_vacancies.append(
                 {
                     "id": vacancy_id,
@@ -202,10 +194,8 @@ def collect_vacancies(query, area, max_pages):
                 }
             )
 
-            # Пауза, чтобы не превысить лимит API
             time.sleep(0.3)
 
-        # Переход на следующую страницу
         page += 1
         if page >= max_pages or page >= (total_found // 100) + 1:
             break
@@ -228,7 +218,6 @@ def analyze_vacancies(df):
     print(f"ℹ️  Уникальных компаний: {df['Компания'].nunique()}")
     print(f"ℹ️  Уникальных городов: {df['Локация'].nunique()}")
 
-    # Зарплаты
     salaries = df["Зарплата_средняя"].dropna()
     if not salaries.empty:
         print("\n💰 СТАТИСТИКА ПО ЗАРПЛАТАМ (в рублях):")
@@ -242,7 +231,6 @@ def analyze_vacancies(df):
     else:
         print("\n⚠️ Зарплаты не найдены.")
 
-    # Города с зарплатами
     if not salaries.empty:
         city_salary = df[["Локация", "Зарплата_средняя"]].dropna()
         if not city_salary.empty:
@@ -256,19 +244,16 @@ def analyze_vacancies(df):
             for i, (city, avg) in enumerate(city_avg.items(), 1):
                 print(f"  {i:2}. {city:30} – {int(avg):,} ₽".replace(",", " "))
 
-    # Топ городов по количеству
     print("\n🏙️ Топ-10 городов по количеству вакансий:")
     city_counts = df["Локация"].value_counts().head(10)
     for i, (city, cnt) in enumerate(city_counts.items(), 1):
         print(f"  {i:2}. {city:30} – {cnt}")
 
-    # Топ компаний
     print("\n🏢 Топ-10 компаний:")
     company_counts = df["Компания"].value_counts().head(10)
     for i, (comp, cnt) in enumerate(company_counts.items(), 1):
         print(f"  {i:2}. {comp:30} – {cnt}")
 
-    # Анализ технологий
     all_text = " ".join(
         df["Описание"].fillna("")
         + " "
@@ -331,7 +316,6 @@ def analyze_vacancies(df):
         for i, (tech, cnt) in enumerate(sorted_tech[:20], 1):
             print(f"  {i:2}. {tech:20} – {cnt} раз")
 
-        # Построение графика
         try:
             top = sorted_tech[:15]
             names = [t[0] for t in top]
