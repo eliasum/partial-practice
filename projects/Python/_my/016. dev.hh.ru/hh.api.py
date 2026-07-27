@@ -1,13 +1,17 @@
-﻿import requests
-import time
-import pandas as pd
-import re
-import matplotlib.pyplot as plt
-import matplotlib
-import json
+﻿import json
 import os
+import random
+import re
+import time
+from datetime import datetime
 
-matplotlib.use('Agg')
+import matplotlib
+import matplotlib.pyplot as plt
+import pandas as pd
+import requests
+from matplotlib.backends.backend_pdf import PdfPages
+
+matplotlib.use("Agg")
 
 # ==================== КОНФИГУРАЦИЯ ====================
 CLIENT_ID = "QV549CV685OFA0RKD0S83NDR3KS3LJ40G7BGVRQFGKU1E80QNQPBS8JS8NIFS1SV"
@@ -17,8 +21,8 @@ TOKEN_FILE = "token_cache.json"
 
 # ==================== АВТОРИЗАЦИЯ С КЕШИРОВАНИЕМ ====================
 
+
 def get_oauth_token():
-    """Получает access token с кешированием."""
     if os.path.exists(TOKEN_FILE):
         try:
             with open(TOKEN_FILE, "r") as f:
@@ -27,7 +31,7 @@ def get_oauth_token():
                 expires_at = cache.get("expires_at", 0)
                 if time.time() < expires_at - 60:
                     return token
-        except:
+        except Exception:
             pass
 
     auth_url = "https://hh.ru/oauth/token"
@@ -48,14 +52,16 @@ def get_oauth_token():
     expires_in = token_data.get("expires_in", 1200)
     cache = {
         "access_token": token_data["access_token"],
-        "expires_at": time.time() + expires_in
+        "expires_at": time.time() + expires_in,
     }
     with open(TOKEN_FILE, "w") as f:
         json.dump(cache, f)
 
     return token_data["access_token"]
 
+
 # ==================== API ЗАПРОСЫ ====================
+
 
 def search_vacancies(token, text, area, page=0, per_page=100):
     url = f"{BASE_URL}/vacancies"
@@ -73,6 +79,7 @@ def search_vacancies(token, text, area, page=0, per_page=100):
         return None
     return resp.json()
 
+
 def get_vacancy_details(token, vacancy_id):
     url = f"{BASE_URL}/vacancies/{vacancy_id}"
     headers = {"Authorization": f"Bearer {token}"}
@@ -82,56 +89,55 @@ def get_vacancy_details(token, vacancy_id):
         return None
     return resp.json()
 
-# ==================== ИЗВЛЕЧЕНИЕ ЗАРПЛАТЫ ИЗ ТЕКСТА (СТАБИЛЬНАЯ ВЕРСИЯ) ====================
+
+# ==================== ИЗВЛЕЧЕНИЕ ЗАРПЛАТЫ ИЗ ТЕКСТА ====================
+
 
 def extract_salary_from_text(text):
     if not text:
         return None, None, None
     text = text.lower().strip()
-    # Убираем пробелы между цифрами
-    text = re.sub(r'(\d)\s+(\d)', r'\1\2', text)
+    text = re.sub(r"(\d)\s+(\d)", r"\1\2", text)
 
-    # 1. Диапазон: "X – Y руб" или "от X до Y руб"
-    match = re.search(r'(\d+)\s*[-–—]\s*(\d+)\s*(?:руб|₽|р\.|рублей|тыс\.|k)', text)
+    match = re.search(r"(\d+)\s*[-–—]\s*(\d+)\s*(?:руб|₽|р\.|рублей|тыс\.|k)", text)
     if match:
         num1 = int(match.group(1))
         num2 = int(match.group(2))
-        if 'тыс' in text or 'k' in text:
+        if "тыс" in text or "k" in text:
             num1 *= 1000
             num2 *= 1000
         if 30000 <= num1 <= 2000000 and 30000 <= num2 <= 2000000:
             return num1, num2, (num1 + num2) // 2
 
-    # 2. "от X руб"
-    match = re.search(r'от\s*(\d+)\s*(?:руб|₽|р\.|рублей|тыс\.|k)', text)
+    match = re.search(r"от\s*(\d+)\s*(?:руб|₽|р\.|рублей|тыс\.|k)", text)
     if match:
         num = int(match.group(1))
-        if 'тыс' in text or 'k' in text:
+        if "тыс" in text or "k" in text:
             num *= 1000
         if 30000 <= num <= 2000000:
             return num, num, num
 
-    # 3. "до X руб"
-    match = re.search(r'до\s*(\d+)\s*(?:руб|₽|р\.|рублей|тыс\.|k)', text)
+    match = re.search(r"до\s*(\d+)\s*(?:руб|₽|р\.|рублей|тыс\.|k)", text)
     if match:
         num = int(match.group(1))
-        if 'тыс' in text or 'k' in text:
+        if "тыс" in text or "k" in text:
             num *= 1000
         if 30000 <= num <= 2000000:
             return num, num, num
 
-    # 4. Просто "X руб"
-    match = re.search(r'(\d+)\s*(?:руб|₽|р\.|рублей|тыс\.|k)', text)
+    match = re.search(r"(\d+)\s*(?:руб|₽|р\.|рублей|тыс\.|k)", text)
     if match:
         num = int(match.group(1))
-        if 'тыс' in text or 'k' in text:
+        if "тыс" in text or "k" in text:
             num *= 1000
         if 30000 <= num <= 2000000:
             return num, num, num
 
     return None, None, None
 
+
 # ==================== ОСНОВНАЯ ЛОГИКА ====================
+
 
 def collect_vacancies(query, area, max_pages):
     token = get_oauth_token()
@@ -141,7 +147,7 @@ def collect_vacancies(query, area, max_pages):
     total_found = None
 
     while True:
-        print(f"📄 Загрузка страницы {page+1}...")
+        print(f"📄 Загрузка страницы {page + 1}...")
         data = search_vacancies(token, query, area, page, 100)
         if not data or "items" not in data:
             print("❌ Пустой ответ, завершаем.")
@@ -179,38 +185,47 @@ def collect_vacancies(query, area, max_pages):
 
             description = details.get("description", "")
             if salary_avg is None and description:
-                salary_min, salary_max, salary_avg = extract_salary_from_text(description)
+                salary_min, salary_max, salary_avg = extract_salary_from_text(
+                    description
+                )
 
-            all_vacancies.append({
-                "id": vacancy_id,
-                "Название": details.get("name", ""),
-                "Компания": details.get("employer", {}).get("name", ""),
-                "Локация": details.get("area", {}).get("name", ""),
-                "Зарплата_текст": salary_obj.get("full") if salary_obj else "",
-                "Зарплата_от": salary_min,
-                "Зарплата_до": salary_max,
-                "Зарплата_средняя": salary_avg,
-                "Описание": description,
-                "Требования": details.get("requirement", {}).get("content", ""),
-                "Обязанности": details.get("responsibility", {}).get("content", ""),
-                "Навыки": ", ".join([s["name"] for s in details.get("key_skills", [])]),
-                "Ссылка": details.get("alternate_url", ""),
-                "Дата_публикации": details.get("published_at", "")[:10],
-            })
+            all_vacancies.append(
+                {
+                    "id": vacancy_id,
+                    "Название": details.get("name", ""),
+                    "Компания": details.get("employer", {}).get("name", ""),
+                    "Локация": details.get("area", {}).get("name", ""),
+                    "Зарплата_текст": salary_obj.get("full") if salary_obj else "",
+                    "Зарплата_от": salary_min,
+                    "Зарплата_до": salary_max,
+                    "Зарплата_средняя": salary_avg,
+                    "Описание": description,
+                    "Требования": details.get("requirement", {}).get("content", ""),
+                    "Обязанности": details.get("responsibility", {}).get("content", ""),
+                    "Навыки": ", ".join(
+                        [s["name"] for s in details.get("key_skills", [])]
+                    ),
+                    "Ссылка": details.get("alternate_url", ""),
+                    "Дата_публикации": details.get("published_at", "")[:10],
+                }
+            )
 
-            time.sleep(0.3)
+            # Случайная задержка, чтобы не банили
+            time.sleep(random.uniform(0.5, 1.2))
 
         page += 1
         if page >= max_pages or page >= (total_found // 100) + 1:
             break
 
-        time.sleep(1)
+        time.sleep(random.uniform(1.5, 3))
 
     return pd.DataFrame(all_vacancies)
 
-# ==================== АНАЛИЗ ====================
 
-def analyze_vacancies(df):
+# ==================== РАСШИРЕННЫЙ АНАЛИЗ С ГРАФИКАМИ ====================
+
+
+def generate_report(df, timestamp):
     if df.empty:
         print("❌ Нет данных для анализа.")
         return
@@ -220,74 +235,158 @@ def analyze_vacancies(df):
     print(f"ℹ️  Уникальных компаний: {df['Компания'].nunique()}")
     print(f"ℹ️  Уникальных городов: {df['Локация'].nunique()}")
 
-    salaries = df['Зарплата_средняя'].dropna()
+    # Статистика по зарплатам
+    salaries = df["Зарплата_средняя"].dropna()
     if not salaries.empty:
         print("\n💰 СТАТИСТИКА ПО ЗАРПЛАТАМ (в рублях):")
-        print(f"  Минимальная: {int(salaries.min()):,}".replace(',', ' '))
-        print(f"  Максимальная: {int(salaries.max()):,}".replace(',', ' '))
-        print(f"  Средняя: {int(salaries.mean()):,}".replace(',', ' '))
-        print(f"  Медиана: {int(salaries.median()):,}".replace(',', ' '))
-        print(f"  Количество вакансий с указанной зарплатой: {len(salaries)} из {len(df)}")
+        print(f"  Минимальная: {int(salaries.min()):,}".replace(",", " "))
+        print(f"  Максимальная: {int(salaries.max()):,}".replace(",", " "))
+        print(f"  Средняя: {int(salaries.mean()):,}".replace(",", " "))
+        print(f"  Медиана: {int(salaries.median()):,}".replace(",", " "))
+        print(
+            f"  Количество вакансий с указанной зарплатой: {len(salaries)} из {len(df)}"
+        )
     else:
         print("\n⚠️ Зарплаты не найдены.")
 
-    if not salaries.empty:
-        city_salary = df[['Локация', 'Зарплата_средняя']].dropna()
+    # Города по средней зарплате (топ 10)
+    city_salary = df[["Локация", "Зарплата_средняя"]].dropna()
+    if not city_salary.empty:
+        city_avg = (
+            city_salary.groupby("Локация")["Зарплата_средняя"]
+            .mean()
+            .sort_values(ascending=False)
+            .head(10)
+        )
+        print("\n🏙️ Топ-10 городов по средней зарплате:")
+        for i, (city, avg) in enumerate(city_avg.items(), 1):
+            print(f"  {i:2}. {city:30} – {int(avg):,} ₽".replace(",", " "))
+
+    # Создаём PDF-отчёт
+    pdf_filename = f"report_{timestamp}.pdf"
+    with PdfPages(pdf_filename) as pdf:
+        # 1. Гистограмма зарплат
+        if not salaries.empty:
+            plt.figure(figsize=(10, 6))
+            plt.hist(salaries, bins=20, color="skyblue", edgecolor="black")
+            plt.title("Распределение зарплат", fontsize=14)
+            plt.xlabel("Зарплата (руб.)")
+            plt.ylabel("Количество вакансий")
+            plt.grid(True, linestyle="--", alpha=0.7)
+            pdf.savefig()
+            plt.close()
+
+        # 2. Топ-10 городов по количеству вакансий
+        city_counts = df["Локация"].value_counts().head(10)
+        plt.figure(figsize=(10, 6))
+        city_counts.plot(kind="barh", color="lightgreen")
+        plt.title("Топ-10 городов по количеству вакансий", fontsize=14)
+        plt.xlabel("Количество вакансий")
+        plt.tight_layout()
+        pdf.savefig()
+        plt.close()
+
+        # 3. Топ-10 городов по средней зарплате
         if not city_salary.empty:
-            city_avg = city_salary.groupby('Локация')['Зарплата_средняя'].mean().sort_values(ascending=False).head(10)
-            print("\n🏙️ Топ-10 городов по средней зарплате:")
-            for i, (city, avg) in enumerate(city_avg.items(), 1):
-                print(f"  {i:2}. {city:30} – {int(avg):,} ₽".replace(',', ' '))
-
-    print("\n🏙️ Топ-10 городов по количеству вакансий:")
-    city_counts = df['Локация'].value_counts().head(10)
-    for i, (city, cnt) in enumerate(city_counts.items(), 1):
-        print(f"  {i:2}. {city:30} – {cnt}")
-
-    print("\n🏢 Топ-10 компаний:")
-    company_counts = df['Компания'].value_counts().head(10)
-    for i, (comp, cnt) in enumerate(company_counts.items(), 1):
-        print(f"  {i:2}. {comp:30} – {cnt}")
-
-    all_text = ' '.join(df['Описание'].fillna('') + ' ' + df['Требования'].fillna('') + ' ' + df['Обязанности'].fillna('')).lower()
-    tech_keywords = [
-        '.net core', '.net 8', '.net 9', 'asp.net core', 'c#',
-        'postgresql', 'docker', 'kubernetes', 'k8s', 'rabbitmq', 'kafka',
-        'redis', 'mongodb', 'entity framework', 'ef core', 'dapper',
-        'rest api', 'web api', 'grpc', 'ci/cd', 'jenkins', 'gitlab ci',
-        'github actions', 'gitflow', 'microservices', 'микросервисы',
-        'async', 'асинхронный', 'xunit', 'nunit', 'moq', 'unit-тесты',
-        'prometheus', 'grafana', 'opensearch', 'elasticsearch',
-        'linux', 'bash', 'helm', 'terraform'
-    ]
-
-    tech_counts = {}
-    for tech in tech_keywords:
-        count = all_text.count(tech)
-        if count > 0:
-            tech_counts[tech] = count
-
-    if tech_counts:
-        sorted_tech = sorted(tech_counts.items(), key=lambda x: x[1], reverse=True)
-        print("\n💻 Топ-20 технологий по частоте упоминания:")
-        for i, (tech, cnt) in enumerate(sorted_tech[:20], 1):
-            print(f"  {i:2}. {tech:20} – {cnt} раз")
-
-        try:
-            top = sorted_tech[:15]
-            names = [t[0] for t in top]
-            counts = [t[1] for t in top]
-            plt.figure(figsize=(12, 6))
-            plt.barh(names, counts, color='skyblue')
-            plt.xlabel('Частота упоминаний')
-            plt.title('Топ-15 технологий в вакансиях')
+            top_city_salary = (
+                city_salary.groupby("Локация")["Зарплата_средняя"]
+                .mean()
+                .sort_values(ascending=False)
+                .head(10)
+            )
+            plt.figure(figsize=(10, 6))
+            top_city_salary.plot(kind="barh", color="salmon")
+            plt.title("Топ-10 городов по средней зарплате", fontsize=14)
+            plt.xlabel("Средняя зарплата (руб.)")
             plt.tight_layout()
-            plt.savefig('tech_frequency_api.png')
-            print("✅ График сохранён как tech_frequency_api.png")
-        except Exception as e:
-            print(f"❌ Не удалось построить график: {e}")
-    else:
-        print("⚠️ Технологии не найдены в тексте.")
+            pdf.savefig()
+            plt.close()
+
+        # 4. Топ-10 компаний
+        company_counts = df["Компания"].value_counts().head(10)
+        plt.figure(figsize=(10, 6))
+        company_counts.plot(kind="barh", color="orange")
+        plt.title("Топ-10 компаний по количеству вакансий", fontsize=14)
+        plt.xlabel("Количество вакансий")
+        plt.tight_layout()
+        pdf.savefig()
+        plt.close()
+
+        # 5. Частота технологий
+        all_text = " ".join(
+            df["Описание"].fillna("")
+            + " "
+            + df["Требования"].fillna("")
+            + " "
+            + df["Обязанности"].fillna("")
+        ).lower()
+        tech_keywords = [
+            ".net core",
+            ".net 8",
+            ".net 9",
+            "asp.net core",
+            "c#",
+            "postgresql",
+            "docker",
+            "kubernetes",
+            "k8s",
+            "rabbitmq",
+            "kafka",
+            "redis",
+            "mongodb",
+            "entity framework",
+            "ef core",
+            "dapper",
+            "rest api",
+            "web api",
+            "grpc",
+            "ci/cd",
+            "jenkins",
+            "gitlab ci",
+            "github actions",
+            "gitflow",
+            "microservices",
+            "микросервисы",
+            "async",
+            "асинхронный",
+            "xunit",
+            "nunit",
+            "moq",
+            "unit-тесты",
+            "prometheus",
+            "grafana",
+            "opensearch",
+            "elasticsearch",
+            "linux",
+            "bash",
+            "helm",
+            "terraform",
+        ]
+        tech_counts = {}
+        for tech in tech_keywords:
+            count = all_text.count(tech)
+            if count > 0:
+                tech_counts[tech] = count
+
+        if tech_counts:
+            sorted_tech = sorted(tech_counts.items(), key=lambda x: x[1], reverse=True)[
+                :15
+            ]
+            names = [t[0] for t in sorted_tech]
+            counts = [t[1] for t in sorted_tech]
+            plt.figure(figsize=(12, 6))
+            plt.barh(names, counts, color="skyblue")
+            plt.xlabel("Частота упоминаний")
+            plt.title("Топ-15 технологий в вакансиях")
+            plt.tight_layout()
+            pdf.savefig()
+            plt.close()
+
+        # Дополнительно: можно добавить график по форматам работы, опыту и т.д., если данные есть
+        # Пока пропускаем
+
+    print(f"✅ Графики сохранены в {pdf_filename}")
+
 
 # ==================== ЗАПУСК ====================
 
@@ -299,11 +398,18 @@ if __name__ == "__main__":
     if not query:
         query = "C# разработчик"
 
-    area_input = input("Введите код региона (113 – Россия, 1 – Москва, 65 – Новосибирская область, по умолчанию 113): ").strip()
+    area_input = input(
+        "Введите код региона (113 – Россия, 1 – Москва, 65 – Новосибирская область, по умолчанию 113): "
+    ).strip()
     area = int(area_input) if area_input.isdigit() else 113
 
     pages_input = input("Количество страниц (максимум 20, по умолчанию 20): ").strip()
-    max_pages = int(pages_input) if pages_input.isdigit() and int(pages_input) <= 20 else 20
+    max_pages = (
+        int(pages_input) if pages_input.isdigit() and int(pages_input) <= 20 else 20
+    )
+
+    # === НОВОЕ: уникальный временной штамп ===
+    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
 
     print(f"\n🔍 Ищем: {query}")
     print(f"📍 Регион: {area}")
@@ -314,10 +420,11 @@ if __name__ == "__main__":
     df = collect_vacancies(query, area, max_pages)
 
     if not df.empty:
-        filename = f"vacancies_api_{query.replace(' ', '_')}.csv"
-        df.to_csv(filename, index=False, encoding='utf-8-sig')
+        # Сохраняем CSV с уникальным именем
+        filename = f"vacancies_api_{query.replace(' ', '_')}_{timestamp}.csv"
+        df.to_csv(filename, index=False, encoding="utf-8-sig")
         print(f"\n✅ Сохранено {len(df)} вакансий в {filename}")
-        analyze_vacancies(df)
+        generate_report(df, timestamp)
     else:
         print("❌ Вакансии не найдены.")
 

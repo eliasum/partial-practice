@@ -557,3 +557,8 @@ projects/SQL/sql-tutorial.ru/02. (Часть II) Язык манипуляции
 projects/SQL/sql-tutorial.ru/02. (Часть II) Язык манипуляции данными в SQL/(Глава 5) Оператор SELECT/(5.5.) Получение итоговых значений/04. Агрегатная функция от агрегатной функции/join sql/SQL join в примерах с описанием_files/wp-embed.js
 projects/SQL/sql-tutorial.ru/questions/020. More than 10 rows available. Increase rows selector to view more rows/oracle - How to increase number of displayed rows in a tabular form using apex 5.0 - Stack Overflow_files/container_data_002/jquery.js
 projects/SQL/sql-tutorial.ru/questions/020. More than 10 rows available. Increase rows selector to view more rows/oracle - How to increase number of displayed rows in a tabular form using apex 5.0 - Stack Overflow_files/container_data_002/rx_lidar.js
+
+# Игнорировать все PDF, JSON и CSV-файлы
+*.pdf
+*.json
+*.csv
