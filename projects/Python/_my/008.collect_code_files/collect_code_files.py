@@ -4,7 +4,7 @@ import os
 from datetime import datetime
 
 # Папка, которую нужно просканировать
-root_dir = "d:/Rep/garage_api/"  # <-- Заменить на нужный путь
+root_dir = "c:/eUser/_Обмен/опыт C#/"  # <-- Заменить на нужный путь
 
 # Расширения файлов, которые нас интересуют
 code_extensions = (
@@ -23,7 +23,11 @@ code_extensions = (
     ".yaml",
     ".yml",
     ".xml",
-    ".md",
+    ".sln",
+    ".config",
+    ".csproj",
+    ".xaml",
+    ".suo",
 )
 
 # Папки для исключения из обхода
